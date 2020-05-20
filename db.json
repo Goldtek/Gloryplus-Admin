@@ -1,0 +1,32 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "schedule": {
+    "scheduleTime": {
+      "date": "Sunday 17 May 2020",
+      "time": "15:22",
+      "check": "false"
+    }
+  },
+  "livestream": {
+    "stream": {
+      "streamid": "703608873733347",
+      "check": "true"
+    }
+  }
+}

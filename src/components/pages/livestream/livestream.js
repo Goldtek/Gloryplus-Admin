@@ -1,31 +1,106 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import { Formik } from "formik";
+import serializeForm from "form-serialize";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 import { Header, Sidebar } from "../../partials";
 import Content from "../main";
 
 const Livestream = () => {
+  //DECLARE USE STATE FOR OUR VARIABLES
   const [playerSource, setplaysource] = useState("");
-  const [togglestate, settoggleState] = useState(false);
+  const [checked, setChecked] = useState(false);
   const [disabled, setDisabled] = useState(false);
-  const [date, setDate] = React.useState("");
-  const [time, setTime] = React.useState("");
+  //   const [loading, setLoading] = useState(false);
   //   const [infostate, setInfo] = useState(false);
 
-  function toggle(e) {
-    settoggleState(!togglestate);
+  // LIVE STREAM TOGGLE BUTTON ########
+  const toggle = (e) => {
+    setChecked(!checked);
     setDisabled(!disabled);
-    // setInfo(!infostate);
-  }
+  };
+  // LIVE STREAM TOGGLE BUTTON ########
 
+  // USE-EFFECT TO ADD CLASS TO BODY TAG ON COMPONENT MOUNT ######
   useEffect(() => {
     document.getElementById("page-body").classList.add("theme-red");
   });
-  const handleChangePlaysource = (e) => {
-    setplaysource(e.target.value);
-  };
 
+  // USE-EFFECT TO ADD CLASS TO BODY TAG ON COMPONENT MOUNT ######
+
+  // SET THE ID INPUT INOT THE SOURCE PLAYER FOR THE IFRAME ######
+  //   const handleChangePlaysource = (e) => {
+  //     setplaysource(e.target.value);
+  //   };
+  // SET THE ID INPUT INOT THE SOURCE PLAYER FOR THE IFRAME ######
+
+  //HANDLE THE NEW STREAMING SCHEDULE ##########
+  const handleSchedule = (e) => {
+    e.preventDefault();
+    const schedulstreaming = serializeForm(e.target, { hash: true });
+    console.log(schedulstreaming);
+    axios
+      .post("http://localhost:3001/schedule", {
+        scheduleTime: schedulstreaming,
+      })
+      .then((res) => {
+        toast.success("Scheduled Successfully", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      })
+      .catch((error) => {
+        toast.error(`${error}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
+  };
+  //HANDLE THE NEW STREAMING SCHEDULE ##########
+
+  const handleStreaming = (e) => {
+    e.preventDefault();
+    const streamingValues = serializeForm(e.target, { hash: true });
+    axios
+      .patch("http://localhost:3001/livestream/", {
+        stream: streamingValues,
+      })
+      .then((res) => {
+        setplaysource(res.data.stream.streamid);
+        toast.success("Updated Streaming", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      })
+      .catch((error) => {
+        toast.error(`${error}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
+  };
   return (
     <Fragment>
       <Helmet>
@@ -41,6 +116,7 @@ const Livestream = () => {
 
       {/* CONTENT */}
       <Content title="">
+        <ToastContainer />
         {/* COURSE INFORMATION  */}
         <div className="row">
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -49,7 +125,7 @@ const Livestream = () => {
                 <div className="card">
                   <div className="header">
                     <h2>
-                      {togglestate ? (
+                      {checked ? (
                         <strong className="font-bold col-green">
                           LIVESTREAM
                         </strong>
@@ -63,7 +139,14 @@ const Livestream = () => {
                       <div className="switch">
                         <label>
                           OFF
-                          <input type="checkbox" onClick={toggle} />
+                          <input
+                            type="checkbox"
+                            onClick={toggle}
+                            onChange={(event) => {
+                              setChecked(event.target.checked);
+                            }}
+                            value={checked}
+                          />
                           <span className="lever"></span>ON
                         </label>
                       </div>
@@ -74,7 +157,7 @@ const Livestream = () => {
             </div>
           </div>
         </div>
-        {togglestate ? (
+        {checked ? (
           <div className="body">
             <div id="" className="list-unstyled row clearfix">
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -86,9 +169,9 @@ const Livestream = () => {
                     height="100%"
                     className="embed-responsive-item"
                     scrolling="no"
-                    allowTransparency="true"
+                    allowtransparency="true"
                     allow="encrypted-media"
-                    allowFullScreen="true"
+                    allowFullScreen={true}
                     title="live streaming"
                   ></iframe>
                 </div>
@@ -111,7 +194,7 @@ const Livestream = () => {
           </div>
         )}
         {/* COURSE INFORMATION  */}
-        {togglestate ? (
+        {checked ? (
           // <!--Bootstrap Date Picker -->
           <div className="row clearfix">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -126,21 +209,31 @@ const Livestream = () => {
                 </div>
                 <div className="body">
                   <div className="row clearfix">
-                    <div className="col-xs-12 col-md-12">
-                      {/* <h2 className="card-inside-title">INPUT LIVESTREAM ID</h2> */}
-                      <div className="form-group">
-                        <div className="form-line">
-                          <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Enter Livestream ID here..."
-                            value={playerSource}
-                            onChange={handleChangePlaysource}
-                            required
-                          />
+                    <form onSubmit={handleStreaming}>
+                      <div className="col-xs-12 col-md-12">
+                        {/* <h2 className="card-inside-title">INPUT LIVESTREAM ID</h2> */}
+                        <div className="form-group">
+                          <div className="form-line">
+                            <input
+                              type="text"
+                              className="form-control"
+                              placeholder="Enter Livestream ID here..."
+                              name="streamid"
+                              required
+                            />
+                            <input value={checked} name="check" type="hidden" />
+                          </div>
+                        </div>
+                        <div className="button-demo">
+                          <button
+                            type="submit"
+                            className="btn btn-primary waves-effect"
+                          >
+                            Submit
+                          </button>
                         </div>
                       </div>
-                    </div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -161,7 +254,7 @@ const Livestream = () => {
               <div className="header">
                 <h2>
                   <strong>SCHEDULE LIVE STREAMING</strong>
-                  {togglestate ? (
+                  {checked ? (
                     <small className="font-bold col-pink">
                       TO SCHEDULE FOR NEW STREAMING EVENT PLEASE TURN OFF LIVE
                       STREAMING !
@@ -173,41 +266,43 @@ const Livestream = () => {
                 <div className="row clearfix">
                   <div className="col-xs-12 col-md-12">
                     {/* <h2 className="card-inside-title">Choose Next Event Date & Time</h2> */}
-                    <Formik>
-                      <div class="col-sm-12  col-xs-12 col-md-4 col-lg-4">
-                        <div class="form-group">
-                          <div class="form-line">
+                    <form onSubmit={handleSchedule}>
+                      <div className="col-sm-12  col-xs-12 col-md-4 col-lg-4">
+                        <div className="form-group">
+                          <div className="form-line">
                             <input
                               type="text"
-                              class="datepicker form-control"
+                              className="datepicker form-control"
                               placeholder="Please choose a date..."
                               disabled={disabled}
                               name="date"
+                              required
                             />
                           </div>
                         </div>
                       </div>
-                      <div class="col-sm-12  col-xs-12 col-md-4 col-lg-4">
-                        <div class="form-group">
-                          <div class="form-line">
+                      <div className="col-sm-12  col-xs-12 col-md-4 col-lg-4">
+                        <div className="form-group">
+                          <div className="form-line">
                             <input
                               type="text"
-                              class="timepicker form-control"
+                              className="timepicker form-control"
                               placeholder="Please choose a time..."
                               disabled={disabled}
                               name="time"
+                              required
                             />
                           </div>
                         </div>
                       </div>
-                    </Formik>
-
-                    <button
-                      type="button"
-                      className="btn bg-primary waves-effect"
-                    >
-                      <strong>SCHEDULE LIVE STREAMING</strong>
-                    </button>
+                      <input value={checked} name="check" type="hidden" />
+                      <button
+                        type="submit"
+                        className="btn bg-primary waves-effect"
+                      >
+                        <strong>SCHEDULE LIVE STREAMING</strong>
+                      </button>
+                    </form>
                   </div>
                 </div>
               </div>
