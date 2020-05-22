@@ -109,26 +109,7 @@ function CreateCourse() {
               </div>
 
               {/* TEXT AREA  ############*/}
-              <div className="body">
-                <CKEditor
-                  editor={ClassicEditor}
-                  data="<p>type course description here...</p>"
-                  onInit={(editor) => {
-                    // You can store the "editor" and use when it is needed.
-                    console.log("Editor is ready to use!", editor);
-                  }}
-                  onChange={(event, editor) => {
-                    const data = editor.getData();
-                    console.log({ event, editor, data });
-                  }}
-                  onBlur={(event, editor) => {
-                    console.log("Blur.", editor);
-                  }}
-                  onFocus={(event, editor) => {
-                    console.log("Focus.", editor);
-                  }}
-                />
-              </div>
+              <div className="body"></div>
               {/* TEXT AREA ############*/}
             </div>
           </div>
@@ -150,8 +131,8 @@ function CreateCourse() {
                   name="upload"
                   method="post"
                   action="#"
-                  enctype="multipart/form-data"
-                  accept-charset="utf-8"
+                  encType="multipart/form-data"
+                  acceptCharset="utf-8"
                 >
                   <div className="row">
                     <div className="col-md-6 col-md-offset-3 center">
@@ -176,7 +157,7 @@ function CreateCourse() {
                           Browse for your pic!
                         </button>
 
-                        <input type="file" value="" name="fileup" id="fileup" />
+                        <input type="file" name="fileup" id="fileup" />
                       </div>
                     </div>
                   </div>

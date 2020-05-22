@@ -51,16 +51,16 @@ export default function sidebar() {
           <div className="menu">
             <ul className="list">
               <li>
-                <NavLink to="/dashboard" exact={true}>
+                <a href="/dashboard">
                   <i className="material-icons">home</i>
                   <span>Home</span>
-                </NavLink>
+                </a>
               </li>
               <li>
-                <NavLink to="/dashboard/livestream" exact={true}>
+                <a href="/dashboard/livestream">
                   <i className="material-icons">movie</i>
                   <span>Livestream</span>
-                </NavLink>
+                </a>
               </li>
 
               <li>
@@ -70,11 +70,7 @@ export default function sidebar() {
                 </Link>
                 <ul className="ml-menu">
                   <li>
-                    <NavLink
-                      to="/dashboard/create-course"
-                      exact={true}
-                      className="active"
-                    >
+                    <NavLink to="/dashboard/create-course" className="active">
                       <span>Create Course</span>
                     </NavLink>
                   </li>

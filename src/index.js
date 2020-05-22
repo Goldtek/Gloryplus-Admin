@@ -9,7 +9,7 @@ import store from "./redux/store";
 const App = () => {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter forceRefresh={true}>
         <Routes />
       </BrowserRouter>
     </Provider>
