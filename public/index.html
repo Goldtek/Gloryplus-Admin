@@ -1,53 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      name="viewport"
+    />
+    <title></title>
+    <!-- Favicon-->
+    <link rel="apple-touch-icon" href="images/logo/logo.png" />
+    <link rel="image/png" href="%PUBLIC_URL%/logo.png" />
+    <!-- Favicon -->
+    <link href="images/logo/logo.png" rel="shortcut icon" />
+    <base href="/" />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+      type="text/css"
+    />
 
-<head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <title></title>
-  <!-- Favicon-->
-  <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <!-- Bootstrap Core Css -->
+    <link href="css/bootstrap/css/bootstrap.css" rel="stylesheet" />
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet"
-    type="text/css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <!-- Waves Effect Css -->
+    <link href="css/node-waves/waves.css" rel="stylesheet" />
 
-  <!-- Bootstrap Core Css -->
-  <link href="css/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <!-- Animation Css -->
+    <link href="css/animate-css/animate.min.css" rel="stylesheet" />
+    <!-- Bootstrap Select Css -->
+    <link
+      href="plugins/bootstrap-select/css/bootstrap-select.css"
+      rel="stylesheet"
+    />
 
-  <!-- Waves Effect Css -->
-  <link href="css/node-waves/waves.css" rel="stylesheet" />
+    <!-- Custom Css -->
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/themes/all-themes.css" rel="stylesheet" />
 
-  <!-- Animation Css -->
-  <link href="css/animate-css/animate.min.css" rel="stylesheet" />
+    <!-- Dropzone Css -->
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
 
-  <!-- Custom Css -->
-  <link href="css/style.css" rel="stylesheet">
-  <link href="css/themes/all-themes.css" rel="stylesheet" />
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link
+      href="plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css"
+      rel="stylesheet"
+    />
 
-</head>
+    <!-- Bootstrap DatePicker Css -->
+    <link
+      href="plugins/bootstrap-datepicker/css/bootstrap-datepicker.css"
+      rel="stylesheet"
+    />
+    <base href="/" />
+  </head>
 
-<body id="page-body">
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
+  <body id="page-body">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
 
-  <!-- Jquery Core Js -->
-  <script src="js/plugin/jquery/jquery.min.js"></script>
+    <!-- Jquery Core Js -->
+    <script src="js/plugin/jquery/jquery.min.js"></script>
 
-  <!-- Bootstrap Core Js -->
-  <script src="css/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Core Js -->
+    <script src="css/bootstrap/js/bootstrap.min.js"></script>
 
-  <!-- Waves Effect Plugin Js -->
-  <script src="js/plugin/node-waves/waves.min.js"></script>
+    <!-- Select Plugin Js -->
+    <script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <!-- Waves Effect Plugin Js -->
+    <script src="plugins/node-waves/waves.min.js"></script>
 
-  <!-- Validation Plugin Js -->
-  <script src="js/plugin/jquery-validation/jquery.validate.js"></script>
+    <!-- Moment Plugin Js -->
+    <script src="plugins/momentjs/moment.js"></script>
 
-  <!-- Custom Js -->
-  <script src="js/plugin//admin.js"></script>
-  <script src="js/plugin/sign-in.js"></script>
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 
-</body>
+    <!-- Bootstrap Datepicker Plugin Js -->
+    <!-- <script src="plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> -->
+    <!-- Validation Plugin Js -->
+    <!-- <script src="js/plugin/jquery-validation/jquery.validate.js"></script> -->
 
+    <!-- DAT PICKER PLUGIN ########################################-->
+    <!-- Autosize Plugin Js -->
+    <!-- <script src="plugins/autosize/autosize.js"></script> -->
+
+    <!-- <script src="js/pages/forms/basic-form-elements.js"></script> -->
+
+    <!-- DAT PICKER PLUGIN ########################################-->
+
+    <!-- Custom Js -->
+    <script src="js/plugin//admin.js"></script>
+    <!-- <script src="js/plugin/sign-in.js"></script> -->
+    <!-- <script src="js/plugins/dropzone/dropzone.js"></script> -->
+    <div id="fb-root"></div>
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        //Datetimepicker plugin
+
+        $(".datepicker").bootstrapMaterialDatePicker({
+          format: "dddd DD MMMM YYYY",
+          clearButton: true,
+          weekStart: 1,
+          time: false,
+        });
+
+        $(".timepicker").bootstrapMaterialDatePicker({
+          format: "HH:mm",
+          clearButton: true,
+          date: false,
+        });
+      });
+    </script>
+  </body>
 </html>
