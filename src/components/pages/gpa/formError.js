@@ -1,25 +1,25 @@
 import React from "react";
 
-const formError = ({ touched, messeage }) => {
-  if (touched === false) {
+const FormError = ({ touched, message }) => {
+  if (!touched) {
     return (
-      <label id="name-error" className="error" htmlFor="name">
-        This field is required.
+      <label id="name-error" className="error">
+        {""}
       </label>
     );
   }
-  if (messeage) {
+  if (message) {
     return (
-      <label id="name-error" className="error" htmlFor="name">
-        This field is required.
+      <label id="name-error" className="error">
+        {message}
       </label>
     );
   }
   return (
-    <label id="name-success" className="sucess" htmlFor="name">
-      This field is required.
+    <label id="name-success" className="sucess">
+      all good
     </label>
   );
 };
 
-export default formError;
+export default FormError;

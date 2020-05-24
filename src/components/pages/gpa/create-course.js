@@ -1,14 +1,19 @@
 import React, { Fragment, useEffect } from "react";
 import Thumb from "./thumb";
+import FormError from "./formError";
 // import CKEditor from "@ckeditor/ckeditor5-react";
 // import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { Formik } from "formik";
-import * as yup from "yup";
+import * as Yup from "yup";
 // import { Link } from "react-router-dom";
-
 import { Header, Sidebar } from "../../partials";
 import { Helmet } from "react-helmet";
 import "./gpa.css";
+
+const validationSchema = Yup.object().shape({
+  file: Yup.mixed().required("image upload is required"),
+  coursetitle: Yup.string().required("course title is required"),
+});
 function CreateCourse() {
   useEffect(() => {
     document.getElementById("page-body").classList.add("theme-red");
@@ -30,15 +35,35 @@ function CreateCourse() {
       <section className="content">
         <div className="container-fluid">
           <Formik
-            initialValues={{ file: null, coursetitle: "" }}
-            validationSchema={yup.object().shape({
-              file: yup.mixed().required("image upload is required"),
-              coursetitle: yup.string().required("course title is required"),
-            })}
+            initialValues={{ file: "", coursetitle: "" }}
+            validationSchema={validationSchema}
+            // onSubmit={(values, { setSubmitting, resetForm }) => {
+            //   setSubmitting(true);
+            //   setTimeout(() => {
+            //     console.log(JSON.stringify(values, null, 2));
+            //     resetForm();
+            //     setSubmitting(false);
+            //   }, 500);
+            // }}
+
+            onSubmit={(values) => {
+              alert(
+                JSON.stringify(
+                  {
+                    fileName: values.file.name,
+                    type: values.file.type,
+                    size: `${values.file.size} bytes`,
+                  },
+                  null,
+                  2
+                )
+              );
+            }}
           >
             {({
               values,
               handleSubmit,
+              isSubmitting,
               setFieldValue,
               handleChange,
               touched,
@@ -67,7 +92,7 @@ function CreateCourse() {
                                 className={
                                   touched.coursetitle && errors.coursetitle
                                     ? " focused error form-line"
-                                    : "form-line"
+                                    : "form-line success"
                                 }
                               >
                                 <input
@@ -81,6 +106,10 @@ function CreateCourse() {
                                   onBlur={handleBlur}
                                 />
                               </div>
+                              <FormError
+                                touched={touched.coursetitle}
+                                message={errors.coursetitle}
+                              />
                             </div>
                           </div>
                         </div>
@@ -118,7 +147,7 @@ function CreateCourse() {
                                 <div className="form-group">
                                   <div
                                     className={
-                                      touched.coursetitle && errors.coursetitle
+                                      touched.file && errors.file
                                         ? " focused error form-line"
                                         : "form-line"
                                     }
@@ -143,6 +172,10 @@ function CreateCourse() {
                                       className="form-control"
                                     />
                                   </div>
+                                  <FormError
+                                    touched={touched.file}
+                                    message={errors.file}
+                                  />
                                 </div>
                               </div>
                               <div className="col-md-8">
@@ -168,7 +201,8 @@ function CreateCourse() {
                         <div className="button-demo">
                           <button
                             type="submit"
-                            className="btn btn-primary waves-effect btn-md "
+                            className="btn btn-primary waves-effect btn-md"
+                            disabled={isSubmitting}
                           >
                             SUBMIT
                           </button>

@@ -42,7 +42,7 @@ const Livestream = () => {
     const schedulstreaming = serializeForm(e.target, { hash: true });
     console.log(schedulstreaming);
     axios
-      .post("http://localhost:3001/schedule", {
+      .post("http://localhost:3000/schedule", {
         scheduleTime: schedulstreaming,
       })
       .then((res) => {
@@ -74,7 +74,7 @@ const Livestream = () => {
     e.preventDefault();
     const streamingValues = serializeForm(e.target, { hash: true });
     axios
-      .patch("http://localhost:3001/livestream/", {
+      .patch("http://localhost:3000/livestream/", {
         stream: streamingValues,
       })
       .then((res) => {

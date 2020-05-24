@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 class recover extends React.Component {
   componentDidMount() {
     //add class to the body tag on page load
-    document.getElementById("page-body").classList.add("login-page");
+    document.getElementById("page-body").classList.add("signup-page");
   }
   render() {
     return (
-      <div className="fp-page">
-        <div className="fp-box">
+      <div className="fp-page signup-page ">
+        <div className="fp-box col-md-4 col-sm-12 col-lg-4 col-xs-12 col-md-offset-4">
           <div className="logo">
             <Link to="#!">
               <b>Glory Plus Admin</b>

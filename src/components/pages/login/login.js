@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 class login extends React.Component {
   componentDidMount() {
     //add class to the body tag on page load
-    document.getElementById("page-body").classList.add("login-page");
+    document.getElementById("page-body").classList.add("signup-page");
   }
   render() {
     return (
-      <div className="col-md-4 col-md-offset-4  login-page">
+      <div className="col-md-4 col-md-offset-4 signup-box">
         <div className="login-box">
           <div className="logo">
             <Link to="#!">
