@@ -203,14 +203,11 @@ const Livestream = () => {
                           onSubmit={handleStreaming}
                           className="form-validate"
                         >
-                          <div className="form-group">
-                            <label className="form-control-label">
-                              ENTER LIVESTREAM ID TO START STREAMING
-                            </label>
+                          <div class="form-group-material">
                             <input
                               type="text"
                               placeholder="ENTER LIVE STREAM ID HERE ...."
-                              className="form-control"
+                              className="input-material"
                               required
                               name="streamid"
                             />
@@ -259,36 +256,47 @@ const Livestream = () => {
                   </div>
                   <div className="card-body">
                     <form className="form-inline" onSubmit={handleSchedule}>
-                      <div className="form-group">
-                        <input
-                          id="datepicker"
-                          type="text"
-                          placeholder="select date"
-                          className="mr-3 form-control"
-                          required
-                          name="date"
-                        />
-                      </div>
-
-                      <div className="form-group">
-                        <input
-                          id="timepicker"
-                          type="text"
-                          className="mr-3 form-control"
-                          placeholder="select time"
-                          name="time"
-                          required
-                        />
-                      </div>
-
-                      <div className="form-group">
-                        <button
-                          type="submit"
-                          className="btn btn-primary"
-                          disabled={disabled}
-                        >
-                          Submit
-                        </button>
+                      <div class="col-sm-12">
+                        <div className="row">
+                          <div className="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group-material">
+                              <input
+                                required
+                                className="input-material"
+                                id="datepicker"
+                                type="text"
+                                name="date"
+                                placeholder="select date"
+                              />
+                            </div>
+                          </div>
+                          <div className="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group-material">
+                              <input
+                                className="input-material"
+                                id="timepicker"
+                                type="text"
+                                placeholder="select time"
+                                name="time"
+                                required
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="form-group row">
+                          <div className="col-sm-12 ">
+                            <button type="reset" className="btn btn-secondary">
+                              Cancel
+                            </button>{" "}
+                            <button
+                              type="submit"
+                              className="btn btn-primary"
+                              disabled={disabled}
+                            >
+                              Schedule
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </form>
                   </div>

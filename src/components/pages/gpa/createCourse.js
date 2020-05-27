@@ -9,8 +9,24 @@ import uuid from "react-uuid";
 import { Header, SideBar, PageHeaderTitle } from "../../partials";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+const FILE_SIZE = 160 * 1024;
+const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
+
 const validationSchema = Yup.object().shape({
-  file: Yup.mixed().required("image upload is required"),
+  file: Yup.mixed()
+    .required("A file is required")
+    .test(
+      "fileSize",
+      "File too large",
+      (value) => value && value.size <= FILE_SIZE
+    )
+    .test(
+      "fileFormat",
+      "Unsupported Format",
+      (value) => value && SUPPORTED_FORMATS.includes(value.type)
+    ),
+
   coursetitle: Yup.string().required("course title is required"),
 });
 
@@ -20,11 +36,6 @@ const CreateCourse = ({ match }) => {
     document.getElementById("gpa").classList.add("active");
   });
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const courseObj = serializeForm(e.target, { hash: true });
-  //   console.log(courseObj);
-  // };
   return (
     <div className="page">
       <Helmet>
@@ -113,17 +124,12 @@ const CreateCourse = ({ match }) => {
                             onSubmit={handleSubmit}
                             encType="multipart/form-data"
                           >
-                            <div className="form-group">
-                              <label className="form-control-label">
-                                Course Name
-                              </label>
+                            <div class="form-group-material">
                               <input
-                                type="text"
-                                placeholder="Enter Course Name"
                                 className={
                                   touched.coursetitle && errors.coursetitle
-                                    ? "  form-control  is-invalid"
-                                    : "form-control"
+                                    ? "  input-material is-invalid"
+                                    : "input-material"
                                 }
                                 name="coursetitle"
                                 id="coursetitle"
@@ -131,6 +137,12 @@ const CreateCourse = ({ match }) => {
                                 value={values.coursetitle}
                                 onBlur={handleBlur}
                               />
+                              <label
+                                for="register-email"
+                                class="label-material"
+                              >
+                                Course Name
+                              </label>
                               <FormError
                                 touched={touched.coursetitle}
                                 message={errors.coursetitle}
