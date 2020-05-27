@@ -4,14 +4,17 @@ import Helmet from "react-helmet";
 import {
   Login,
   Dasboard,
-  Recover,
   ContactUs,
-  FirstTimers,
   Error404Page,
   CreateCourse,
   LiveStream,
   Profile,
+  ListCourse,
+  FirstTimers,
+  SecondTimers,
+  CreateEvent,
 } from "./components/pages";
+
 const Routes = () => {
   return (
     <Fragment>
@@ -31,10 +34,6 @@ const Routes = () => {
           )}
         />
 
-        <Route path="/recover">
-          <Recover />
-        </Route>
-
         <Route path="/contactus">
           <ContactUs />
         </Route>
@@ -46,13 +45,22 @@ const Routes = () => {
           <Dasboard />
         </Route>
 
-        <Route path="/first-timers">
+        <Route path="/dashboard/first-timers">
           <FirstTimers />
         </Route>
 
-        <Route path="/dashboard/create-course">
+        <Route path="/dashboard/gpa/create">
           <CreateCourse />
         </Route>
+
+        <Route path="/dashboard/gpa/view">
+          <ListCourse />
+        </Route>
+
+        <Route path="/dashboard/event/create">
+          <CreateEvent />
+        </Route>
+
         <Route path="/dashboard/livestream">
           <LiveStream />
         </Route>

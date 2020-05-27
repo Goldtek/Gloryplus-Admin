@@ -1,12 +1,24 @@
-import Login from "./login"
-import Dasboard from "./dashboard"
-import Recover from "./recover"
-import ContactUs from "./contact"
-import FirstTimers from "./first-timer"
-import Error404Page from './notfound'
-import CreateCourse from "./gpa"
-import LiveStream from "./livestream"
-import Profile from "./profile"
+import Login from "./login";
+import Dasboard from "./dashboard";
+import ContactUs from "./contact";
+import Error404Page from "./notfound";
+import CreateCourse from "./gpa";
+import LiveStream from "./livestream";
+import Profile from "./profile";
+import ListCourse from "./gpa/viewCourses";
+import FirstTimers from "./members/firstTimers";
+import SecondTimers from "./members/secondTimer";
+import CreateEvent from "./event/createEvent";
 export {
-Login,Dasboard,Recover,ContactUs,FirstTimers,Error404Page,CreateCourse,LiveStream,Profile
+  Login,
+  Dasboard,
+  ContactUs,
+  Error404Page,
+  CreateCourse,
+  LiveStream,
+  Profile,
+  ListCourse,
+  FirstTimers,
+  SecondTimers,
+  CreateEvent,
 };
