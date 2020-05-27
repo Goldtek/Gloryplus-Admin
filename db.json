@@ -91,5 +91,19 @@
       "details": "event details",
       "address": "adress"
     }
+  ],
+  "firstTimer": [
+    {
+      "id": "07a7ce3-16fe-b85c-0d51-da3824107a",
+      "name": "Elemson ifeanyi",
+      "gender": "male",
+      "email": "ielemson@gmail.com",
+      "phone": "08067407355",
+      "address": "my home address ",
+      "city": "Lagos",
+      "state": "lagos",
+      "cell": "Lagos",
+      "comment": ""
+    }
   ]
 }

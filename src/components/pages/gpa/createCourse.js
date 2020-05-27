@@ -1,15 +1,14 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import FormError from "./formError";
 import Thumb from "./thumb";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { Header, SideBar, PageHeaderTitle } from "../../partials";
 import uuid from "react-uuid";
-
+import { Header, SideBar, PageHeaderTitle } from "../../partials";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const validationSchema = Yup.object().shape({
   file: Yup.mixed().required("image upload is required"),
   coursetitle: Yup.string().required("course title is required"),
@@ -153,8 +152,8 @@ const CreateCourse = ({ match }) => {
                                 }}
                                 className={
                                   touched.file && errors.file
-                                    ? "  form-control  is-invalid"
-                                    : "form-control"
+                                    ? "  form-control-file  is-invalid"
+                                    : "form-control-file"
                                 }
                                 onBlur={handleBlur}
                               />
