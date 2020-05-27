@@ -1,94 +1,83 @@
 import React from "react";
-import { Link } from "react-router-dom";
-// import PropTypes from "prop-types";
 
-class login extends React.Component {
-  componentDidMount() {
-    //add class to the body tag on page load
-    document.getElementById("page-body").classList.add("login-page");
-  }
-  render() {
-    return (
-      <div className="col-md-4 col-md-offset-4  login-page">
-        <div className="login-box">
-          <div className="logo">
-            <Link to="#!">
-              <b>Glory Plus Admin</b>
-            </Link>
-            {/* <small>Admin BootStrap Based - Material Design</small> */}
-          </div>
-          <div className="card">
-            <div className="body">
-              <form id="sign_in" method="POST">
-                <div className="msg">Sign in to start your session</div>
-                <div className="input-group">
-                  <span className="input-group-addon">
-                    <i className="material-icons">person</i>
-                  </span>
-                  <div className="form-line">
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="username"
-                      placeholder="Username"
-                      required
-                      autofocus
-                    />
-                  </div>
-                </div>
-                <div className="input-group">
-                  <span className="input-group-addon">
-                    <i className="material-icons">lock</i>
-                  </span>
-                  <div className="form-line">
-                    <input
-                      type="password"
-                      className="form-control"
-                      name="password"
-                      placeholder="Password"
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-xs-8 p-t-5">
-                    <input
-                      type="checkbox"
-                      name="rememberme"
-                      id="rememberme"
-                      className="filled-in chk-col-pink"
-                    />
-                    <label for="rememberme">Remember Me</label>
-                  </div>
-                  <div className="col-xs-4">
-                    <button
-                      className="btn btn-block btn-primary waves-effect"
-                      type="button"
-                      onClick={() => {
-                        window.location.href = "/dashboard";
-                      }}
-                    >
-                      SIGN IN
-                    </button>
-                  </div>
-                </div>
-                <div className="row m-t-15 m-b--20">
-                  <div className="col-xs-6">
-                    <a href="/contactus">Contact Us</a>
-                  </div>
-                  <div className="col-xs-6 align-right">
-                    <a href="/recover">Forgot Password?</a>
-                  </div>
-                </div>
-              </form>
+const Login = () => {
+  return (
+    <div className="container-fluid px-3">
+      <div className="row min-vh-100">
+        <div className="col-md-5 col-lg-6 col-xl-4 px-lg-5 d-flex align-items-center">
+          <div className="w-100 py-5">
+            <div className="text-center">
+              <img
+                src="img/brand/logo.png"
+                alt="..."
+                style={{ maxWidth: "6rem" }}
+                className="img-fluid mb-4"
+              />
+              <h1 className="display-4 mb-3">Sign in</h1>
             </div>
+            <form className="form-validate">
+              <div className="form-group">
+                <label>Email Address</label>
+                <input
+                  name="loginUsername"
+                  type="email"
+                  autocomplete="off"
+                  required
+                  data-msg="Please enter your email"
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group mb-4">
+                <div className="row">
+                  <div className="col">
+                    <label>Password</label>
+                  </div>
+                  <div className="col-auto">
+                    <a href="#!" className="form-text small text-muted">
+                      Forgot password?
+                    </a>
+                  </div>
+                </div>
+                <input
+                  name="loginPassword"
+                  type="password"
+                  required
+                  data-msg="Please enter your password"
+                  className="form-control"
+                />
+              </div>
+              {/* <!-- Submit--> */}
+              <button
+                className="btn btn-lg btn-block btn-primary mb-3"
+                onClick={() => {
+                  window.location.href = "/dashboard";
+                }}
+              >
+                Sign in
+              </button>
+              {/* <!-- Link--> */}
+              <p className="text-center">
+                <small className="text-muted text-center">
+                  Don't have an account yet?
+                  <a href="register-2.html">Register</a>.
+                </small>
+              </p>
+            </form>
           </div>
         </div>
+        <div className="col-12 col-md-7 col-lg-6 col-xl-8 d-none d-lg-block">
+          {/* <!-- Image--> */}
+          <div
+            style={{
+              backgroundImage:
+                "url(img/photos/victor-ene-1301123-unsplash.jpg)",
+            }}
+            className="bg-cover h-100 mr-n3"
+          ></div>
+        </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-// login.propTypes = {};
-
-export default login;
+export default Login;

@@ -1,281 +1,260 @@
 import React from "react";
-import { Link } from "react-router-dom";
-export default function header() {
+
+const Header = () => {
   return (
-    <nav className="navbar">
-      <div className="container-fluid">
-        <div className="navbar-header">
-          <Link
-            to="#!"
-            className="navbar-toggle collapsed"
-            data-toggle="collapse"
-            data-target="#navbar-collapse"
-            aria-expanded="false"
-          ></Link>
-          <Link to="#!" className="bars"></Link>
-          <Link className="navbar-brand" to="#!">
-            <b>GloryPlus::Admin</b>
-          </Link>
+    // <!-- Main Navbar-->
+    <header className="header">
+      <nav className="navbar">
+        {/* <!-- Search Box-->? */}
+        <div className="search-box">
+          <button className="dismiss">
+            <i className="icon-close"></i>
+          </button>
+          <form id="searchForm" action="#!" role="search">
+            <input
+              type="search"
+              placeholder="What are you looking for..."
+              className="form-control"
+            />
+          </form>
         </div>
-        <div className="collapse navbar-collapse" id="navbar-collapse">
-          <ul className="nav navbar-nav navbar-right">
-            {/* <!-- Call Search --> */}
-            <li>
-              <Link to="#!" className="js-search" data-close="true">
-                <i className="material-icons">search</i>
-              </Link>
-            </li>
-            {/* <!-- #END# Call Search -->
-<!-- Notifications --> */}
-            <li className="dropdown">
-              <Link
-                to="#!"
-                className="dropdown-toggle"
-                data-toggle="dropdown"
-                role="button"
+        <div className="container-fluid">
+          <div className="navbar-holder d-flex align-items-center justify-content-between">
+            {/* <!-- Navbar Header--> */}
+            <div className="navbar-header">
+              {/* <!-- Navbar Brand --> */}
+              <a
+                href="index.html"
+                className="navbar-brand d-none d-sm-inline-block"
               >
-                <i className="material-icons">notifications</i>
-                <span className="label-count">7</span>
-              </Link>
-              <ul className="dropdown-menu">
-                <li className="header">NOTIFICATIONS</li>
-                <li className="body">
-                  <ul className="menu">
-                    <li>
-                      <Link to="#!">
-                        <div className="icon-circle bg-light-green">
-                          <i className="material-icons">person_add</i>
+                <div className="brand-text d-none d-lg-inline-block">
+                  <span>GloryPlus </span> <strong>Dashboard</strong>
+                </div>
+                <div className="brand-text d-none d-sm-inline-block d-lg-none">
+                  <strong>BD</strong>
+                </div>
+              </a>
+              {/* <!-- Toggle Button--> */}
+              <a id="toggle-btn" href="#!!" className="menu-btn active">
+                <span></span>
+                <span></span>
+                <span></span>
+              </a>
+            </div>
+            {/* <!-- Navbar Menu --> */}
+            <ul className="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+              {/* <!-- Search--> */}
+              <li className="nav-item d-flex align-items-center">
+                <a id="search" href="#!!">
+                  <i className="icon-search"></i>
+                </a>
+              </li>
+              {/* <!-- Notifications--> */}
+              <li className="nav-item dropdown">
+                <a
+                  id="notifications"
+                  rel="nofollow"
+                  data-target="#!"
+                  href="#!!"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  className="nav-link"
+                >
+                  <i className="fa fa-bell-o"></i>
+                  <span className="badge bg-red badge-corner">12</span>
+                </a>
+                <ul aria-labelledby="notifications" className="dropdown-menu">
+                  <li>
+                    <a rel="nofollow" href="#!" className="dropdown-item">
+                      <div className="notification">
+                        <div className="notification-content">
+                          <i className="fa fa-envelope bg-green"></i>You have 6
+                          new messages
                         </div>
-                        <div className="menu-info">
-                          <h4>12 new members joined</h4>
-                          <p>
-                            <i className="material-icons">access_time</i> 14
-                            mins ago
-                          </p>
+                        <div className="notification-time">
+                          <small>4 minutes ago</small>
                         </div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#!">
-                        <div className="icon-circle bg-cyan">
-                          <i className="material-icons">add_shopping_cart</i>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a rel="nofollow" href="#!" className="dropdown-item">
+                      <div className="notification">
+                        <div className="notification-content">
+                          <i className="fa fa-twitter bg-blue"></i>You have 2
+                          followers
                         </div>
-                        <div className="menu-info">
-                          <h4>4 sales made</h4>
-                          <p>
-                            <i className="material-icons">access_time</i> 22
-                            mins ago
-                          </p>
+                        <div className="notification-time">
+                          <small>4 minutes ago</small>
                         </div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#!">
-                        <div className="icon-circle bg-red">
-                          <i className="material-icons">delete_forever</i>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a rel="nofollow" href="#!" className="dropdown-item">
+                      <div className="notification">
+                        <div className="notification-content">
+                          <i className="fa fa-upload bg-orange"></i>Server
+                          Rebooted
                         </div>
-                        <div className="menu-info">
-                          <h4>
-                            <b>Nancy Doe</b> deleted account
-                          </h4>
-                          <p>
-                            <i className="material-icons">access_time</i> 3
-                            hours ago
-                          </p>
+                        <div className="notification-time">
+                          <small>4 minutes ago</small>
                         </div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#!">
-                        <div className="icon-circle bg-orange">
-                          <i className="material-icons">mode_edit</i>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a rel="nofollow" href="#!" className="dropdown-item">
+                      <div className="notification">
+                        <div className="notification-content">
+                          <i className="fa fa-twitter bg-blue"></i>You have 2
+                          followers
                         </div>
-                        <div className="menu-info">
-                          <h4>
-                            <b>Nancy</b> changed name
-                          </h4>
-                          <p>
-                            <i className="material-icons">access_time</i> 2
-                            hours ago
-                          </p>
+                        <div className="notification-time">
+                          <small>10 minutes ago</small>
                         </div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#!">
-                        <div className="icon-circle bg-blue-grey">
-                          <i className="material-icons">comment</i>
-                        </div>
-                        <div className="menu-info">
-                          <h4>
-                            <b>John</b> commented your post
-                          </h4>
-                          <p>
-                            <i className="material-icons">access_time</i> 4
-                            hours ago
-                          </p>
-                        </div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#!">
-                        <div className="icon-circle bg-light-green">
-                          <i className="material-icons">cached</i>
-                        </div>
-                        <div className="menu-info">
-                          <h4>
-                            <b>John</b> updated status
-                          </h4>
-                          <p>
-                            <i className="material-icons">access_time</i> 3
-                            hours ago
-                          </p>
-                        </div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#!">
-                        <div className="icon-circle bg-purple">
-                          <i className="material-icons">settings</i>
-                        </div>
-                        <div className="menu-info">
-                          <h4>Settings updated</h4>
-                          <p>
-                            <i className="material-icons">access_time</i>{" "}
-                            Yesterday
-                          </p>
-                        </div>
-                      </Link>
-                    </li>
-                  </ul>
-                </li>
-                <li className="footer">
-                  <Link to="#!">View All Notifications</Link>
-                </li>
-              </ul>
-            </li>
-            {/* <!-- #END# Notifications -->
-<!-- Tasks --> */}
-            <li className="dropdown">
-              <Link
-                to="#!"
-                className="dropdown-toggle"
-                data-toggle="dropdown"
-                role="button"
-              >
-                <i className="material-icons">flag</i>
-                <span className="label-count">9</span>
-              </Link>
-              <ul className="dropdown-menu">
-                <li className="header">TASKS</li>
-                <li className="body">
-                  <ul className="menu tasks">
-                    <li>
-                      <Link to="#!">
-                        <h4>
-                          Footer display issue
-                          <small>32%</small>
-                        </h4>
-                        <div className="progress">
-                          <div
-                            className="progress-bar bg-pink"
-                            role="progressbar"
-                            aria-valuenow="85"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                            style={{ width: "32 %" }}
-                          ></div>
-                        </div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#!">
-                        <h4>
-                          Make new buttons
-                          <small>45%</small>
-                        </h4>
-                        <div className="progress">
-                          <div
-                            className="progress-bar bg-cyan"
-                            role="progressbar"
-                            aria-valuenow="85"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                            style={{ width: "45 %" }}
-                          ></div>
-                        </div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#!">
-                        <h4>
-                          Create new dashboard
-                          <small>54%</small>
-                        </h4>
-                        <div className="progress">
-                          <div
-                            className="progress-bar bg-teal"
-                            role="progressbar"
-                            aria-valuenow="85"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                            style={{ width: "54 %" }}
-                          ></div>
-                        </div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#!">
-                        <h4>
-                          Solve transition issue
-                          <small>65%</small>
-                        </h4>
-                        <div className="progress">
-                          <div
-                            className="progress-bar bg-orange"
-                            role="progressbar"
-                            aria-valuenow="85"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                            style={{ width: "65 %" }}
-                          ></div>
-                        </div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#!">
-                        <h4>
-                          Answer GitHub questions
-                          <small>92%</small>
-                        </h4>
-                        <div className="progress">
-                          <div
-                            className="progress-bar bg-purple"
-                            role="progressbar"
-                            aria-valuenow="85"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                            style={{ width: "92 %" }}
-                          ></div>
-                        </div>
-                      </Link>
-                    </li>
-                  </ul>
-                </li>
-                <li className="footer">
-                  <Link to="#!">View All Tasks</Link>
-                </li>
-              </ul>
-            </li>
-            {/* <!-- #END# Tasks --> */}
-            <li className="pull-right">
-              <Link to="#!" className="js-right-sidebar" data-close="true">
-                <i className="material-icons">more_vert</i>
-              </Link>
-            </li>
-          </ul>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      rel="nofollow"
+                      href="#!"
+                      className="dropdown-item all-notifications text-center"
+                    >
+                      <strong>view all notifications </strong>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              {/* <!-- Messages                        --> */}
+              <li className="nav-item dropdown">
+                <a
+                  id="messages"
+                  rel="nofollow"
+                  data-target="#!"
+                  href="#!"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  className="nav-link"
+                >
+                  <i className="fa fa-envelope-o"></i>
+                  <span className="badge bg-orange badge-corner">10</span>
+                </a>
+                <ul aria-labelledby="notifications" className="dropdown-menu">
+                  <li>
+                    <a
+                      rel="nofollow"
+                      href="#!"
+                      className="dropdown-item d-flex"
+                    >
+                      <div className="msg-profile">
+                        <img
+                          src="img/avatar-1.jpg"
+                          alt="..."
+                          className="img-fluid rounded-circle"
+                        />
+                      </div>
+                      <div className="msg-body">
+                        <h3 className="h5">Jason Doe</h3>
+                        <span>Sent You Message</span>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      rel="nofollow"
+                      href="#!"
+                      className="dropdown-item d-flex"
+                    >
+                      <div className="msg-profile">
+                        <img
+                          src="img/avatar-2.jpg"
+                          alt="..."
+                          className="img-fluid rounded-circle"
+                        />
+                      </div>
+                      <div className="msg-body">
+                        <h3 className="h5">Frank Williams</h3>
+                        <span>Sent You Message</span>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      rel="nofollow"
+                      href="#!"
+                      className="dropdown-item d-flex"
+                    >
+                      <div className="msg-profile">
+                        <img
+                          src="img/avatar-3.jpg"
+                          alt="..."
+                          className="img-fluid rounded-circle"
+                        />
+                      </div>
+                      <div className="msg-body">
+                        <h3 className="h5">Ashley Wood</h3>
+                        <span>Sent You Message</span>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      rel="nofollow"
+                      href="#!"
+                      className="dropdown-item all-notifications text-center"
+                    >
+                      <strong>Read all messages </strong>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              {/* <!-- Languages dropdown    --> */}
+              <li className="nav-item dropdown">
+                <a
+                  id="languages"
+                  rel="nofollow"
+                  data-target="#!"
+                  href="#!"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  className="nav-link language dropdown-toggle"
+                >
+                  <i className="fa fa-user "></i>
+                  <span className="d-none d-sm-inline-block">Profile</span>
+                </a>
+                <ul aria-labelledby="languages" className="dropdown-menu">
+                  <li>
+                    <a rel="nofollow" href="#!" className="dropdown-item">
+                      <i className="fa fa-user "></i>
+                      View profile
+                    </a>
+                  </li>
+                  <li>
+                    <a rel="nofollow" href="#!" className="dropdown-item">
+                      <i className="fa fa-sign-out"></i>
+                      Logout
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              {/* <!-- Logout    --> */}
+              {/* <li className="nav-item">
+                <a href="login.html" className="nav-link logout">
+                  <span className="d-none d-sm-inline">Logout</span>
+                  <i className="fa fa-sign-out"></i>
+                </a>
+              </li> */}
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
-}
+};
+
+export default Header;

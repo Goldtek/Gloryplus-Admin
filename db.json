@@ -17,16 +17,79 @@
     "name": "typicode"
   },
   "schedule": {
-    "scheduleTime": {
-      "date": "Sunday 17 May 2020",
-      "time": "15:22",
-      "check": "false"
-    }
+    "date": "25/05/2020",
+    "time": "13:58"
   },
   "livestream": {
     "stream": {
-      "streamid": "703608873733347",
+      "streamid": "244630630203353",
       "check": "true"
     }
-  }
+  },
+  "course": [
+    {
+      "id": "43b6f7e-576-e673-c660-ee50bdbab704",
+      "file": "education.png",
+      "coursetitle": "Testing",
+      "type": "image/png"
+    },
+    {
+      "id": "4b02f68-4bc8-f176-a3f3-c15e62d8178",
+      "file": "laptop-book1.png",
+      "coursetitle": "Testing 2",
+      "type": "image/png"
+    },
+    {
+      "id": "76e8b53-201-c27c-f3b-a0ca1c7105",
+      "file": "laptop-book1.png",
+      "coursetitle": "New Course",
+      "type": "image/png"
+    }
+  ],
+  "event": [
+    {
+      "id": "a2018-3e0a-6274-3ea2-4e62c6d4ad31",
+      "img": "laptop-book1.png",
+      "type": "image/png",
+      "title": "title",
+      "date": "date",
+      "details": "details",
+      "address": "address"
+    },
+    {
+      "id": "4345e5-c01c-ae0b-8d5-176540fb753",
+      "img": "education.png",
+      "type": "image/png",
+      "title": "htgfrds",
+      "details": "jhtgrfedws",
+      "address": "hgfdsa"
+    },
+    {
+      "id": "a64eb-1a3-ab5c-b2b1-01a1257a055",
+      "img": "education.png",
+      "type": "image/png",
+      "title": "title",
+      "date": "2020-05-25T23:00:00.000Z",
+      "details": "event",
+      "address": "addresss"
+    },
+    {
+      "id": "ae786-4332-3f64-7ef-42418a5d5d65",
+      "img": "ifeanyi.jpg",
+      "type": "image/jpeg",
+      "title": "title",
+      "date": "2020-05-08T16:00:00.000Z",
+      "details": "event details",
+      "address": "address!!"
+    },
+    {
+      "id": "42a8828-d358-ac78-7e7a-f3f81e2f1562",
+      "img": "education.png",
+      "type": "image/png",
+      "title": "title",
+      "date": "2020-05-06T11:00:00.000Z",
+      "details": "event details",
+      "address": "adress"
+    }
+  ]
 }
