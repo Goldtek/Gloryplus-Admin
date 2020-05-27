@@ -13,7 +13,7 @@ import "./event.css";
 // FILE
 import FormError from "./formError";
 import Thumb from "./thumb";
-import { Header, Sidebar, PageHeaderTitle } from "../../partials";
+import { Header, SideBar, PageHeaderTitle } from "../../partials";
 
 const validationSchema = Yup.object().shape({
   file: Yup.mixed().required("image upload is required"),
@@ -40,7 +40,7 @@ const CreateEvent = () => {
 
       {/* SIDER BAR PART */}
       <div className="page-content d-flex align-items-stretch">
-        <Sidebar />
+        <SideBar />
 
         <div className="content-inner">
           {/* <!-- Page Header--> */}

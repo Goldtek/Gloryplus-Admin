@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 // import { Link } from "react-router-dom";
-import { Header, Sidebar, PageHeaderTitle } from "../../partials";
+import { Header, SideBar, PageHeaderTitle } from "../../partials";
 // import Content from "../main";
 const ViewCourses = () => {
   useEffect(() => {
@@ -18,14 +18,14 @@ const ViewCourses = () => {
 
       {/* SIDER BAR PART */}
       <div class="page-content d-flex align-items-stretch">
-        <Sidebar />
+        <SideBar />
 
         <div class="content-inner">
           {/* <!-- Page Header--> */}
           <PageHeaderTitle title="GPA" currpg="List Course" />
           <div className="container-fluid">
             {/* <!-- end row--> */}
-            <h4 class="mt-5 mb-4">GPA Coourses</h4>
+            <h4 class="mt-5 mb-4">GPA Courses</h4>
             <div class="row">
               <div class="col-md-12 col-xs-12 col-lg-12">
                 <div class="card-deck-wrapper">

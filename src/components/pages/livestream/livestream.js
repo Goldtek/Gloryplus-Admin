@@ -5,7 +5,7 @@ import serializeForm from "form-serialize";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { Header, Sidebar, PageHeaderTitle, Footer } from "../../partials";
+import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
 
 const Livestream = () => {
   useEffect(() => {
@@ -119,7 +119,7 @@ const Livestream = () => {
 
       {/* SIDER BAR PART */}
       <div className="page-content d-flex align-items-stretch">
-        <Sidebar />
+        <SideBar />
 
         <div className="content-inner">
           {/* <!-- Page Header--> */}

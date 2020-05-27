@@ -7,7 +7,7 @@ import FormError from "./formError";
 import Thumb from "./thumb";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { Header, Sidebar, PageHeaderTitle } from "../../partials";
+import { Header, SideBar, PageHeaderTitle } from "../../partials";
 import uuid from "react-uuid";
 
 const validationSchema = Yup.object().shape({
@@ -37,7 +37,7 @@ const CreateCourse = ({ match }) => {
 
       {/* SIDER BAR PART */}
       <div className="page-content d-flex align-items-stretch">
-        <Sidebar />
+        <SideBar />
 
         <div className="content-inner">
           {/* <!-- Page Header--> */}

@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 // import { Link } from "react-router-dom";
-import { Header, Sidebar, PageHeaderTitle } from "../../partials";
+import { Header, SideBar, PageHeaderTitle } from "../../partials";
 // import Content from "../main";
 class dashboard extends React.Component {
   componentDidMount() {
@@ -19,7 +19,7 @@ class dashboard extends React.Component {
 
         {/* SIDER BAR PART */}
         <div class="page-content d-flex align-items-stretch">
-          <Sidebar />
+          <SideBar />
 
           <div class="content-inner">
             {/* <!-- Page Header--> */}

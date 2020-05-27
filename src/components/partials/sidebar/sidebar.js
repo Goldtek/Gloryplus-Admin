@@ -1,6 +1,6 @@
 import React from "react";
 
-const Sidebar = () => {
+const SideBar = () => {
   return (
     // <!-- Side Navbar -->
     <nav className="side-navbar">
@@ -146,4 +146,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SideBar;

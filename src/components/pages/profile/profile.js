@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import { Header, Sidebar } from "../../partials";
+import { Header, SideBar } from "../../partials";
 import Content from "../main";
 
 const Profile = () => {
@@ -18,7 +18,7 @@ const Profile = () => {
       {/* CLOSE HEADER PART */}
 
       {/* SIDER BAR PART */}
-      <Sidebar />
+      <SideBar />
       {/* CLOSE SIDE BAR */}
 
       {/* CONTENT */}
