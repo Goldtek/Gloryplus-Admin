@@ -17,8 +17,8 @@
     "name": "typicode"
   },
   "schedule": {
-    "date": "25/05/2020",
-    "time": "13:58"
+    "date": "27/05/2020",
+    "time": "23:22"
   },
   "livestream": {
     "stream": {
@@ -90,6 +90,20 @@
       "date": "2020-05-06T11:00:00.000Z",
       "details": "event details",
       "address": "adress"
+    }
+  ],
+  "firstTimer": [
+    {
+      "id": "07a7ce3-16fe-b85c-0d51-da3824107a",
+      "name": "Elemson ifeanyi",
+      "gender": "male",
+      "email": "ielemson@gmail.com",
+      "phone": "08067407355",
+      "address": "my home address ",
+      "city": "Lagos",
+      "state": "lagos",
+      "cell": "Lagos",
+      "comment": ""
     }
   ]
 }

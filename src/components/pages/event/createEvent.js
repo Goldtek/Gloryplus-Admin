@@ -221,8 +221,8 @@ const CreateEvent = () => {
                                 }}
                                 className={
                                   touched.file && errors.file
-                                    ? "  form-control  is-invalid"
-                                    : "form-control"
+                                    ? "  form-control-file  is-invalid"
+                                    : "form-control-file"
                                 }
                                 onBlur={handleBlur}
                               />

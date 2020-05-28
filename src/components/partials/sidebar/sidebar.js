@@ -60,13 +60,13 @@ const SideBar = () => {
             </li>
           </ul>
         </li>
-        <li>
+        <li id="members">
           <a href="#formsDropdown" aria-expanded="false" data-toggle="collapse">
             <i className="icon-padnote"></i>Members
           </a>
           <ul id="formsDropdown" className="collapse list-unstyled">
             <li>
-              <a href="forms.html">Create New Member</a>
+              <a href="/dashboard/first-timers">Create New Member</a>
             </li>
             <li>
               <a href="forms-advanced.html">List of Members</a>
