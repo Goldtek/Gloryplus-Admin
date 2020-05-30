@@ -1,7 +1,7 @@
 import React from "react";
 import Moment from "react-moment";
 // const dateToFormat = new Date("");
-export const CourseCard = ({ title, created }) => {
+export const EventCard = ({ title, created }) => {
   return (
     <div className="col-md-3 col-xs-12 col-lg-3 col-sm-12">
       <div className="card-deck-wrapper">

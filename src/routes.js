@@ -13,6 +13,7 @@ import {
   FirstTimers,
   // SecondTimers,
   CreateEvent,
+  ListEvent,
 } from "./components/pages";
 
 const Routes = () => {
@@ -59,6 +60,10 @@ const Routes = () => {
 
         <Route path="/dashboard/event/create">
           <CreateEvent />
+        </Route>
+
+        <Route path="/dashboard/event/view">
+          <ListEvent />
         </Route>
 
         <Route path="/dashboard/livestream">

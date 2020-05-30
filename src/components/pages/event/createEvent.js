@@ -78,6 +78,7 @@ const CreateEvent = () => {
                               date: values.date,
                               details: values.details,
                               address: values.address,
+                              created: Date.now(),
                             },
                           })
                             .then((res) => {
@@ -235,7 +236,7 @@ const CreateEvent = () => {
                             <div className="form-group">
                               <input
                                 type="submit"
-                                value="Upload Course"
+                                value="Create Event"
                                 className="btn btn-primary"
                                 disabled={isSubmitting}
                               />
