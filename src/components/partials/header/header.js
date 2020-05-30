@@ -229,13 +229,17 @@ const Header = () => {
                 </a>
                 <ul aria-labelledby="languages" className="dropdown-menu">
                   <li>
-                    <a rel="nofollow" href="#!" className="dropdown-item">
+                    <a
+                      rel="nofollow"
+                      href="dashboard/profile"
+                      className="dropdown-item"
+                    >
                       <i className="fa fa-user "></i>
                       View profile
                     </a>
                   </li>
                   <li>
-                    <a rel="nofollow" href="#!" className="dropdown-item">
+                    <a rel="nofollow" href="/" className="dropdown-item">
                       <i className="fa fa-sign-out"></i>
                       Logout
                     </a>

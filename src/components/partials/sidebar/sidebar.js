@@ -6,18 +6,20 @@ const SideBar = () => {
     <nav className="side-navbar">
       {/* <!-- Sidebar Header--> */}
       <div className="sidebar-header d-flex align-items-center">
-        <a href="pages-profile.html">
+        <a href="dashboard/profile">
           <div className="avatar">
             <img
-              src="img/avatar-1.jpg"
+              src="img/avatar-7.jpg"
               alt="..."
               className="img-fluid rounded-circle"
             />
           </div>
         </a>
         <div className="title">
-          <h1 className="h4">Mark Stephen</h1>
-          <p>Web Designer</p>
+          <h1 className="h4" style={{ color: "#fff" }}>
+            Elemson Ifeanyi
+          </h1>
+          <p>Super Admin</p>
         </div>
       </div>
       {/* <!-- Sidebar Navidation Menus--> */}
