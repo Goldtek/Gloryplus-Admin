@@ -6,13 +6,12 @@ import Thumb from "./thumb";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import uuid from "react-uuid";
-import { Header, SideBar, PageHeaderTitle } from "../../partials";
+import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const FILE_SIZE = 160 * 1024;
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
-
 const validationSchema = Yup.object().shape({
   file: Yup.mixed()
     .required("A file is required")
@@ -80,8 +79,9 @@ const CreateCourse = ({ match }) => {
                             data: {
                               id: uuid(),
                               file: values.file.name,
-                              coursetitle: values.coursetitle,
+                              title: values.coursetitle,
                               type: values.file.type,
+                              created: Date.now(),
                             },
                           })
                             .then((res) => {
@@ -192,6 +192,7 @@ const CreateCourse = ({ match }) => {
               </div>
             </div>
             <ToastContainer />
+            <Footer />
           </section>
         </div>
       </div>

@@ -1,106 +1,70 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
+import { fetchCourseLists } from "../../../redux/actions/courseActions";
 // import { Link } from "react-router-dom";
-import { Header, SideBar, PageHeaderTitle } from "../../partials";
+import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
+import { CourseCard } from "./courseCard";
+
 // import Content from "../main";
-const ViewCourses = () => {
-  useEffect(() => {
+class ViewCourses extends React.Component {
+  // useEffect(() => {
+  //   document.getElementById("gpa").classList.add("active");
+  // });
+
+  componentDidMount() {
     document.getElementById("gpa").classList.add("active");
-  });
-  return (
-    <div className="page">
-      <Helmet>
-        <title>Dashboard</title>
-      </Helmet>
-      {/* HEADER PART */}
-      <Header />
-      {/* CLOSE HEADER PART */}
 
-      {/* SIDER BAR PART */}
-      <div class="page-content d-flex align-items-stretch">
-        <SideBar />
+    this.props.fetchCourseLists();
+  }
+  render() {
+    return (
+      <div className="page">
+        <Helmet>
+          <title>Dashboard</title>
+        </Helmet>
+        {/* HEADER PART */}
+        <Header />
+        {/* CLOSE HEADER PART */}
 
-        <div class="content-inner">
-          {/* <!-- Page Header--> */}
-          <PageHeaderTitle title="GPA" currpg="List Course" />
-          <div className="container-fluid">
-            {/* <!-- end row--> */}
-            <h4 class="mt-5 mb-4">GPA Courses</h4>
-            <div class="row">
-              <div class="col-md-12 col-xs-12 col-lg-12">
-                <div class="card-deck-wrapper">
-                  <div class="card-deck">
-                    <div class="card">
-                      <img
-                        src="img/mockup7.jpg"
-                        alt="Card  cap"
-                        class="card-img-top img-fluid"
-                      />
-                      <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">
-                          This is a longer card with supporting text below as a
-                          natural lead-in to additional content. This content is
-                          a little bit longer.
-                        </p>
-                        <p class="card-text">
-                          <small class="text-muted">
-                            Last updated 3 mins ago
-                          </small>
-                        </p>
-                      </div>
-                    </div>
-                    <div class="card">
-                      <img
-                        src="img/mockup6.jpg"
-                        alt="Card  cap"
-                        class="card-img-top img-fluid"
-                      />
-                      <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">
-                          This card has supporting text below as a natural
-                          lead-in to additional content.
-                        </p>
-                        <p class="card-text">
-                          <small class="text-muted">
-                            Last updated 3 mins ago
-                          </small>
-                        </p>
-                      </div>
-                    </div>
-                    <div class="card">
-                      <img
-                        src="img/mockup4.jpg"
-                        alt="Card  cap"
-                        class="card-img-top img-fluid"
-                      />
-                      <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">
-                          This is a wider card with supporting text below as a
-                          natural lead-in to additional content. This card has
-                          even longer content than the first to show that equal
-                          height action.
-                        </p>
-                        <p class="card-text">
-                          <small class="text-muted">
-                            Last updated 3 mins ago
-                          </small>
-                        </p>
-                      </div>
-                    </div>
+        {/* SIDER BAR PART */}
+        <div className="page-content d-flex align-items-stretch">
+          <SideBar />
+
+          <div className="content-inner">
+            {/* <!-- Page Header--> */}
+            <PageHeaderTitle title="GPA" currpg="Course List" />
+            <div className="container-fluid">
+              {/* <!-- end row--> */}
+              <section>
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Course List</h4>
                   </div>
                 </div>
-              </div>
+                <div className="row">
+                  {this.props.courses.map((course) => (
+                    <CourseCard
+                      title={course.title}
+                      created={course.created}
+                      key={course.id}
+                    />
+                  ))}
+                </div>
+              </section>
+
+              {/* <!-- end row--> */}
             </div>
-            {/* <!-- end row--> */}
+            <Footer />
           </div>
         </div>
+        {/* CLOSE SIDE BAR */}
       </div>
-      {/* CLOSE SIDE BAR */}
-    </div>
-  );
-};
+    );
+  }
+}
 
-export default ViewCourses;
+const mapStateToProps = (state) => ({
+  courses: state.courses.coursesItems,
+});
+export default connect(mapStateToProps, { fetchCourseLists })(ViewCourses);

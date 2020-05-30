@@ -11,7 +11,7 @@ import {
   Profile,
   ListCourse,
   FirstTimers,
-  SecondTimers,
+  // SecondTimers,
   CreateEvent,
 } from "./components/pages";
 

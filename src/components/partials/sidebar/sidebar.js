@@ -126,7 +126,7 @@ const SideBar = () => {
         <li>
           <a href="#">
             {" "}
-            <i className="icon-flask"></i>Pator Corner{" "}
+            <i className="icon-flask"></i>Pastor's Corner{" "}
           </a>
         </li>
         <li>
