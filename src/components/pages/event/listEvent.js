@@ -10,8 +10,8 @@ import { EventCard } from "./eventCard";
 // import Content from "../main";
 class ListEvents extends React.Component {
   static propTypes = {
-    fetchCourseLists: PropTypes.func.isRequired,
-    courses: PropTypes.array.isRequired,
+    fetchEventList: PropTypes.func.isRequired,
+    events: PropTypes.array.isRequired,
   };
   // useEffect(() => {
   //   document.getElementById("gpa").classList.add("active");
@@ -42,14 +42,18 @@ class ListEvents extends React.Component {
             <div className="container-fluid">
               {/* <!-- end row--> */}
               <section>
-                <div class="card">
-                  <div class="card-header">
+                <div className="card">
+                  <div className="card-header">
                     <h4>Event List</h4>
                   </div>
                 </div>
                 <div className="row">
                   {this.props.events.map((event) => (
-                    <EventCard title={event.title} created={event.created} />
+                    <EventCard
+                      title={event.title}
+                      created={event.created}
+                      key={event.id}
+                    />
                   ))}
                 </div>
               </section>
