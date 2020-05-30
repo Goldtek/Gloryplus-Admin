@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { fetchCourseLists } from "../../../redux/actions/courseActions";
 // import { Link } from "react-router-dom";
@@ -8,6 +9,10 @@ import { CourseCard } from "./courseCard";
 
 // import Content from "../main";
 class ViewCourses extends React.Component {
+  static propTypes = {
+    fetchCourseLists: PropTypes.func.isRequired,
+    courses: PropTypes.array.isRequired,
+  };
   // useEffect(() => {
   //   document.getElementById("gpa").classList.add("active");
   // });
@@ -21,7 +26,7 @@ class ViewCourses extends React.Component {
     return (
       <div className="page">
         <Helmet>
-          <title>Dashboard</title>
+          <title>course list</title>
         </Helmet>
         {/* HEADER PART */}
         <Header />

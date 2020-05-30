@@ -9,6 +9,7 @@ import ListCourse from "./gpa/viewCourses";
 import FirstTimers from "./members/firstTimers";
 import SecondTimers from "./members/secondTimer";
 import CreateEvent from "./event/createEvent";
+import ListEvent from "./event/listEvent";
 export {
   Login,
   Dasboard,
@@ -21,4 +22,5 @@ export {
   FirstTimers,
   SecondTimers,
   CreateEvent,
+  ListEvent,
 };

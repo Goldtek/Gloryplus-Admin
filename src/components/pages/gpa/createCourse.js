@@ -3,7 +3,7 @@ import axios from "axios";
 import { Helmet } from "react-helmet";
 import FormError from "./formError";
 import Thumb from "./thumb";
-import { Formik } from "formik";
+import { Formik, Field } from "formik";
 import * as Yup from "yup";
 import uuid from "react-uuid";
 import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
@@ -124,8 +124,8 @@ const CreateCourse = ({ match }) => {
                             onSubmit={handleSubmit}
                             encType="multipart/form-data"
                           >
-                            <div class="form-group-material">
-                              <input
+                            <div className="form-group-material">
+                              <Field
                                 className={
                                   touched.coursetitle && errors.coursetitle
                                     ? "  input-material is-invalid"
@@ -138,8 +138,8 @@ const CreateCourse = ({ match }) => {
                                 onBlur={handleBlur}
                               />
                               <label
-                                for="register-email"
-                                class="label-material"
+                                htmlFor="course name"
+                                className="label-material"
                               >
                                 Course Name
                               </label>
@@ -152,7 +152,7 @@ const CreateCourse = ({ match }) => {
                               <label className="form-control-label">
                                 Course Image
                               </label>
-                              <input
+                              <Field
                                 id="file"
                                 name="file[]"
                                 type="file"
@@ -176,7 +176,7 @@ const CreateCourse = ({ match }) => {
                               />
                             </div>
                             <div className="form-group">
-                              <input
+                              <Field
                                 type="submit"
                                 value="Upload Course"
                                 className="btn btn-primary"

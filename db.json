@@ -17,8 +17,8 @@
     "name": "typicode"
   },
   "schedule": {
-    "date": "27/05/2020",
-    "time": "23:22"
+    "date": "30/05/2020",
+    "time": "19:02"
   },
   "livestream": {
     "stream": {
@@ -50,7 +50,8 @@
       "title": "title",
       "date": "date",
       "details": "details",
-      "address": "address"
+      "address": "address",
+      "created": 1590863706011
     },
     {
       "id": "4345e5-c01c-ae0b-8d5-176540fb753",
@@ -58,7 +59,8 @@
       "type": "image/png",
       "title": "htgfrds",
       "details": "jhtgrfedws",
-      "address": "hgfdsa"
+      "address": "hgfdsa",
+      "created": 1590863706011
     },
     {
       "id": "a64eb-1a3-ab5c-b2b1-01a1257a055",
@@ -67,7 +69,8 @@
       "title": "title",
       "date": "2020-05-25T23:00:00.000Z",
       "details": "event",
-      "address": "addresss"
+      "address": "addresss",
+      "created": 1590863706011
     },
     {
       "id": "ae786-4332-3f64-7ef-42418a5d5d65",
@@ -76,7 +79,8 @@
       "title": "title",
       "date": "2020-05-08T16:00:00.000Z",
       "details": "event details",
-      "address": "address!!"
+      "address": "address!!",
+      "created": 1590863706011
     },
     {
       "id": "42a8828-d358-ac78-7e7a-f3f81e2f1562",
@@ -85,7 +89,18 @@
       "title": "title",
       "date": "2020-05-06T11:00:00.000Z",
       "details": "event details",
-      "address": "adress"
+      "address": "adress",
+      "created": 1590863706011
+    },
+    {
+      "id": "b47f87b-7080-54d8-51-06b5e2ad0aaf",
+      "img": "laptop-board.png",
+      "type": "image/png",
+      "title": "HolyGhost Morning",
+      "date": "2020-05-30T19:00:00.000Z",
+      "details": "Healing .. Breakthrough and More",
+      "address": "Apapa Lagos",
+      "created": 1590863706011
     }
   ],
   "firstTimer": [

@@ -6,18 +6,20 @@ const SideBar = () => {
     <nav className="side-navbar">
       {/* <!-- Sidebar Header--> */}
       <div className="sidebar-header d-flex align-items-center">
-        <a href="pages-profile.html">
+        <a href="dashboard/profile">
           <div className="avatar">
             <img
-              src="img/avatar-1.jpg"
+              src="img/avatar-7.jpg"
               alt="..."
               className="img-fluid rounded-circle"
             />
           </div>
         </a>
         <div className="title">
-          <h1 className="h4">Mark Stephen</h1>
-          <p>Web Designer</p>
+          <h1 className="h4" style={{ color: "#fff" }}>
+            Elemson Ifeanyi
+          </h1>
+          <p>Super Admin</p>
         </div>
       </div>
       {/* <!-- Sidebar Navidation Menus--> */}
@@ -69,7 +71,7 @@ const SideBar = () => {
               <a href="/dashboard/first-timers">Create New Member</a>
             </li>
             <li>
-              <a href="forms-advanced.html">List of Members</a>
+              <a href="#!">List of Members</a>
             </li>
           </ul>
         </li>
@@ -83,10 +85,10 @@ const SideBar = () => {
           </a>
           <ul id="componentsDropdown" className="collapse list-unstyled">
             <li>
-              <a href="components-cards.html">Create Gallery</a>
+              <a href="#!">Create Gallery</a>
             </li>
             <li>
-              <a href="components-calendar.html">View Gallery</a>
+              <a href="#!">View Gallery</a>
             </li>
           </ul>
         </li>
@@ -99,7 +101,7 @@ const SideBar = () => {
               <a href="/dashboard/event/create">Create Event</a>
             </li>
             <li>
-              <a href="pages-invoice.html">View Events</a>
+              <a href="/dashboard/event/view">View Events</a>
             </li>
           </ul>
         </li>
@@ -113,10 +115,10 @@ const SideBar = () => {
           </a>
           <ul id="TestimonialDropdown" className="collapse list-unstyled">
             <li>
-              <a href="pages-contacts.html">Create Testimony</a>
+              <a href="#!">Create Testimony</a>
             </li>
             <li>
-              <a href="pages-invoice.html">View Testimony</a>
+              <a href="#!">View Testimony</a>
             </li>
           </ul>
         </li>
