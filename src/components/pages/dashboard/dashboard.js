@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 // import { Link } from "react-router-dom";
-import { Header, SideBar, PageHeaderTitle } from "../../partials";
+import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
 // import Content from "../main";
 class dashboard extends React.Component {
   componentDidMount() {
@@ -144,6 +144,7 @@ class dashboard extends React.Component {
                 </div>
               </div>
             </section>
+            <Footer />
             {/* <!-- Dashboard Header Section    --> */}
           </div>
         </div>

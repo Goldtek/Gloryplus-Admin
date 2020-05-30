@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 import { fetchCourseLists } from "../../../redux/actions/courseActions";
 // import { Link } from "react-router-dom";
-import { Header, SideBar, PageHeaderTitle } from "../../partials";
+import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
 import { CourseCard } from "./courseCard";
 
 // import Content from "../main";
@@ -33,21 +33,29 @@ class ViewCourses extends React.Component {
 
           <div className="content-inner">
             {/* <!-- Page Header--> */}
-            <PageHeaderTitle title="GPA" currpg="List Course" />
+            <PageHeaderTitle title="GPA" currpg="Course List" />
             <div className="container-fluid">
               {/* <!-- end row--> */}
-              <h4 className="mt-5 mb-4">GPA Courses</h4>
-              <div className="row">
-                {this.props.courses.map((course) => (
-                  <CourseCard
-                    title={course.title}
-                    created={course.created}
-                    key={course.id}
-                  />
-                ))}
-              </div>
+              <section>
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Course List</h4>
+                  </div>
+                </div>
+                <div className="row">
+                  {this.props.courses.map((course) => (
+                    <CourseCard
+                      title={course.title}
+                      created={course.created}
+                      key={course.id}
+                    />
+                  ))}
+                </div>
+              </section>
+
               {/* <!-- end row--> */}
             </div>
+            <Footer />
           </div>
         </div>
         {/* CLOSE SIDE BAR */}

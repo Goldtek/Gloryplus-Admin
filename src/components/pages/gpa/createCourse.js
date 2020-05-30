@@ -6,7 +6,7 @@ import Thumb from "./thumb";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import uuid from "react-uuid";
-import { Header, SideBar, PageHeaderTitle } from "../../partials";
+import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -192,6 +192,7 @@ const CreateCourse = ({ match }) => {
               </div>
             </div>
             <ToastContainer />
+            <Footer />
           </section>
         </div>
       </div>
