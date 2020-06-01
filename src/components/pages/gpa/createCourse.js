@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet";
+import { useHistory } from "react-router-dom";
 import FormError from "./formError";
 import Thumb from "./thumb";
 import { Formik, Field } from "formik";
@@ -31,6 +32,7 @@ const validationSchema = Yup.object().shape({
 
 // const api = axios.create({ baseURL: `http://localhost:3000/course` });
 const CreateCourse = ({ match }) => {
+  let history = useHistory();
   useEffect(() => {
     document.getElementById("gpa").classList.add("active");
   });
@@ -96,6 +98,7 @@ const CreateCourse = ({ match }) => {
                                 draggable: true,
                                 progress: undefined,
                               });
+                              history.push("/dashboard/gpa/view", true);
                             })
                             .catch((err) => {
                               toast.error(`${err}`, {

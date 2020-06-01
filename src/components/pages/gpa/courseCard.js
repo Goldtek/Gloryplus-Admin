@@ -1,7 +1,7 @@
 import React from "react";
 import Moment from "react-moment";
 // const dateToFormat = new Date("");
-export const CourseCard = ({ title, created }) => {
+export const CourseCard = ({ title, created, id }) => {
   return (
     <div className="col-md-3 col-xs-12 col-lg-3 col-sm-12">
       <div className="card-deck-wrapper">
@@ -13,7 +13,7 @@ export const CourseCard = ({ title, created }) => {
               className="card-img-top img-fluid"
             />
             <div className="card-body">
-              <a href="#!">
+              <a href={`dashboard/gpa/${id}`}>
                 <h5 className="card-title">{title}</h5>
               </a>
               {/* <p className="card-text">
@@ -25,9 +25,9 @@ export const CourseCard = ({ title, created }) => {
               <p className="card-text">
                 <small className="text-muted">
                   created: <Moment fromNow>{created}</Moment>
-                  &nbsp; <a href="#!">view more</a>
+                  &nbsp; <a href={`dashboard/gpa/${id}`}>view more</a>
                   &nbsp;{" "}
-                  <a href="#!">
+                  <a href={`dashboard/gpa/${id}`}>
                     <i
                       className="fa fa-trash text-danger fa-lg"
                       aria-hidden="true"

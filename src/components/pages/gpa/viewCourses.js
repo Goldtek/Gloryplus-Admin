@@ -42,9 +42,17 @@ class ViewCourses extends React.Component {
             <div className="container-fluid">
               {/* <!-- end row--> */}
               <section>
-                <div class="card">
-                  <div class="card-header">
-                    <h4>Course List</h4>
+                <div className="card">
+                  <div className="card-header">
+                    <h4>
+                      Course List{" "}
+                      <a
+                        href="dashboard/gpa/create"
+                        className="btn btn-info btn-sm float-right"
+                      >
+                        Create Course
+                      </a>
+                    </h4>
                   </div>
                 </div>
                 <div className="row">
@@ -53,6 +61,7 @@ class ViewCourses extends React.Component {
                       title={course.title}
                       created={course.created}
                       key={course.id}
+                      id={course.id}
                     />
                   ))}
                 </div>
