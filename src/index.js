@@ -1,25 +1,29 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { Router } from "react-router-dom";
 import Routes from "./routes";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import history from "./components/history";
 // import App from "./components/App";
 
-const App = () => {
-  return (
-    <Provider store={store}>
-      <BrowserRouter forceRefresh={true} history={history}>
-        <Routes />
-      </BrowserRouter>
-    </Provider>
-  );
-};
+// const App = () => {
+//   return (
+//     <Provider store={store}>
+//       <Router forceRefresh={true} history={history}>
+//         <Routes />
+//       </Router>
+//     </Provider>
+//   );
+// };
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <Router forceRefresh={true} history={history}>
+        <Routes />
+      </Router>
+    </React.StrictMode>
+  </Provider>,
   document.getElementById("root")
 );

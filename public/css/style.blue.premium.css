@@ -4402,7 +4402,7 @@ body {
   color: #212529;
   background-color: #fff;
 }
-a {
+/* a {
   color: #2b90d9;
   text-decoration: none;
 }
@@ -4410,7 +4410,7 @@ a:focus,
 a:hover {
   color: #1c669c;
   text-decoration: underline;
-}
+} */
 h1,
 h2,
 h3,

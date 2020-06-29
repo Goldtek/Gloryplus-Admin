@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
-import viewCourseReducer from "./viewCourseReducer";
-import viewEventReducers from "./viewEventReducer";
+import CourseReducer from "./courseReducer";
+import EventReducers from "./eventReducer";
+import LessonReducer from "./lessonReducer"
 const rootReducer = combineReducers({
-  courses: viewCourseReducer,
-  events: viewEventReducers,
+  courses: CourseReducer,
+  events: EventReducers,
+  lessons: LessonReducer
 });
 export default rootReducer;
