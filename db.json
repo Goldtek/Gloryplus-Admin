@@ -1,235 +1,29 @@
 {
-  "schedule": {},
   "livestream": {
-    "stream": {
-      "streamid": "280508393197421",
-      "check": "true"
-    }
+    "active": false,
+    "streamId": "",
+    "sheduleDate": "2020-06-26",
+    "scheduleTime": "18:10"
   },
-  "course": [
-    {
-      "id": "0340f-c33a-ec7e-26ee-5d4b8d5eacd2",
-      "title": "Basic Certificate Course",
-      "created": 1593201845058
-    },
-    {
-      "id": "dbce73f-d3ac-15b-63-830045830bd2",
-      "title": "Marital Classs",
-      "created": 1593223827420
-    },
-    {
-      "id": "38ab72-418c-6654-843d-68fc388027a",
-      "title": "Advanced Certificate Course",
-      "created": 1593293611939
-    },
-    {
-      "id": "048c216-7fd5-b36-570e-040b58e82e",
-      "title": "Sample",
-      "created": 1593294367761
-    }
-  ],
+  "course": [],
   "event": [
     {
-      "id": "a2018-3e0a-6274-3ea2-4e62c6d4ad31",
-      "img": "laptop-book1.png",
-      "type": "image/png",
-      "title": "title",
-      "date": "date",
-      "details": "details",
-      "address": "address",
-      "created": 1590863706011
-    },
-    {
-      "id": "4345e5-c01c-ae0b-8d5-176540fb753",
-      "img": "education.png",
-      "type": "image/png",
-      "title": "htgfrds",
-      "details": "jhtgrfedws",
-      "address": "hgfdsa",
-      "created": 1590863706011
-    },
-    {
-      "id": "a64eb-1a3-ab5c-b2b1-01a1257a055",
-      "img": "education.png",
-      "type": "image/png",
-      "title": "title",
-      "date": "2020-05-25T23:00:00.000Z",
-      "details": "event",
-      "address": "addresss",
-      "created": 1590863706011
-    },
-    {
-      "id": "ae786-4332-3f64-7ef-42418a5d5d65",
-      "img": "ifeanyi.jpg",
-      "type": "image/jpeg",
-      "title": "title",
-      "date": "2020-05-08T16:00:00.000Z",
-      "details": "event details",
-      "address": "address!!",
-      "created": 1590863706011
-    },
-    {
-      "id": "42a8828-d358-ac78-7e7a-f3f81e2f1562",
-      "img": "education.png",
-      "type": "image/png",
-      "title": "title",
-      "date": "2020-05-06T11:00:00.000Z",
-      "details": "event details",
-      "address": "adress",
-      "created": 1590863706011
-    },
-    {
-      "id": "b47f87b-7080-54d8-51-06b5e2ad0aaf",
-      "img": "laptop-board.png",
-      "type": "image/png",
+      "id": "7f6680a-2d0-05cd-3e12-186a7a30b50d",
       "title": "HolyGhost Morning",
-      "date": "2020-05-30T19:00:00.000Z",
-      "details": "Healing .. Breakthrough and More",
-      "address": "Apapa Lagos",
-      "created": 1590863706011
-    },
-    {
-      "id": "154ce51-68b0-8333-2688-fd7f01430bb",
-      "title": "My Birthday",
-      "date": "2020-07-16T00:00",
-      "details": "On this day .. I will celebrate my birthday",
+      "date": "2020-07-24T10:32",
+      "details": "EVent Details",
       "address": "Lagos",
-      "created": 1593369669121
+      "created": 1593539465489
     },
     {
-      "id": "dec665-e020-c364-2801-adab5235063",
-      "title": "HolyGhost Morning",
-      "date": "2020-06-28T10:30",
-      "details": "Come and be blessed",
-      "address": "Ikeja",
-      "created": 1593370701313
+      "id": "80b41fa-143-8741-7da7-aaceac616f81",
+      "title": "Event Title",
+      "date": "2020-07-31T10:30",
+      "details": "event details",
+      "address": "Location",
+      "created": 1593539602773
     }
   ],
-  "firstTimer": [
-    {
-      "id": "07a7ce3-16fe-b85c-0d51-da3824107a",
-      "name": "Elemson ifeanyi",
-      "gender": "male",
-      "email": "ielemson@gmail.com",
-      "phone": "08067407355",
-      "address": "my home address ",
-      "city": "Lagos",
-      "state": "lagos",
-      "cell": "Lagos",
-      "comment": ""
-    }
-  ],
-  "lesson": [
-    {
-      "lessonNumber": "6",
-      "title": "New Birth",
-      "video": "C:\\fakepath\\Capture.PNG",
-      "instruction": "fff",
-      "courseid": "38ab72-418c-6654-843d-68fc388027a",
-      "id": 1,
-      "created": 1590863706011
-    },
-    {
-      "lessonNumber": "1",
-      "title": "Holy Ghost Baptism",
-      "video": "C:\\fakepath\\Capture.PNG",
-      "instruction": "instruction",
-      "courseid": "38ab72-418c-6654-843d-68fc388027a",
-      "id": 2,
-      "created": 1590863706011
-    },
-    {
-      "lessonNumber": "9",
-      "title": "Evangelism",
-      "video": "C:\\fakepath\\education.png",
-      "instruction": "",
-      "courseid": "38ab72-418c-6654-843d-68fc388027a",
-      "created": 1593316404549,
-      "id": 3
-    },
-    {
-      "lessonNumber": "9",
-      "title": "Consecration",
-      "video": "C:\\fakepath\\education.png",
-      "instruction": "This is an instruction...",
-      "courseid": "dbce73f-d3ac-15b-63-830045830bd2",
-      "created": 1593338899133,
-      "id": 4
-    },
-    {
-      "lessonNumber": "9",
-      "title": "Testing",
-      "video": "C:\\fakepath\\Capture.PNG",
-      "instruction": "",
-      "courseid": "dbce73f-d3ac-15b-63-830045830bd2",
-      "created": 1593339720055,
-      "id": 5
-    },
-    {
-      "lessonNumber": "9",
-      "title": "Testing",
-      "video": "C:\\fakepath\\education.png",
-      "instruction": "ddd",
-      "courseid": "38ab72-418c-6654-843d-68fc388027a",
-      "created": 1593341252841,
-      "id": 6
-    },
-    {
-      "lessonNumber": "10",
-      "title": "Testing",
-      "video": "C:\\fakepath\\education.png",
-      "instruction": "uuu",
-      "courseid": "38ab72-418c-6654-843d-68fc388027a",
-      "created": 1593341411477,
-      "id": 7
-    },
-    {
-      "lessonNumber": "4",
-      "title": "tttt",
-      "video": "C:\\fakepath\\education.png",
-      "instruction": "yyy",
-      "courseid": "38ab72-418c-6654-843d-68fc388027a",
-      "created": 1593341441995,
-      "id": 8
-    },
-    {
-      "lessonNumber": "8",
-      "title": "My Title",
-      "video": "C:\\fakepath\\education.png",
-      "instruction": "Testing Dispatch",
-      "courseid": "38ab72-418c-6654-843d-68fc388027a",
-      "created": 1593342374309,
-      "id": 9
-    },
-    {
-      "lessonNumber": "9",
-      "title": "wertyuio;iyujthrgf",
-      "video": "C:\\fakepath\\Capture.PNG",
-      "instruction": "",
-      "courseid": "38ab72-418c-6654-843d-68fc388027a",
-      "created": 1593342421621,
-      "id": 10
-    }
-  ],
-  "user": [
-    {
-      "id": "a743e40-327-ee45-e2e-41ccf0f5321",
-      "password": "rftgyuhjnimk,l;.",
-      "email": "ielemsno@gma.com",
-      "created": 1593383477911
-    },
-    {
-      "id": "651e0e2-a47a-da08-b4bb-b51df438fbe",
-      "password": "abc1234",
-      "email": "ielemson@gmail.com",
-      "created": 1593383537495
-    },
-    {
-      "id": "484aa32-20e0-0781-dd0c-6d0d357b30",
-      "password": "dfghjkl",
-      "email": "sdfghj@ggg.ggg",
-      "username": "eeeeedfgh",
-      "created": 1593388789556
-    }
-  ]
+  "lesson": [],
+  "user": []
 }

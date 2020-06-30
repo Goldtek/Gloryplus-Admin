@@ -56,15 +56,6 @@ const CreateCourse = () => {
                         validationSchema={validationSchema}
                         onSubmit={(values, { setSubmitting, resetForm }) => {
                           setSubmitting(true);
-                          // const courseObj = {
-                          //   id: uuid(),
-                          //   file: values.file.name,
-                          //   coursetitle: values.coursetitle,
-                          //   type: values.file.type,
-                          // };
-
-                          console.log(values)
-
                           axios({
                             method: "POST",
                             url: `${API_URL}/course`,

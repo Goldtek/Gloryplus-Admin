@@ -13,7 +13,7 @@ const ListEvents = ({ fetchEventList, eventData }) => {
 
 
   useEffect(() => {
-    document.getElementById("gpa").classList.add("active");
+    document.getElementById("event").classList.add("active");
     fetchEventList();
   }, [fetchEventList]);
 
@@ -68,12 +68,12 @@ const ListEvents = ({ fetchEventList, eventData }) => {
                             <EventCard title={title} created={created} img="img/mockup3.jpg" />
                           ))
 
-                        ) : <div class="col-md-6 col-lg-3 col-sm-12" style={{ margin: "0 auto" }}>
+                        ) : <div className="col-md-3 col-lg-3 col-sm-12" style={{ margin: "0 auto" }}>
 
-                            <div class="card"><img src="img/alert/error.jpg" alt="Card image cap" class="card-img-top img-fluid" />
-                              <div class="card-body">
-                                <h5 class="card-title">Info</h5>
-                                <p class="card-text">No Available Event</p>
+                            <div className="card"><img src="img/alert/error.png" alt="Card image cap" className="card-img-top img-fluid" />
+                              <div className="card-body">
+                                <h5 className="card-title">INFO</h5>
+                                <p className="card-text">NO AVAILABLE EVENT, PLEASE CREATE NEW EVENT</p>
                               </div>
 
                             </div>

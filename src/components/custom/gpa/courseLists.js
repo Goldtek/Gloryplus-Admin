@@ -8,9 +8,11 @@ import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
 import { Card } from "./courseCard";
 import { Alert, AlertTitle } from '@material-ui/lab';
 
+
 const ListCourses = ({ fetchCourseLists, courseData }) => {
 
   useEffect(() => {
+    document.getElementById("gpa").classList.add("active");
     fetchCourseLists();
   }, [fetchCourseLists]);
 
@@ -69,8 +71,8 @@ const ListCourses = ({ fetchCourseLists, courseData }) => {
 
                             <div class="card"><img src="img/alert/error.jpg" alt="Card image cap" class="card-img-top img-fluid" />
                               <div class="card-body">
-                                <h5 class="card-title">Info</h5>
-                                <p class="card-text">No Available Event</p>
+                                <h5 class="card-title">INFO</h5>
+                                <p class="card-text">NO COURSE HAS BEEN POSTED YET!</p>
                               </div>
 
                             </div>

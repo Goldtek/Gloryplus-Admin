@@ -2,8 +2,8 @@ import React, { Fragment, useState, useEffect } from "react";
 import Moment from "react-moment";
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-
-
+import editCourse from "./modal/editCourse"
+import EditCourse from "./modal/editCourse";
 export const Card = ({ title, created, id }) => {
 
   return (
@@ -21,7 +21,7 @@ export const Card = ({ title, created, id }) => {
             <ButtonGroup color="secondary" variant="contained" >
               <Button href={`/dashboard/gpa/view/${title}/${id}`} size="small">Create Lesson</Button>
 
-              <Button href={`/dashboard/gpa/view/${title}/${id}`} size="small">Edit Course</Button>
+              <EditCourse title={title} id={id} />
 
             </ButtonGroup>
           </div>

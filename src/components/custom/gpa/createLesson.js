@@ -9,7 +9,7 @@ import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
 import PuffLoader from "react-spinners/PuffLoader";
 // import CreateLessonModal from "./modal/createLessonModal"
 import { Alert, AlertTitle } from '@material-ui/lab';
-
+import uuid from "react-uuid";
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -93,16 +93,27 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
                       <DialogTitle id="form-dialog-title">{courseTitle}</DialogTitle>
 
                       <Formik
-                        initialValues={{ lessonNum: "", title: "", video: "", instruction: "" }}
+                        initialValues={{ lessonNum: "", title: "", file: null, instruction: "" }}
                         onSubmit={(values, { setSubmitting, resetForm }) => {
                           setSubmitting(true);
+                          alert(
+                            JSON.stringify(
+                              {
+                                file: values.file.name,
+
+                              },
+                              null,
+                              2
+                            )
+                          );
                           axios({
                             method: "POST",
                             url: `${API_URL}/lesson`,
                             data: {
+                              id: uuid(),
                               lessonNumber: values.lessonNum,
                               title: values.title,
-                              video: values.video,
+                              video: values.file.name,
                               instruction: values.instruction,
                               courseid: courseId,
                               created: Date.now(),
@@ -141,7 +152,7 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
                         validationSchema={Yup.object().shape({
                           lessonNum: Yup.string().required('Required'),
                           title: Yup.string().required('Required'),
-                          video: Yup.string().required('Required'),
+                          file: Yup.string().required('Required'),
                           instruction: Yup.string().nullable(),
 
                         })}>
@@ -164,7 +175,7 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
                               <DialogContent>
                                 <DialogContentText>
                                   Please ensure all input values are cross checked before submitting the form
-            </DialogContentText>
+                                </DialogContentText>
                                 <Grid >
                                   <Grid item xs={12} sm={12} md={12} lg={12}>
                                     <TextField
@@ -221,15 +232,15 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
                                     <TextField
                                       fullWidth
                                       margin="dense"
-                                      id="video"
-                                      label="Lesson  Video"
+                                      id="file"
+                                      label="Lesson Video"
                                       type="file"
-                                      name="video"
-                                      value={values.video}
+                                      name="file"
+                                      value={values.file}
                                       onChange={handleChange}
                                       onBlur={handleBlur}
-                                      error={errors.video && touched.video}
-                                      helperText={(errors.video && touched.video) && errors.video}
+                                      error={errors.file && touched.file}
+                                      helperText={(errors.file && touched.file) && errors.file}
 
                                     />
                                   </Grid>

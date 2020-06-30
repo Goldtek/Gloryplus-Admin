@@ -6,7 +6,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import uuid from "react-uuid";
 import FormError from "./formError";
-import Thumb from "./thumb";
+import { Thumb } from "../gpa/thumb";
 import { Header, SideBar, PageHeaderTitle } from "../../partials";
 import TextField from '@material-ui/core/TextField';
 
@@ -62,9 +62,17 @@ const CreateEvent = () => {
                           title: "",
                         }}
                         validationSchema={validationSchema}
-                        onSubmit={(values, { setSubmitting, resetForm }) => {
+                        onSubmit={(values, { setSubmitting, resetForm, setFieldValue }) => {
                           setSubmitting(true);
-
+                          alert(
+                            JSON.stringify(
+                              {
+                                values
+                              },
+                              null,
+                              2
+                            )
+                          );
                           axios({
                             method: "POST",
                             url: `${API_URL}/event`,
@@ -182,6 +190,7 @@ const CreateEvent = () => {
                                   error={errors.details && touched.details}
                                   helperText={(errors.details && touched.details) && errors.details}
                                 />
+
                               </div>
                               <div className="form-group">
                                 <TextField
@@ -192,12 +201,16 @@ const CreateEvent = () => {
                                   type="file"
                                   name="file"
                                   value={values.file}
-                                  onChange={handleChange}
+                                  // onChange={handleChange}
+                                  onChange={(event) => {
+                                    setFieldValue("file", event.currentTarget.files[0]);
+                                  }}
                                   onBlur={handleBlur}
                                   error={errors.file && touched.file}
                                   helperText={(errors.file && touched.file) && errors.file}
 
                                 />
+                                <Thumb file={values.file} />
                               </div>
                               <div className="form-group">
                                 <input

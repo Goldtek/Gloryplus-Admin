@@ -98,6 +98,14 @@ const Routes = () => {
           render={(props) => <CreateLesson {...props} />}
         />
 
+
+        <Route
+          exact
+          path="/dashboard/gpa/assignment/create/:id"
+          render={(props) => <CreateLesson {...props} />}
+        />
+
+
         {/* EVENT ROUTES STARTS HERE*/}
         <Route exact path="/dashboard/event/create">
           <Helmet>

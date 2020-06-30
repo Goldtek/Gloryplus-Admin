@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
-// import { Link } from "react-router-dom";
 import serializeForm from "form-serialize";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
 import Switch from '@material-ui/core/Switch';
-// import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-// import { Wrapper } from '../../components';
-import Grid from '@material-ui/core/Grid';
 
+const API_URL = process.env.REACT_APP_BASEURL;
 
 const Livestream = () => {
   useEffect(() => {
@@ -21,33 +17,27 @@ const Livestream = () => {
   const [playerSource, setplaysource] = useState("");
   const [checked, setChecked] = useState(false);
   const [disabled, setDisabled] = useState(false);
-  //   const [loading, setLoading] = useState(false);
-  //   const [infostate, setInfo] = useState(false);
 
-  // LIVE STREAM TOGGLE BUTTON ########
-  // const toggle = (e) => {
-  //   e.preventDefault();
-  //   setChecked(!checked);
-  //   setDisabled(!disabled);
-  // };
   //HANDLE THE NEW STREAMING SCHEDULE ##########
   const handleSchedule = (e) => {
     e.preventDefault();
-    const scheduleObj = serializeForm(e.target, { hash: true });
-    console.log(scheduleObj)
-    axios
-      .post("http://localhost:5000/schedule", scheduleObj)
-      .then((res) => {
-        toast.success("Scheduled Successfully", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      })
+    const streamObj = serializeForm(e.target, { hash: true });
+    axios({
+      method: "PATCH",
+      url: `${API_URL}/livestream`,
+      data: { active: checked, streamId: "", sheduleDate: streamObj.scheduleDate, scheduleTime: streamObj.scheduleTime },
+    }).then((res) => {
+      // setplaysource(res.data.streamData.streamid);
+      toast.success("Success!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    })
       .catch((error) => {
         toast.error(`${error}`, {
           position: "top-right",
@@ -60,30 +50,27 @@ const Livestream = () => {
         });
       });
   };
-
-  //HANDLE THE NEW STREAMING SCHEDULE ##########
-
   const handleStreaming = (e) => {
     e.preventDefault();
     const streamObj = serializeForm(e.target, { hash: true });
 
-    axios
-      .post("http://localhost:5000/livestream/", {
-        stream: streamObj,
-      })
-      .then((res) => {
-        setplaysource(res.data.stream.streamid);
-        // console.log(res.data);
-        toast.success("Success!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      })
+    axios({
+      method: "PATCH",
+      url: `${API_URL}/livestream`,
+      data: { active: checked, streamId: streamObj.streamid },
+    }).then((res) => {
+      console.log({ res })
+      setplaysource(res.data.streamId);
+      toast.success("Success!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    })
       .catch((error) => {
         toast.error(`${error}`, {
           position: "top-right",
@@ -96,35 +83,6 @@ const Livestream = () => {
         });
       });
   };
-
-  // const changedCLick = (checked) => {
-  //   axios
-  //     .patch("http://localhost:3000/livestream/", {
-  //       check: checked,
-  //     })
-  //     .then((res) => {
-  //       toast.success("Updated Checked", {
-  //         position: "top-right",
-  //         autoClose: 5000,
-  //         hideProgressBar: false,
-  //         closeOnClick: true,
-  //         pauseOnHover: true,
-  //         draggable: true,
-  //         progress: undefined,
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       toast.error(`${error}`, {
-  //         position: "top-right",
-  //         autoClose: 5000,
-  //         hideProgressBar: false,
-  //         closeOnClick: true,
-  //         pauseOnHover: true,
-  //         draggable: true,
-  //         progress: undefined,
-  //       });
-  //     });
-  // };
   return (
     <div className="page">
       {/* HEADER PART */}
@@ -206,21 +164,23 @@ const Livestream = () => {
                         </h3>
                       </div>
 
-                      <div className="col-md-12 col-lg-12 col-xl-12 col-sm-12 col-xs-12 ">
-                        <div className="embed-responsive embed-responsive-16by9 card">
+                      <div className="col-md-12 col-lg-12 col-xl-12 col-sm-12 col-xs-12">
+                        <div className="embed-responsive embed-responsive-16by9 card" style={{ maxHeight: "80vh" }}>
                           <iframe
                             id="iframeid"
                             src={`https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fgloryplusintl%2Fposts%2F${playerSource}&show_text=true`}
-                            width="100%"
-                            height="100%"
+                            width="20%"
+                            height="20%"
                             className="embed-responsive-item"
                             scrolling="no"
                             allowtransparency="true"
                             allow="encrypted-media"
                             allowFullScreen={true}
                             title="live streaming"
+
                           ></iframe>
                         </div>
+
                         <form
                           onSubmit={handleStreaming}
                           className="form-validate"
@@ -238,7 +198,6 @@ const Livestream = () => {
                           </div>
 
                           <div className="form-group">
-                            <input defaultValue={checked} name="check" type="hidden" />
                             <button className="btn btn-primary">Submit</button>
                           </div>
                         </form>
@@ -289,7 +248,7 @@ const Livestream = () => {
                                 id="date"
                                 label="Set Date"
                                 type="date"
-                                name="date"
+                                name="scheduleDate"
                                 fullWidth
                                 InputLabelProps={{
                                   shrink: true,
@@ -307,7 +266,7 @@ const Livestream = () => {
                                 id="time"
                                 label="Set Time"
                                 type="time"
-                                name="time"
+                                name="scheduleTime"
                                 fullWidth
                                 InputLabelProps={{
                                   shrink: true,
