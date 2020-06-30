@@ -1,3 +1,8 @@
+
+
+
+
+
 import React, { useEffect } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet";
@@ -6,7 +11,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import uuid from "react-uuid";
 import FormError from "./formError";
-import { Thumb } from "../gpa/thumb";
+import Thumb from "../gpa/thumb";
 import { Header, SideBar, PageHeaderTitle } from "../../partials";
 import TextField from '@material-ui/core/TextField';
 
@@ -238,3 +243,12 @@ const CreateEvent = () => {
 };
 
 export default CreateEvent;
+
+
+
+
+
+
+
+
+

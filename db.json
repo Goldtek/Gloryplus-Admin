@@ -25,5 +25,12 @@
     }
   ],
   "lesson": [],
-  "user": []
+  "user": [
+    {
+      "id": "65d226-7173-1c5d-ab4c-e6fff3582810",
+      "password": "abc1234@1",
+      "email": "ielemson@gmail.com",
+      "created": 1593540688137
+    }
+  ]
 }
