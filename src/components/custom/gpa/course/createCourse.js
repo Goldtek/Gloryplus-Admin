@@ -1,19 +1,20 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import FormError from "./formError";
+import FormError from "../formError";
 import TextField from '@material-ui/core/TextField'
 import { Formik, Field } from "formik";
 import * as Yup from "yup";
 import uuid from "react-uuid";
 import { useHistory } from "react-router-dom";
-import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
+import { Header, SideBar, BreadCrumb, Footer } from "../../../partials";
+import Thumb from "../thumb"
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
 
 // const FILE_SIZE = 1024 * 1024;
-const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
+// const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 const validationSchema = Yup.object().shape({
   file: Yup.mixed().required("A file is required"),
   coursetitle: Yup.string().required("course title is required"),
@@ -30,18 +31,12 @@ const CreateCourse = () => {
 
   return (
     <div className="page">
-      {/* HEADER PART */}
       <Header />
-      {/* CLOSE HEADER PART */}
-
-      {/* SIDER BAR PART */}
       <div className="page-content d-flex align-items-stretch">
         <SideBar />
 
         <div className="content-inner">
-          {/* <!-- Page Header--> */}
-          <PageHeaderTitle title="Dashboard" currpg="GPA" />
-
+          <BreadCrumb title="Dashboard" crumb="GPA" />
           <section className="forms">
             <div className="container-fluid">
               <div className="row">
@@ -126,10 +121,16 @@ const CreateCourse = () => {
                                 <label className="form-control-label">
                                   Course Image
                               </label>
-                                <Field
+                                <input
                                   id="file"
                                   name="file"
                                   type="file"
+                                  onChange={(event) => {
+                                    setFieldValue(
+                                      "file",
+                                      event.currentTarget.files[0]
+                                    );
+                                  }}
                                   className={
                                     touched.file && errors.file
                                       ? "  form-control-file  is-invalid"
@@ -137,7 +138,7 @@ const CreateCourse = () => {
                                   }
                                   onBlur={handleBlur}
                                 />
-
+                                <Thumb file={values.file} />
                                 <FormError
                                   touched={touched.file}
                                   message={errors.file}

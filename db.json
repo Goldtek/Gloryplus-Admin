@@ -5,32 +5,100 @@
     "sheduleDate": "2020-06-26",
     "scheduleTime": "18:10"
   },
-  "course": [],
-  "event": [
+  "course": [
     {
-      "id": "7f6680a-2d0-05cd-3e12-186a7a30b50d",
-      "title": "HolyGhost Morning",
-      "date": "2020-07-24T10:32",
-      "details": "EVent Details",
-      "address": "Lagos",
-      "created": 1593539465489
-    },
-    {
-      "id": "80b41fa-143-8741-7da7-aaceac616f81",
-      "title": "Event Title",
-      "date": "2020-07-31T10:30",
-      "details": "event details",
-      "address": "Location",
-      "created": 1593539602773
+      "id": "70a212-32e4-865c-bcc1-41f7358c5c",
+      "file": "output-onlinepngtools.png",
+      "title": "Course Name",
+      "type": "image/png",
+      "created": 1593544760688
     }
   ],
-  "lesson": [],
+  "event": [
+    {
+      "id": "6a1a61-5e2e-af26-d8a2-cdb8a27e160a",
+      "img": "output-onlinepngtools.png",
+      "type": "image/png",
+      "title": "dfgtyjuk",
+      "date": "2020-07-24T22:30",
+      "details": "poiuyg",
+      "address": "[poiuygt",
+      "created": 1593544539908
+    }
+  ],
+  "lesson": [
+    {
+      "id": "2a6c35b-80be-773a-bfbc-13384bdb2c14",
+      "lessonNumber": "8",
+      "title": "Holy-Ghost Baptism",
+      "video": "ScreenRecorderProject1.mkv",
+      "instruction": "",
+      "courseid": "70a212-32e4-865c-bcc1-41f7358c5c",
+      "created": 1593545504241
+    },
+    {
+      "id": "66f0a6-388-adb2-5534-62a2c3c4f5",
+      "lessonNumber": "7",
+      "title": "The New Birth",
+      "video": "Add Mongodb to our Heroku app.mp4",
+      "instruction": "",
+      "courseid": "70a212-32e4-865c-bcc1-41f7358c5c",
+      "created": 1593545679453
+    }
+  ],
+  "assigments": [
+    {
+      "id": "d3ed4e-b61f-23f5-ee4a-7240300080b",
+      "lessonId": "2a6c35b-80be-773a-bfbc-13384bdb2c14",
+      "question": "what is my name",
+      "optionA": "ifeanyi",
+      "optionB": "bone",
+      "optionC": "soft",
+      "optionD": "ebere",
+      "answer": "D",
+      "created": 1593545679453
+    },
+    {
+      "id": "edbd4f6-3ffb-3a7-2202-2cc0247fe7f",
+      "lessonId": "2a6c35b-80be-773a-bfbc-13384bdb2c14",
+      "question": "what is HolyGhost Baptism",
+      "optionA": "dove",
+      "optionB": "fire",
+      "optionC": "water",
+      "optionD": "bible",
+      "answer": "B"
+    }
+  ],
   "user": [
     {
       "id": "65d226-7173-1c5d-ab4c-e6fff3582810",
       "password": "abc1234@1",
       "email": "ielemson@gmail.com",
       "created": 1593540688137
+    },
+    {
+      "id": "eddfd-0a2-2617-ff27-dafa0f521",
+      "password": "abcccc",
+      "email": "ielemson@gmail.com",
+      "created": 1593544511594
+    },
+    {
+      "id": "de3aac7-0a4-1016-e16-7124780b36a1",
+      "password": "abc1234567",
+      "email": "ielemson@gmail.com",
+      "created": 1593591702802
+    },
+    {
+      "id": "ae3473-8cda-75f6-b535-ab5c7fa2566",
+      "password": "abc1234@1",
+      "email": "ielemson@gmail.com",
+      "created": 1593593896483
+    },
+    {
+      "id": "db460c3-b04f-1afe-4e4e-318a84488e1e",
+      "password": "abc124",
+      "email": "ielemson@gmail.com",
+      "created": 1593596670933
     }
   ]
 }

@@ -5,12 +5,10 @@ import { Helmet } from "react-helmet";
 import { fetchEventList } from "../../../redux/actions/eventAction";
 import PuffLoader from "react-spinners/PuffLoader";
 import Button from '@material-ui/core/Button';
-import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
+import { Header, SideBar, BreadCrumb, Footer } from "../../partials";
 import { EventCard } from "./eventCard";
 
-const ListEvents = ({ fetchEventList, eventData }) => {
-
-
+const EventLists = ({ fetchEventList, eventData }) => {
 
   useEffect(() => {
     document.getElementById("event").classList.add("active");
@@ -32,7 +30,7 @@ const ListEvents = ({ fetchEventList, eventData }) => {
 
         <div className="content-inner">
           {/* <!-- Page Header--> */}
-          <PageHeaderTitle title="GPA" currpg="Event List" />
+          <BreadCrumb title="GPA" crumb="Event List" />
           <div className="container-fluid">
             <section>
               <div className="card">
@@ -53,8 +51,8 @@ const ListEvents = ({ fetchEventList, eventData }) => {
                         color={"#123abc"}
                         loading={eventData.loading}
                       />
-                        Please Wait...
-                        </div>
+Please Wait...
+</div>
                   </div>
 
                 ) : eventData.error ? (
@@ -70,7 +68,7 @@ const ListEvents = ({ fetchEventList, eventData }) => {
 
                         ) : <div className="col-md-3 col-lg-3 col-sm-12" style={{ margin: "0 auto" }}>
 
-                            <div className="card"><img src="img/alert/error.png" alt="Card image cap" className="card-img-top img-fluid" />
+                            <div className="card"><img src="img/alert/error.png" alt="info" className="card-img-top img-fluid" />
                               <div className="card-body">
                                 <h5 className="card-title">INFO</h5>
                                 <p className="card-text">NO AVAILABLE EVENT, PLEASE CREATE NEW EVENT</p>
@@ -93,7 +91,7 @@ const ListEvents = ({ fetchEventList, eventData }) => {
 
 }
 
-ListEvents.propTypes = {
+EventLists.propTypes = {
   fetchEventList: PropTypes.func.isRequired,
   eventData: PropTypes.array.isRequired,
 };
@@ -101,4 +99,4 @@ ListEvents.propTypes = {
 const mapStateToProps = (state) => ({
   eventData: state.events,
 });
-export default connect(mapStateToProps, { fetchEventList })(ListEvents);
+export default connect(mapStateToProps, { fetchEventList })(EventLists);

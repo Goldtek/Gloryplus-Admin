@@ -10,11 +10,11 @@ import {
   Profile,
   ListCourse,
   FirstTimers,
-  // SecondTimers,
   CreateEvent,
   CreateLesson,
-  ListEvent,
-  Register
+  EventLists,
+  Register,
+  CreateAssignment
 } from "./components/custom";
 
 const Routes = () => {
@@ -101,8 +101,8 @@ const Routes = () => {
 
         <Route
           exact
-          path="/dashboard/gpa/assignment/create/:id"
-          render={(props) => <CreateLesson {...props} />}
+          path="/dashboard/gpa/assignment/:id"
+          render={(props) => <CreateAssignment {...props} />}
         />
 
 
@@ -118,7 +118,7 @@ const Routes = () => {
           <Helmet>
             <title>List Event</title>
           </Helmet>
-          <ListEvent />
+          < EventLists />
         </Route>
         {/* EVENT ROUTES END HERE */}
 

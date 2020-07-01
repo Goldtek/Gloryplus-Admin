@@ -2,9 +2,7 @@ import React from "react";
 
 const SideBar = () => {
   return (
-    // <!-- Side Navbar -->
     <nav className="side-navbar">
-      {/* <!-- Sidebar Header--> */}
       <div className="sidebar-header d-flex align-items-center">
         <a href="dashboard/profile">
           <div className="avatar">
@@ -18,11 +16,10 @@ const SideBar = () => {
         <div className="title">
           <h1 className="h4" style={{ color: "#fff" }}>
             Elemson Ifeanyi
-          </h1>
+</h1>
           <p>Super Admin</p>
         </div>
       </div>
-      {/* <!-- Sidebar Navidation Menus--> */}
       <span className="heading">Main</span>
       <ul className="list-unstyled">
         <li id="home">
@@ -38,7 +35,7 @@ const SideBar = () => {
             data-toggle="collapse"
           >
             <i className="fa fa-video-camera"></i>Livestream
-          </a>
+</a>
           <ul id="tablesDropdown" className="collapse list-unstyled">
             <li>
               <a href="/dashboard/livestream">Create Livestream</a>
@@ -52,7 +49,7 @@ const SideBar = () => {
             data-toggle="collapse"
           >
             <i className="fa fa-certificate"></i>GPA
-          </a>
+</a>
           <ul id="chartsDropdown" className="collapse list-unstyled">
             <li>
               <a href="/dashboard/gpa/create">Create Course</a>
@@ -65,7 +62,7 @@ const SideBar = () => {
         <li id="members">
           <a href="#formsDropdown" aria-expanded="false" data-toggle="collapse">
             <i className="icon-padnote"></i>Members
-          </a>
+</a>
           <ul id="formsDropdown" className="collapse list-unstyled">
             <li>
               <a href="/dashboard/first-timers">Create New Member</a>
@@ -82,7 +79,7 @@ const SideBar = () => {
             data-toggle="collapse"
           >
             <i className="icon-page"></i>Gallery
-          </a>
+</a>
           <ul id="componentsDropdown" className="collapse list-unstyled">
             <li>
               <a href="#!">Create Gallery</a>
@@ -95,7 +92,7 @@ const SideBar = () => {
         <li id="event">
           <a href="#pagesDropdown" aria-expanded="false" data-toggle="collapse">
             <i className="icon-interface-windows"></i>Event
-          </a>
+</a>
           <ul id="pagesDropdown" className="collapse list-unstyled">
             <li>
               <a href="/dashboard/event/create">Create Event</a>
@@ -112,10 +109,10 @@ const SideBar = () => {
             data-toggle="collapse"
           >
             <i className="icon-interface-windows"></i>Testimony
-          </a>
+</a>
           <ul id="TestimonialDropdown" className="collapse list-unstyled">
             <li>
-              <a href="#!">Create Testimony</a>
+              <a href="#!">Publish Testimony</a>
             </li>
             <li>
               <a href="#!">View Testimony</a>

@@ -3,7 +3,7 @@ import serializeForm from "form-serialize";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
+import { Header, SideBar, BreadCrumb, Footer } from "../../partials";
 import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
 
@@ -16,7 +16,7 @@ const Livestream = () => {
   //DECLARE USE STATE FOR OUR VARIABLES
   const [playerSource, setplaysource] = useState("");
   const [checked, setChecked] = useState(false);
-  const [disabled, setDisabled] = useState(false);
+  // const [disabled, setDisabled] = useState(false);
 
   //HANDLE THE NEW STREAMING SCHEDULE ##########
   const handleSchedule = (e) => {
@@ -85,20 +85,13 @@ const Livestream = () => {
   };
   return (
     <div className="page">
-      {/* HEADER PART */}
       <Header />
-      {/* CLOSE HEADER PART */}
-
-      {/* SIDER BAR PART */}
       <div className="page-content d-flex align-items-stretch">
         <SideBar />
 
         <div className="content-inner">
-          {/* <!-- Page Header--> */}
-          <PageHeaderTitle title="Live Stream" currpg="Live Stream" />
+          <BreadCrumb title="Live Stream" crumb="Live Stream" />
 
-          {/* LIVE STREAM CONTENT ##################### */}
-          {/* <!-- Inline Form--> */}
           <section className="forms">
             <div className="container-fluid">
               <div className="row">
@@ -117,18 +110,6 @@ const Livestream = () => {
                     <div className="card-body">
                       <form className="form-inline" >
                         <div className="form-group">
-                          {/* <input
-      type="checkbox"
-      data-toggle="toggle"
-      data-on="Ready"
-      data-off="Not Ready"
-      data-onstyle="success"
-      data-offstyle="danger"
-      onChange={(event) => {
-      setChecked(event.target.checked);
-      }}
-      value={checked}
-      /> */}
                           <Switch
                             color="primary"
                             onChange={(event) => {
@@ -281,13 +262,13 @@ const Livestream = () => {
                           <div className="col-sm-12 ">
                             <button type="reset" className="btn btn-secondary">
                               Clear
-                            </button>{" "}
+</button>{" "}
                             <button
                               type="submit"
                               className="btn btn-primary"
                               disabled={(checked ? true : false)}>
                               Schedule
-                             </button>
+</button>
                           </div>
                         </div>
                       </div>

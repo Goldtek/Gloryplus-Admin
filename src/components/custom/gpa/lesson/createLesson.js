@@ -1,14 +1,12 @@
 import React, { useEffect, useState, Fragment } from "react";
+import { useHistory } from "react-router-dom"
 import axios from "axios";
 import Helmet from "react-helmet";
-import { Card } from "./lessonCard";
+import { Card } from "../cards/lessonCard";
 import { connect } from "react-redux";
-import { fetchLessonLists } from "../../../redux/actions/lessonActions";
-// import { Link } from "react-router-dom";
-import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
+import { fetchLessonLists } from "../../../../redux/actions/lessonActions";
+import { Header, SideBar, BreadCrumb, Footer } from "../../../partials";
 import PuffLoader from "react-spinners/PuffLoader";
-// import CreateLessonModal from "./modal/createLessonModal"
-import { Alert, AlertTitle } from '@material-ui/lab';
 import uuid from "react-uuid";
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 import Button from '@material-ui/core/Button';
@@ -21,9 +19,11 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Grid from '@material-ui/core/Grid';
 import MenuItem from '@material-ui/core/MenuItem';
 import { ToastContainer, toast } from "react-toastify";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
+import FormError from "../formError"
+
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 const API_URL = process.env.REACT_APP_BASEURL;
@@ -47,9 +47,9 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
     setcourseTitle(match.params.title)
     document.getElementById("gpa").classList.add("active");
     fetchLessonLists()
-  }, [fetchLessonLists]);
+  }, [fetchLessonLists, match.params.id, match.params.title]);
 
-
+  let history = useHistory()
   return (
     <div className="page">
       <Helmet>
@@ -57,27 +57,20 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
       </Helmet>
       {/* HEADER PART */}
       <Header />
-      {/* CLOSE HEADER PART */}
-
-      {/* SIDER BAR PART */}
       <div className="page-content d-flex align-items-stretch">
         <SideBar />
 
         <div className="content-inner">
-          {/* <!-- Page Header--> */}
-          <PageHeaderTitle
+          <BreadCrumb
             title="GPA"
-            currpg="Create Lesson"
+            crumb="Create Lesson"
           />
 
           <div className="container-fluid">
-            {/* CREATE LESSON MODAL */}
-            {/* <!-- end row--> */}
             <section>
               <div className="card">
                 <div className="card-header">
 
-                  {/* <CreateLessonModal btnTitle="Create Lesson" courseTitle={courseTitle} courseId={courseId} /> */}
 
                   {/* CREATE LESSON MODAL :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */}
                   <div>
@@ -93,19 +86,19 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
                       <DialogTitle id="form-dialog-title">{courseTitle}</DialogTitle>
 
                       <Formik
-                        initialValues={{ lessonNum: "", title: "", file: null, instruction: "" }}
+                        initialValues={{ lessonNum: "", title: "", file: "", instruction: "" }}
                         onSubmit={(values, { setSubmitting, resetForm }) => {
                           setSubmitting(true);
-                          alert(
-                            JSON.stringify(
-                              {
-                                file: values.file.name,
+                          // alert(
+                          //   JSON.stringify(
+                          //     {
+                          //       file: values.file.name,
 
-                              },
-                              null,
-                              2
-                            )
-                          );
+                          //     },
+                          //     null,
+                          //     2
+                          //   )
+                          // );
                           axios({
                             method: "POST",
                             url: `${API_URL}/lesson`,
@@ -157,8 +150,6 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
 
                         })}>
 
-
-
                         {(props) => {
                           const {
                             values,
@@ -168,6 +159,7 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
                             handleChange,
                             handleBlur,
                             handleSubmit,
+                            setFieldValue
 
                           } = props;
                           return (
@@ -175,7 +167,7 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
                               <DialogContent>
                                 <DialogContentText>
                                   Please ensure all input values are cross checked before submitting the form
-                                </DialogContentText>
+</DialogContentText>
                                 <Grid >
                                   <Grid item xs={12} sm={12} md={12} lg={12}>
                                     <TextField
@@ -229,20 +221,32 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
                                     />
                                   </Grid>
                                   <Grid item xs={12} sm={12} md={12} lg={12}>
-                                    <TextField
-                                      fullWidth
-                                      margin="dense"
-                                      id="file"
-                                      label="Lesson Video"
-                                      type="file"
-                                      name="file"
-                                      value={values.file}
-                                      onChange={handleChange}
-                                      onBlur={handleBlur}
-                                      error={errors.file && touched.file}
-                                      helperText={(errors.file && touched.file) && errors.file}
-
-                                    />
+                                    <div className="form-group">
+                                      <label className="form-control-label">
+                                        Event Image
+                                      </label>
+                                      <input
+                                        id="file"
+                                        name="file"
+                                        type="file"
+                                        onChange={(event) => {
+                                          setFieldValue(
+                                            "file",
+                                            event.currentTarget.files[0]
+                                          );
+                                        }}
+                                        className={
+                                          touched.file && errors.file
+                                            ? "  form-control-file  is-invalid"
+                                            : "form-control-file"
+                                        }
+                                        onBlur={handleBlur}
+                                      />
+                                      <FormError
+                                        touched={touched.file}
+                                        message={errors.file}
+                                      />
+                                    </div>
                                   </Grid>
                                   <Grid item xs={12} sm={12} md={12} lg={12}>
                                     <TextField
@@ -256,33 +260,17 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
                                       value={values.instruction}
                                       onChange={handleChange}
                                       onBlur={handleBlur}
-
-
                                     />
-                                    {/* <input
-                        type="hidden"
-                        margin="dense"
-                        id="courseId"
-                        label="courseId"
-                        name="courseId"
-                        defaultValue={courseId}
-                        value={courseId}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-
-
-                      /> */}
-
                                   </Grid>
                                 </Grid>
                               </DialogContent>
                               <DialogActions>
-                                <Button type="reset" onClick={handleClose} type="submit" color="secondary" variant="contained">
+                                <Button type="reset" onClick={handleClose} color="secondary" variant="contained">
                                   Cancel
-        </Button>
-                                <Button type="submit" color="primary" variant="contained">
+                                  </Button>
+                                <Button type="submit" color="primary" variant="contained" disabled={isSubmitting}>
                                   Submit
-        </Button>
+                                  </Button>
 
                               </DialogActions>
                             </Form>
@@ -291,6 +279,9 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
                       </Formik>
 
                     </Dialog>
+                    {" "}
+                    <Button onClick={() => history.goBack()} variant="contained" color="secondary">Back</Button>
+
                   </div>
                   {/* CREATE LESSON MODAL :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */}
                 </div>
@@ -305,8 +296,8 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
                         color={"#123abc"}
                         loading={lessonData.loading}
                       />
-                      Please Wait...
-                      </div>
+                    Please Wait...
+                    </div>
                   </div>
 
                 ) : lessonData.error ? (
@@ -317,20 +308,27 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
                           lessonData.lessonItems.filter(el => el.courseid === courseId).map((lessonCourse) => (
 
                             <Card
+                              key={lessonCourse.id}
                               title={lessonCourse.title}
                               lessonId={lessonCourse.id}
                               created={lessonCourse.created}
+                              id={lessonCourse.id}
                             />
                           ))
 
-                        ) : <Alert severity="info">
-                            <AlertTitle>Info</AlertTitle> <strong>There is no available courses.. Please create a new course</strong></Alert>}
+                        ) : <div className="col-md-3 col-lg-3 col-sm-12" style={{ margin: "0 auto" }}>
+
+                            <div className="card"><img src="img/alert/error.png" alt="info" className="card-img-top img-fluid" />
+                              <div className="card-body">
+                                <h5 className="card-title">INFO</h5>
+                                <p className="card-text">NO AVAILABLE LESSON, PLEASE CREATE NEW LESSON</p>
+                              </div>
+
+                            </div>
+                          </div>}
 
                       </Fragment>
                     )}
-
-
-
               </div>
             </section>
             {/* <!-- end row--> */}

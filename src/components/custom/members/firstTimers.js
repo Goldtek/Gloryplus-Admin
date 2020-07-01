@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import { ToastContainer, toast } from "react-toastify";
 import { Formik, Form, Field } from "formik";
-import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
+import { Header, SideBar, BreadCrumb, Footer } from "../../partials";
 
 //API URL
 const API_URL = process.env.REACT_APP_BASEURL;
@@ -22,25 +22,18 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
 });
 
-function FirstTimers() {
+const FirstTimers = () => {
   useEffect(() => {
     document.getElementById("members").classList.add("active");
   });
   return (
     <div className="page">
-      {/* HEADER PART */}
       <Header />
-      {/* CLOSE HEADER PART */}
-
-      {/* SIDER BAR PART */}
       <div className="page-content d-flex align-items-stretch">
         <SideBar />
 
         <div className="content-inner">
-          {/* <!-- Page Header--> */}
-          <PageHeaderTitle title="First Timer" currpg="First Timer" />
-          {/* FIRST TIMER CONTENT */}
-          {/* <!-- Forms Section--> */}
+          <BreadCrumb title="First Timer" crumb="First Timer" />
           <section className="forms">
             <div className="container-fluid">
               <div className="row">

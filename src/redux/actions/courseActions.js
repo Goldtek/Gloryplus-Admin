@@ -1,29 +1,14 @@
-
-
-// export const fetchCourseLists = () => (dispatch) => {
-//   axios
-//     .get("http://localhost:5000/course")
-//     .then((response) =>
-//       dispatch({
-//         type: FETCH_COURSES_SUCCESS,
-//         payload: response.data,
-//       })
-//     )
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// };
-
-
 import axios from "axios";
 
 import { FETCH_COURSES_SUCCESS, FETCH_COURSES_REQUEST, FETCH_COURSES_FAILURE } from "./types";
+
+const API_URL = process.env.REACT_APP_BASEURL;
 
 export const fetchCourseLists = () => {
   return (dispatch) => {
     dispatch(fetchCoursequest());
     axios
-      .get("http://localhost:5000/course")
+      .get(`${API_URL}/course`)
       .then((response) => {
         // response.data is the users
         const courseItems = response.data

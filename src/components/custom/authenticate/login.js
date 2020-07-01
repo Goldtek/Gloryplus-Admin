@@ -1,6 +1,6 @@
 import React from "react";
 import TextField from '@material-ui/core/TextField'
-import { Formik, Field } from "formik";
+import { Formik } from "formik";
 import * as Yup from "yup";
 import uuid from "react-uuid";
 import axios from "axios"
@@ -14,6 +14,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const API_URL = process.env.REACT_APP_BASEURL;
+
 const Login = () => {
   let history = useHistory();
 
@@ -32,21 +33,12 @@ const Login = () => {
               <h1 className="display-4 mb-3">Sign in</h1>
             </div>
 
-
+            <ToastContainer />
             <Formik
               initialValues={{ password: "", email: "" }}
               validationSchema={validationSchema}
               onSubmit={(values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
-                // const courseObj = {
-                //   id: uuid(),
-                //   file: values.file.name,
-                //   coursetitle: values.coursetitle,
-                //   type: values.file.type,
-                // };
-
-                console.log(values)
-
                 axios({
                   method: "POST",
                   url: `${API_URL}/user`,
@@ -112,15 +104,6 @@ const Login = () => {
                       />
                     </div>
                     <div className="form-group mb-4">
-                      <div className="row">
-
-                        <div className="col-auto">
-                          <a href="#!" className="form-text small text-muted">
-                            Forgot password?
-                                </a>
-                        </div>
-                      </div>
-
                       <TextField
                         type="password"
                         fullWidth
@@ -134,6 +117,14 @@ const Login = () => {
                         error={errors.password && touched.password}
                         helperText={(errors.password && touched.password) && errors.password}
                       />
+                      <div className="row">
+
+                        <div className="col-auto">
+                          <a href="#!" className="form-text small text-muted">
+                            Forgot password?
+        </a>
+                        </div>
+                      </div>
                     </div>
                     {/* <!-- Submit--> */}
                     <button

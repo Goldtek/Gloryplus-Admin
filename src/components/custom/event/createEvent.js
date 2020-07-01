@@ -12,7 +12,7 @@ import * as Yup from "yup";
 import uuid from "react-uuid";
 import FormError from "./formError";
 import Thumb from "../gpa/thumb";
-import { Header, SideBar, PageHeaderTitle } from "../../partials";
+import { Header, SideBar, BreadCrumb } from "../../partials";
 import TextField from '@material-ui/core/TextField';
 
 
@@ -47,7 +47,7 @@ const CreateEvent = () => {
 
         <div className="content-inner">
           {/* <!-- Page Header--> */}
-          <PageHeaderTitle title="Dashboard" currpg="Event" />
+          <BreadCrumb title="Dashboard" crumb="Event" />
 
           <section className="forms">
             <div className="container-fluid">
@@ -198,24 +198,31 @@ const CreateEvent = () => {
 
                               </div>
                               <div className="form-group">
-                                <TextField
-                                  fullWidth
-                                  margin="dense"
+                                <label className="form-control-label">
+                                  Event Image
+                              </label>
+                                <input
                                   id="file"
-                                  label="Event Image"
-                                  type="file"
                                   name="file"
-                                  value={values.file}
-                                  // onChange={handleChange}
+                                  type="file"
                                   onChange={(event) => {
-                                    setFieldValue("file", event.currentTarget.files[0]);
+                                    setFieldValue(
+                                      "file",
+                                      event.currentTarget.files[0]
+                                    );
                                   }}
+                                  className={
+                                    touched.file && errors.file
+                                      ? "  form-control-file  is-invalid"
+                                      : "form-control-file"
+                                  }
                                   onBlur={handleBlur}
-                                  error={errors.file && touched.file}
-                                  helperText={(errors.file && touched.file) && errors.file}
-
                                 />
                                 <Thumb file={values.file} />
+                                <FormError
+                                  touched={touched.file}
+                                  message={errors.file}
+                                />
                               </div>
                               <div className="form-group">
                                 <input

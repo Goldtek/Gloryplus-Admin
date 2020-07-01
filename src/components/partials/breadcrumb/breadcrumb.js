@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-const pageHeader = ({ title, currpg }) => {
+const breadcrumb = ({ title, crumb }) => {
   return (
     <Fragment>
       <header className="page-header">
@@ -13,11 +13,11 @@ const pageHeader = ({ title, currpg }) => {
           <li className="breadcrumb-item">
             <a href="/dashboard">Home</a>
           </li>
-          <li className="breadcrumb-item active">{currpg}</li>
+          <li className="breadcrumb-item active">{crumb}</li>
         </ul>
       </div>
     </Fragment>
   );
 };
 
-export default pageHeader;
+export default breadcrumb;

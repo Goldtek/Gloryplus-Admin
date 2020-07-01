@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -7,10 +7,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Grid from '@material-ui/core/Grid';
-import MenuItem from '@material-ui/core/MenuItem';
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 import { fetchLessonLists } from "../../../../redux/actions/lessonActions";
@@ -101,8 +100,7 @@ const EditCourse = ({ title, id }) => {
                             isSubmitting,
                             handleChange,
                             handleBlur,
-                            handleSubmit,
-                            setFieldValue
+                            handleSubmit
 
                         } = props;
                         return (
@@ -142,16 +140,15 @@ const EditCourse = ({ title, id }) => {
                                                 helperText={(errors.file && touched.file) && errors.file}
 
                                             />
-                                            {/* <Thumb file={values.file} /> */}
                                         </Grid>
 
                                     </Grid>
                                 </DialogContent>
                                 <DialogActions>
-                                    <Button type="reset" onClick={handleClose} type="submit" color="secondary" variant="contained">
+                                    <Button type="reset" onClick={handleClose} color="secondary" variant="contained">
                                         Cancel
                                  </Button>
-                                    <Button type="submit" color="primary" variant="contained">
+                                    <Button type="submit" color="primary" variant="contained" disabled={isSubmitting}>
                                         Submit
                                      </Button>
 

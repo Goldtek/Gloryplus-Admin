@@ -1,8 +1,7 @@
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import Button from '@material-ui/core/Button';
-export const Card = ({ title, created, id, btnTitle, url }) => {
+export const Card = ({ title, created, id }) => {
   return (
     <Fragment>
       < div className="col-md-6 col-lg-3 col-sm-12 col-xs-12" >
@@ -20,8 +19,8 @@ export const Card = ({ title, created, id, btnTitle, url }) => {
             ></iframe>
           </div>
 
-          <div class="card-body">
-            <Button variant="contained" href="#contained-buttons" color="primary">
+          <div className="card-body">
+            <Button variant="contained" href={`dashboard/gpa/assignment/${id}`} color="primary">
               Add Assignment
       </Button>
 

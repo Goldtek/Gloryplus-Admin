@@ -1,13 +1,12 @@
 import React, { useEffect, Fragment } from "react";
+import { useHistory } from "react-router-dom"
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import PuffLoader from "react-spinners/PuffLoader";
 import Button from '@material-ui/core/Button';
-import { fetchCourseLists } from "../../../redux/actions/courseActions";
-import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
-import { Card } from "./courseCard";
-import { Alert, AlertTitle } from '@material-ui/lab';
-
+import { fetchCourseLists } from "../../../../redux/actions/courseActions";
+import { Header, SideBar, BreadCrumb, Footer } from "../../../partials";
+import { Card } from "../cards/courseCard";
 
 const ListCourses = ({ fetchCourseLists, courseData }) => {
 
@@ -16,14 +15,14 @@ const ListCourses = ({ fetchCourseLists, courseData }) => {
     fetchCourseLists();
   }, [fetchCourseLists]);
 
-
+  let history = useHistory()
   return (
     <div className="page">
       <Header />
       <div className="page-content d-flex align-items-stretch">
         <SideBar />
         <div className="content-inner">
-          <PageHeaderTitle title="GPA" currpg="Course List" />
+          <BreadCrumb title="GPA" crumb="Course List" />
           <div className="container-fluid">
             <section>
               <div className="card">
@@ -31,6 +30,8 @@ const ListCourses = ({ fetchCourseLists, courseData }) => {
                   <Button variant="contained" href="dashboard/gpa/create" color="primary">
                     Create Course
                   </Button>
+                  {" "}
+                  <Button onClick={() => history.goBack()} variant="contained" color="secondary">Back</Button>
 
                 </div>
               </div>
@@ -67,12 +68,12 @@ const ListCourses = ({ fetchCourseLists, courseData }) => {
                               btnTitle="Lesson"
                             />))
 
-                        ) : <div class="col-md-6 col-lg-3 col-sm-12" style={{ margin: "0 auto" }}>
+                        ) : <div className="col-md-6 col-lg-3 col-sm-12" style={{ margin: "0 auto" }}>
 
-                            <div class="card"><img src="img/alert/error.jpg" alt="Card image cap" class="card-img-top img-fluid" />
-                              <div class="card-body">
-                                <h5 class="card-title">INFO</h5>
-                                <p class="card-text">NO COURSE HAS BEEN POSTED YET!</p>
+                            <div className="card"><img src="img/alert/error.jpg" alt="info" className="card-img-top img-fluid" />
+                              <div className="card-body">
+                                <h5 className="card-title">INFO</h5>
+                                <p className="card-text">NO COURSE HAS BEEN POSTED YET!</p>
                               </div>
 
                             </div>
@@ -92,8 +93,7 @@ const ListCourses = ({ fetchCourseLists, courseData }) => {
 }
 
 ListCourses.propTypes = {
-  fetchCourseLists: PropTypes.func.isRequired,
-  courseData: PropTypes.array.isRequired,
+  fetchCourseLists: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({

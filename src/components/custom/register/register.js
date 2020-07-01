@@ -1,6 +1,6 @@
 import React from "react";
 import TextField from '@material-ui/core/TextField'
-import { Formik, Field } from "formik";
+import { Formik } from "formik";
 import * as Yup from "yup";
 import uuid from "react-uuid";
 import axios from "axios"
@@ -33,7 +33,7 @@ const Login = () => {
               <h1 className="display-4 mb-3">Register</h1>
             </div>
 
-
+            <ToastContainer />
             <Formik
               initialValues={{ password: "", email: "", username: "" }}
               validationSchema={validationSchema}
