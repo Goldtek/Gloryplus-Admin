@@ -1,14 +1,16 @@
 import React from "react";
 
+const userId = "ab4ce6fff3582810";
+
 const SideBar = () => {
   return (
     <nav className="side-navbar">
       <div className="sidebar-header d-flex align-items-center">
-        <a href="dashboard/profile">
+        <a href={`dashboard/user/${userId}`}>
           <div className="avatar">
             <img
               src="img/avatar-7.jpg"
-              alt="..."
+              alt="user"
               className="img-fluid rounded-circle"
             />
           </div>
@@ -65,7 +67,7 @@ const SideBar = () => {
 </a>
           <ul id="formsDropdown" className="collapse list-unstyled">
             <li>
-              <a href="/dashboard/first-timers">Create New Member</a>
+              <a href="/dashboard/member/create">Create New Member</a>
             </li>
             <li>
               <a href="#!">List of Members</a>
@@ -138,6 +140,12 @@ const SideBar = () => {
           <a href="#">
             {" "}
             <i className="icon-mail"></i>Report Issue{" "}
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            {" "}
+            <i className="fa fa-sign-out text-danger"></i>Logout{" "}
           </a>
         </li>
       </ul>

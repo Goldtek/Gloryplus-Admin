@@ -6,7 +6,7 @@ import { Card } from "../cards/lessonCard";
 import { connect } from "react-redux";
 import { fetchLessonLists } from "../../../../redux/actions/lessonActions";
 import { Header, SideBar, BreadCrumb, Footer } from "../../../partials";
-import PuffLoader from "react-spinners/PuffLoader";
+// import PuffLoader from "react-spinners/PuffLoader";
 import uuid from "react-uuid";
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 import Button from '@material-ui/core/Button';
@@ -23,7 +23,7 @@ import { Formik, Form } from "formik";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 import FormError from "../formError"
-
+import { LoaderCard, InfoCard } from "../../_helpers"
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 const API_URL = process.env.REACT_APP_BASEURL;
@@ -50,6 +50,10 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
   }, [fetchLessonLists, match.params.id, match.params.title]);
 
   let history = useHistory()
+
+  //filter lesson out
+
+  const lessons = lessonData.lessonItems.filter(el => el.courseid === courseId);
   return (
     <div className="page">
       <Helmet>
@@ -167,7 +171,7 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
                               <DialogContent>
                                 <DialogContentText>
                                   Please ensure all input values are cross checked before submitting the form
-</DialogContentText>
+                        </DialogContentText>
                                 <Grid >
                                   <Grid item xs={12} sm={12} md={12} lg={12}>
                                     <TextField
@@ -289,24 +293,14 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
               <div className="row">
 
                 {lessonData.loading ? (
-                  <div className="col-md-4 col-lg-4 col-sm-12" style={{ margin: "0 auto" }}>
-                    <div className="sweet-loading">
-                      <PuffLoader
-                        size={60}
-                        color={"#123abc"}
-                        loading={lessonData.loading}
-                      />
-                    Please Wait...
-                    </div>
-                  </div>
+                  <LoaderCard />
 
                 ) : lessonData.error ? (
-                  <h2>{lessonData.error}</h2>
+                  <InfoCard error={lessonData.error} />
                 ) : (
                       <Fragment>
-                        {lessonData.lessonItems.length ? (
-                          lessonData.lessonItems.filter(el => el.courseid === courseId).map((lessonCourse) => (
-
+                        {lessons.length ? (
+                          lessons.filter(el => el.courseid === courseId).map((lessonCourse) => (
                             <Card
                               key={lessonCourse.id}
                               title={lessonCourse.title}
@@ -316,16 +310,9 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
                             />
                           ))
 
-                        ) : <div className="col-md-3 col-lg-3 col-sm-12" style={{ margin: "0 auto" }}>
-
-                            <div className="card"><img src="img/alert/error.png" alt="info" className="card-img-top img-fluid" />
-                              <div className="card-body">
-                                <h5 className="card-title">INFO</h5>
-                                <p className="card-text">NO AVAILABLE LESSON, PLEASE CREATE NEW LESSON</p>
-                              </div>
-
-                            </div>
-                          </div>}
+                        ) :
+                          <InfoCard info="No Lesson available, please create new lesson" />
+                        }
 
                       </Fragment>
                     )}

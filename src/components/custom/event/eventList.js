@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { fetchEventList } from "../../../redux/actions/eventAction";
-import PuffLoader from "react-spinners/PuffLoader";
+// import PuffLoader from "react-spinners/PuffLoader";
 import Button from '@material-ui/core/Button';
 import { Header, SideBar, BreadCrumb, Footer } from "../../partials";
 import { EventCard } from "./eventCard";
-
+import { LoaderCard, InfoCard } from "../_helpers"
 const EventLists = ({ fetchEventList, eventData }) => {
 
   useEffect(() => {
@@ -37,26 +37,18 @@ const EventLists = ({ fetchEventList, eventData }) => {
                 <div className="card-header">
                   <Button variant="contained" href="dashboard/event/create" color="primary">
                     Create Event
-</Button>
+              </Button>
 
                 </div>
               </div>
               <div className="row">
 
                 {eventData.loading ? (
-                  <div className="col-md-4 col-lg-4 col-sm-12" style={{ margin: "0 auto" }}>
-                    <div className="sweet-loading">
-                      <PuffLoader
-                        size={60}
-                        color={"#123abc"}
-                        loading={eventData.loading}
-                      />
-Please Wait...
-</div>
-                  </div>
+                  <LoaderCard />
 
                 ) : eventData.error ? (
-                  <h2>{eventData.error}</h2>
+                  <InfoCard error={eventData.error + " " + "Please check your connection"} />
+
                 ) : (
                       <Fragment>
 
@@ -66,16 +58,9 @@ Please Wait...
                             <EventCard title={title} created={created} img="img/mockup3.jpg" />
                           ))
 
-                        ) : <div className="col-md-3 col-lg-3 col-sm-12" style={{ margin: "0 auto" }}>
+                        ) : <InfoCard info="No event available , Please create a new event" />
 
-                            <div className="card"><img src="img/alert/error.png" alt="info" className="card-img-top img-fluid" />
-                              <div className="card-body">
-                                <h5 className="card-title">INFO</h5>
-                                <p className="card-text">NO AVAILABLE EVENT, PLEASE CREATE NEW EVENT</p>
-                              </div>
-
-                            </div>
-                          </div>}
+                        }
 
                       </Fragment>
                     )}

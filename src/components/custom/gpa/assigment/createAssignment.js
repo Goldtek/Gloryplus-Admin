@@ -22,7 +22,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { Formik, Form } from "formik";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
-
+import { LoaderCard, InfoCard } from "../../_helpers"
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 const API_URL = process.env.REACT_APP_BASEURL;
@@ -47,6 +47,8 @@ const CreateAssignment = ({ fetchAssignments, assigmentData, match }) => {
     }, [fetchAssignments, match.params.id]);
 
     let history = useHistory()
+
+    const assignment = assigmentData.assignmentItems.filter(item => item.lessonId === lessonId);
     return (
         <div className="page">
             <Helmet>
@@ -307,23 +309,14 @@ const CreateAssignment = ({ fetchAssignments, assigmentData, match }) => {
                             <div className="row">
 
                                 {assigmentData.loading ? (
-                                    <div className="col-md-4 col-lg-4 col-sm-12" style={{ margin: "0 auto" }}>
-                                        <div className="sweet-loading">
-                                            <PuffLoader
-                                                size={60}
-                                                color={"#123abc"}
-                                                loading={assigmentData.loading}
-                                            />
-                                            {assigmentData.loading}
-                                        </div>
-                                    </div>
+                                    <LoaderCard />
 
                                 ) : assigmentData.error ? (
-                                    <h2>{assigmentData.error}</h2>
+                                    <InfoCard error={assigmentData.error + " " + "Please check your network connection"} />
                                 ) : (
                                             <Fragment>
-                                                {assigmentData.assignmentItems.length ? (
-                                                    assigmentData.assignmentItems.filter(el => el.lessonId === lessonId).map((assignment) => (
+                                                {assignment.length ? (
+                                                    assignment.map((assignment) => (
 
                                                         <AssigmentCards
                                                             key={assignment.id}
@@ -333,16 +326,7 @@ const CreateAssignment = ({ fetchAssignments, assigmentData, match }) => {
                                                         />
                                                     ))
 
-                                                ) : <div className="col-md-3 col-lg-3 col-sm-12" style={{ margin: "0 auto" }}>
-
-                                                        <div className="card"><img src="img/alert/error.png" alt="info" className="card-img-top img-fluid" />
-                                                            <div className="card-body">
-                                                                <h5 className="card-title">INFO</h5>
-                                                                <p className="card-text">NO AVAILABLE LESSON, PLEASE CREATE NEW LESSON</p>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>}
+                                                ) : <InfoCard info="No assignment to display, please create new assignment" />}
 
                                             </Fragment>
                                         )}

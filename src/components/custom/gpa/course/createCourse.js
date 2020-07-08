@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import uuid from "react-uuid";
 import { useHistory } from "react-router-dom";
 import { Header, SideBar, BreadCrumb, Footer } from "../../../partials";
+import Button from '@material-ui/core/Button';
 import Thumb from "../thumb"
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -19,7 +20,6 @@ const validationSchema = Yup.object().shape({
   file: Yup.mixed().required("A file is required"),
   coursetitle: Yup.string().required("course title is required"),
 });
-
 
 const API_URL = process.env.REACT_APP_BASEURL;
 
@@ -42,8 +42,13 @@ const CreateCourse = () => {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="card">
-                    <div className="card-header d-flex align-items-center">
-                      <h3 className="h4">Create Course</h3>
+                    <div className="card-header">
+                      <Button variant="contained" href="/dashboard/gpa/view" color="primary">
+                        View Course
+                  </Button>
+                      {" "} {" "}
+                      <Button onClick={() => history.goBack()} variant="contained" color="secondary">Back</Button>
+
                     </div>
                     <div className="card-body">
                       <Formik

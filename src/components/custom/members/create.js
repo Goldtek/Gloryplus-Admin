@@ -5,7 +5,7 @@ import uuid from "react-uuid";
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import { ToastContainer, toast } from "react-toastify";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import { Header, SideBar, BreadCrumb, Footer } from "../../partials";
 
 //API URL
@@ -16,13 +16,13 @@ const validationSchema = Yup.object().shape({
   gender: Yup.string().required("gender is required"),
   address: Yup.string().required("address is required"),
   phone: Yup.number("must be a phone number").required("phone is required"),
-  cell: Yup.string().required("cell is required"),
-  city: Yup.string().required("city is required "),
-  state: Yup.string().required("state is required"),
+  zip: Yup.string().required("zip is required"),
+  state: Yup.string().required("state is required "),
+  country: Yup.string().required("country is required"),
   email: Yup.string().email("Invalid email").required("Required"),
 });
 
-const FirstTimers = () => {
+const CreateMember = () => {
   useEffect(() => {
     document.getElementById("members").classList.add("active");
   });
@@ -33,7 +33,7 @@ const FirstTimers = () => {
         <SideBar />
 
         <div className="content-inner">
-          <BreadCrumb title="First Timer" crumb="First Timer" />
+          <BreadCrumb title="First Timer" crumb="Membership" />
           <section className="forms">
             <div className="container-fluid">
               <div className="row">
@@ -41,7 +41,7 @@ const FirstTimers = () => {
                   <div className="card">
                     <div className="card-header d-flex align-items-center">
                       <h3 className="h4">
-                        New Convert - <small>First Timer</small>
+                        New Member - <small>Create Member</small>
                       </h3>
                     </div>
                     <div className="card-body">
@@ -52,9 +52,9 @@ const FirstTimers = () => {
                           email: "",
                           phone: "",
                           address: "",
-                          city: "",
                           state: "",
-                          cell: "",
+                          country: "",
+                          zip: "",
                           comment: "",
                         }}
                         validationSchema={validationSchema}
@@ -77,9 +77,9 @@ const FirstTimers = () => {
                               email: values.email,
                               phone: values.phone,
                               address: values.address,
-                              city: values.city,
                               state: values.state,
-                              cell: values.cell,
+                              country: values.country,
+                              zip: values.zip,
                               comment: values.comment,
                             },
                           })
@@ -206,7 +206,7 @@ const FirstTimers = () => {
                                           fullWidth
                                           margin="normal"
                                           id="Address"
-                                          label="Lesson Title"
+                                          label="Address"
                                           name="address"
                                           onChange={handleChange}
                                           value={values.address}
@@ -215,6 +215,22 @@ const FirstTimers = () => {
                                           helperText={(errors.address && touched.address) && errors.address}
                                         />
 
+                                      </div>
+                                    </div>
+                                    <div className="col-sm-12 col-md-2 col-lg-2">
+                                      <div className="form-group-material">
+                                        <TextField
+                                          fullWidth
+                                          margin="normal"
+                                          id="country"
+                                          label="Country"
+                                          name="country"
+                                          onChange={handleChange}
+                                          value={values.country}
+                                          onBlur={handleBlur}
+                                          error={errors.country && touched.country}
+                                          helperText={(errors.country && touched.country) && errors.country}
+                                        />
                                       </div>
                                     </div>
                                     <div className="col-sm-12 col-md-2 col-lg-2">
@@ -238,30 +254,14 @@ const FirstTimers = () => {
                                         <TextField
                                           fullWidth
                                           margin="normal"
-                                          id="city"
-                                          label="City"
-                                          name="city"
+                                          id="zip"
+                                          label="zip"
+                                          name="zip"
                                           onChange={handleChange}
-                                          value={values.city}
+                                          value={values.zip}
                                           onBlur={handleBlur}
-                                          error={errors.city && touched.city}
-                                          helperText={(errors.city && touched.city) && errors.city}
-                                        />
-                                      </div>
-                                    </div>
-                                    <div className="col-sm-12 col-md-2 col-lg-2">
-                                      <div className="form-group-material">
-                                        <TextField
-                                          fullWidth
-                                          margin="normal"
-                                          id="cell"
-                                          label="Cell"
-                                          name="cell"
-                                          onChange={handleChange}
-                                          value={values.cell}
-                                          onBlur={handleBlur}
-                                          error={errors.cell && touched.cell}
-                                          helperText={(errors.cell && touched.cell) && errors.cell}
+                                          error={errors.zip && touched.zip}
+                                          helperText={(errors.zip && touched.zip) && errors.zip}
                                         />
                                       </div>
                                     </div>
@@ -321,4 +321,4 @@ const FirstTimers = () => {
   );
 }
 
-export default FirstTimers;
+export default CreateMember;

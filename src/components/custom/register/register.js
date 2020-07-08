@@ -1,10 +1,14 @@
 import React from "react";
+import axios from "axios"
+import { useHistory } from "react-router-dom";
 import TextField from '@material-ui/core/TextField'
 import { Formik } from "formik";
 import * as Yup from "yup";
 import uuid from "react-uuid";
-import axios from "axios"
-import { useHistory } from "react-router-dom";
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import blue from '@material-ui/core/colors/blue';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -14,10 +18,33 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().email("invalid email").required("required"),
 });
 
-const API_URL = process.env.REACT_APP_BASEURL;
-const Login = () => {
-  let history = useHistory();
+const styles = theme => ({
+  root: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 40,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  },
+  label: {
+    textTransform: 'capitalize',
+  },
+  buttonProgress: {
+    color: blue[500],
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12,
+  },
+});
 
+const API_URL = process.env.REACT_APP_BASEURL;
+const Register = (props) => {
+  let history = useHistory();
+  const { classes } = props
   return (
     <div className="container-fluid px-3">
       <div className="row min-vh-100">
@@ -146,14 +173,11 @@ const Login = () => {
                       />
                     </div>
                     {/* <!-- Submit--> */}
-                    <button
-                      className="btn btn-lg btn-block btn-primary mb-3"
-                    // onClick={() => {
-                    //   window.location.href = "/dashboard";
-                    // }}
-                    >
+                    <Button variant="contained" type="submit" fullWidth className={classes.root} disabled={isSubmitting}>
                       Register
-                          </button>
+
+                      {isSubmitting && <CircularProgress size={24} className={classes.buttonProgress} />}
+                    </Button>
                     {/* <!-- Link--> */}
                     <p className="text-center">
                       <small className="text-muted text-center">
@@ -172,7 +196,7 @@ const Login = () => {
           <div
             style={{
               backgroundImage:
-                "url(img/photos/victor-ene-1301123-unsplash.jpg)",
+                "url(images/background/gloryplus1.jpg)",
             }}
             className="bg-cover h-100 mr-n3"
           ></div>
@@ -183,4 +207,4 @@ const Login = () => {
 };
 
 
-export default Login;
+export default withStyles(styles)(Register);

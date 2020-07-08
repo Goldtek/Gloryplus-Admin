@@ -7,21 +7,22 @@ import {
   Error404Page,
   CreateCourse,
   LiveStream,
-  Profile,
+  User,
   ListCourse,
-  FirstTimers,
+  CreateMember,
   CreateEvent,
   CreateLesson,
   EventLists,
   Register,
-  CreateAssignment
+  CreateAssignment,
+  CreateGallery
 } from "./components/custom";
 
 const Routes = () => {
   return (
     <Fragment>
       <Switch>
-        {/* GENERAL ROUTE - NONE PROTECTED #########################################*/}
+
 
         <Route
           exact
@@ -40,12 +41,6 @@ const Routes = () => {
           <Register />
         </Route>
 
-        {/* GENERAL ROUTE - NONE PROTECTED ############################################*/}
-
-
-
-
-        {/* PROTECTED ROUTES START HERE #############################################*/}
         <Route exact path="/dashboard">
           <Helmet>
             <title>Dashboard</title>
@@ -53,13 +48,12 @@ const Routes = () => {
           <Dasboard />
         </Route>
 
-        <Route path="/dashboard/first-timers">
+        <Route path="/dashboard/member/create">
           <Helmet>
-            <title>First Timer</title>
+            <title>Create Member</title>
           </Helmet>
-          <FirstTimers />
+          <CreateMember />
         </Route>
-        {/* COURSE ROUTE STARTS HERE */}
         <Route exact path="/dashboard/gpa/create">
           <Helmet>
             <title>Create Course</title>
@@ -91,7 +85,7 @@ const Routes = () => {
             </Fragment>
           )}
         />
-        {/* COURSE ROUTES ENDS HERE */}
+
         <Route
           exact
           path="/dashboard/gpa/lesson/create/:id"
@@ -106,7 +100,6 @@ const Routes = () => {
         />
 
 
-        {/* EVENT ROUTES STARTS HERE*/}
         <Route exact path="/dashboard/event/create">
           <Helmet>
             <title>Create Event</title>
@@ -120,23 +113,28 @@ const Routes = () => {
           </Helmet>
           < EventLists />
         </Route>
-        {/* EVENT ROUTES END HERE */}
 
-        {/* LIVESTREAM ROUTES STARTS HERE */}
+
+        <Route exact path="/dashboard/gallery/create">
+          <Helmet>
+            <title>Create Gallery</title>
+          </Helmet>
+          <CreateGallery />
+        </Route>
+
         <Route path="/dashboard/livestream">
           <Helmet>
             <title>LiveStream</title>
           </Helmet>
           <LiveStream />
         </Route>
-        {/* LIVE STREAM ENDS HERE */}
-        <Route path="/dashboard/profile">
+
+        <Route path="/dashboard/user/:id">
           <Helmet>
-            <title>Profile</title>
+            <title>User</title>
           </Helmet>
-          <Profile />
+          <User />
         </Route>
-        {/* PROTECTED ROUTES START HERE #############################################*/}
 
         {/* 404 ERROR ROUTE ########################################################*/}
         <Route path="*">
