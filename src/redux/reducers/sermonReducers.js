@@ -1,32 +1,32 @@
-import { FETCH_LESSONS_FAILURE, FETCH_LESSONS_REQUEST, FETCH_LESSONS_SUCCESS } from "../actions/types";
+import { FETCH_SERMON_SUCCESS, FETCH_SERMON_REQUEST, FETCH_SERMON_FAILURE } from "../actions/types";
 //here the reducer is going to evaluate any action that has been committed such as fetching and creating posts
 
 const initialState = {
     loading: false,
     error: "",
-    lessonItems: [],
+    sermonItems: [],
 
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case FETCH_LESSONS_REQUEST:
+        case FETCH_SERMON_REQUEST:
             return {
                 ...state,
                 loading: true,
             };
-        case FETCH_LESSONS_SUCCESS:
+        case FETCH_SERMON_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                lessonItems: action.payload,
+                sermonItems: action.payload,
                 error: "",
             };
-        case FETCH_LESSONS_FAILURE:
+        case FETCH_SERMON_FAILURE:
             return {
                 ...state,
                 loading: false,
-                lessonItems: [],
+                sermonItems: [],
                 error: action.payload,
             };
         default:

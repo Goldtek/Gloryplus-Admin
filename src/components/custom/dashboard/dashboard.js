@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Header, SideBar, BreadCrumb, Footer } from "../../partials";
+import { Header, SideBar, BreadCrumb, Footer } from "../../Partials";
 
 const Dashboard = () => {
 

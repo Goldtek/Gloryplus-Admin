@@ -6,8 +6,8 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import uuid from "react-uuid";
 // import FormError from "./formError";
-import Thumb from "../gpa/thumb";
-import { Header, SideBar, BreadCrumb } from "../../partials";
+// import Thumb from ".thumb";
+import { Header, SideBar, BreadCrumb } from "../../Partials";
 import TextField from '@material-ui/core/TextField';
 
 

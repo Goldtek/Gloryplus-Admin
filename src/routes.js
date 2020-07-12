@@ -8,15 +8,18 @@ import {
   CreateCourse,
   LiveStream,
   User,
-  ListCourse,
+  CourseLists,
   CreateMember,
   CreateEvent,
   CreateLesson,
   EventLists,
   Register,
   CreateAssignment,
-  CreateGallery
-} from "./components/custom";
+  CreateGallery,
+  CreateSermon,
+  SermonList,
+  CandidateLists
+} from "./Components/Custom";
 
 const Routes = () => {
   return (
@@ -69,7 +72,7 @@ const Routes = () => {
               <Helmet>
                 <title>List Course</title>
               </Helmet>
-              <ListCourse {...props} />
+              <CourseLists {...props} />
             </Fragment>
           )}
         />
@@ -79,7 +82,7 @@ const Routes = () => {
           render={(props) => (
             <Fragment>
               <Helmet>
-                <title>List Course</title>
+                <title>Create Lesson</title>
               </Helmet>
               <CreateLesson {...props} />
             </Fragment>
@@ -97,6 +100,11 @@ const Routes = () => {
           exact
           path="/dashboard/gpa/assignment/:id"
           render={(props) => <CreateAssignment {...props} />}
+        />
+        <Route
+          exact
+          path="/dashboard/gpa/candidates"
+          render={(props) => <CandidateLists {...props} />}
         />
 
 
@@ -134,6 +142,19 @@ const Routes = () => {
             <title>User</title>
           </Helmet>
           <User />
+        </Route>
+        {/* SERMON ############################################ */}
+        <Route path="/dashboard/sermon/create">
+          <Helmet>
+            <title>Create Sermon</title>
+          </Helmet>
+          <CreateSermon />
+        </Route>
+        <Route path="/dashboard/sermon/view">
+          <Helmet>
+            <title>View Sermon</title>
+          </Helmet>
+          <SermonList />
         </Route>
 
         {/* 404 ERROR ROUTE ########################################################*/}

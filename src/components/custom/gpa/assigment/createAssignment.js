@@ -4,8 +4,8 @@ import axios from "axios";
 import Helmet from "react-helmet";
 import { AssigmentCards } from "../cards/assigmentCard";
 import { connect } from "react-redux";
-import { fetchAssignments } from "../../../../redux/actions/assignmentActions";
-import { Header, SideBar, BreadCrumb, Footer } from "../../../partials";
+import { fetchAssignments } from "../../../../Redux/actions/assignmentActions";
+import { Header, SideBar, BreadCrumb, Footer } from "../../../Partials";
 import PuffLoader from "react-spinners/PuffLoader";
 import uuid from "react-uuid";
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -22,7 +22,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { Formik, Form } from "formik";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
-import { LoaderCard, InfoCard } from "../../_helpers"
+import { LoaderCard, InfoCard } from "../../Helpers"
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 const API_URL = process.env.REACT_APP_BASEURL;
@@ -52,26 +52,19 @@ const CreateAssignment = ({ fetchAssignments, assigmentData, match }) => {
     return (
         <div className="page">
             <Helmet>
-                <title>Create Lesson</title>
+                <title>Create Assignment</title>
             </Helmet>
-            {/* HEADER PART */}
             <Header />
-            {/* CLOSE HEADER PART */}
-
-            {/* SIDER BAR PART */}
             <div className="page-content d-flex align-items-stretch">
                 <SideBar />
 
                 <div className="content-inner">
-                    {/* <!-- Page Header--> */}
                     <BreadCrumb
                         title="GPA"
                         crumb="Create Lesson"
                     />
 
                     <div className="container-fluid">
-                        {/* CREATE LESSON MODAL */}
-                        {/* <!-- end row--> */}
                         <section>
                             <div className="card">
                                 <div className="card-header">

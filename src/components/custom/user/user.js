@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Header, SideBar, BreadCrumb, Footer } from "../../partials";
+import { Header, SideBar, BreadCrumb, Footer } from "../../Partials";
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';

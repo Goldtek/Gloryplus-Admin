@@ -46,7 +46,7 @@ const API_URL = process.env.REACT_APP_BASEURL;
 
 const Login = (props) => {
 
-  // let history = useHistory();
+  let history = useHistory();
   const { classes } = props;
 
   return (
@@ -68,45 +68,47 @@ const Login = (props) => {
             <Formik
               initialValues={{ password: "", email: "" }}
               validationSchema={validationSchema}
-              onSubmit={({ password, email }, { setSubmitting, resetForm }) => {
+              onSubmit={(values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
 
 
-                // axios({
-                //   method: "POST",
-                //   url: `${API_URL}/user`,
-                //   data: {
-                //     id: uuid(),
-                //     password: values.password,
-                //     email: values.email,
-                //     created: Date.now(),
-                //   },
-                // })
-                //   .then((res) => {
-                //     resetForm();
-                //     setSubmitting(false);
-                //     toast.success("course Successfully added", {
-                //       position: "top-right",
-                //       autoClose: 5000,
-                //       hideProgressBar: false,
-                //       closeOnClick: true,
-                //       pauseOnHover: true,
-                //       draggable: true,
-                //       progress: undefined,
-                //     });
-                //     history.push("/dashboard", true);
-                //   })
-                //   .catch((err) => {
-                //     toast.error(`${err}`, {
-                //       position: "top-right",
-                //       autoClose: 5000,
-                //       hideProgressBar: false,
-                //       closeOnClick: true,
-                //       pauseOnHover: true,
-                //       draggable: true,
-                //       progress: undefined,
-                //     });
-                //   });
+                axios({
+                  method: "POST",
+                  url: `${API_URL}/user`,
+                  data: {
+                    id: uuid(),
+                    password: values.password,
+                    email: values.email,
+                    created: Date.now(),
+                  },
+                })
+                  .then((res) => {
+                    resetForm();
+                    setSubmitting(false);
+                    toast.success("course Successfully added", {
+                      position: "top-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                    });
+                    history.push("/dashboard", true);
+                  })
+                  .catch((err) => {
+                    toast.error(`${err}`, {
+                      position: "top-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                    });
+
+                    setSubmitting(false);
+                  });
               }}
             >
               {({

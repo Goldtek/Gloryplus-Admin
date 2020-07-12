@@ -2,12 +2,12 @@ import React, { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
-import { fetchEventList } from "../../../redux/actions/eventAction";
+import { fetchEventList } from "../../../Redux/actions/eventAction";
 // import PuffLoader from "react-spinners/PuffLoader";
 import Button from '@material-ui/core/Button';
-import { Header, SideBar, BreadCrumb, Footer } from "../../partials";
+import { Header, SideBar, BreadCrumb, Footer } from "../../Partials";
 import { EventCard } from "./eventCard";
-import { LoaderCard, InfoCard } from "../_helpers"
+import { LoaderCard, InfoCard } from "../Helpers"
 const EventLists = ({ fetchEventList, eventData }) => {
 
   useEffect(() => {
@@ -54,8 +54,8 @@ const EventLists = ({ fetchEventList, eventData }) => {
 
                         {eventData.eventItems.length ? (
 
-                          eventData.eventItems.map(({ title, created }) => (
-                            <EventCard title={title} created={created} img="img/mockup3.jpg" />
+                          eventData.eventItems.map(({ title, created, id }) => (
+                            <EventCard title={title} created={created} img="img/mockup3.jpg" key={title} />
                           ))
 
                         ) : <InfoCard info="No event available , Please create a new event" />

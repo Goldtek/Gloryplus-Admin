@@ -1,17 +1,17 @@
-import Login from "./authenticate";
-import Register from "./register";
-import Dasboard from "./dashboard";
+import Login from "./Authenticate";
+import Register from "./Register";
+import Dasboard from "./Dashboard";
 import Error404Page from "./notfound";
-import { CreateCourse } from "./gpa/index";
-import LiveStream from "./livestream";
+import LiveStream from "./Livestream";
 import { User } from "./user";
-import ListCourse from "./gpa/course/courseLists";
-import CreateMember from "./members/create";
-import { CreateAssignment } from "./gpa"
-import { CreateEvent } from "./event"
-import { EventLists } from "./event"
-import { CreateLesson } from "./gpa"
-import { CreateGallery } from "./gallery"
+import CreateMember from "./Members/createMember";
+import { CreateEvent } from "./Event"
+import { EventLists } from "./Event"
+import { CreateLesson, CandidateLists, CreateAssignment, CreateCourse, CourseLists } from "./Gpa"
+import { CreateGallery } from "./Gallery"
+import { CreateSermon } from "./Sermon"
+import { SermonList } from "./Sermon"
+
 export {
   Login,
   Dasboard,
@@ -19,12 +19,15 @@ export {
   CreateCourse,
   LiveStream,
   User,
-  ListCourse,
+  CourseLists,
   CreateMember,
   CreateEvent,
   CreateLesson,
   EventLists,
   Register,
   CreateAssignment,
-  CreateGallery
+  CreateGallery,
+  CreateSermon,
+  SermonList,
+  CandidateLists
 };

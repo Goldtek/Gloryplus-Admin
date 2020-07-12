@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import { ToastContainer, toast } from "react-toastify";
 import { Formik, Form } from "formik";
-import { Header, SideBar, BreadCrumb, Footer } from "../../partials";
+import { Header, SideBar, BreadCrumb, Footer } from "../../Partials";
 
 //API URL
 const API_URL = process.env.REACT_APP_BASEURL;
@@ -69,7 +69,7 @@ const CreateMember = () => {
 
                           axios({
                             method: "POST",
-                            url: `${API_URL}/firstTimer`,
+                            url: `${API_URL}/users`,
                             data: {
                               id: uuid(),
                               name: values.name,
@@ -161,7 +161,7 @@ const CreateMember = () => {
                                           helperText={(errors.gender && touched.gender) && errors.gender}
                                         >
                                           <MenuItem value="male">Male</MenuItem>
-                                          <MenuItem value="femle">Femle</MenuItem>
+                                          <MenuItem value="female">Femle</MenuItem>
 
 
                                         </TextField>

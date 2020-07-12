@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import { Router } from "react-router-dom";
 import Routes from "./routes";
 import { Provider } from "react-redux";
-import store from "./redux/store";
-import history from "./components/history";
+import store from "./Redux/store";
+import history from "./Components/history";
 // import App from "./components/App";
 
 // const App = () => {

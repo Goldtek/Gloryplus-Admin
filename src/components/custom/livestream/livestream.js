@@ -3,7 +3,7 @@ import serializeForm from "form-serialize";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { Header, SideBar, BreadCrumb, Footer } from "../../partials";
+import { Header, SideBar, BreadCrumb, Footer } from "../../Partials";
 import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
 

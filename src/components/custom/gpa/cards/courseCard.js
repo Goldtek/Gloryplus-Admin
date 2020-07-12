@@ -9,18 +9,20 @@ export const Card = ({ title, created, id }) => {
     <Fragment>
 
       <div className="col-md-6 col-lg-3 col-sm-12 col-xs-12">
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">{title}</h5>
-            <h6 className="card-subtitle text-muted"><Moment fromNow>{created}</Moment></h6>
-          </div><img src="img/mockup5.jpg" alt="info" className="img-fluid" />
-          <div className="card-body">
-            <ButtonGroup color="secondary" variant="contained" >
-              <Button href={`/dashboard/gpa/view/${title}/${id}`} size="small">Create Lesson</Button>
+        <div class="card"><img src="img/mockup6.jpg" alt="Card image cap" class="card-img-top img-fluid" />
+          <div class="card-body">
+            <h5 class="card-title">{title}</h5>
+            <p class="card-text">
 
-              <EditCourse title={title} id={id} />
+              <ButtonGroup color="secondary" variant="contained" >
+                <Button href={`/dashboard/gpa/view/${title}/${id}`} size="small">Create Lesson</Button>
 
-            </ButtonGroup>
+                <EditCourse title={title} id={id} />
+
+              </ButtonGroup>
+
+            </p>
+            <p class="card-text"><small class="text-muted"><Moment fromNow>{created}</Moment></small></p>
           </div>
         </div>
       </div>

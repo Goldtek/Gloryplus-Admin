@@ -1,3 +1,3 @@
-import CreateMember from "./create";
+import CreateMember from "./createMember";
 
 export { CreateMember };

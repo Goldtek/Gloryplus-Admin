@@ -13,7 +13,7 @@ import axios from "axios";
 import { Formik, Form, Field } from "formik";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
-import { fetchLessonLists } from "../../../../redux/actions/lessonActions";
+import { fetchLessonLists } from "Redux/actions/lessonActions";
 
 const API_URL = process.env.REACT_APP_BASEURL;
 

@@ -4,11 +4,13 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 // import PuffLoader from "react-spinners/PuffLoader";
 import Button from '@material-ui/core/Button';
-import { fetchCourseLists } from "../../../../redux/actions/courseActions";
-import { Header, SideBar, BreadCrumb, Footer } from "../../../partials";
+import { fetchCourseLists } from "Redux/actions/courseActions";
+import { Header, SideBar, BreadCrumb, Footer } from "../../../Partials";
 import { Card } from "../cards/courseCard";
-import { LoaderCard, InfoCard } from "../../_helpers"
-const ListCourses = ({ fetchCourseLists, courseData }) => {
+import { LoaderCard, InfoCard } from "../../Helpers"
+
+
+const CourseLists = ({ fetchCourseLists, courseData }) => {
 
   useEffect(() => {
     document.getElementById("gpa").classList.add("active");
@@ -70,11 +72,11 @@ const ListCourses = ({ fetchCourseLists, courseData }) => {
 
 }
 
-ListCourses.propTypes = {
+CourseLists.propTypes = {
   fetchCourseLists: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   courseData: state.courses
 });
-export default connect(mapStateToProps, { fetchCourseLists })(ListCourses);
+export default connect(mapStateToProps, { fetchCourseLists })(CourseLists);

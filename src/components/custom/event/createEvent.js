@@ -1,8 +1,3 @@
-
-
-
-
-
 import React, { useEffect } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet";
@@ -11,8 +6,8 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import uuid from "react-uuid";
 import FormError from "./formError";
-import Thumb from "../gpa/thumb";
-import { Header, SideBar, BreadCrumb } from "../../partials";
+import Thumb from "./thumb";
+import { Header, SideBar, BreadCrumb } from "../../Partials";
 import TextField from '@material-ui/core/TextField';
 
 
@@ -152,7 +147,7 @@ const CreateEvent = () => {
                                   fullWidth
                                   id="datetime-local"
                                   label="Next appointment"
-                                  type="datetime-local"
+                                  type="date"
                                   defaultValue="2020-07-24T10:30"
                                   name="date"
                                   InputLabelProps={{

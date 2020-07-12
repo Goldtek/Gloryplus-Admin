@@ -46,18 +46,21 @@ const SideBar = () => {
         </li>
         <li id="gpa">
           <a
-            href="#chartsDropdown"
+            href="#gpaDropdown"
             aria-expanded="false"
             data-toggle="collapse"
           >
             <i className="fa fa-certificate"></i>GPA
 </a>
-          <ul id="chartsDropdown" className="collapse list-unstyled">
+          <ul id="gpaDropdown" className="collapse list-unstyled">
             <li>
               <a href="/dashboard/gpa/create">Create Course</a>
             </li>
             <li>
               <a href="/dashboard/gpa/view">Course List</a>
+            </li>
+            <li>
+              <a href="/dashboard/gpa/candidates">Candidates</a>
             </li>
           </ul>
         </li>
@@ -94,13 +97,26 @@ const SideBar = () => {
         <li id="event">
           <a href="#pagesDropdown" aria-expanded="false" data-toggle="collapse">
             <i className="icon-interface-windows"></i>Event
-</a>
+          </a>
           <ul id="pagesDropdown" className="collapse list-unstyled">
             <li>
               <a href="/dashboard/event/create">Create Event</a>
             </li>
             <li>
               <a href="/dashboard/event/view">View Events</a>
+            </li>
+          </ul>
+        </li>
+        <li id="sermon">
+          <a href="#sermonDropdown" aria-expanded="false" data-toggle="collapse">
+            <i className="icon-interface-windows"></i>Sermon
+          </a>
+          <ul id="sermonDropdown" className="collapse list-unstyled">
+            <li>
+              <a href="/dashboard/sermon/create">Create Sermon</a>
+            </li>
+            <li>
+              <a href="/dashboard/sermon/view">View Sermon</a>
             </li>
           </ul>
         </li>

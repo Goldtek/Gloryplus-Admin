@@ -3,10 +3,14 @@ import CourseReducer from "./courseReducer";
 import EventReducers from "./eventReducer";
 import LessonReducer from "./lessonReducer"
 import AssigmentReducer from "./assignmentReducer"
+import SermonReducer from "./sermonReducers"
+import candidateReducer from "./candidateReducer"
 const rootReducer = combineReducers({
   courses: CourseReducer,
   events: EventReducers,
   lessons: LessonReducer,
-  assignments: AssigmentReducer
+  assignments: AssigmentReducer,
+  sermon: SermonReducer,
+  gpaCandidates: candidateReducer
 });
 export default rootReducer;

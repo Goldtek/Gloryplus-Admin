@@ -4,8 +4,8 @@ import axios from "axios";
 import Helmet from "react-helmet";
 import { Card } from "../cards/lessonCard";
 import { connect } from "react-redux";
-import { fetchLessonLists } from "../../../../redux/actions/lessonActions";
-import { Header, SideBar, BreadCrumb, Footer } from "../../../partials";
+import { fetchLessonLists } from "Redux/actions/lessonActions";
+import { Header, SideBar, BreadCrumb, Footer } from "../../../Partials";
 // import PuffLoader from "react-spinners/PuffLoader";
 import uuid from "react-uuid";
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -23,7 +23,7 @@ import { Formik, Form } from "formik";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 import FormError from "../formError"
-import { LoaderCard, InfoCard } from "../../_helpers"
+import { LoaderCard, InfoCard } from "../../Helpers"
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 const API_URL = process.env.REACT_APP_BASEURL;
@@ -56,10 +56,6 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
   const lessons = lessonData.lessonItems.filter(el => el.courseid === courseId);
   return (
     <div className="page">
-      <Helmet>
-        <title>Create Lesson</title>
-      </Helmet>
-      {/* HEADER PART */}
       <Header />
       <div className="page-content d-flex align-items-stretch">
         <SideBar />
@@ -74,7 +70,6 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
             <section>
               <div className="card">
                 <div className="card-header">
-
 
                   {/* CREATE LESSON MODAL :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */}
                   <div>
@@ -326,6 +321,7 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
     </div >
   );
 };
+
 
 const mapStateToProps = (state) => ({
   lessonData: state.lessons

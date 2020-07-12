@@ -86,72 +86,53 @@
       "answer": "B"
     }
   ],
-  "user": [
+  "users": [
     {
-      "id": "65d226-7173-1c5d-ab4c-e6fff3582810",
-      "password": "abc1234@1",
+      "id": "57ba638-3bab-f2a-fbf-50c361cacb",
+      "name": "Elemson Ifeanyi",
+      "gender": "male",
       "email": "ielemson@gmail.com",
-      "created": 1593540688137
+      "phone": "08067407355",
+      "address": "Ikeja Lagos",
+      "state": "Lalgos",
+      "country": "Nig",
+      "zip": "0122",
+      "comment": "",
+      "gpa": true,
+      "gpaDate": 1594505662024,
+      "created": 1593544539908
+    }
+  ],
+  "sermon": [
+    {
+      "id": "0b0b774-165b-df71-6ae8-ecd045ecff1",
+      "sermontitle": "God's Love",
+      "coverimg": "livestream.png",
+      "sermontype": "video",
+      "preacher": "Rev Dubus Achufusi",
+      "preview": "0000000300000009STR.mp4",
+      "sermonfile": "0000000300000009STR.mp4",
+      "created": 1594505662024
     },
     {
-      "id": "eddfd-0a2-2617-ff27-dafa0f521",
-      "password": "abcccc",
-      "email": "ielemson@gmail.com",
-      "created": 1593544511594
+      "id": "0b0b774-165b-df71-6ae8-ecd045ecfd2",
+      "sermontitle": "The Holy Spirit",
+      "coverimg": "livestream.png",
+      "sermontype": "video",
+      "preacher": "Rev Dubus Achufusi",
+      "preview": "0000000300000009STR.mp4",
+      "sermonfile": "0000000300000009STR.mp4",
+      "created": 1594505662024
     },
     {
-      "id": "de3aac7-0a4-1016-e16-7124780b36a1",
-      "password": "abc1234567",
-      "email": "ielemson@gmail.com",
-      "created": 1593591702802
-    },
-    {
-      "id": "ae3473-8cda-75f6-b535-ab5c7fa2566",
-      "password": "abc1234@1",
-      "email": "ielemson@gmail.com",
-      "created": 1593593896483
-    },
-    {
-      "id": "db460c3-b04f-1afe-4e4e-318a84488e1e",
-      "password": "abc124",
-      "email": "ielemson@gmail.com",
-      "created": 1593596670933
-    },
-    {
-      "id": "5008548-120-f2d-cf6a-85ec4bb67718",
-      "password": "abc1234",
-      "email": "ielemson@gmail.com",
-      "created": 1593611849315
-    },
-    {
-      "id": "28fc11d-7a8d-d063-5ce3-8db0a0416e3",
-      "password": "abc1234@1",
-      "email": "ielemson@gmail.com",
-      "created": 1593859398682
-    },
-    {
-      "id": "65db3ee-457-70c-d0ba-f53b26fdea43",
-      "password": "abc1234",
-      "email": "ielemso@gmail.com",
-      "created": 1593860281094
-    },
-    {
-      "id": "b22ccb5-db3d-ccea-5a2-7c863e5240d",
-      "password": "abc1234@1",
-      "email": "ielemson@gmail.com",
-      "created": 1594053647126
-    },
-    {
-      "id": "5a7f048-42cc-3622-a246-8506fb662407",
-      "password": "abc1234",
-      "email": "ielemson@gmail.com",
-      "created": 1594139395916
-    },
-    {
-      "id": "314352-3e57-6076-676d-836de0dff7c",
-      "password": "ffff",
-      "email": "ielemson@gmail.com",
-      "created": 1594172193062
+      "id": "0b0b774-165b-df71-6ae8-ecd045ecax4",
+      "sermontitle": "Heaven Is Real",
+      "coverimg": "livestream.png",
+      "sermontype": "video",
+      "preacher": "Rev Dubus Achufusi",
+      "preview": "0000000300000009STR.mp4",
+      "sermonfile": "0000000300000009STR.mp4",
+      "created": 1594505662024
     }
   ]
 }
