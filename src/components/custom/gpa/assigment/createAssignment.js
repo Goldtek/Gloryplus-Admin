@@ -4,9 +4,9 @@ import axios from "axios";
 import Helmet from "react-helmet";
 import { AssigmentCards } from "../cards/assigmentCard";
 import { connect } from "react-redux";
-import { fetchAssignments } from "../../../../Redux/actions/assignmentActions";
+import { fetchAssignments } from "Redux/actions/assignmentActions";
 import { Header, SideBar, BreadCrumb, Footer } from "../../../Partials";
-import PuffLoader from "react-spinners/PuffLoader";
+// import PuffLoader from "react-spinners/PuffLoader";
 import uuid from "react-uuid";
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 import Button from '@material-ui/core/Button';

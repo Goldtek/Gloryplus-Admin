@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import { Route, Switch } from "react-router-dom";
 import Helmet from "react-helmet";
+import { PrivateRoute } from "./index"
+import { Role } from "../_helpers"
 import {
   Login,
   Dasboard,
@@ -18,15 +20,14 @@ import {
   CreateGallery,
   CreateSermon,
   SermonList,
-  CandidateLists
-} from "./Components/Custom";
+  CandidateLists,
+  CreateCell
+} from "../Components/Custom";
 
 const Routes = () => {
   return (
     <Fragment>
       <Switch>
-
-
         <Route
           exact
           path="/"
@@ -40,16 +41,9 @@ const Routes = () => {
           )}
         />
 
-        <Route path="/register">
-          <Register />
-        </Route>
+        <Route path="/register" component={Register} />
 
-        <Route exact path="/dashboard">
-          <Helmet>
-            <title>Dashboard</title>
-          </Helmet>
-          <Dasboard />
-        </Route>
+        <PrivateRoute exact path="/dashboard" component={Dasboard} roles={[Role.Admin]} />
 
         <Route path="/dashboard/member/create">
           <Helmet>
@@ -155,6 +149,14 @@ const Routes = () => {
             <title>View Sermon</title>
           </Helmet>
           <SermonList />
+        </Route>
+
+
+        <Route path="/dashboard/cell/create">
+          <Helmet>
+            <title>Create Cell</title>
+          </Helmet>
+          <CreateCell />
         </Route>
 
         {/* 404 ERROR ROUTE ########################################################*/}

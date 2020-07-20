@@ -1,4 +1,4 @@
-import { FETCH_LESSONS_FAILURE, FETCH_LESSONS_REQUEST, FETCH_LESSONS_SUCCESS } from "../actions/types";
+import { FETCH_LESSONS_FAILURE, FETCH_LESSONS_REQUEST, FETCH_LESSONS_SUCCESS } from "../actions/action-types";
 //here the reducer is going to evaluate any action that has been committed such as fetching and creating posts
 
 const initialState = {

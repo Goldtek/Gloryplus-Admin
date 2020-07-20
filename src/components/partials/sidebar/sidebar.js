@@ -1,8 +1,17 @@
 import React from "react";
-
+import { useHistory } from 'react-router-dom'
+import { authenticationService } from '_services'
 const userId = "ab4ce6fff3582810";
 
 const SideBar = () => {
+
+  const history = useHistory()
+
+  const userLogout = () => {
+
+    localStorage.removeItem('user');
+    history.push('/');
+  }
   return (
     <nav className="side-navbar">
       <div className="sidebar-header d-flex align-items-center">
@@ -120,6 +129,19 @@ const SideBar = () => {
             </li>
           </ul>
         </li>
+        <li id="cell">
+          <a href="#cellDropdown" aria-expanded="false" data-toggle="collapse">
+            <i className="icon-interface-windows"></i>Cell Location
+          </a>
+          <ul id="cellDropdown" className="collapse list-unstyled">
+            <li>
+              <a href="/dashboard/cell/create">Create Location</a>
+            </li>
+            <li>
+              <a href="/dashboard/cell/view">View Location</a>
+            </li>
+          </ul>
+        </li>
         <li>
           <a
             href="#TestimonialDropdown"
@@ -127,7 +149,7 @@ const SideBar = () => {
             data-toggle="collapse"
           >
             <i className="icon-interface-windows"></i>Testimony
-</a>
+          </a>
           <ul id="TestimonialDropdown" className="collapse list-unstyled">
             <li>
               <a href="#!">Publish Testimony</a>
@@ -161,7 +183,7 @@ const SideBar = () => {
         <li>
           <a href="#">
             {" "}
-            <i className="fa fa-sign-out text-danger"></i>Logout{" "}
+            <i className="fa fa-sign-out text-danger" onClick={userLogout}></i>Logout{" "}
           </a>
         </li>
       </ul>

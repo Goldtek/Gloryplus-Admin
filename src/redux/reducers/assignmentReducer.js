@@ -1,4 +1,4 @@
-import { FETCH_ASSIGMENT_FAILURE, FETCH_ASSIGMENT_REQUEST, FETCH_ASSIGMENT_SUCCESS } from "../actions/types";
+import { FETCH_ASSIGMENT_FAILURE, FETCH_ASSIGMENT_REQUEST, FETCH_ASSIGMENT_SUCCESS } from "../actions/action-types";
 //here the reducer is going to evaluate any action that has been committed such as fetching and creating posts
 
 const initialState = {

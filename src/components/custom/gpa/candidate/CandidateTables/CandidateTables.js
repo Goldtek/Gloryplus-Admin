@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
-import clsx from 'clsx';
+// import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { withStyles } from '@material-ui/core/styles';
+// import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+// import Icon from '@material-ui/core/Icon';
+import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
 import {
   Card,
   CardActions,
@@ -23,9 +28,12 @@ import {
 // import { getInitials } from 'helpers';
 
 const styles = theme => ({
-  root: {},
+  root: {
+    // border: "2px solid red",
+    marginBottom: "20px"
+  },
   content: {
-    padding: 0
+    padding: 0,
   },
   inner: {
     minWidth: 1050
@@ -42,47 +50,45 @@ const styles = theme => ({
   }
 });
 
-const UsersTable = ({ classes, candidate }) => {
-  // const { classes } = props;
-  // const classes = useStyles();
-  console.log(candidate)
-  // const [selectedUsers, setSelectedUsers] = useState([]);
+const CandidatesTable = ({ classes, candidates }) => {
+
+  const [selectedCandidates, setselectedCandidates] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = useState(0);
 
-  // const handleSelectAll = event => {
-  //   const { users } = props;
+  const handleSelectAll = event => {
+    // const { candidates } = props;
 
-  //   let selectedUsers;
+    let selectedCandidates;
 
-  //   if (event.target.checked) {
-  //     selectedUsers = users.map(user => user.id);
-  //   } else {
-  //     selectedUsers = [];
-  //   }
+    if (event.target.checked) {
+      selectedCandidates = candidates.map(candidate => candidate.id);
+    } else {
+      selectedCandidates = [];
+    }
 
-  //   setSelectedUsers(selectedUsers);
-  // };
+    setselectedCandidates(selectedCandidates);
+  };
 
-  // const handleSelectOne = (event, id) => {
-  //   const selectedIndex = selectedUsers.indexOf(id);
-  //   let newSelectedUsers = [];
+  const handleSelectOne = (event, id) => {
+    const selectedIndex = selectedCandidates.indexOf(id);
+    let newselectedCandidates = [];
 
-  //   if (selectedIndex === -1) {
-  //     newSelectedUsers = newSelectedUsers.concat(selectedUsers, id);
-  //   } else if (selectedIndex === 0) {
-  //     newSelectedUsers = newSelectedUsers.concat(selectedUsers.slice(1));
-  //   } else if (selectedIndex === selectedUsers.length - 1) {
-  //     newSelectedUsers = newSelectedUsers.concat(selectedUsers.slice(0, -1));
-  //   } else if (selectedIndex > 0) {
-  //     newSelectedUsers = newSelectedUsers.concat(
-  //       selectedUsers.slice(0, selectedIndex),
-  //       selectedUsers.slice(selectedIndex + 1)
-  //     );
-  //   }
+    if (selectedIndex === -1) {
+      newselectedCandidates = newselectedCandidates.concat(selectedCandidates, id);
+    } else if (selectedIndex === 0) {
+      newselectedCandidates = newselectedCandidates.concat(selectedCandidates.slice(1));
+    } else if (selectedIndex === selectedCandidates.length - 1) {
+      newselectedCandidates = newselectedCandidates.concat(selectedCandidates.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newselectedCandidates = newselectedCandidates.concat(
+        selectedCandidates.slice(0, selectedIndex),
+        selectedCandidates.slice(selectedIndex + 1)
+      );
+    }
 
-  //   setSelectedUsers(newSelectedUsers);
-  // };
+    setselectedCandidates(newselectedCandidates);
+  };
 
   const handlePageChange = (event, page) => {
     setPage(page);
@@ -94,8 +100,7 @@ const UsersTable = ({ classes, candidate }) => {
 
   return (
     <Card
-    // {...rest}
-    // className={clsx(classes.root, className)}
+      className={classes.root}
     >
       <CardContent className={classes.content}>
         <PerfectScrollbar>
@@ -104,63 +109,87 @@ const UsersTable = ({ classes, candidate }) => {
               <TableHead>
                 <TableRow>
                   <TableCell padding="checkbox">
-                    {/* <Checkbox
-                      checked={selectedUsers.length === users.length}
+                    <Checkbox
+                      checked={selectedCandidates.length === candidates.length}
                       color="primary"
                       indeterminate={
-                        selectedUsers.length > 0 &&
-                        selectedUsers.length < users.length
+                        selectedCandidates.length > 0 &&
+                        selectedCandidates.length < candidates.length
                       }
                       onChange={handleSelectAll}
-                    /> */}
+                    />
                   </TableCell>
                   <TableCell>Name</TableCell>
                   <TableCell>Email</TableCell>
                   <TableCell>Location</TableCell>
                   <TableCell>Phone</TableCell>
                   <TableCell>Registration date</TableCell>
+                  <TableCell>Edit</TableCell>
+                  <TableCell>Delete</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
 
-                <TableRow
-                  className={classes.tableRow}
-                  hover
-                // key={user.id}
-                // selected={selectedUsers.indexOf(user.id) !== -1}
-                >
-                  <TableCell padding="checkbox">
-                    {/* <Checkbox
-                        checked={selectedUsers.indexOf(user.id) !== -1}
+                {candidates.slice(0, rowsPerPage).map(candidate => (
+                  <TableRow
+                    className={classes.tableRow}
+                    hover
+                    key={candidate.id}
+                    selected={selectedCandidates.indexOf(candidate.id) !== -1}
+                  >
+                    <TableCell padding="checkbox">
+                      <Checkbox
+                        checked={selectedCandidates.indexOf(candidate.id) !== -1}
                         color="primary"
-                        onChange={event => handleSelectOne(event, user.id)}
+                        onChange={event => handleSelectOne(event, candidate.id)}
                         value="true"
-                      /> */}
-                  </TableCell>
-                  <TableCell>
-                    <div className={classes.nameContainer}>
-                      <Avatar
-                        className={classes.avatar}
-                        src={"user.avatarUrl"}
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <div className={classes.nameContainer}>
+                        <Avatar
+                          className={classes.avatar}
+                          src={candidate.avatarUrl}
+                        >
+                          {/* {getInitials(candidate.name)} */}
+                        </Avatar>
+                        <Typography variant="body1">{candidate.name}</Typography>
+                      </div>
+                    </TableCell>
+                    <TableCell>{candidate.email}</TableCell>
+                    <TableCell>
+                      {/* {candidate.address.city}, {candidate.address.state},{' '}
+                      {candidate.address.country} */}
+                    </TableCell>
+                    <TableCell>{candidate.phone}</TableCell>
+                    <TableCell>
+                      <Moment format="D MMM YYYY" withTitle>
+                        {candidate.gpaDate}
+                      </Moment>
+                    </TableCell>
+                    <TableCell>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        className={classes.button}
+                        startIcon={<EditTwoToneIcon />}
+
                       >
-                        {/* {getInitials(user.name)} */}
-                      </Avatar>
-                      <Typography variant="body1">{candidate.name}</Typography>
-                    </div>
-                  </TableCell>
-                  <TableCell>{candidate.email}</TableCell>
-                  <TableCell>
-                    {candidate.address}, {"user.address.state"},{' '}
-                    {"user.address.country"}
-                  </TableCell>
-                  <TableCell>{candidate.phone}</TableCell>
-                  <TableCell>
-                    {/* {moment(candidate.gpaDate)} */}
-                    <Moment format="D MMM YYYY" withTitle>
-                      {candidate.gpaData}
-                    </Moment>
-                  </TableCell>
-                </TableRow>
+                        Edit
+                    </Button>
+                    </TableCell>
+                    <TableCell>
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        className={classes.button}
+                        startIcon={<DeleteIcon />}
+                      >
+                        Delete
+                    </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
 
               </TableBody>
             </Table>
@@ -170,7 +199,7 @@ const UsersTable = ({ classes, candidate }) => {
       <CardActions className={classes.actions}>
         <TablePagination
           component="div"
-          count={candidate.length}
+          count={candidates.length}
           onChangePage={handlePageChange}
           onChangeRowsPerPage={handleRowsPerPageChange}
           page={page}
@@ -182,10 +211,10 @@ const UsersTable = ({ classes, candidate }) => {
   );
 };
 
-UsersTable.propTypes = {
+CandidatesTable.propTypes = {
   className: PropTypes.string,
-  // users: PropTypes.array.isRequired
+  candidates: PropTypes.array.isRequired
 };
 
 
-export default withStyles(styles)(UsersTable);
+export default withStyles(styles)(CandidatesTable);

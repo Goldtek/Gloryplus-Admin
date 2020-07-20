@@ -1,41 +1,41 @@
 import axios from "axios";
 
-import { FETCH_CANDIDATE_SUCCESS, FETCH_CANDIDATE_REQUEST, FETCH_CANDIDATE_FAILURE } from "./types";
+import { FETCH_CANDIDATE_SUCCESS, FETCH_CANDIDATE_REQUEST, FETCH_CANDIDATE_FAILURE } from "./action-types";
 
 const API_URL = process.env.REACT_APP_BASEURL;
 
 export const fetchCandidates = () => {
     return (dispatch) => {
-        dispatch(fetchCandidateRequest());
+        dispatch(request());
         axios
-            .get(`${API_URL}/users`)
+            .get(`${API_URL}/members`)
             .then((response) => {
                 // response.data is the users
                 const candidateItems = response.data
-                dispatch(fetchCandidateSuccess(candidateItems));
+                dispatch(sucess(candidateItems));
             })
             .catch((error) => {
                 // error.message is the error message
                 const errormsg = error.message;
-                dispatch(fetchCandidateFailure(errormsg));
+                dispatch(failure(errormsg));
             });
     };
 };
 
-export const fetchCandidateRequest = () => {
+export const request = () => {
     return {
         type: FETCH_CANDIDATE_REQUEST,
     };
 };
 
-export const fetchCandidateSuccess = (candidateItems) => {
+export const sucess = (candidateItems) => {
     return {
         type: FETCH_CANDIDATE_SUCCESS,
         payload: candidateItems,
     };
 };
 
-export const fetchCandidateFailure = (error) => {
+export const failure = (error) => {
     return {
         type: FETCH_CANDIDATE_FAILURE,
         payload: error,

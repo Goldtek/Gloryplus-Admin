@@ -4,23 +4,37 @@ import { Link } from "react-router-dom"
 import Button from '@material-ui/core/Button';
 
 
-export const SermonCard = ({ title, created, coverimg, preview }) => {
+export const SermonCard = ({ title, created, coverimg, preview, sermontype }) => {
+
   return (
     <div className="col-md-4 col-sm-12 col-xs-12 col-lg-4">
       <div className="card">
 
         {/* <img src="img/mockup6.jpg" alt="Card image cap" className="card-img-top img-fluid" /> */}
         <div className="embed-responsive embed-responsive-4by3 card">
-          <video
-            controls
-            poster={`images/sermon/${coverimg}`}
-            className="embed-responsive-item "
-          >
-            <source src={preview} type="video/mp4" />
-            <source src={preview} type="video/ogg" />
+
+          {sermontype == "video" ? (
+
+            <video
+              controls
+              poster={`images/sermon/${coverimg}`}
+              className="embed-responsive-item "
+            ><source src={preview} type="video/mp4" />
+              <source src={preview} type="video/ogg" />
                 Your browser does not support the video tag.
-              </video>
-          {/* <iframe allowfullscreen></iframe> */}
+            </video>
+          ) : (
+
+              <audio
+                controls
+                poster={`images/sermon/${coverimg}`}
+                className="embed-responsive-item ">
+                <source src="horse.ogg" type="audio/ogg" />
+                <source src="horse.mp3" type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
+            )}
+
         </div>
         <div className="card-body">
           <h5 className="card-title">{title}</h5>

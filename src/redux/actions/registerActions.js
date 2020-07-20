@@ -1,18 +1,16 @@
 import axios from "axios";
 
-import { FETCH_SERMON_SUCCESS, FETCH_SERMON_REQUEST, FETCH_SERMON_FAILURE } from "./action-types";
+import { FETCH_EVENTS_FAILURE, FETCH_EVENTS_SUCCESS, FETCH_EVENTS_REQUEST } from "./action-types";
 
 const API_URL = process.env.REACT_APP_BASEURL;
 
-export const fetchSermonList = () => {
+export const registerUser = (data) => {
     return (dispatch) => {
-        dispatch(request());
+        dispatch(request(data));
         axios
-            .get(`${API_URL}/sermon`)
+            .post(`${API_URL}/users`)
             .then((response) => {
-                // response.data is the users
-                const sermonItems = response.data
-                dispatch(success(sermonItems));
+                dispatch(success(response));
             })
             .catch((error) => {
                 // error.message is the error message
@@ -21,22 +19,23 @@ export const fetchSermonList = () => {
             });
     };
 };
+
 export const request = () => {
     return {
-        type: FETCH_SERMON_REQUEST,
+        type: FETCH_EVENTS_REQUEST,
     };
 };
 
-export const success = (sermonItems) => {
+export const success = (response) => {
     return {
-        type: FETCH_SERMON_SUCCESS,
-        payload: sermonItems,
+        type: FETCH_EVENTS_SUCCESS,
+        payload: response,
     };
 };
 
 export const failure = (error) => {
     return {
-        type: FETCH_SERMON_FAILURE,
+        type: FETCH_EVENTS_FAILURE,
         payload: error,
     };
 };
