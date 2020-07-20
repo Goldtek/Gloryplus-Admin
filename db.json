@@ -1,7 +1,7 @@
 {
   "livestream": {
-    "active": false,
-    "streamId": "",
+    "active": true,
+    "streamId": "754834965252743",
     "sheduleDate": "2020-06-26",
     "scheduleTime": "18:10"
   },
@@ -86,10 +86,130 @@
       "answer": "B"
     }
   ],
-  "users": [
+  "members": [
     {
-      "id": "57ba638-3bab-f2a-fbf-50c361cacb",
+      "id": "57ba638-3bab-f2a-fbf-50c361ca",
       "name": "Elemson Ifeanyi",
+      "gender": "male",
+      "email": "ielemson@gmail.com",
+      "phone": "08067407355",
+      "address": "Ikeja Lagos",
+      "state": "Lalgos",
+      "country": "Nig",
+      "zip": "0122",
+      "comment": "",
+      "gpa": true,
+      "gpaDate": 1594505662024,
+      "created": 1593544539908
+    },
+    {
+      "id": "57ba638-3bab-f2a-fbf-50c361cac",
+      "name": "James Ifeanyi",
+      "gender": "male",
+      "email": "ielemson@gmail.com",
+      "phone": "08067407355",
+      "address": "Ikeja Lagos",
+      "state": "Lalgos",
+      "country": "Nig",
+      "zip": "0122",
+      "comment": "",
+      "gpa": true,
+      "gpaDate": 1594505662024,
+      "created": 1593544539908
+    },
+    {
+      "id": "57ba638-3bab-f2a-fbf-50c361cac",
+      "name": "James Ifeanyi",
+      "gender": "male",
+      "email": "ielemson@gmail.com",
+      "phone": "08067407355",
+      "address": "Ikeja Lagos",
+      "state": "Lalgos",
+      "country": "Nig",
+      "zip": "0122",
+      "comment": "",
+      "gpa": true,
+      "gpaDate": 1594505662024,
+      "created": 1593544539908
+    },
+    {
+      "id": "57ba638-3bab-f2a-fbf-50c361cac",
+      "name": "James Ifeanyi",
+      "gender": "male",
+      "email": "ielemson@gmail.com",
+      "phone": "08067407355",
+      "address": "Ikeja Lagos",
+      "state": "Lalgos",
+      "country": "Nig",
+      "zip": "0122",
+      "comment": "",
+      "gpa": true,
+      "gpaDate": 1594505662024,
+      "created": 1593544539908
+    },
+    {
+      "id": "57ba638-3bab-f2a-fbf-50c361cac",
+      "name": "James Ifeanyi",
+      "gender": "male",
+      "email": "ielemson@gmail.com",
+      "phone": "08067407355",
+      "address": "Ikeja Lagos",
+      "state": "Lalgos",
+      "country": "Nig",
+      "zip": "0122",
+      "comment": "",
+      "gpa": true,
+      "gpaDate": 1594505662024,
+      "created": 1593544539908
+    },
+    {
+      "id": "57ba638-3bab-f2a-fbf-50c361cac",
+      "name": "James Ifeanyi",
+      "gender": "male",
+      "email": "ielemson@gmail.com",
+      "phone": "08067407355",
+      "address": "Ikeja Lagos",
+      "state": "Lalgos",
+      "country": "Nig",
+      "zip": "0122",
+      "comment": "",
+      "gpa": true,
+      "gpaDate": 1594505662024,
+      "created": 1593544539908
+    },
+    {
+      "id": "57ba638-3bab-f2a-fbf-50c361cac",
+      "name": "James Ifeanyi",
+      "gender": "male",
+      "email": "ielemson@gmail.com",
+      "phone": "08067407355",
+      "address": "Ikeja Lagos",
+      "state": "Lalgos",
+      "country": "Nig",
+      "zip": "0122",
+      "comment": "",
+      "gpa": true,
+      "gpaDate": 1594505662024,
+      "created": 1593544539908
+    },
+    {
+      "id": "57ba638-3bab-f2a-fbf-50c361cac",
+      "name": "James Ifeanyi",
+      "gender": "male",
+      "email": "ielemson@gmail.com",
+      "phone": "08067407355",
+      "address": "Ikeja Lagos",
+      "state": "Lalgos",
+      "country": "Nig",
+      "zip": "0122",
+      "comment": "",
+      "gpa": true,
+      "gpaDate": 1594505662024,
+      "created": 1593544539908
+    },
+    {
+      "id": "57ba638-3bab-f2a-fbf-50c361c",
+      "name": "Ebere Ifeanyi",
       "gender": "male",
       "email": "ielemson@gmail.com",
       "phone": "08067407355",
@@ -133,6 +253,78 @@
       "preview": "0000000300000009STR.mp4",
       "sermonfile": "0000000300000009STR.mp4",
       "created": 1594505662024
+    },
+    {
+      "id": "8812-7637-decc-ea58-780ff8635af1",
+      "sermontitle": "ddd",
+      "coverimg": "myp.jpg",
+      "sermontype": "audio",
+      "preacher": "dddd",
+      "preview": "Draw - Victoria Orenze (Lyrics Video and Mp3) - Jesusful.mp3",
+      "sermonfile": "Draw - Victoria Orenze (Lyrics Video and Mp3) - Jesusful.mp3",
+      "created": 1594590153300
+    },
+    {
+      "id": "08f443-efc-e43-40e3-611522b67a18",
+      "sermontitle": "Sermon Title",
+      "coverimg": "ifeanyi.jpg",
+      "sermontype": "audio",
+      "preacher": "Rev Dubus Achufusi",
+      "preview": "Glorious-Day-Dante-Bowe-Bethel-Music-Worship-CEENAIJA.COM-.mp3",
+      "sermonfile": "Glorious-Day-Dante-Bowe-Bethel-Music-Worship-CEENAIJA.COM-.mp3",
+      "created": 1594590409348
     }
-  ]
+  ],
+  "users": [
+    {
+      "id": "431f3d2-c232-ad-6b3d-1ae47541ec6",
+      "password": "abc12345",
+      "email": "ielemson@gmail.com",
+      "username": "ielemson",
+      "created": 1594563652585
+    },
+    {
+      "id": "7afe288-00ff-5f36-a76c-50e1814edfd",
+      "name": "Patrick Azubuike",
+      "gender": "male",
+      "email": "pat@gmail.com",
+      "phone": "080655543456",
+      "address": "my address",
+      "state": "Lagos",
+      "country": "Nigeria",
+      "zip": "1010",
+      "comment": ""
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc1234@1",
+      "id": "hlaPG-y"
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc123",
+      "id": "tM_4NY_"
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc12345",
+      "id": "wJ1Zz3K"
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "aaaaa",
+      "id": "DT6dJAJ"
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc1234",
+      "id": "SD0fnwr"
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc12345",
+      "id": "F_FatIy"
+    }
+  ],
+  "cell": []
 }

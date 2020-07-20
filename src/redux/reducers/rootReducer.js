@@ -5,12 +5,14 @@ import LessonReducer from "./lessonReducer"
 import AssigmentReducer from "./assignmentReducer"
 import SermonReducer from "./sermonReducers"
 import candidateReducer from "./candidateReducer"
+import User from './userReducer';
 const rootReducer = combineReducers({
   courses: CourseReducer,
   events: EventReducers,
   lessons: LessonReducer,
   assignments: AssigmentReducer,
   sermon: SermonReducer,
-  gpaCandidates: candidateReducer
+  gpaCandidates: candidateReducer,
+  User
 });
 export default rootReducer;

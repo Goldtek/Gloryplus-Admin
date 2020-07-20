@@ -2,19 +2,19 @@ import React, { useEffect } from "react";
 import axios from "axios";
 // import { Helmet } from "react-helmet";
 import { ToastContainer, toast } from "react-toastify";
-import { Formik, Field } from "formik";
+import { Formik } from "formik";
 import * as Yup from "yup";
 import uuid from "react-uuid";
 import FormError from "./formError";
-// import Thumb from "../gpa/thumb";
 import { Header, SideBar, BreadCrumb } from "../../Partials";
 import TextField from '@material-ui/core/TextField';
-// import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
+
+
 const useStyles = makeStyles((theme) => ({
 
   formControl: {
@@ -33,17 +33,18 @@ const CreateSermon = () => {
   });
 
 
-  const FILE_SIZE = 160 * 1024;
+  const IMAGE_SIZE = 160 * 1024;
   const SUPPORTED_IMG_FORMATS = [
     "image/jpg",
     "image/jpeg",
     "image/gif",
     "image/png"
   ];
-  const VIDEO_SIZE = 300000 * 1024;
+  const FILE_SIZE = 300000 * 1024;
   const SUPPORTED_FILE_FORMATS = [
     "video/mp4",
     "audio/mp3",
+    "audio/mpeg",
   ];
 
   const validationSchema = Yup.object().shape({
@@ -53,7 +54,7 @@ const CreateSermon = () => {
       .test(
         "fileSize",
         "File too large",
-        value => value && value.size <= FILE_SIZE
+        value => value && value.size <= IMAGE_SIZE
       )
       .test(
         "fileFormat",
@@ -66,11 +67,11 @@ const CreateSermon = () => {
       .test(
         "fileSize",
         "File too large",
-        value => value && value.size <= VIDEO_SIZE
+        value => value && value.size <= FILE_SIZE
       )
       .test(
         "fileFormat",
-        "Unsupported Format",
+        "Only mp3/mp4 files are supported",
         value => value && SUPPORTED_FILE_FORMATS.includes(value.type)
       ),
     title: Yup.string().required("sermon title is required"),
@@ -212,6 +213,7 @@ const CreateSermon = () => {
                                         <option value={"video"}>Video</option>
                                       </Select>
                                     </FormControl>
+
 
                                   </div>
                                 </div>

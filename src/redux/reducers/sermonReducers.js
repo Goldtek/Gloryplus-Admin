@@ -1,4 +1,4 @@
-import { FETCH_SERMON_SUCCESS, FETCH_SERMON_REQUEST, FETCH_SERMON_FAILURE } from "../actions/types";
+import { FETCH_SERMON_SUCCESS, FETCH_SERMON_REQUEST, FETCH_SERMON_FAILURE } from "../actions/action-types";
 //here the reducer is going to evaluate any action that has been committed such as fetching and creating posts
 
 const initialState = {

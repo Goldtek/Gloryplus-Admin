@@ -11,7 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { Formik, Form, Field } from "formik";
-import "react-toastify/dist/ReactToastify.css";
+import "Components/Custom/Login/node_modules/react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 import { fetchLessonLists } from "Redux/actions/lessonActions";
 

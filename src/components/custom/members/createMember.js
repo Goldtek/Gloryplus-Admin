@@ -47,7 +47,7 @@ const CreateMember = () => {
                     <div className="card-body">
                       <Formik
                         initialValues={{
-                          name: "",
+                          name: undefined,
                           gender: "",
                           email: "",
                           phone: "",
@@ -60,16 +60,9 @@ const CreateMember = () => {
                         validationSchema={validationSchema}
                         onSubmit={(values, { setSubmitting, resetForm }) => {
                           setSubmitting(true);
-                          // const courseObj = {
-                          //   id: uuid(),
-                          //   file: values.file.name,
-                          //   coursetitle: values.coursetitle,
-                          //   type: values.file.type,
-                          // };
-
                           axios({
                             method: "POST",
-                            url: `${API_URL}/users`,
+                            url: `${API_URL}/members`,
                             data: {
                               id: uuid(),
                               name: values.name,
@@ -119,12 +112,7 @@ const CreateMember = () => {
                           handleBlur,
                         }) => (
                             <Form onSubmit={handleSubmit}>
-                              {/* <div className="line"></div> */}
-
                               <div className="row">
-                                {/* <label className="col-sm-3 form-control-label">
-   Material Inputs
- </label> */}
                                 <div className="col-sm-12 col-md-12 col-lg-12">
                                   <div className="row">
                                     <div className="col-md-12 col-sm-12 col-lg-8 col-xs-8">
@@ -293,6 +281,7 @@ const CreateMember = () => {
                                         <button
                                           type="submit"
                                           className="btn btn-primary"
+                                          disable={isSubmitting}
                                         >
                                           Save changes
                                       </button>

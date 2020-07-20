@@ -18,6 +18,7 @@ const CandidateLists = ({ fetchCandidates, candidateData }) => {
     let history = useHistory()
 
     const candidates = candidateData.candidateItems.filter(el => el.gpa === true);
+    // const candidates = candidateData.candidateItems.find(el => el.gpa === true)
     return (
         <div className="page">
             <Header />
@@ -52,14 +53,11 @@ const CandidateLists = ({ fetchCandidates, candidateData }) => {
 
                             ) : (
                                         <Fragment>
-                                            {candidates.length ? (
-                                                candidates.map((candidate) => (
-                                                    <CandidateTables candidate={candidate} key={candidate.id} />
-                                                ))
-
-                                            ) : <InfoCard info="No course available,please create a new course" />}
-
+                                            <CandidateTables candidates={candidates} />
                                         </Fragment>
+
+
+
                                     )}
                         </div>
                     </div>

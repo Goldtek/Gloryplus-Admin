@@ -1,9 +1,7 @@
 import React, { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-// import { Helmet } from "react-helmet";
 import { fetchSermonList } from "Redux/actions/sermonActions";
-// import PuffLoader from "react-spinners/PuffLoader";
 import Button from '@material-ui/core/Button';
 import { Header, SideBar, BreadCrumb, Footer } from "../../Partials";
 import { SermonCard } from "./sermonCard";
@@ -47,8 +45,8 @@ const SermonList = ({ fetchSermonList, sermonData }) => {
                 ) : (
                       <Fragment>
                         {sermonData.sermonItems.length ? (
-                          sermonData.sermonItems.map(({ sermontitle, coverimg, preview }) => (
-                            <SermonCard title={sermontitle} coverimg={coverimg} src={preview} />
+                          sermonData.sermonItems.map(({ sermontitle, coverimg, preview, sermontype }) => (
+                            <SermonCard title={sermontitle} coverimg={coverimg} src={preview} sermontype={sermontype} />
                           ))
 
                         ) : <InfoCard info="No assignment to display, please create new assignment" />}

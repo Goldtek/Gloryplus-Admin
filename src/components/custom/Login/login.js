@@ -1,15 +1,18 @@
 import React, { useEffect } from "react";
 import TextField from '@material-ui/core/TextField'
-import { Formik } from "formik";
 import * as Yup from "yup";
-import uuid from "react-uuid";
-import axios from "axios"
-import { useHistory } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import { withStyles } from '@material-ui/core/styles';
+// import uuid from "react-uuid";
+// import axios from "axios"
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import blue from '@material-ui/core/colors/blue';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { userLogin, userLogout } from "Redux/actions/userActions";
+import { useHistory, Redirect } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import { withStyles } from '@material-ui/core/styles';
+import { Formik } from "formik";
 import "react-toastify/dist/ReactToastify.css";
 
 const validationSchema = Yup.object().shape({
@@ -18,7 +21,7 @@ const validationSchema = Yup.object().shape({
 });
 
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     borderRadius: 3,
@@ -47,7 +50,17 @@ const API_URL = process.env.REACT_APP_BASEURL;
 const Login = (props) => {
 
   let history = useHistory();
-  const { classes } = props;
+  const { classes, User } = props;
+
+  const RedirectUser = () => {
+    history.push('/dashboard')
+  }
+
+  useEffect(() => {
+    // props.userLogout()
+    User.isAuthenticated ? RedirectUser() : console.log("")
+  }, [RedirectUser])
+
 
   return (
     <div className="container-fluid px-3">
@@ -70,52 +83,20 @@ const Login = (props) => {
               validationSchema={validationSchema}
               onSubmit={(values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
+                const data = {
+                  email: values.email,
+                  password: values.password
+                }
+                props.userLogin(data)
+                resetForm()
+                setSubmitting(false);
 
-
-                axios({
-                  method: "POST",
-                  url: `${API_URL}/user`,
-                  data: {
-                    id: uuid(),
-                    password: values.password,
-                    email: values.email,
-                    created: Date.now(),
-                  },
-                })
-                  .then((res) => {
-                    resetForm();
-                    setSubmitting(false);
-                    toast.success("course Successfully added", {
-                      position: "top-right",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                    });
-                    history.push("/dashboard", true);
-                  })
-                  .catch((err) => {
-                    toast.error(`${err}`, {
-                      position: "top-right",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                    });
-
-                    setSubmitting(false);
-                  });
               }}
             >
               {({
                 values,
                 handleSubmit,
                 isSubmitting,
-                setFieldValue,
                 handleChange,
                 touched,
                 errors,
@@ -204,4 +185,26 @@ const Login = (props) => {
 };
 
 
-export default withStyles(styles)(Login);
+
+Login.propTypes = {
+  userLogin: PropTypes.func.isRequired,
+
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    userLogin: (data) => {
+      dispatch(userLogin(data));
+    },
+
+    userLogout: () => {
+      dispatch(userLogout())
+    }
+  }
+};
+
+const mapStateToProps = (state) => ({
+  User: state.User,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Login));

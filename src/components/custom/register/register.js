@@ -66,18 +66,9 @@ const Register = (props) => {
               validationSchema={validationSchema}
               onSubmit={(values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
-                // const courseObj = {
-                //   id: uuid(),
-                //   file: values.file.name,
-                //   coursetitle: values.coursetitle,
-                //   type: values.file.type,
-                // };
-
-                console.log(values)
-
                 axios({
                   method: "POST",
-                  url: `${API_URL}/user`,
+                  url: `${API_URL}/users`,
                   data: {
                     id: uuid(),
                     password: values.password,
@@ -110,6 +101,7 @@ const Register = (props) => {
                       draggable: true,
                       progress: undefined,
                     });
+                    setSubmitting(false);
                   });
               }}
             >
