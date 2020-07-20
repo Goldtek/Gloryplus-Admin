@@ -9,19 +9,6 @@ export const loginSuccess = (user) => ({ type: LOGIN_SUCCESS, user });
 export const errorMessage = (message) => ({ type: STORE_USER_ERROR_MSG, message });
 
 
-
-// export const userLogin = data => async (dispatch) => {
-//     try {
-//         // const { email, password } = data;
-//         await axios.post(`${API_URL}/users`, data);
-//         // console.log('login--', data);
-//         // const { user } = data;
-//         dispatch(loginSuccess(data));
-//     } catch (error) {
-//         dispatch(errorMessage(error.message));
-//     }
-// };
-
 export const userLogin = (data) => {
     // let history = useHistory()
     return dispatch => {
