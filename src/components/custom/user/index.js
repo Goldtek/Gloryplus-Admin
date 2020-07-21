@@ -1,4 +1,4 @@
-import User from "./user";
+import User from "./User";
 import Bio from "./userBio"
 export {
     User,

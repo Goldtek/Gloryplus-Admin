@@ -26,152 +26,168 @@ const API_URL = process.env.REACT_APP_BASEURL;
 const CreateCourse = () => {
   let history = useHistory();
   useEffect(() => {
-    document.getElementById("gpa").classList.add("active");
+    // document.getElementById("gpa").classList.add("active");
   });
 
   return (
-    <div className="page">
+    <React.Fragment>
       <Header />
-      <div className="page-content d-flex align-items-stretch">
-        <SideBar />
+      <SideBar />
+      <div class="page-content">
 
-        <div className="content-inner">
-          <BreadCrumb title="Dashboard" crumb="GPA" />
-          <section className="forms">
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="card">
-                    <div className="card-header">
-                      <Button variant="contained" href="/dashboard/gpa/view" color="primary">
-                        View Course
-                  </Button>
-                      {" "} {" "}
-                      <Button onClick={() => history.goBack()} variant="contained" color="secondary">Back</Button>
-
-                    </div>
-                    <div className="card-body">
-                      <Formik
-                        initialValues={{ file: "", coursetitle: "" }}
-                        validationSchema={validationSchema}
-                        onSubmit={(values, { setSubmitting, resetForm }) => {
-                          setSubmitting(true);
-                          axios({
-                            method: "POST",
-                            url: `${API_URL}/course`,
-                            data: {
-                              id: uuid(),
-                              file: values.file.name,
-                              title: values.coursetitle,
-                              type: values.file.type,
-                              created: Date.now(),
-                            },
-                          })
-                            .then((res) => {
-                              resetForm();
-                              setSubmitting(false);
-                              toast.success("course Successfully added", {
-                                position: "top-right",
-                                autoClose: 5000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                              });
-                              history.push("/dashboard/gpa/view", true);
-                            })
-                            .catch((err) => {
-                              toast.error(`${err}`, {
-                                position: "top-right",
-                                autoClose: 5000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                              });
-                            });
-                        }}
-                      >
-                        {({
-                          values,
-                          handleSubmit,
-                          isSubmitting,
-                          setFieldValue,
-                          handleChange,
-                          touched,
-                          errors,
-                          handleBlur,
-                        }) => (
-                            <form
-                              onSubmit={handleSubmit}
-                              encType="multipart/form-data"
-                            >
-                              <div className="form-group-material">
-                                <TextField
-                                  fullWidth
-                                  id="CourseName"
-                                  label="Course Name"
-                                  onChange={handleChange}
-                                  value={values.coursetitle}
-                                  onBlur={handleBlur}
-                                  margin="normal"
-                                  name="coursetitle"
-                                  error={errors.coursetitle && touched.coursetitle}
-                                  helperText={(errors.coursetitle && touched.coursetitle) && errors.coursetitle}
-                                />
-                              </div>
-                              <div className="form-group">
-                                <label className="form-control-label">
-                                  Course Image
-                              </label>
-                                <input
-                                  id="file"
-                                  name="file"
-                                  type="file"
-                                  onChange={(event) => {
-                                    setFieldValue(
-                                      "file",
-                                      event.currentTarget.files[0]
-                                    );
-                                  }}
-                                  className={
-                                    touched.file && errors.file
-                                      ? "  form-control-file  is-invalid"
-                                      : "form-control-file"
-                                  }
-                                  onBlur={handleBlur}
-                                />
-                                <Thumb file={values.file} />
-                                <FormError
-                                  touched={touched.file}
-                                  message={errors.file}
-                                />
-                              </div>
-                              <div className="form-group">
-                                <Field
-                                  type="submit"
-                                  value="Upload Course"
-                                  className="btn btn-primary"
-                                  disabled={isSubmitting}
-                                />
-                              </div>
-                            </form>
-                          )}
-                      </Formik>
-                    </div>
-                  </div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item"><a href="/dashboard/">Dashboard</a></li>
+                  <li className="breadcrumb-item"><a href="#">Create Course</a></li>
+                </ol>
+              </nav>
+            </div>
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <Button variant="contained" href="/dashboard/gpa/view" color="primary">
+                    View Course
+                </Button>
+                  {" "} {" "}
+                  <Button onClick={() => history.goBack()} variant="contained" color="secondary">Back</Button>
                 </div>
               </div>
             </div>
-            <ToastContainer />
-            <Footer />
-          </section>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Basic Example</h5>
+                  <p>Here’s a quick example to demonstrate Bootstrap’s form styles. </p>
+                  <Formik
+                    initialValues={{ file: "", coursetitle: "" }}
+                    validationSchema={validationSchema}
+                    onSubmit={(values, { setSubmitting, resetForm }) => {
+                      setSubmitting(true);
+                      axios({
+                        method: "POST",
+                        url: `${API_URL}/course`,
+                        data: {
+                          id: uuid(),
+                          file: values.file.name,
+                          title: values.coursetitle,
+                          type: values.file.type,
+                          created: Date.now(),
+                        },
+                      })
+                        .then((res) => {
+                          resetForm();
+                          setSubmitting(false);
+                          toast.success("course Successfully added", {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          });
+                          history.push("/dashboard/gpa/view", true);
+                        })
+                        .catch((err) => {
+                          toast.error(`${err}`, {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          });
+                        });
+                    }}
+                  >
+                    {({
+                      values,
+                      handleSubmit,
+                      isSubmitting,
+                      setFieldValue,
+                      handleChange,
+                      touched,
+                      errors,
+                      handleBlur,
+                    }) => (
+                        <form
+                          onSubmit={handleSubmit}
+                          encType="multipart/form-data"
+                        >
+                          <div className="form-group-material">
+                            <TextField
+                              fullWidth
+                              id="CourseName"
+                              label="Course Name"
+                              onChange={handleChange}
+                              value={values.coursetitle}
+                              onBlur={handleBlur}
+                              margin="normal"
+                              name="coursetitle"
+                              error={errors.coursetitle && touched.coursetitle}
+                              helperText={(errors.coursetitle && touched.coursetitle) && errors.coursetitle}
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label className="form-control-label">
+                              Course Image
+                        </label>
+                            <input
+                              id="file"
+                              name="file"
+                              type="file"
+                              onChange={(event) => {
+                                setFieldValue(
+                                  "file",
+                                  event.currentTarget.files[0]
+                                );
+                              }}
+                              className={
+                                touched.file && errors.file
+                                  ? "  form-control-file  is-invalid"
+                                  : "form-control-file"
+                              }
+                              onBlur={handleBlur}
+                            />
+                            <Thumb file={values.file} />
+                            <FormError
+                              touched={touched.file}
+                              message={errors.file}
+                            />
+                          </div>
+                          <div className="form-group">
+                            <Field
+                              type="submit"
+                              value="Upload Course"
+                              className="btn btn-primary"
+                              disabled={isSubmitting}
+                            />
+                          </div>
+                        </form>
+                      )}
+                  </Formik>
+
+                </div>
+              </div>
+
+
+
+
+
+
+            </div>
+          </div>
         </div>
+
       </div>
-      {/* CLOSE SIDE BAR */}
-    </div>
+    </React.Fragment>
   );
 };
 

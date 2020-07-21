@@ -1,9 +1,9 @@
 {
   "livestream": {
     "active": true,
-    "streamId": "754834965252743",
-    "sheduleDate": "2020-06-26",
-    "scheduleTime": "18:10"
+    "streamId": "4444",
+    "sheduleDate": "2020-07-31",
+    "scheduleTime": "10:40"
   },
   "course": [
     {
@@ -31,6 +31,16 @@
       "details": "poiuyg",
       "address": "[poiuygt",
       "created": 1593544539908
+    },
+    {
+      "id": "cb3bd3a-2544-017e-08e2-d4f8e7c1ebf0",
+      "img": "fornecedores-de-papelaria.jpg",
+      "type": "image/jpeg",
+      "title": "ffff",
+      "date": "2020-07-22",
+      "details": "ddddd",
+      "address": "ddddd",
+      "created": 1595268749236
     }
   ],
   "lesson": [
@@ -51,6 +61,15 @@
       "instruction": "",
       "courseid": "70a212-32e4-865c-bcc1-41f7358c5c",
       "created": 1593545679453
+    },
+    {
+      "id": "ff1440c-8b6f-c0c5-b35d-3cbf44ced7f4",
+      "lessonNumber": "8",
+      "title": "The New Birth",
+      "video": "myp.jpg",
+      "instruction": "",
+      "courseid": "70a212-32e4-865c-bcc1-41f7358c5c",
+      "created": 1595244018645
     }
   ],
   "assigments": [
@@ -273,6 +292,16 @@
       "preview": "Glorious-Day-Dante-Bowe-Bethel-Music-Worship-CEENAIJA.COM-.mp3",
       "sermonfile": "Glorious-Day-Dante-Bowe-Bethel-Music-Worship-CEENAIJA.COM-.mp3",
       "created": 1594590409348
+    },
+    {
+      "id": "a5fb506-ebf-8262-50e-360ccf3e6c5",
+      "sermontitle": "God is Love",
+      "coverimg": "logo.jpeg",
+      "sermontype": "audio",
+      "preacher": "Rev Dubus AChufusi",
+      "preview": "Gimp- Remove The Background And Make It Transparent.mp4",
+      "sermonfile": "Gimp- Remove The Background And Make It Transparent.mp4",
+      "created": 1595267439916
     }
   ],
   "users": [
@@ -329,6 +358,26 @@
       "email": "ielemson@gmail.com",
       "password": "abc1234@1",
       "id": "JY-__Wf"
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc1234",
+      "id": "coHo8kd"
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc1234",
+      "id": "8zfPHah"
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc12345",
+      "id": "D-MZ1g1"
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc1234",
+      "id": "KSebstF"
     }
   ],
   "cell": []

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { history } from "../../_helpers/history"
+
 import { LOGIN_SUCCESS, STORE_USER_ERROR_MSG, LOG_OUT } from './action-types';
 
 const API_URL = process.env.REACT_APP_BASEURL;

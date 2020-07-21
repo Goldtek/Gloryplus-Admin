@@ -1,6 +1,6 @@
-import Dashboard from "./dashboard";
-import Card from "./card";
+import Dashboard from "./Dashboard";
+import { GrowthCard, RecentUsers, Reports } from "./Card";
 
 export {
-    Dashboard, Card
+    Dashboard, GrowthCard, RecentUsers, Reports
 }

@@ -5,13 +5,13 @@ import PropTypes from "prop-types";
 import { Helmet } from "react-helmet"
 import Button from '@material-ui/core/Button';
 import { fetchCandidates } from "Redux/actions/candidateActions";
-import { Header, SideBar, BreadCrumb, Footer } from "../../../Partials";
+import { Header, SideBar } from "../../../Partials";
 import { LoaderCard, InfoCard } from "../../Helpers"
 import CandidateTables from "./CandidateTables"
 
 const CandidateLists = ({ fetchCandidates, candidateData }) => {
     useEffect(() => {
-        document.getElementById("gpa").classList.add("active");
+        // document.getElementById("gpa").classList.add("active");
         fetchCandidates();
     }, [fetchCandidates]);
 
@@ -20,30 +20,42 @@ const CandidateLists = ({ fetchCandidates, candidateData }) => {
     const candidates = candidateData.candidateItems.filter(el => el.gpa === true);
     // const candidates = candidateData.candidateItems.find(el => el.gpa === true)
     return (
-        <div className="page">
-            <Header />
+        <React.Fragment>
             <Helmet>
                 <title>GPA Candidates</title>
             </Helmet>
-            <div className="page-content d-flex align-items-stretch">
-                <SideBar />
-                <div className="content-inner">
-                    <BreadCrumb title="GPA" crumb="Course List" />
-                    <div className="container-fluid">
-                        <section>
+            <Header />
+            <SideBar />
+            <div className="page-content">
+
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-12">
+                            <nav aria-label="breadcrumb">
+                                <ol className="breadcrumb">
+                                    <li className="breadcrumb-item"><a href="/dashboard/">Dashboard</a></li>
+                                    <li className="breadcrumb-item"><a href="#">Candidates </a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <div className="col-12">
                             <div className="card">
-                                <div className="card-header">
+                                <div className="card-body">
                                     <Button variant="contained" href="dashboard/gpa/create" color="primary">
                                         Create Course
-                                      </Button>
+                            </Button>
                                     {" "}
                                     <Button onClick={() => history.goBack()} variant="contained" color="secondary">Back</Button>
 
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
-                        </section>
-                        <div>
+                    <div className="row">
+                        <div className="col-12">
+
+                            <h5 className="card-title">GPA Candidates</h5>
                             {/* <CandidateTables /> */}
                             {candidateData.loading ? (
                                 <LoaderCard />
@@ -59,12 +71,14 @@ const CandidateLists = ({ fetchCandidates, candidateData }) => {
 
 
                                     )}
+
                         </div>
                     </div>
-                    <Footer />
                 </div>
+
             </div>
-        </div>
+
+        </React.Fragment>
     );
 
 }

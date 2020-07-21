@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
-import TextField from '@material-ui/core/TextField'
-import * as Yup from "yup";
-// import uuid from "react-uuid";
-// import axios from "axios"
 import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import * as Yup from "yup";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import blue from '@material-ui/core/colors/blue';
 import PropTypes from "prop-types";
@@ -21,8 +26,33 @@ const validationSchema = Yup.object().shape({
 });
 
 
-const styles = () => ({
+
+const useStyles = makeStyles((theme) => ({
   root: {
+    height: '100vh'
+  },
+
+  image: {
+    backgroundImage: 'url(images/background/gloryplus.png)',
+    backgroundRepeat: 'no-repeat',
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  },
+  paper: {
+    margin: theme.spacing(8, 4),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     borderRadius: 3,
     border: 0,
@@ -31,27 +61,13 @@ const styles = () => ({
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
-  label: {
-    textTransform: 'capitalize',
-  },
-  buttonProgress: {
-    color: blue[500],
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    marginTop: -12,
-    marginLeft: -12,
-  },
-});
-
-
-const API_URL = process.env.REACT_APP_BASEURL;
+}));
 
 const Login = (props) => {
+  const classes = useStyles();
 
   let history = useHistory();
-  const { classes, User } = props;
-
+  const { User } = props;
   const RedirectUser = () => {
     history.push('/dashboard')
   }
@@ -61,130 +77,111 @@ const Login = (props) => {
     User.isAuthenticated ? RedirectUser() : console.log("")
   }, [RedirectUser])
 
-
   return (
-    <div className="container-fluid px-3">
-      <div className="row min-vh-100">
-        <div className="col-md-5 col-lg-6 col-xl-4 px-lg-5 d-flex align-items-center">
-          <div className="w-100 py-5">
-            <div className="text-center">
-              <img
-                src="img/brand/logo.png"
-                alt="..."
-                style={{ maxWidth: "6rem" }}
-                className="img-fluid mb-4"
-              />
-              <h1 className="display-4 mb-3">Sign in</h1>
-            </div>
+    <Grid container component="main" className={classes.root}>
+      <CssBaseline />
+      <Grid item xs={false} sm={4} md={7} className={classes.image} />
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <div className={classes.paper}>
+          <img
+            src="img/brand/logo.png"
+            alt="..."
+            style={{ maxWidth: "6rem" }}
+            className="img-fluid mb-4"
+          />
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <Formik
+            initialValues={{ password: "", email: "" }}
+            validationSchema={validationSchema}
+            onSubmit={(values, { setSubmitting, resetForm }) => {
+              setSubmitting(true);
+              const data = {
+                email: values.email,
+                password: values.password
+              }
+              props.userLogin(data)
+              resetForm()
+              setSubmitting(false);
 
-            <ToastContainer />
-            <Formik
-              initialValues={{ password: "", email: "" }}
-              validationSchema={validationSchema}
-              onSubmit={(values, { setSubmitting, resetForm }) => {
-                setSubmitting(true);
-                const data = {
-                  email: values.email,
-                  password: values.password
-                }
-                props.userLogin(data)
-                resetForm()
-                setSubmitting(false);
+            }}
+          >
+            {({
+              values,
+              handleSubmit,
+              isSubmitting,
+              handleChange,
+              touched,
+              errors,
+              handleBlur,
+            }) => (
+                <form onSubmit={handleSubmit} className={classes.form}>
+                  <div className="form-group">
 
-              }}
-            >
-              {({
-                values,
-                handleSubmit,
-                isSubmitting,
-                handleChange,
-                touched,
-                errors,
-                handleBlur,
-              }) => (
-                  <form onSubmit={handleSubmit}>
-                    <div className="form-group">
+                    <TextField
+                      type="email"
+                      fullWidth
+                      id="email"
+                      label="Email"
+                      onChange={handleChange}
+                      value={values.email}
+                      onBlur={handleBlur}
+                      margin="normal"
+                      name="email"
+                      error={errors.email && touched.email}
+                      helperText={(errors.email && touched.email) && errors.email}
+                    />
+                  </div>
+                  <div className="form-group mb-4">
+                    <TextField
+                      type="password"
+                      fullWidth
+                      id="Password"
+                      label="Password"
+                      onChange={handleChange}
+                      value={values.password}
+                      onBlur={handleBlur}
+                      margin="normal"
+                      name="password"
+                      error={errors.password && touched.password}
+                      helperText={(errors.password && touched.password) && errors.password}
+                    />
+                    <div className="row">
 
-                      <TextField
-                        type="email"
-                        fullWidth
-                        id="email"
-                        label="Email"
-                        onChange={handleChange}
-                        value={values.email}
-                        onBlur={handleBlur}
-                        margin="normal"
-                        name="email"
-                        error={errors.email && touched.email}
-                        helperText={(errors.email && touched.email) && errors.email}
-                      />
-                    </div>
-                    <div className="form-group mb-4">
-                      <TextField
-                        type="password"
-                        fullWidth
-                        id="Password"
-                        label="Password"
-                        onChange={handleChange}
-                        value={values.password}
-                        onBlur={handleBlur}
-                        margin="normal"
-                        name="password"
-                        error={errors.password && touched.password}
-                        helperText={(errors.password && touched.password) && errors.password}
-                      />
-                      <div className="row">
-
-                        <div className="col-auto">
-                          <a href="#!" className="form-text small text-muted">
-                            Forgot password?
+                      <div className="col-auto">
+                        <a href="#!" className="form-text small text-muted">
+                          Forgot password?
                           </a>
-                        </div>
                       </div>
                     </div>
-                    {/* <!-- Submit--> */}
-                    {/* <button
-                      className="btn btn-lg btn-block btn-primary mb-3"
-                    // onClick={() => {
-                    //   window.location.href = "/dashboard";
-                    // }}
-                    >
-                      Sign in
-                          </button> */}
-                    <Button variant="contained" type="submit" fullWidth className={classes.root} disabled={isSubmitting}>
-                      Sign In
+                  </div>
 
-                      {isSubmitting && <CircularProgress size={24} className={classes.buttonProgress} />}
-                    </Button>
-                    {/* <!-- Link--> */}
-                    <p className="text-center">
-                      <small className="text-muted text-center">
-                        Don't have an account yet?
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                  >
+                    Sign In
+            </Button>
+                  {/* <!-- Link--> */}
+                  <p className="text-center">
+                    <small className="text-muted text-center">
+                      Don't have an account yet?
                              {" "} <a href="/register">Register</a>.
                             </small>
-                    </p>
-                  </form>
+                  </p>
+                </form>
 
-                )}
-            </Formik>
-          </div>
+              )}
+          </Formik>
         </div>
-        <div className="col-12 col-md-7 col-lg-6 col-xl-8 d-none d-lg-block">
-          {/* <!-- Image--> */}
-          <div
-            style={{
-              backgroundImage:
-                "url(images/background/gloryplus.png)",
-            }}
-            className="bg-cover h-100 mr-n3"
-          ></div>
-        </div>
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
-};
-
-
+}
 
 Login.propTypes = {
   userLogin: PropTypes.func.isRequired,
@@ -207,4 +204,4 @@ const mapStateToProps = (state) => ({
   User: state.User,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(withStyles)(Login));

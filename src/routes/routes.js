@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Route, Switch } from "react-router-dom";
 import Helmet from "react-helmet";
-import { PrivateRoute } from "./index"
+import PrivateRoute from "./PrivateRoute"
 import { Role } from "../_helpers"
 import {
   Login,

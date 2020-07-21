@@ -13,7 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
-
+import { useHistory } from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
 
@@ -29,9 +29,10 @@ const useStyles = makeStyles((theme) => ({
 const CreateSermon = () => {
   const classes = useStyles();
   useEffect(() => {
-    document.getElementById("sermon").classList.add("active");
+    // document.getElementById("sermon").classList.add("active");
   });
 
+  let history = useHistory()
 
   const IMAGE_SIZE = 160 * 1024;
   const SUPPORTED_IMG_FORMATS = [
@@ -82,230 +83,248 @@ const CreateSermon = () => {
   const API_URL = process.env.REACT_APP_BASEURL;
 
   return (
-    <div className="page">
+    <React.Fragment>
       <Header />
-      <div className="page-content d-flex align-items-stretch">
-        <SideBar />
-
-        <div className="content-inner">
-          {/* <!-- Page Header--> */}
-          <BreadCrumb title="Dashboard" crumb="Sermon" />
-          <section className="forms">
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="card">
-                    <div className="card-header d-flex align-items-center">
-                      <h3 className="h4">Create Sermon</h3>
-                    </div>
-                    <div className="card-body">
-                      <Formik
-                        initialValues={{
-                          coverimg: undefined,
-                          sermonfile: undefined,
-                          title: "",
-                          sermonType: "",
-                          preacher: ""
-                        }}
-                        validationSchema={validationSchema}
-                        onSubmit={(values, { setSubmitting, resetForm, setFieldValue }) => {
-                          setSubmitting(true);
-                          // alert(
-                          //   JSON.stringify(
-                          //     {
-                          //       fileName: values.sermonfile.name,
-                          //       type: values.sermonfile.type,
-                          //     },
-                          //     null,
-                          //     2
-                          //   )
-                          // );
-                          axios({
-                            method: "POST",
-                            url: `${API_URL}/sermon`,
-                            data: {
-                              id: uuid(),
-                              sermontitle: values.title,
-                              coverimg: values.coverimg.name,
-                              sermontype: values.sermonType,
-                              preacher: values.preacher,
-                              preview: values.sermonfile.name,
-                              sermonfile: values.sermonfile.name,
-                              created: Date.now(),
-                            },
-                          })
-                            .then((res) => {
-                              resetForm();
-                              setSubmitting(false);
-                              toast.success("Sermon Created Successfully", {
-                                position: "top-right",
-                                autoClose: 5000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                              });
-                            })
-                            .catch((err) => {
-                              toast.error(`${err}`, {
-                                position: "top-right",
-                                autoClose: 5000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                              });
-                            });
-                        }}
-                      >
-                        {({
-                          values,
-                          handleSubmit,
-                          isSubmitting,
-                          setFieldValue,
-                          handleChange,
-                          touched,
-                          errors,
-                          handleBlur,
-                        }) => (
-                            <form
-                              onSubmit={handleSubmit}
-                              encType="multipart/form-data"
-                            >
-
-                              <div className="row">
-
-                                <div className="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                  <div className="form-group">
-                                    <FormControl className={classes.formControl}>
-                                      <TextField
-                                        fullWidth
-                                        id="title"
-                                        name="title"
-                                        label="Sermon Title"
-                                        margin="normal"
-                                        value={values.title}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        error={errors.title && touched.title}
-                                        helperText={(errors.title && touched.title) && errors.title}
-                                      />
-                                    </FormControl>
-                                  </div>
-                                </div>
-                                <div className="col-md-6 col-sm-12 col-lg-6 col-xs-12">
-                                  <div className="form-group ">
-                                    <FormControl className={classes.formControl}>
-                                      <InputLabel htmlFor="sermontype">Sermon Type</InputLabel>
-                                      <Select
-                                        native
-                                        fullWidth
-                                        value={values.sermonType}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        name='sermonType'
-                                        id='sermontype'
-                                        error={errors.sermonType && touched.sermonType}>
-                                        <option value=""></option>
-                                        <option value={"audio"}>Audio</option>
-                                        <option value={"video"}>Video</option>
-                                      </Select>
-                                    </FormControl>
-
-
-                                  </div>
-                                </div>
-                                <div className="col-md-6 col-sm-12 col-lg-6 col-xs-12">
-                                  <div className="form-group ">
-                                    <TextField
-                                      fullWidth
-                                      id="preacher"
-                                      name="preacher"
-                                      label="Sermon By"
-                                      margin="normal"
-                                      value={values.preacher}
-                                      onChange={handleChange}
-                                      onBlur={handleBlur}
-                                      error={errors.preacher && touched.preacher}
-                                      helperText={(errors.preacher && touched.preacher) && errors.preacher}
-                                    >
-
-                                    </TextField>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="form-group">
-                                <label className="form-control-label">
-                                  Sermon Cover Image
-                                  </label>
-                                <input
-                                  id="coverimg"
-                                  name="coverimg"
-                                  type="file"
-                                  onChange={(event) => {
-                                    setFieldValue(
-                                      "coverimg",
-                                      event.currentTarget.files[0]
-                                    );
-                                  }}
-                                  className={
-                                    touched.coverimg && errors.coverimg
-                                      ? "  form-control-file  is-invalid"
-                                      : "form-control-file"
-                                  }
-                                  onBlur={handleBlur}
-                                />
-                                <FormError
-                                  touched={touched.coverimg}
-                                  message={errors.coverimg}
-                                />
-                              </div>
-                              <div className="form-group">
-                                <label className="form-control-label">
-                                  {values.sermonType ? "Choose" + " " + values.sermonType + " " + "File" : "Choose File"}
-                                </label>
-                                <input
-                                  id="sermonfile"
-                                  name="sermonfile"
-                                  type="file"
-                                  onChange={(event) => {
-                                    setFieldValue(
-                                      "sermonfile",
-                                      event.currentTarget.files[0]
-                                    );
-                                  }}
-                                  className={
-                                    touched.sermonfile && errors.sermonfile
-                                      ? "  form-control-file  is-invalid"
-                                      : "form-control-file"
-                                  }
-                                  onBlur={handleBlur}
-                                />
-                                <FormError
-                                  touched={touched.sermonfile}
-                                  message={errors.sermonfile}
-                                />
-                              </div>
-
-                              <div className="form-group">
-                                <Button disabled={isSubmitting} color="primary" type="submit" variant="contained">Add Sermon</Button>
-                              </div>
-                            </form>
-                          )}
-                      </Formik>
-                    </div>
-                  </div>
+      <SideBar />
+      <div className="page-content">
+        <ToastContainer />
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-12">
+              <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item"><a href="/dashboard/">Dashboard</a></li>
+                  <li className="breadcrumb-item"><a href="#">Create Sermon</a></li>
+                </ol>
+              </nav>
+            </div>
+            <div className="col-12">
+              <div className="card">
+                <div className="card-body">
+                  <Button variant="contained" href="dashboard/sermon/view" color="primary">
+                    View Sermon
+          </Button>
+                  {" "}
+                  <Button onClick={() => history.goBack()} variant="contained" color="secondary">Back</Button>
                 </div>
               </div>
             </div>
-            <ToastContainer />
-          </section>
+          </div>
+
+          <div className="row">
+            <div className="col-12">
+              <div className="card">
+                <div className="card-body">
+                  <Formik
+                    initialValues={{
+                      coverimg: undefined,
+                      sermonfile: undefined,
+                      title: "",
+                      sermonType: "",
+                      preacher: ""
+                    }}
+                    validationSchema={validationSchema}
+                    onSubmit={(values, { setSubmitting, resetForm, setFieldValue }) => {
+                      setSubmitting(true);
+                      // alert(
+                      //   JSON.stringify(
+                      //     {
+                      //       fileName: values.sermonfile.name,
+                      //       type: values.sermonfile.type,
+                      //     },
+                      //     null,
+                      //     2
+                      //   )
+                      // );
+                      axios({
+                        method: "POST",
+                        url: `${API_URL}/sermon`,
+                        data: {
+                          id: uuid(),
+                          sermontitle: values.title,
+                          coverimg: values.coverimg.name,
+                          sermontype: values.sermonType,
+                          preacher: values.preacher,
+                          preview: values.sermonfile.name,
+                          sermonfile: values.sermonfile.name,
+                          created: Date.now(),
+                        },
+                      })
+                        .then((res) => {
+                          resetForm();
+                          setSubmitting(false);
+                          toast.success("Sermon Created Successfully", {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          });
+                        })
+                        .catch((err) => {
+                          toast.error(`${err}`, {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          });
+                        });
+                    }}
+                  >
+                    {({
+                      values,
+                      handleSubmit,
+                      isSubmitting,
+                      setFieldValue,
+                      handleChange,
+                      touched,
+                      errors,
+                      handleBlur,
+                    }) => (
+                        <form
+                          onSubmit={handleSubmit}
+                          encType="multipart/form-data"
+                        >
+
+                          <div className="row">
+
+                            <div className="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                              <div className="form-group">
+                                <FormControl className={classes.formControl}>
+                                  <TextField
+                                    fullWidth
+                                    id="title"
+                                    name="title"
+                                    label="Sermon Title"
+                                    margin="normal"
+                                    value={values.title}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    error={errors.title && touched.title}
+                                    helperText={(errors.title && touched.title) && errors.title}
+                                  />
+                                </FormControl>
+                              </div>
+                            </div>
+                            <div className="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                              <div className="form-group ">
+                                <FormControl className={classes.formControl}>
+                                  <InputLabel htmlFor="sermontype">Sermon Type</InputLabel>
+                                  <Select
+                                    native
+                                    fullWidth
+                                    value={values.sermonType}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    name='sermonType'
+                                    id='sermontype'
+                                    error={errors.sermonType && touched.sermonType}>
+                                    <option value=""></option>
+                                    <option value={"audio"}>Audio</option>
+                                    <option value={"video"}>Video</option>
+                                  </Select>
+                                </FormControl>
+
+
+                              </div>
+                            </div>
+                            <div className="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                              <div className="form-group ">
+                                <TextField
+                                  fullWidth
+                                  id="preacher"
+                                  name="preacher"
+                                  label="Sermon By"
+                                  margin="normal"
+                                  value={values.preacher}
+                                  onChange={handleChange}
+                                  onBlur={handleBlur}
+                                  error={errors.preacher && touched.preacher}
+                                  helperText={(errors.preacher && touched.preacher) && errors.preacher}
+                                >
+
+                                </TextField>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="form-group">
+                            <label className="form-control-label">
+                              Sermon Cover Image
+                                </label>
+                            <input
+                              id="coverimg"
+                              name="coverimg"
+                              type="file"
+                              onChange={(event) => {
+                                setFieldValue(
+                                  "coverimg",
+                                  event.currentTarget.files[0]
+                                );
+                              }}
+                              className={
+                                touched.coverimg && errors.coverimg
+                                  ? "  form-control-file  is-invalid"
+                                  : "form-control-file"
+                              }
+                              onBlur={handleBlur}
+                            />
+                            <FormError
+                              touched={touched.coverimg}
+                              message={errors.coverimg}
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label className="form-control-label">
+                              {values.sermonType ? "Choose" + " " + values.sermonType + " " + "File" : "Choose File"}
+                            </label>
+                            <input
+                              id="sermonfile"
+                              name="sermonfile"
+                              type="file"
+                              onChange={(event) => {
+                                setFieldValue(
+                                  "sermonfile",
+                                  event.currentTarget.files[0]
+                                );
+                              }}
+                              className={
+                                touched.sermonfile && errors.sermonfile
+                                  ? "  form-control-file  is-invalid"
+                                  : "form-control-file"
+                              }
+                              onBlur={handleBlur}
+                            />
+                            <FormError
+                              touched={touched.sermonfile}
+                              message={errors.sermonfile}
+                            />
+                          </div>
+
+                          <div className="form-group">
+                            <Button disabled={isSubmitting} color="primary" type="submit" variant="contained">Add Sermon</Button>
+                          </div>
+                        </form>
+                      )}
+                  </Formik>
+                </div>
+              </div>
+
+
+
+
+
+
+            </div>
+          </div>
         </div>
+
       </div>
-      {/* CLOSE SIDE BAR */}
-    </div>
+    </React.Fragment>
   );
 };
 

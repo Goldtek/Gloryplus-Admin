@@ -11,56 +11,62 @@ import { LoaderCard, InfoCard } from "../Helpers"
 const SermonList = ({ fetchSermonList, sermonData }) => {
 
   useEffect(() => {
-    document.getElementById("sermon").classList.add("active");
+    // document.getElementById("sermon").classList.add("active");
     fetchSermonList();
   }, [fetchSermonList]);
 
 
   return (
-    <div className="page">
+    <React.Fragment>
       <Header />
-      <div className="page-content d-flex align-items-stretch">
-        <SideBar />
-        <div className="content-inner">
-          {/* <!-- Page Header--> */}
-          <BreadCrumb title="Sermon" crumb="Sermon List" />
-          <div className="container-fluid">
-            <section>
+
+      <SideBar />
+      <div className="page-content">
+
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-12">
+              <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item"><a href="/dashboard/">Dashboard</a></li>
+                  <li className="breadcrumb-item"><a href="#">Sermon List</a></li>
+                </ol>
+              </nav>
+            </div>
+            <div className="col-12">
               <div className="card">
-                <div className="card-header">
+                <div className="card-body">
                   <Button variant="contained" href="dashboard/sermon/create" color="primary">
                     Create Sermon
               </Button>
-
                 </div>
               </div>
-              <div className="row">
-
-                {sermonData.loading ? (
-                  <LoaderCard />
-
-                ) : sermonData.error ? (
-                  <InfoCard error={sermonData.error + " " + "Please check your connection"} />
-
-                ) : (
-                      <Fragment>
-                        {sermonData.sermonItems.length ? (
-                          sermonData.sermonItems.map(({ sermontitle, coverimg, preview, sermontype }) => (
-                            <SermonCard title={sermontitle} coverimg={coverimg} src={preview} sermontype={sermontype} />
-                          ))
-
-                        ) : <InfoCard info="No assignment to display, please create new assignment" />}
-
-                      </Fragment>
-                    )}
-              </div>
-            </section>
+            </div>
           </div>
-          <Footer />
-        </div>
-      </div>
 
-    </div>
+          <div className="row">
+            {sermonData.loading ? (
+              <LoaderCard />
+
+            ) : sermonData.error ? (
+              <InfoCard error={sermonData.error + " " + "Please check your connection"} />
+
+            ) : (
+                  <Fragment>
+                    {sermonData.sermonItems.length ? (
+                      sermonData.sermonItems.map(({ sermontitle, coverimg, preview, sermontype }) => (
+                        <SermonCard title={sermontitle} coverimg={coverimg} src={preview} sermontype={sermontype} />
+                      ))
+
+                    ) : <InfoCard info="No assignment to display, please create new assignment" />}
+
+                  </Fragment>
+                )}
+          </div>
+        </div>
+
+      </div>
+    </React.Fragment>
   );
 
 }

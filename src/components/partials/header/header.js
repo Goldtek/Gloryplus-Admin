@@ -1,268 +1,142 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Helmet } from "react-helmet"
 const Header = ({ title }) => {
+
+  const slideIn = (e) => {
+    e.preventDefault()
+  }
   return (
     // <!-- Main Navbar-->
     <React.Fragment>
-      <Helmet>
-        <title>{title}</title>
-      </Helmet>
-      <header className="header">
-        <nav className="navbar">
-          {/* <!-- Search Box-->? */}
-          <div className="search-box">
-            <button className="dismiss">
-              <i className="icon-close"></i>
-            </button>
-            <form id="searchForm" action="#!" role="search">
-              <input
-                type="search"
-                placeholder="What are you looking for..."
-                className="form-control"
-              />
-            </form>
-          </div>
-          <div className="container-fluid">
-            <div className="navbar-holder d-flex align-items-center justify-content-between">
-              {/* <!-- Navbar Header--> */}
-              <div className="navbar-header">
-                {/* <!-- Navbar Brand --> */}
-                <a
-                  href="index.html"
-                  className="navbar-brand d-none d-sm-inline-block"
-                >
-                  <div className="brand-text d-none d-lg-inline-block">
-                    <span>GloryPlus </span> <strong>Dashboard</strong>
-                  </div>
-                  <div className="brand-text d-none d-sm-inline-block d-lg-none">
-                    <strong>BD</strong>
-                  </div>
+      <div className="page-header">
+        <nav className="navbar navbar-expand primary">
+          <section className="material-design-hamburger navigation-toggle" onClick={slideIn}>
+            <a href="#" data-activates="slide-out"
+              className="button-collapse material-design-hamburger__icon">
+              <span className="material-design-hamburger__layer"></span>
+            </a>
+          </section>
+          <a className="navbar-brand" href="#">GLory Plus Int'l</a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <a className="nav-link right-sidebar-link" href="/dashboard/user/1234"><i
+                  className="material-icons">person</i></a>
+              </li>
+
+              <li className="nav-item dropdown d-none d-lg-block">
+                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i className="material-icons">notifications_none</i>
+                  <span className="badge">4</span>
                 </a>
-                {/* <!-- Toggle Button--> */}
-                <a id="toggle-btn" href="#!!" className="menu-btn active">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </a>
-              </div>
-              {/* <!-- Navbar Menu --> */}
-              <ul className="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
-                {/* <!-- Search--> */}
-                <li className="nav-item d-flex align-items-center">
-                  <a id="search" href="#!!">
-                    <i className="icon-search"></i>
-                  </a>
-                </li>
-                {/* <!-- Notifications--> */}
-                <li className="nav-item dropdown">
-                  <a
-                    id="notifications"
-                    rel="nofollow"
-                    data-target="#!"
-                    href="#!!"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    className="nav-link"
-                  >
-                    <i className="fa fa-bell-o"></i>
-                    <span className="badge bg-red badge-corner">12</span>
-                  </a>
-                  <ul aria-labelledby="notifications" className="dropdown-menu">
-                    <li>
-                      <a rel="nofollow" href="#!" className="dropdown-item">
-                        <div className="notification">
-                          <div className="notification-content">
-                            <i className="fa fa-envelope bg-green"></i>You have 6
-                          new messages
+                <ul className="dropdown-menu dropdown-menu-right dd-notifications"
+                  aria-labelledby="navbarDropdown">
+                  <li className="notification-drop-title">Today</li>
+                  <li>
+                    <a href="#!">
+                      <div className="notification">
+                        <div className="notification-icon circle cyan"><i
+                          className="material-icons">done</i></div>
+                        <div className="notification-text">
+                          <p><b>Alan Grey</b> uploaded new theme</p><span>7 min ago</span>
                         </div>
-                          <div className="notification-time">
-                            <small>4 minutes ago</small>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a rel="nofollow" href="#!" className="dropdown-item">
-                        <div className="notification">
-                          <div className="notification-content">
-                            <i className="fa fa-twitter bg-blue"></i>You have 2
-                          followers
-                        </div>
-                          <div className="notification-time">
-                            <small>4 minutes ago</small>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a rel="nofollow" href="#!" className="dropdown-item">
-                        <div className="notification">
-                          <div className="notification-content">
-                            <i className="fa fa-upload bg-orange"></i>Server
-                          Rebooted
-                        </div>
-                          <div className="notification-time">
-                            <small>4 minutes ago</small>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a rel="nofollow" href="#!" className="dropdown-item">
-                        <div className="notification">
-                          <div className="notification-content">
-                            <i className="fa fa-twitter bg-blue"></i>You have 2
-                          followers
-                        </div>
-                          <div className="notification-time">
-                            <small>10 minutes ago</small>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        rel="nofollow"
-                        href="#!"
-                        className="dropdown-item all-notifications text-center"
-                      >
-                        <strong>view all notifications </strong>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                {/* <!-- Messages                        --> */}
-                <li className="nav-item dropdown">
-                  <a
-                    id="messages"
-                    rel="nofollow"
-                    data-target="#!"
-                    href="#!"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    className="nav-link"
-                  >
-                    <i className="fa fa-envelope-o"></i>
-                    <span className="badge bg-orange badge-corner">10</span>
-                  </a>
-                  <ul aria-labelledby="notifications" className="dropdown-menu">
-                    <li>
-                      <a
-                        rel="nofollow"
-                        href="#!"
-                        className="dropdown-item d-flex"
-                      >
-                        <div className="msg-profile">
-                          <img
-                            src="img/avatar-1.jpg"
-                            alt="..."
-                            className="img-fluid rounded-circle"
-                          />
-                        </div>
-                        <div className="msg-body">
-                          <h3 className="h5">Jason Doe</h3>
-                          <span>Sent You Message</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        rel="nofollow"
-                        href="#!"
-                        className="dropdown-item d-flex"
-                      >
-                        <div className="msg-profile">
-                          <img
-                            src="img/avatar-2.jpg"
-                            alt="..."
-                            className="img-fluid rounded-circle"
-                          />
-                        </div>
-                        <div className="msg-body">
-                          <h3 className="h5">Frank Williams</h3>
-                          <span>Sent You Message</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        rel="nofollow"
-                        href="#!"
-                        className="dropdown-item d-flex"
-                      >
-                        <div className="msg-profile">
-                          <img
-                            src="img/avatar-3.jpg"
-                            alt="..."
-                            className="img-fluid rounded-circle"
-                          />
-                        </div>
-                        <div className="msg-body">
-                          <h3 className="h5">Ashley Wood</h3>
-                          <span>Sent You Message</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        rel="nofollow"
-                        href="#!"
-                        className="dropdown-item all-notifications text-center"
-                      >
-                        <strong>Read all messages </strong>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                {/* <!-- Languages dropdown    --> */}
-                <li className="nav-item dropdown">
-                  <a
-                    id="languages"
-                    rel="nofollow"
-                    data-target="#!"
-                    href="#!"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    className="nav-link language dropdown-toggle"
-                  >
-                    <i className="fa fa-user "></i>
-                    <span className="d-none d-sm-inline-block">Profile</span>
-                  </a>
-                  <ul aria-labelledby="languages" className="dropdown-menu">
-                    <li>
-                      <a
-                        rel="nofollow"
-                        href="dashboard/profile"
-                        className="dropdown-item"
-                      >
-                        <i className="fa fa-user "></i>
-                      View profile
+                      </div>
                     </a>
-                    </li>
-                    <li>
-                      <a rel="nofollow" href="/" className="dropdown-item">
-                        <i className="fa fa-sign-out"></i>
-                      Logout
+                  </li>
+                  <li>
+                    <a href="#!">
+                      <div className="notification">
+                        <div className="notification-icon circle deep-purple"><i
+                          className="material-icons">cached</i></div>
+                        <div className="notification-text">
+                          <p><b>Tom</b> updated status</p><span>14 min ago</span>
+                        </div>
+                      </div>
                     </a>
-                    </li>
-                  </ul>
-                </li>
-                {/* <!-- Logout    --> */}
-                {/* <li className="nav-item">
-                <a href="login.html" className="nav-link logout">
-                  <span className="d-none d-sm-inline">Logout</span>
-                  <i className="fa fa-sign-out"></i>
-                </a>
-              </li> */}
-              </ul>
-            </div>
+                  </li>
+                  <li>
+                    <a href="#!">
+                      <div className="notification">
+                        <div className="notification-icon circle red"><i
+                          className="material-icons">delete</i></div>
+                        <div className="notification-text">
+                          <p><b>Amily Lee</b> deleted account</p><span>28 min ago</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#!">
+                      <div className="notification">
+                        <div className="notification-icon circle cyan"><i
+                          className="material-icons">person_add</i></div>
+                        <div className="notification-text">
+                          <p><b>Tom Simpson</b> registered</p><span>2 hrs ago</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#!">
+                      <div className="notification">
+                        <div className="notification-icon circle green"><i
+                          className="material-icons">file_upload</i></div>
+                        <div className="notification-text">
+                          <p>Finished uploading files</p><span>4 hrs ago</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li className="notification-drop-title">Yestarday</li>
+                  <li>
+                    <a href="#!">
+                      <div className="notification">
+                        <div className="notification-icon circle green"><i
+                          className="material-icons">security</i></div>
+                        <div className="notification-text">
+                          <p>Security issues fixed</p><span>16 hrs ago</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#!">
+                      <div className="notification">
+                        <div className="notification-icon circle indigo"><i
+                          className="material-icons">file_download</i></div>
+                        <div className="notification-text">
+                          <p>Finished downloading files</p><span>22 hrs ago</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#!">
+                      <div className="notification">
+                        <div className="notification-icon circle cyan"><i
+                          className="material-icons">code</i></div>
+                        <div className="notification-text">
+                          <p>Code changes were saved</p><span>1 day ago</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+            </ul>
           </div>
         </nav>
-      </header>
-    </React.Fragment>
+      </div>
+    </React.Fragment >
   );
 };
 

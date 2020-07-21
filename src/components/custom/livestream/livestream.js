@@ -3,7 +3,7 @@ import serializeForm from "form-serialize";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { Header, SideBar, BreadCrumb, Footer } from "../../Partials";
+import { Header, SideBar } from "../../Partials";
 import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
 
@@ -11,7 +11,7 @@ const API_URL = process.env.REACT_APP_BASEURL;
 
 const Livestream = () => {
   useEffect(() => {
-    document.getElementById("livestream").classList.add("active");
+    // document.getElementById("livestream").classList.add("active");
   });
   //DECLARE USE STATE FOR OUR VARIABLES
   const [playerSource, setplaysource] = useState("");
@@ -84,209 +84,208 @@ const Livestream = () => {
       });
   };
   return (
-    <div className="page">
+    <React.Fragment>
       <Header />
-      <div className="page-content d-flex align-items-stretch">
-        <SideBar />
+      <SideBar />
+      <div className="page-content">
 
-        <div className="content-inner">
-          <BreadCrumb title="Live Stream" crumb="Live Stream" />
-
-          <section className="forms">
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="card">
-                    <div className="card-header d-flex align-items-center">
-                      <h3 className="h4">
-                        Status:{" "}
-                        {checked ? (
-                          <strong className="font-bold text-success">ON</strong>
-                        ) : (
-                            <strong className="font-bold text-danger">OFF</strong>
-                          )}
-                      </h3>
-                    </div>
-                    <div className="card-body">
-                      <form className="form-inline" >
-                        <div className="form-group">
-                          <Switch
-                            color="primary"
-                            onChange={(event) => {
-                              setChecked(event.target.checked);
-                            }}
-                            value={checked}
-
-                          />
-                        </div>
-                      </form>
-                    </div>
-                  </div>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-12">
+              <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item"><a href="/dashboard/">Dashboard</a></li>
+                  <li className="breadcrumb-item"><a href="#">Live Stream</a></li>
+                </ol>
+              </nav>
+            </div>
+            <div className="col-12">
+              <div className="card">
+                <div className="card-body">
+                  Examples and usage guidelines for form control styles, layout options, and custom
+                  components for creating a wide variety of forms.
                 </div>
               </div>
-              {/* LIVE STREAM CONTENT ----------------------------------*/}
-              {/* {checked ? null : changedCLick(checked)} */}
-              {checked ? (
-                <div className="row">
-                  <div className="col-lg-12">
-                    <div className="card">
-                      <div className="card-header d-flex align-items-center">
-                        <h3 className="h4">
-                          Status:{" "}
-                          {checked ? (
-                            <strong className="font-bold text-success">
-                              Please scroll down to paste live stream ID
-                            </strong>
-                          ) : (
-                              <strong className="font-bold text-danger">
-                                OFF
-                              </strong>
-                            )}
-                        </h3>
-                      </div>
+            </div>
+            <div className="col-12">
+            </div>
 
-                      <div className="col-md-12 col-lg-12 col-xl-12 col-sm-12 col-xs-12">
-                        <div className="embed-responsive embed-responsive-16by9 card" style={{ maxHeight: "80vh" }}>
-                          <iframe
-                            id="iframeid"
-                            src={`https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fgloryplusintl%2Fposts%2F${playerSource}&show_text=true`}
-                            width="20%"
-                            height="20%"
-                            className="embed-responsive-item"
-                            scrolling="no"
-                            allowtransparency="true"
-                            allow="encrypted-media"
-                            allowFullScreen={true}
-                            title="live streaming"
-
-                          ></iframe>
-                        </div>
-
-                        <form
-                          onSubmit={handleStreaming}
-                          className="form-validate"
-                        >
-                          <div className="form-group-material">
-                            <input
-                              type="text"
-                              placeholder="ENTER LIVE STREAM ID HERE ...."
-                              className="input-material"
-                              required
-                              name="streamid"
-                            />
-
-
-                          </div>
-
-                          <div className="form-group">
-                            <button className="btn btn-primary">Submit</button>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
+            <div className="col-12">
+              <div className="card">
+                <div className="card-body">
+                  <form >
+                    <h6>
+                      Status:{" "}
+                      {checked ? (
+                        <b className="font-bold text-success">ON</b>
+                      ) : (
+                          <b className="font-bold text-danger">OFF</b>
+                        )}
+                    </h6>
+                    <Switch
+                      color="primary"
+                      onChange={(event) => {
+                        setChecked(event.target.checked);
+                      }}
+                      value={checked} />
+                  </form>
                 </div>
-              ) : (
-                  <div className="row">
-                    <div className="col-lg-12">
-                      <div className="card">
-                        <div className="card-header d-flex align-items-center"></div>
-                        <div className="col-md-4 col-lg-4 col-xl-4 col-sm-12 col-xs-12 mx-auto text-center">
-                          <img
-                            src="images\live-stream.png"
-                            alt="live stream"
-                            className="img-fluid"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              {/* LIVE STREAM CONTENT ----------------------------------*/}
-              {/* <!-- Inline Form--> */}
-              <div className="col-md-12 col-lg-12 col-xl-12 col-sm-12 col-xs-12">
+              </div>
+            </div>
+          </div>
+
+          {checked ? (
+            <div className="row">
+              <div className="col-lg-12">
                 <div className="card">
                   <div className="card-header d-flex align-items-center">
-                    {" "}
-                    {checked ? (
-                      <h3 className="font-bold text-danger h4">
-                        TO SCHEDULE FOR NEW STREAMING EVENT PLEASE TURN OFF LIVE
-                        STREAMING !
-                      </h3>
-                    ) : (
-                        <h3 className="h4"> SCHEDULE STREAMING - <small>Click on the icon to select date/time</small></h3>
-                      )}
+                    <h6>
+                      Status:{" "}
+                      {checked ? (
+                        <strong className="font-bold text-success">
+                          Please scroll down to paste live stream ID
+                        </strong>
+                      ) : (
+                          <strong className="font-bold text-danger">
+                            OFF
+                          </strong>
+                        )}
+                    </h6>
                   </div>
-                  <div className="card-body">
-                    <form className="form-inline" onSubmit={handleSchedule}>
-                      <div className="col-sm-12">
-                        <div className="row">
-                          <div className="col-sm-12 col-md-6 col-lg-6">
-                            <div className="form-group-material">
 
-                              <TextField
-                                required
-                                id="date"
-                                label="Set Date"
-                                type="date"
-                                name="scheduleDate"
-                                fullWidth
-                                InputLabelProps={{
-                                  shrink: true,
-                                }}
-                                disabled={(checked ? true : false)}
-                              />
-                            </div>
-                          </div>
-                          <div className="col-sm-12 col-md-6 col-lg-6">
+                  <div className="col-md-12 col-lg-12 col-xl-12 col-sm-12 col-xs-12">
+                    <div className="embed-responsive embed-responsive-16by9 card" style={{ maxHeight: "80vh" }}>
+                      <iframe
+                        id="iframeid"
+                        src={`https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fgloryplusintl%2Fposts%2F${playerSource}&show_text=true`}
+                        width="20%"
+                        height="20%"
+                        className="embed-responsive-item"
+                        scrolling="no"
+                        allowtransparency="true"
+                        allow="encrypted-media"
+                        allowFullScreen={true}
+                        title="live streaming"
 
-                            <div className="form-group-material">
+                      ></iframe>
+                    </div>
 
-                              <TextField
-                                required
-                                id="time"
-                                label="Set Time"
-                                type="time"
-                                name="scheduleTime"
-                                fullWidth
-                                InputLabelProps={{
-                                  shrink: true,
-                                }}
-                                disabled={(checked ? true : false)}
-                              />
-                            </div>
-                          </div>
+                    <form
+                      onSubmit={handleStreaming}
+                      className="form-validate"
+                    >
+                      <div className="form-group-material">
 
-                        </div>
-                        <div className="form-group row">
-                          <div className="col-sm-12 ">
-                            <button type="reset" className="btn btn-secondary">
-                              Clear
-</button>{" "}
-                            <button
-                              type="submit"
-                              className="btn btn-primary"
-                              disabled={(checked ? true : false)}>
-                              Schedule
-</button>
-                          </div>
-                        </div>
+                        <TextField
+                          required
+                          id="streamid"
+                          label="ENTER LIVE STREAM ID HERE ...."
+                          name="streamid"
+                          fullWidth
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                          disabled={(checked ? false : true)}
+                        />
+
+                      </div>
+                      <br />
+                      <div className="form-group">
+                        <button className="btn btn-primary">Submit</button>
                       </div>
                     </form>
                   </div>
                 </div>
               </div>
-              {/* <!-- Modal Form--> */}
             </div>
-            <ToastContainer />
-            <Footer />
-          </section>
+          ) : (
+              <div className="row">
+                <div className="col-lg-12">
+                  <div className="card">
+                    <div className="card-header d-flex align-items-center"></div>
+                    <div className="col-md-4 col-lg-4 col-xl-4 col-sm-12 col-xs-12 mx-auto text-center">
+                      <img
+                        src="images\live-stream.png"
+                        alt="live stream"
+                        className="img-fluid"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
 
-          {/* LIVE STREAM CONTAINER ##################### */}
+
+          <div className="row">
+            <div className="col-12">
+              <div className="card">
+                <div className="card-body">
+                  {checked ? (
+                    <h5 className="font-bold text-danger">
+                      TO SCHEDULE FOR NEW STREAMING EVENT PLEASE TURN OFF LIVE
+                      STREAMING !
+                    </h5>
+                  ) : (
+                      <h5> SCHEDULE STREAMING - <small>Click on the icon to select date/time</small></h5>
+                    )}
+                  <form onSubmit={handleSchedule}>
+                    <div className="col-sm-12">
+                      <div className="row">
+                        <div className="col-sm-12 col-md-6 col-lg-6">
+
+                          <TextField
+                            required
+                            id="date"
+                            type="date"
+                            name="scheduleDate"
+                            fullWidth
+
+                            disabled={(checked ? true : false)}
+                          />
+
+                        </div>
+                        <div className="col-sm-12 col-md-6 col-lg-6">
+
+                          <TextField
+                            required
+                            id="time"
+                            type="time"
+                            name="scheduleTime"
+                            fullWidth
+
+                            disabled={(checked ? true : false)}
+                          />
+
+                        </div>
+
+                      </div>
+                      <br />
+                      <div className="form-group row">
+                        <div className="col-sm-12 ">
+                          <button type="reset" className="btn btn-secondary">
+                            Clear
+                    </button>{" "}
+                          <button
+                            type="submit"
+                            className="btn btn-primary"
+                            disabled={(checked ? true : false)}>
+                            Schedule
+                        </button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      {/* CLOSE SIDE BAR */}
-    </div>
+
+
+      <ToastContainer />
+    </React.Fragment>
   );
 };
 

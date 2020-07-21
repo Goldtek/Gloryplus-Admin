@@ -8,66 +8,82 @@ import { fetchCourseLists } from "Redux/actions/courseActions";
 import { Header, SideBar, BreadCrumb, Footer } from "../../../Partials";
 import { Card } from "../cards/courseCard";
 import { LoaderCard, InfoCard } from "../../Helpers"
-
-
 const CourseLists = ({ fetchCourseLists, courseData }) => {
 
   useEffect(() => {
-    document.getElementById("gpa").classList.add("active");
+    // document.getElementById("gpa").classList.add("active");
     fetchCourseLists();
   }, [fetchCourseLists]);
 
   let history = useHistory()
   return (
-    <div className="page">
+    <React.Fragment>
       <Header />
-      <div className="page-content d-flex align-items-stretch">
-        <SideBar />
-        <div className="content-inner">
-          <BreadCrumb title="GPA" crumb="Course List" />
-          <div className="container-fluid">
-            <section>
+      <SideBar />
+      <div className="page-content">
+
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-12">
+              <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item"><a href="/dashboard/">Dashboard</a></li>
+                  <li className="breadcrumb-item"><a href="#">Course List</a></li>
+                </ol>
+              </nav>
+            </div>
+            <div className="col-12">
               <div className="card">
-                <div className="card-header">
+                <div className="card-body">
                   <Button variant="contained" href="dashboard/gpa/create" color="primary">
                     Create Course
-                  </Button>
+          </Button>
                   {" "}
                   <Button onClick={() => history.goBack()} variant="contained" color="secondary">Back</Button>
 
                 </div>
               </div>
-              <div className="row">
-
-                {courseData.loading ? (
-                  <LoaderCard />
-
-                ) : courseData.error ? (
-                  <InfoCard error={courseData.error} />
-
-                ) : (
-                      <Fragment>
-                        {courseData.courseItems.length ? (
-                          courseData.courseItems.map((course) => (
-                            <Card
-                              title={course.title}
-                              created={course.created}
-                              key={course.id}
-                              id={course.id}
-                              btnTitle="Lesson"
-                            />))
-
-                        ) : <InfoCard info="No course available,please create a new course" />}
-
-                      </Fragment>
-                    )}
-              </div>
-            </section>
+            </div>
           </div>
-          <Footer />
+          <div className="col-12">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Course Lists</h5>
+                <div className="row">
+
+                  {courseData.loading ? (
+                    <LoaderCard />
+
+                  ) : courseData.error ? (
+                    <InfoCard error={courseData.error} />
+
+                  ) : (
+                        <Fragment>
+                          {courseData.courseItems.length ? (
+                            courseData.courseItems.map((course) => (
+                              <Card
+                                title={course.title}
+                                created={course.created}
+                                key={course.id}
+                                id={course.id}
+                                btnTitle="Lesson"
+                              />))
+
+                          ) : <InfoCard info="No course available,please create a new course" />}
+
+                        </Fragment>
+                      )}
+                </div>
+
+              </div>
+            </div>
+          </div>
+
         </div>
+
       </div>
-    </div>
+
+    </React.Fragment>
   );
 
 }

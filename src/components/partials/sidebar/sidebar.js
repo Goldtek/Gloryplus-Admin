@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from 'react-router-dom'
+import { Link } from "react-router-dom"
 import { authenticationService } from '_services'
 const userId = "ab4ce6fff3582810";
 
@@ -7,187 +8,169 @@ const SideBar = () => {
 
   const history = useHistory()
 
-  const userLogout = () => {
+  // const userLogout = () => {
+  //   localStorage.removeItem('user');
+  //   history.push('/');
+  // }
 
-    localStorage.removeItem('user');
-    history.push('/');
+  const eventPrevent = (e) => {
+    e.preventDefault()
   }
   return (
-    <nav className="side-navbar">
-      <div className="sidebar-header d-flex align-items-center">
-        <a href={`dashboard/user/${userId}`}>
-          <div className="avatar">
-            <img
-              src="img/avatar-7.jpg"
-              alt="user"
-              className="img-fluid rounded-circle"
-            />
+    <React.Fragment>
+      <div className="page-sidebar">
+        <div className="page-sidebar-inner">
+          <div className="page-sidebar-profile">
+            <div className="sidebar-profile-image">
+              <img src="./assets/images/avatars/avatar1.png" />
+            </div>
+            <div className="sidebar-profile-info">
+              <a href="#" className="account-settings-link" onClick={eventPrevent}>
+                <p>David Doe</p>
+                <span>david@gmail.com<i className="material-icons float-right">arrow_drop_down</i></span>
+              </a>
+            </div>
           </div>
-        </a>
-        <div className="title">
-          <h1 className="h4" style={{ color: "#fff" }}>
-            Elemson Ifeanyi
-</h1>
-          <p>Super Admin</p>
+          <div className="page-sidebar-menu">
+            <div className="page-sidebar-settings hidden">
+              <ul className="sidebar-menu list-unstyled">
+                <li><a href="/dashboard/user/12345" className="waves-effect waves-grey"><i
+                  className="material-icons">person</i>Profile</a></li>
+
+              </ul>
+            </div>
+            <div className="sidebar-accordion-menu">
+              <ul className="sidebar-menu list-unstyled">
+                <li>
+                  <a href="/dashboard" className="waves-effect waves-grey active">
+                    <i className="material-icons">settings_input_svideo</i>Dashboard
+                                    </a>
+                </li>
+                <li>
+                  <a href="#" className="waves-effect waves-grey">
+                    <i className="material-icons">live_tv</i>Live Stream<i
+                      className="material-icons sub-arrow">keyboard_arrow_right</i>
+                  </a>
+                  <ul className="accordion-submenu list-unstyled">
+                    <li><a href="/dashboard/livestream">Create Live Stream</a></li>
+
+                  </ul>
+                </li>
+                <li>
+                  <a href="#" className="waves-effect waves-grey">
+                    <i className="material-icons">movie_creation</i>GPA<i
+                      className="material-icons sub-arrow">keyboard_arrow_right</i>
+                  </a>
+                  <ul className="accordion-submenu list-unstyled">
+                    <li><a href="/dashboard/gpa/create">Create Course</a></li>
+                    <li><a href="/dashboard/gpa/view">Course List</a></li>
+                    <li>
+                      <a href="/dashboard/gpa/candidates">Candidates</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#" className="waves-effect waves-grey">
+                    <i className="material-icons">group</i>Membership<i
+                      className="material-icons sub-arrow">keyboard_arrow_right</i>
+                  </a>
+                  <ul className="accordion-submenu list-unstyled">
+                    <li><a href="/dashboard/member/create">Create Member</a></li>
+                    <li><a href="/dashboard/member/create">List of Members</a></li>
+
+                  </ul>
+                </li>
+                <li>
+                  <a href="#" className="waves-effect waves-grey">
+                    <i className="material-icons">photo_camera</i>Gallery<i
+                      className="material-icons sub-arrow">keyboard_arrow_right</i>
+                  </a>
+                  <ul className="accordion-submenu list-unstyled">
+                    <li><a href="plugins-code-editor.html">Create Gallery</a></li>
+                    <li><a href="plugins-nestable.html">View Gallery</a></li>
+
+                  </ul>
+                </li>
+                <li>
+                  <a href="#" className="waves-effect waves-grey">
+                    <i className="material-icons">event</i>Events<i
+                      className="material-icons sub-arrow">keyboard_arrow_right</i>
+                  </a>
+                  <ul className="accordion-submenu list-unstyled">
+                    <li><a href="/dashboard/event/create">Create Event</a></li>
+                    <li><a href="/dashboard/event/view">View Event</a></li>
+
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="#" className="waves-effect waves-grey">
+                    <i className="material-icons">airplay</i>Sermon<i
+                      className="material-icons sub-arrow">keyboard_arrow_right</i>
+                  </a>
+                  <ul className="accordion-submenu list-unstyled">
+
+                    <li> <a href="/dashboard/sermon/create">Create Sermon</a></li>
+                    <li>  <a href="/dashboard/sermon/view">View Sermon</a></li>
+
+                  </ul>
+                </li>
+                <li>
+                  <a href="#" className="waves-effect waves-grey">
+                    <i className="material-icons">home</i>Home Cell<i
+                      className="material-icons sub-arrow">keyboard_arrow_right</i>
+                  </a>
+                  <ul className="accordion-submenu list-unstyled">
+
+                    <li> <a href="/dashboard/cell/create">Create Home Cell</a></li>
+                    <li>  <a href="/dashboard/cell/view">View Home Cell</a></li>
+
+                  </ul>
+                </li>
+                <li>
+                  <a href="#" className="waves-effect waves-grey">
+                    <i className="material-icons">accessibility</i>Testimony<i
+                      className="material-icons sub-arrow">keyboard_arrow_right</i>
+                  </a>
+                  <ul className="accordion-submenu list-unstyled">
+
+                    <li> <a href="/dashboard/cell/create">Publish</a></li>
+                    <li>  <a href="/dashboard/cell/view">View Testimonies</a></li>
+
+                  </ul>
+                </li>
+                <li>
+                  <a href="#" className="waves-effect waves-grey">
+                    <i className="material-icons">accessibility</i>Prayer Requests<i
+                      className="material-icons sub-arrow">keyboard_arrow_right</i>
+                  </a>
+                  <ul className="accordion-submenu list-unstyled">
+
+                    <li> <a href="/dashboard/cell/create">Publish</a></li>
+                    <li>  <a href="/dashboard/cell/view">View Testimonies</a></li>
+
+                  </ul>
+                </li>
+                <li>
+                  <a href="/dashboard/user/1234" className="waves-effect waves-grey">
+                    <i className="material-icons text-info" >person_pin</i>Profile </a>
+                </li>
+                <li>
+                  <a href="/" className="waves-effect waves-grey">
+                    <i className="material-icons text-danger" onClick={() => { localStorage.removeItem('user') }}>exit_to_app</i>Logout </a>
+                </li>
+
+
+              </ul>
+            </div>
+          </div>
+          <div className="sidebar-footer">
+            <p className="copyright">GloryPlus Int'l  &copy; {new Date().getFullYear()}{" "}</p>
+            <a href="#!">Privacy</a> &amp; <a href="#!">Terms</a>
+          </div>
         </div>
       </div>
-      <span className="heading">Main</span>
-      <ul className="list-unstyled">
-        <li id="home">
-          <a href="/dashboard">
-            {" "}
-            <i className="fa fa-fire"></i>Home{" "}
-          </a>
-        </li>
-        <li id="livestream">
-          <a
-            href="#tablesDropdown"
-            aria-expanded="false"
-            data-toggle="collapse"
-          >
-            <i className="fa fa-video-camera"></i>Livestream
-</a>
-          <ul id="tablesDropdown" className="collapse list-unstyled">
-            <li>
-              <a href="/dashboard/livestream">Create Livestream</a>
-            </li>
-          </ul>
-        </li>
-        <li id="gpa">
-          <a
-            href="#gpaDropdown"
-            aria-expanded="false"
-            data-toggle="collapse"
-          >
-            <i className="fa fa-certificate"></i>GPA
-</a>
-          <ul id="gpaDropdown" className="collapse list-unstyled">
-            <li>
-              <a href="/dashboard/gpa/create">Create Course</a>
-            </li>
-            <li>
-              <a href="/dashboard/gpa/view">Course List</a>
-            </li>
-            <li>
-              <a href="/dashboard/gpa/candidates">Candidates</a>
-            </li>
-          </ul>
-        </li>
-        <li id="members">
-          <a href="#formsDropdown" aria-expanded="false" data-toggle="collapse">
-            <i className="icon-padnote"></i>Members
-</a>
-          <ul id="formsDropdown" className="collapse list-unstyled">
-            <li>
-              <a href="/dashboard/member/create">Create New Member</a>
-            </li>
-            <li>
-              <a href="#!">List of Members</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a
-            href="#componentsDropdown"
-            aria-expanded="false"
-            data-toggle="collapse"
-          >
-            <i className="icon-page"></i>Gallery
-</a>
-          <ul id="componentsDropdown" className="collapse list-unstyled">
-            <li>
-              <a href="#!">Create Gallery</a>
-            </li>
-            <li>
-              <a href="#!">View Gallery</a>
-            </li>
-          </ul>
-        </li>
-        <li id="event">
-          <a href="#pagesDropdown" aria-expanded="false" data-toggle="collapse">
-            <i className="icon-interface-windows"></i>Event
-          </a>
-          <ul id="pagesDropdown" className="collapse list-unstyled">
-            <li>
-              <a href="/dashboard/event/create">Create Event</a>
-            </li>
-            <li>
-              <a href="/dashboard/event/view">View Events</a>
-            </li>
-          </ul>
-        </li>
-        <li id="sermon">
-          <a href="#sermonDropdown" aria-expanded="false" data-toggle="collapse">
-            <i className="icon-interface-windows"></i>Sermon
-          </a>
-          <ul id="sermonDropdown" className="collapse list-unstyled">
-            <li>
-              <a href="/dashboard/sermon/create">Create Sermon</a>
-            </li>
-            <li>
-              <a href="/dashboard/sermon/view">View Sermon</a>
-            </li>
-          </ul>
-        </li>
-        <li id="cell">
-          <a href="#cellDropdown" aria-expanded="false" data-toggle="collapse">
-            <i className="icon-interface-windows"></i>Cell Location
-          </a>
-          <ul id="cellDropdown" className="collapse list-unstyled">
-            <li>
-              <a href="/dashboard/cell/create">Create Location</a>
-            </li>
-            <li>
-              <a href="/dashboard/cell/view">View Location</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a
-            href="#TestimonialDropdown"
-            aria-expanded="false"
-            data-toggle="collapse"
-          >
-            <i className="icon-interface-windows"></i>Testimony
-          </a>
-          <ul id="TestimonialDropdown" className="collapse list-unstyled">
-            <li>
-              <a href="#!">Publish Testimony</a>
-            </li>
-            <li>
-              <a href="#!">View Testimony</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-      <span className="heading">Extras</span>
-      <ul className="list-unstyled">
-        <li>
-          <a href="#">
-            {" "}
-            <i className="icon-flask"></i>Pastor's Corner{" "}
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            {" "}
-            <i className="icon-screen"></i>Email{" "}
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            {" "}
-            <i className="icon-mail"></i>Report Issue{" "}
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            {" "}
-            <i className="fa fa-sign-out text-danger" onClick={userLogout}></i>Logout{" "}
-          </a>
-        </li>
-      </ul>
-    </nav>
+    </React.Fragment>
   );
 };
 
