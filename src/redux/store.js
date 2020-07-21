@@ -6,6 +6,7 @@ import rootReducer from "./reducers/rootReducer";
 // import { composeWithDevTools } from "redux-devtools-extension";
 import { persistStore, persistReducer } from 'redux-persist';
 
+
 //the app have two middleware
 // const store = createStore(
 //   rootReducer,

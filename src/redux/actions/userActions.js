@@ -35,7 +35,7 @@ export const userLogin = (data) => {
 //NOT IN USE AT THE MOMENT ******
 export const userLogout = () => {
     // remove user from local storage to log user out
-    localStorage.removeItem('user');
+    // localStorage.removeItem('user');
 
     return { type: LOG_OUT };
 }

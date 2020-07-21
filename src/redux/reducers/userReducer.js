@@ -2,20 +2,11 @@ import {
     LOG_OUT, LOGIN_SUCCESS, STORE_USER_ERROR_MSG
 } from '../actions/action-types';
 
-
-let user = JSON.parse(localStorage.getItem('user'));
-const initialState = user ? { isAuthenticated: true, user } : {
+const initialState = {
     user: {},
     errorMessage: '',
     isAuthenticated: false,
 };
-
-
-// const initialState = {
-//     user: {},
-//     errorMessage: '',
-//     isAuthenticated: false,
-// };
 
 const UserReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -38,8 +29,7 @@ const UserReducer = (state = initialState, action) => {
 
         case LOG_OUT:
             return {
-                ...initialState,
-                isAuthenticated: false,
+                ...initialState
             };
 
 

@@ -1,1 +1,5 @@
-export { default } from "./Livestream"
+import LiveStream from './Livestream'
+
+export {
+    LiveStream
+}

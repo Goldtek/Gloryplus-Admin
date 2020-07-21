@@ -8,7 +8,10 @@ const Dashboard = (props) => {
   console.log(props)
   useEffect(() => {
     // document.getElementById("home").classList.add("active");
-  })
+    // window.location.reload()
+  }, [])
+
+
   return (
     <React.Fragment>
       <Helmet><title>Home Dashboard</title></Helmet>

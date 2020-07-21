@@ -1,21 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
+// import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import * as Yup from "yup";
-import CircularProgress from '@material-ui/core/CircularProgress';
-import blue from '@material-ui/core/colors/blue';
+// import CircularProgress from '@material-ui/core/CircularProgress';
+// import blue from '@material-ui/core/colors/blue';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { userLogin, userLogout } from "Redux/actions/userActions";
 import { useHistory, Redirect } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
 import { withStyles } from '@material-ui/core/styles';
 import { Formik } from "formik";
 import "react-toastify/dist/ReactToastify.css";
@@ -66,122 +66,111 @@ const useStyles = makeStyles((theme) => ({
 const Login = (props) => {
   const classes = useStyles();
 
-  let history = useHistory();
   const { User } = props;
-  const RedirectUser = () => {
-    history.push('/dashboard')
-    window.location.reload(true);
-  }
 
-  useEffect(() => {
-    // props.userLogout()
-    User.isAuthenticated ? RedirectUser() : console.log("")
-  }, [RedirectUser])
 
-  return (
-    <Grid container component="main" className={classes.root}>
-      <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <div className={classes.paper}>
-          <img
-            src="img/brand/logo.png"
-            alt="..."
-            style={{ maxWidth: "6rem" }}
-            className="img-fluid mb-4"
-          />
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <Formik
-            initialValues={{ password: "", email: "" }}
-            validationSchema={validationSchema}
-            onSubmit={(values, { setSubmitting, resetForm }) => {
-              setSubmitting(true);
-              const data = {
-                email: values.email,
-                password: values.password
-              }
-              props.userLogin(data)
-              resetForm()
-              setSubmitting(false);
+  return User.isAuthenticated ? (<div><Redirect push={true} to={{ pathname: "/dashboard" }} /></div>) : (<Grid container component="main" className={classes.root}>
+    <CssBaseline />
+    <Grid item xs={false} sm={4} md={7} className={classes.image} />
+    <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <div className={classes.paper}>
+        <img
+          src="img/brand/logo.png"
+          alt="..."
+          style={{ maxWidth: "6rem" }}
+          className="img-fluid mb-4"
+        />
+        <Typography component="h1" variant="h5">
+          Sign in
+      </Typography>
+        <Formik
+          initialValues={{ password: "", email: "" }}
+          validationSchema={validationSchema}
+          onSubmit={(values, { setSubmitting, resetForm }) => {
+            setSubmitting(true);
+            const data = {
+              email: values.email,
+              password: values.password
+            }
+            props.userLogin(data)
+            resetForm()
+            setSubmitting(false);
 
-            }}
-          >
-            {({
-              values,
-              handleSubmit,
-              isSubmitting,
-              handleChange,
-              touched,
-              errors,
-              handleBlur,
-            }) => (
-                <form onSubmit={handleSubmit} className={classes.form}>
-                  <div className="form-group">
+          }}
+        >
+          {({
+            values,
+            handleSubmit,
+            isSubmitting,
+            handleChange,
+            touched,
+            errors,
+            handleBlur,
+          }) => (
+              <form onSubmit={handleSubmit} className={classes.form}>
+                <div className="form-group">
 
-                    <TextField
-                      type="email"
-                      fullWidth
-                      id="email"
-                      label="Email"
-                      onChange={handleChange}
-                      value={values.email}
-                      onBlur={handleBlur}
-                      margin="normal"
-                      name="email"
-                      error={errors.email && touched.email}
-                      helperText={(errors.email && touched.email) && errors.email}
-                    />
-                  </div>
-                  <div className="form-group mb-4">
-                    <TextField
-                      type="password"
-                      fullWidth
-                      id="Password"
-                      label="Password"
-                      onChange={handleChange}
-                      value={values.password}
-                      onBlur={handleBlur}
-                      margin="normal"
-                      name="password"
-                      error={errors.password && touched.password}
-                      helperText={(errors.password && touched.password) && errors.password}
-                    />
-                    <div className="row">
+                  <TextField
+                    type="email"
+                    fullWidth
+                    id="email"
+                    label="Email"
+                    onChange={handleChange}
+                    value={values.email}
+                    onBlur={handleBlur}
+                    margin="normal"
+                    name="email"
+                    error={errors.email && touched.email}
+                    helperText={(errors.email && touched.email) && errors.email}
+                  />
+                </div>
+                <div className="form-group mb-4">
+                  <TextField
+                    type="password"
+                    fullWidth
+                    id="Password"
+                    label="Password"
+                    onChange={handleChange}
+                    value={values.password}
+                    onBlur={handleBlur}
+                    margin="normal"
+                    name="password"
+                    error={errors.password && touched.password}
+                    helperText={(errors.password && touched.password) && errors.password}
+                  />
+                  <div className="row">
 
-                      <div className="col-auto">
-                        <a href="#!" className="form-text small text-muted">
-                          Forgot password?
-                          </a>
-                      </div>
+                    <div className="col-auto">
+                      <a href="#!" className="form-text small text-muted">
+                        Forgot password?
+                      </a>
                     </div>
                   </div>
+                </div>
 
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    className={classes.submit}
-                  >
-                    Sign In
-            </Button>
-                  {/* <!-- Link--> */}
-                  <p className="text-center">
-                    <small className="text-muted text-center">
-                      Don't have an account yet?
-                             {" "} <a href="/register">Register</a>.
-                            </small>
-                  </p>
-                </form>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                >
+                  Sign In
+        </Button>
+                {/* <!-- Link--> */}
+                <p className="text-center">
+                  <small className="text-muted text-center">
+                    Don't have an account yet?
+                         {" "} <a href="/register">Register</a>.
+                        </small>
+                </p>
+              </form>
 
-              )}
-          </Formik>
-        </div>
-      </Grid>
+            )}
+        </Formik>
+      </div>
     </Grid>
-  );
+  </Grid>)
 }
 
 Login.propTypes = {

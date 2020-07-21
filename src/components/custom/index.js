@@ -1,9 +1,9 @@
 import Login from "./Login";
 import Register from "./Register";
 import Error404Page from "./notfound";
-import LiveStream from "./Livestream";
+import { LiveStream } from "./Livestream";
 import CreateMember from "./Members/createMember";
-import Dashboard from "./Dashboard/Dashboard";
+import { Dashboard } from "./Dashboard";
 import { User } from "./user";
 import { CreateEvent, EventLists } from "./Event"
 import { CreateLesson, CandidateLists, CreateAssignment, CreateCourse, CourseLists } from "./Gpa"
