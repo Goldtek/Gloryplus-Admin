@@ -5,7 +5,7 @@ import PrivateRoute from "./PrivateRoute"
 import { Role } from "../_helpers"
 import {
   Login,
-  Dasboard,
+  Dashboard,
   Error404Page,
   CreateCourse,
   LiveStream,
@@ -43,7 +43,8 @@ const Routes = () => {
 
         <Route path="/register" component={Register} />
 
-        <PrivateRoute exact path="/dashboard" component={Dasboard} roles={[Role.Admin]} />
+        <PrivateRoute exact path="/dashboard" component={Dashboard} roles={[Role.Admin]} />
+        <PrivateRoute exact path="/livestream/create" component={LiveStream} roles={[Role.Admin]} />
 
         <Route path="/dashboard/member/create">
           <Helmet>
@@ -124,12 +125,6 @@ const Routes = () => {
           <CreateGallery />
         </Route>
 
-        <Route path="/dashboard/livestream">
-          <Helmet>
-            <title>LiveStream</title>
-          </Helmet>
-          <LiveStream />
-        </Route>
 
         <Route path="/dashboard/user/:id">
           <Helmet>

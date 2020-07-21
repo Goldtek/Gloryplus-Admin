@@ -52,7 +52,7 @@ const SideBar = () => {
                       className="material-icons sub-arrow">keyboard_arrow_right</i>
                   </a>
                   <ul className="accordion-submenu list-unstyled">
-                    <li><a href="/dashboard/livestream">Create Live Stream</a></li>
+                    <li><a href="/livestream/create">Create Live Stream</a></li>
 
                   </ul>
                 </li>

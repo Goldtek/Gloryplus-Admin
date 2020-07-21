@@ -70,6 +70,7 @@ const Login = (props) => {
   const { User } = props;
   const RedirectUser = () => {
     history.push('/dashboard')
+    window.location.reload(true);
   }
 
   useEffect(() => {

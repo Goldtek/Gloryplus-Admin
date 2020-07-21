@@ -18,7 +18,7 @@ export const userLogin = (data) => {
                     dispatch(loginSuccess(data));
                     // history.push('/dashboard', true);
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('user', JSON.stringify(user));
+                    // localStorage.setItem('user', JSON.stringify(user));
                     return user;
                 },
                 error => {
