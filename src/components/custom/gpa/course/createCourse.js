@@ -6,7 +6,7 @@ import { Formik, Field } from "formik";
 import * as Yup from "yup";
 import uuid from "react-uuid";
 import { useHistory } from "react-router-dom";
-import { Header, SideBar, BreadCrumb, Footer } from "../../../Partials";
+import { Header, SideBar } from "../../../Partials";
 import Button from '@material-ui/core/Button';
 import Thumb from "../thumb"
 import { ToastContainer, toast } from "react-toastify";

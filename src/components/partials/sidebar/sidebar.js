@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 
 const SideBar = () => {
 
@@ -105,6 +105,21 @@ const SideBar = () => {
 
                   </ul>
                 </li>
+
+
+                <li>
+                  <a href="#" className="waves-effect waves-grey">
+                    <i className="material-icons">home</i>Branch<i
+                      className="material-icons sub-arrow">keyboard_arrow_right</i>
+                  </a>
+                  <ul className="accordion-submenu list-unstyled">
+
+                    <li> <a href="/dashboard/cell/create">Create Branch</a></li>
+                    <li>  <a href="/dashboard/cell/view">View Brnaches</a></li>
+
+                  </ul>
+                </li>
+
                 <li>
                   <a href="#" className="waves-effect waves-grey">
                     <i className="material-icons">home</i>Home Cell<i
@@ -117,6 +132,7 @@ const SideBar = () => {
 
                   </ul>
                 </li>
+
                 <li>
                   <a href="#" className="waves-effect waves-grey">
                     <i className="material-icons">accessibility</i>Testimony<i

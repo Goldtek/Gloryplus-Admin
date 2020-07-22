@@ -15,7 +15,6 @@ import {
   CreateEvent,
   CreateLesson,
   EventLists,
-  Register,
   CreateAssignment,
   CreateGallery,
   CreateSermon,
@@ -41,11 +40,10 @@ const Routes = () => {
           )}
         />
 
-        <Route path="/register" component={Register} />
+        {/* <Route path="/register" component={Register} /> */}
 
         <PrivateRoute exact path="/dashboard" component={Dashboard} roles={[Role.Admin]} />
         <PrivateRoute exact path="/livestream/create" component={LiveStream} roles={[Role.Admin]} />
-
         <Route path="/dashboard/member/create">
           <Helmet>
             <title>Create Member</title>

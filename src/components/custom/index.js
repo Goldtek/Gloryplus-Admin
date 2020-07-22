@@ -1,5 +1,4 @@
 import Login from "./Login";
-import Register from "./Register";
 import Error404Page from "./notfound";
 import { LiveStream } from "./Livestream";
 import CreateMember from "./Members/createMember";
@@ -23,7 +22,6 @@ export {
   CreateEvent,
   CreateLesson,
   EventLists,
-  Register,
   CreateAssignment,
   CreateGallery,
   CreateSermon,

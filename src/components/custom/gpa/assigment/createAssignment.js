@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Fragment } from "react";
-import { useHistory } from "react-router-dom"
+// import { useHistory } from "react-router-dom"
 import Helmet from "react-helmet";
 import { AssigmentCards } from "../cards/assigmentCard";
 import { connect } from "react-redux";
@@ -13,7 +13,7 @@ import CreateAssignmentDialog from "./dialog"
 
 const CreateAssignment = ({ fetchAssignments, assigmentData, match }) => {
 
-    let history = useHistory()
+    // let history = useHistory()
 
     const [lessonId, setLessonId] = useState("")
 

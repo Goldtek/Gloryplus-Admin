@@ -7,10 +7,10 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import { ToastContainer, toast } from "react-toastify";
-import { Header, SideBar, BreadCrumb, Footer } from "../../Partials";
+import { Header, SideBar } from "../../Partials";
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
-import { useHistory } from "react-router-dom"
+// import { useHistory } from "react-router-dom"
 //API URL
 const API_URL = process.env.REACT_APP_BASEURL;
 

@@ -92,7 +92,8 @@ const Login = (props) => {
             setSubmitting(true);
             const data = {
               email: values.email,
-              password: values.password
+              password: values.password,
+              role: 'Admin'
             }
             props.userLogin(data)
             resetForm()
