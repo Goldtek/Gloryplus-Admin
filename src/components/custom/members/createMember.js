@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Button from '@material-ui/core/Button';
 import { useHistory } from "react-router-dom"
 import { Formik, Form } from "formik";
-import { Header, SideBar, BreadCrumb, Footer } from "../../Partials";
+import { Header, SideBar } from "../../Partials";
 
 //API URL
 const API_URL = process.env.REACT_APP_BASEURL;

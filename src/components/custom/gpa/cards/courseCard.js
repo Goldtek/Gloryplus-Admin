@@ -9,10 +9,10 @@ export const Card = ({ title, created, id }) => {
     <Fragment>
 
       <div className="col-md-6 col-lg-3 col-sm-12 col-xs-12">
-        <div class="card"><img src="img/mockup6.jpg" alt="Card image cap" class="card-img-top img-fluid" />
-          <div class="card-body">
-            <h5 class="card-title">{title}</h5>
-            <p class="card-text">
+        <div className="card"><img src="img/mockup6.jpg" alt="Card image cap" className="card-img-top img-fluid" />
+          <div className="card-body">
+            <h5 className="card-title">{title}</h5>
+            <p className="card-text">
 
               <ButtonGroup color="secondary" variant="contained" >
                 <Button href={`/dashboard/gpa/view/${title}/${id}`} size="small">Create Lesson</Button>
@@ -22,7 +22,7 @@ export const Card = ({ title, created, id }) => {
               </ButtonGroup>
 
             </p>
-            <p class="card-text"><small class="text-muted"><Moment fromNow>{created}</Moment></small></p>
+            <p className="card-text"><small className="text-muted"><Moment fromNow>{created}</Moment></small></p>
           </div>
         </div>
       </div>

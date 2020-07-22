@@ -23,8 +23,8 @@ const Dashboard = (props) => {
           <div className="row">
             <div className="col-12">
               <h2 className="page-title">Dashboard</h2>
-              <a href="#" className="btn btn-text-secondary float-right">Get Info</a>
-              <a href="#" className="btn btn-text-danger float-right m-r-sm">Print</a>
+              {/* <a href="#" className="btn btn-text-secondary float-right">Get Info</a>
+              <a href="#" className="btn btn-text-danger float-right m-r-sm">Print</a> */}
             </div>
           </div>
           <div className="row">

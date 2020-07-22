@@ -46,36 +46,29 @@ const CourseLists = ({ fetchCourseLists, courseData }) => {
             </div>
           </div>
           <div className="col-12">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Course Lists</h5>
-                <div className="row">
+            <div className="row">
 
-                  {courseData.loading ? (
-                    <LoaderCard />
+              {courseData.loading ? (
+                <LoaderCard />
 
-                  ) : courseData.error ? (
-                    <InfoCard error={courseData.error} />
+              ) : courseData.error ? (
+                <InfoCard error={courseData.error} />
 
-                  ) : (
-                        <Fragment>
-                          {courseData.courseItems.length ? (
-                            courseData.courseItems.map((course) => (
-                              <Card
-                                title={course.title}
-                                created={course.created}
-                                key={course.id}
-                                id={course.id}
-                                btnTitle="Lesson"
-                              />))
+              ) : (
+                    <Fragment>
+                      {courseData.courseItems.length ? (
+                        courseData.courseItems.map((course) => (
+                          <Card
+                            title={course.title}
+                            created={course.created}
+                            key={course.id}
+                            id={course.id}
+                            btnTitle="Lesson"
+                          />))
+                      ) : <InfoCard info="No course available,please create a new course" />}
 
-                          ) : <InfoCard info="No course available,please create a new course" />}
-
-                        </Fragment>
-                      )}
-                </div>
-
-              </div>
+                    </Fragment>
+                  )}
             </div>
           </div>
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -14,7 +14,7 @@ import * as Yup from "yup";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { userLogin, userLogout } from "Redux/actions/userActions";
-import { useHistory, Redirect } from "react-router-dom";
+// import { useHistory, Redirect } from "react-router-dom";
 // import { ToastContainer, toast } from "react-toastify";
 import { withStyles } from '@material-ui/core/styles';
 import { Formik } from "formik";
@@ -66,10 +66,12 @@ const useStyles = makeStyles((theme) => ({
 const Login = (props) => {
   const classes = useStyles();
 
-  const { User } = props;
+  const { User, userLogout } = props;
+  useEffect(() => {
+    userLogout()
+  }, [userLogout])
 
-
-  return User.isAuthenticated ? (<div><Redirect push={true} to={{ pathname: "/dashboard" }} /></div>) : (<Grid container component="main" className={classes.root}>
+  return (<Grid container component="main" className={classes.root}>
     <CssBaseline />
     <Grid item xs={false} sm={4} md={7} className={classes.image} />
     <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>

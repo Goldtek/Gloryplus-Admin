@@ -103,6 +103,16 @@
       "optionC": "C",
       "optionD": "D",
       "answer": "B"
+    },
+    {
+      "id": "bbf07-c6e0-455d-6c45-5f3b1e8ef6",
+      "lessonId": "2a6c35b-80be-773a-bfbc-13384bdb2c14",
+      "question": "Who is Jesus",
+      "optionA": "Son of God",
+      "optionB": "Son of man",
+      "optionC": "Son of Mary",
+      "optionD": "None",
+      "answer": "A"
     }
   ],
   "members": [
@@ -306,168 +316,19 @@
   ],
   "users": [
     {
-      "id": "431f3d2-c232-ad-6b3d-1ae47541ec6",
-      "password": "abc12345",
       "email": "ielemson@gmail.com",
-      "username": "ielemson",
-      "created": 1594563652585
-    },
-    {
-      "id": "7afe288-00ff-5f36-a76c-50e1814edfd",
-      "name": "Patrick Azubuike",
-      "gender": "male",
-      "email": "pat@gmail.com",
-      "phone": "080655543456",
-      "address": "my address",
-      "state": "Lagos",
-      "country": "Nigeria",
-      "zip": "1010",
-      "comment": ""
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abc1234@1",
-      "id": "hlaPG-y"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abc123",
-      "id": "tM_4NY_"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abc12345",
-      "id": "wJ1Zz3K"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "aaaaa",
-      "id": "DT6dJAJ"
+      "password": "abc1234",
+      "id": 1
     },
     {
       "email": "ielemson@gmail.com",
       "password": "abc1234",
-      "id": "SD0fnwr"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abc12345",
-      "id": "F_FatIy"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abc1234@1",
-      "id": "JY-__Wf"
+      "id": 2
     },
     {
       "email": "ielemson@gmail.com",
       "password": "abc1234",
-      "id": "coHo8kd"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abc1234",
-      "id": "8zfPHah"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abc12345",
-      "id": "D-MZ1g1"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abc1234",
-      "id": "KSebstF"
-    },
-    {
-      "email": "fff@ffff.ggg",
-      "password": "fff",
-      "id": "-CAEIc_"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abc1234",
-      "id": "8_6t5yP"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abc1234",
-      "id": "w2Yp-oC"
-    },
-    {
-      "email": "ielemson@gmail.coM",
-      "password": "abc123",
-      "id": "ixDI2Ov"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "aaaa",
-      "id": "n2WPfGF"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abc1234",
-      "id": "nwE-Fen"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abc1234",
-      "id": "0aeSx7O"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "acb123",
-      "id": "YvsFsZs"
-    },
-    {
-      "email": "ielemosn@gmail.com",
-      "password": "abc1234",
-      "id": "wU5tMYk"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abc1234",
-      "id": "kVqv_FA"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abc1234",
-      "id": "0jv2-S0"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abc1234",
-      "id": "7Orkk91"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abc1234",
-      "id": "A13oCNn"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abb",
-      "id": "T97ZxIK"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abc1234",
-      "id": "H7Ul-A2"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abc",
-      "id": "k4IGeBI"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abc1234",
-      "id": "KCS7q-F"
-    },
-    {
-      "email": "ielemson@gmail.com",
-      "password": "abc1234",
-      "id": "45gUzAK"
+      "id": 3
     }
   ],
   "cell": []

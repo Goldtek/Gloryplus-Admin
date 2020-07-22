@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { history } from '../../_helpers'
 import { LOGIN_SUCCESS, STORE_USER_ERROR_MSG, LOG_OUT } from './action-types';
 
 const API_URL = process.env.REACT_APP_BASEURL;
@@ -17,8 +17,10 @@ export const userLogin = (data) => {
                 user => {
                     dispatch(loginSuccess(data));
                     // history.push('/dashboard', true);
+                    // window.location.reload(false)
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     // localStorage.setItem('user', JSON.stringify(user));
+                    window.location.href = '/dashboard'
                     return user;
                 },
                 error => {

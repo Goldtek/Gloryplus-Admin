@@ -1,17 +1,7 @@
 import React from "react";
 import { useHistory } from 'react-router-dom'
-import { Link } from "react-router-dom"
-import { authenticationService } from '_services'
-const userId = "ab4ce6fff3582810";
 
 const SideBar = () => {
-
-  const history = useHistory()
-
-  // const userLogout = () => {
-  //   localStorage.removeItem('user');
-  //   history.push('/');
-  // }
 
   const eventPrevent = (e) => {
     e.preventDefault()
@@ -157,7 +147,7 @@ const SideBar = () => {
                 </li>
                 <li>
                   <a href="/" className="waves-effect waves-grey">
-                    <i className="material-icons text-danger" onClick={() => { localStorage.removeItem('user') }}>exit_to_app</i>Logout </a>
+                    <i className="material-icons text-danger" >exit_to_app</i>Logout </a>
                 </li>
 
 
