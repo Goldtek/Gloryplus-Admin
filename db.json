@@ -316,11 +316,11 @@
   ],
   "users": [
     {
-      "email": "ielemson@ffff.ff",
-      "password": "ssssss",
+      "email": "ielemson@gmail.com",
+      "password": "abc",
       "role": "Admin",
-      "id": 7,
-      "branchId": ""
+      "branchId": "2",
+      "id": 1
     }
   ],
   "cell": []

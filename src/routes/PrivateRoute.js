@@ -6,11 +6,11 @@ console.log(localStorage.getItem('courses'))
 
 
 
-export const PrivateRoute = ({ component: Component, User, roles, ...rest }) => (
+export const PrivateRoute = ({ component: Component, User, roles, branch, ...rest }) => (
     <Route {...rest} render={props => {
         const auth = User.isAuthenticated
         const role = User.user.role
-        console.log(roles)
+        console.log(branch)
         if (auth === false) {
             // not logged in so redirect to login page with the return url
             return <Redirect to={{ pathname: "/" }} />
@@ -31,6 +31,7 @@ export const PrivateRoute = ({ component: Component, User, roles, ...rest }) => 
 
 const mapStateToProps = (state) => ({
     User: state.User,
+    branch: state.User.user.branchId
 });
 export default connect(mapStateToProps, null)(PrivateRoute);
 

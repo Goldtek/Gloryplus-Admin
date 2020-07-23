@@ -16,7 +16,7 @@ const Header = ({ title }) => {
               <span className="material-design-hamburger__layer"></span>
             </a>
           </section>
-          <a className="navbar-brand" href="#">GLory Plus Int'l</a>
+          <a className="navbar-brand" href="/dashboard">GLory Plus Int'l</a>
           <button className="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">

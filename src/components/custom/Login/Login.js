@@ -93,7 +93,8 @@ const Login = (props) => {
             const data = {
               email: values.email,
               password: values.password,
-              role: 'Admin'
+              role: 'Admin',
+              branchId: '2'
             }
             props.userLogin(data)
             resetForm()

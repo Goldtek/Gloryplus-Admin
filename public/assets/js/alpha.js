@@ -279,7 +279,7 @@ $(document).ready(function () {
     // search_f();
     plugin_init();
     // inputs();
-    material_tabs();
+    // material_tabs();
 });
 
 window.onload = function () {
