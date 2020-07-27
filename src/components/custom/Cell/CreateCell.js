@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import { ToastContainer, toast } from "react-toastify";
-import { Header, SideBar, _breadcrumb } from "../../Partials";
+import { Header, SideBar, Breadcrumb } from "../../Partials";
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 // import { useHistory } from "react-router-dom"
@@ -64,7 +64,7 @@ class CreateCell extends React.Component {
 
                     <div className="container-fluid">
                         <div className="row">
-                            <_breadcrumb crumb={'Create Cell'} />
+                            <Breadcrumb crumb={'Create Cell'} />
                             <div className="col-12">
                                 <div className="card">
                                     <div className="card-body">
