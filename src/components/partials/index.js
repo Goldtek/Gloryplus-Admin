@@ -1,4 +1,4 @@
 import Header from "./header";
-import BreadCrumb from "./breadcrumb";
+import _breadcrumb from "./_breadcrumb";
 import SideBar from "./sidebar";
-export { Header, BreadCrumb, SideBar };
+export { Header, _breadcrumb, SideBar };

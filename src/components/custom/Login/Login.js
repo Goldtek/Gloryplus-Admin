@@ -93,7 +93,7 @@ const Login = (props) => {
             const data = {
               email: values.email,
               password: values.password,
-              role: 'Admin',
+              role: 'SA',
               branchId: '2'
             }
             props.userLogin(data)

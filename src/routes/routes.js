@@ -40,117 +40,37 @@ const Routes = () => {
           )}
         />
 
-        {/* <Route path="/register" component={Register} /> */}
+        <PrivateRoute exact path="/dashboard" component={Dashboard} />
 
-        <PrivateRoute exact path="/dashboard" component={Dashboard} roles={[Role.Admin]} />
         <PrivateRoute exact path="/livestream/create" component={LiveStream} roles={[Role.Admin]} />
-        <Route path="/dashboard/member/create">
-          <Helmet>
-            <title>Create Member</title>
-          </Helmet>
-          <CreateMember />
-        </Route>
-        <Route exact path="/dashboard/gpa/create">
-          <Helmet>
-            <title>Create Course</title>
-          </Helmet>
-          <CreateCourse />
-        </Route>
 
-        <Route
-          exact
-          path="/dashboard/gpa/view"
-          render={(props) => (
-            <Fragment>
-              <Helmet>
-                <title>List Course</title>
-              </Helmet>
-              <CourseLists {...props} />
-            </Fragment>
-          )}
-        />
-        <Route
-          exact
-          path="/dashboard/gpa/view/:title/:id"
-          render={(props) => (
-            <Fragment>
-              <Helmet>
-                <title>Create Lesson</title>
-              </Helmet>
-              <CreateLesson {...props} />
-            </Fragment>
-          )}
-        />
+        <PrivateRoute exact path="/dashboard/member/create" component={CreateMember} roles={[Role.Admin]} />
 
-        <Route
-          exact
-          path="/dashboard/gpa/lesson/create/:id"
-          render={(props) => <CreateLesson {...props} />}
-        />
+        <PrivateRoute exact path="/dashboard/gpa/create" component={CreateCourse} />
 
+        <PrivateRoute exact path="/dashboard/gpa/view" component={CourseLists} />
 
-        <Route
-          exact
-          path="/dashboard/gpa/assignment/:id"
-          render={(props) => <CreateAssignment {...props} />}
-        />
-        <Route
-          exact
-          path="/dashboard/gpa/candidates"
-          render={(props) => <CandidateLists {...props} />}
-        />
+        <PrivateRoute exact path="/dashboard/gpa/view/:title/:id" component={CreateLesson} />
 
+        <PrivateRoute exact path="/dashboard/gpa/lesson/create/:id" component={CreateLesson} />
 
-        <Route exact path="/dashboard/event/create">
-          <Helmet>
-            <title>Create Event</title>
-          </Helmet>
-          <CreateEvent />
-        </Route>
+        <PrivateRoute exact path="/dashboard/gpa/assignment/:id" component={CreateAssignment} />
 
-        <Route exact path="/dashboard/event/view">
-          <Helmet>
-            <title>List Event</title>
-          </Helmet>
-          < EventLists />
-        </Route>
+        <PrivateRoute exact path="/dashboard/gpa/candidates" component={CandidateLists} />
 
+        <PrivateRoute exact path="/dashboard/event/create" component={CreateEvent} />
 
-        <Route exact path="/dashboard/gallery/create">
-          <Helmet>
-            <title>Create Gallery</title>
-          </Helmet>
-          <CreateGallery />
-        </Route>
+        <PrivateRoute exact path="/dashboard/event/view" component={EventLists} />
 
+        <PrivateRoute exact path="/dashboard/gallery/create" component={CreateGallery} />
 
-        <Route path="/dashboard/user/:id">
-          <Helmet>
-            <title>User</title>
-          </Helmet>
-          <User />
-        </Route>
-        {/* SERMON ############################################ */}
-        <Route path="/dashboard/sermon/create">
-          <Helmet>
-            <title>Create Sermon</title>
-          </Helmet>
-          <CreateSermon />
-        </Route>
-        <Route path="/dashboard/sermon/view">
-          <Helmet>
-            <title>View Sermon</title>
-          </Helmet>
-          <SermonList />
-        </Route>
+        <PrivateRoute exact path="/dashboard/user/:id" component={User} />
 
+        <PrivateRoute exact path="/dashboard/sermon/create" component={CreateSermon} />
 
-        <Route path="/dashboard/cell/create">
-          <Helmet>
-            <title>Create Cell</title>
-          </Helmet>
-          <CreateCell />
-        </Route>
+        <PrivateRoute path="/dashboard/sermon/view" component={SermonList} />
+
+        <PrivateRoute exact path="/dashboard/cell/create" component={CreateCell} />
 
         {/* 404 ERROR ROUTE ########################################################*/}
         <Route path="*">

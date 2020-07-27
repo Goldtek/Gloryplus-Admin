@@ -1,7 +1,8 @@
+
+
 export const Role = {
     SA: "SA",
     Admin: 'Admin',
-    User: 'User',
     HFL: "HFL",
     MVP: "MVP",
     SEC: "SEC"
@@ -9,10 +10,9 @@ export const Role = {
 
 
 /*
-
 SA :super admin
 MVP: most important person
 SEC:secretary
-HFL:
+HFL:house fellowship leadership
 
  */

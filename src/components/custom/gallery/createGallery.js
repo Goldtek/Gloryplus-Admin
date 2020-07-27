@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import uuid from "react-uuid";
 // import FormError from "./formError";
 // import Thumb from ".thumb";
-import { Header, SideBar, BreadCrumb } from "../../Partials";
+import { Header, SideBar, _breadcrumb } from "../../Partials";
 import TextField from '@material-ui/core/TextField';
 
 
@@ -42,7 +42,7 @@ const CreateGallery = () => {
 
                 <div className="content-inner">
                     {/* <!-- Page Header--> */}
-                    <BreadCrumb title="Dashboard" crumb="Gallery" />
+                    {/* <BreadCrumb title="Dashboard" crumb="Gallery" /> */}
 
                     <section className="forms">
                         <div className="container-fluid">

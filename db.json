@@ -321,6 +321,34 @@
       "role": "Admin",
       "branchId": "2",
       "id": 1
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc",
+      "role": "SEC",
+      "branchId": "2",
+      "id": 2
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc1234",
+      "role": "SEC",
+      "branchId": "2",
+      "id": 3
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc1234",
+      "role": "SA",
+      "branchId": "2",
+      "id": 4
+    },
+    {
+      "email": "admin@hh.jj",
+      "password": "fffff",
+      "role": "SA",
+      "branchId": "2",
+      "id": 5
     }
   ],
   "cell": []
