@@ -349,6 +349,13 @@
       "role": "SA",
       "branchId": "2",
       "id": 5
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc",
+      "role": "SA",
+      "branchId": "2",
+      "id": 6
     }
   ],
   "cell": []
