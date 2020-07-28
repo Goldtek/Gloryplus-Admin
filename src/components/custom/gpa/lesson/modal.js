@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import MenuItem from '@material-ui/core/MenuItem';
 import { ToastContainer, toast } from "react-toastify";
 import { Formik, Form } from "formik";
-import "react-toastify/dist/ReactToastify.css";
+import "components/custom/Livestream/node_modules/react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 import FormError from "../formError"
 import Button from '@material-ui/core/Button';

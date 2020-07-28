@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet"
 import Button from '@material-ui/core/Button';
-import { fetchCandidates } from "Redux/actions/candidateActions";
+import { fetchCandidates } from "../../../../Redux/actions/candidateActions";
 import { Header, SideBar } from "../../../Partials";
 import { LoaderCard, InfoCard } from "../../Helpers"
 import CandidateTables from "./CandidateTables"

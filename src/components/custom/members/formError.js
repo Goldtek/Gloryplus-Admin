@@ -1,4 +1,4 @@
-import React from "react";
+import React from "components/custom/Members/node_modules/react";
 
 const FormError = ({ touched, message }) => {
   if (!touched) {

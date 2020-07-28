@@ -12,7 +12,7 @@ import axios from "axios";
 import { Formik, Form } from "formik";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
-import { fetchLessonLists } from "Redux/actions/lessonActions";
+import { fetchLessonLists } from "../../../../Redux/actions/lessonActions";
 // import Thumb from "../thumb"
 const API_URL = process.env.REACT_APP_BASEURL;
 

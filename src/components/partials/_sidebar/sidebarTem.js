@@ -1,6 +1,6 @@
-import React from "react";
-import { useHistory } from 'react-router-dom'
-import { authenticationService } from '_services'
+import React from "components/Partials/_sidebar/node_modules/react";
+import { useHistory } from 'components/Partials/_sidebar/node_modules/react-router-dom'
+import { authenticationService } from 'components/Partials/_sidebar/node_modules/_services'
 const userId = "ab4ce6fff3582810";
 
 const SideBar = () => {

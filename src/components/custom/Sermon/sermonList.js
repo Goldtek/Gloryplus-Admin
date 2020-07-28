@@ -1,7 +1,7 @@
 import React, { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { fetchSermonList } from "Redux/actions/sermonActions";
+import { fetchSermonList } from "../../../Redux/actions/sermonActions";
 import Button from '@material-ui/core/Button';
 import { Header, SideBar } from "../../Partials";
 import { SermonCard } from "./sermonCard";

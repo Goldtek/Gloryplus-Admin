@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 // import PuffLoader from "react-spinners/PuffLoader";
 import Button from '@material-ui/core/Button';
-import { fetchCourseLists } from "Redux/actions/courseActions";
+import { fetchCourseLists } from "../../../../Redux/actions/courseActions";
 import { Header, SideBar, BreadCrumb, Footer } from "../../../Partials";
 import { Card } from "../cards/courseCard";
 import { LoaderCard, InfoCard } from "../../Helpers"

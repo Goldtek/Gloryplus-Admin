@@ -8,7 +8,7 @@ import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { useHistory } from "react-router-dom";
-import { Bio } from "./index"
+import { Bio } from "./"
 
 const TabContainer = (props) => {
   return (

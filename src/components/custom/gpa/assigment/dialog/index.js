@@ -16,7 +16,7 @@ import { Formik, Form } from "formik";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 import uuid from "react-uuid";
-import { fetchAssignments } from "Redux/actions/assignmentActions";
+import { fetchAssignments } from "../../../../../Redux/actions/assignmentActions";
 const API_URL = process.env.REACT_APP_BASEURL;
 
 const CreateAssignmentDialog = ({ lessonID, fetchAssignments }) => {

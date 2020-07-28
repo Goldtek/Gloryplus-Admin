@@ -3,7 +3,7 @@ import React, { useEffect, useState, Fragment } from "react";
 import Helmet from "react-helmet";
 import { AssigmentCards } from "../cards/assigmentCard";
 import { connect } from "react-redux";
-import { fetchAssignments } from "Redux/actions/assignmentActions";
+import { fetchAssignments } from "../../../../Redux/actions/assignmentActions";
 import { Header, SideBar } from "../../../Partials";
 // import PuffLoader from "react-spinners/PuffLoader";
 import { LoaderCard, InfoCard } from "../../Helpers"

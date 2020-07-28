@@ -21,7 +21,7 @@ import {
   SermonList,
   CandidateLists,
   CreateCell
-} from "../Components/Custom";
+} from '../components/custom';
 
 
 

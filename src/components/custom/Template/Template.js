@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import serializeForm from "form-serialize";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "components/custom/Livestream/node_modules/react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { Header, SideBar } from "../../Partials";
 import Switch from '@material-ui/core/Switch';

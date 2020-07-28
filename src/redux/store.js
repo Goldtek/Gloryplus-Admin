@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from 'redux-thunk';
 import storage from 'redux-persist/lib/storage';
-import logger from "redux-logger";
-import rootReducer from "./reducers/rootReducer";
+import logger from 'redux-logger';
+import rootReducer from './reducers/rootReducer';
 // import { composeWithDevTools } from "redux-devtools-extension";
 import { persistStore, persistReducer } from 'redux-persist';
 
