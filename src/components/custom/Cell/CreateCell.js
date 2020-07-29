@@ -64,7 +64,7 @@ class CreateCell extends React.Component {
 
                     <div className="container-fluid">
                         <div className="row">
-                            <Breadcrumb crumb={'Create Cell'} />
+                            <Breadcrumb crumbItem={'Home Cell'} crumb={'Create Cell'} />
                             <div className="col-12">
                                 <div className="card">
                                     <div className="card-body">

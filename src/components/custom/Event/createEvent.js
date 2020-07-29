@@ -21,7 +21,6 @@ const validationSchema = Yup.object().shape({
 
 const API_URL = process.env.REACT_APP_BASEURL;
 
-
 const CreateEvent = () => {
   let history = useHistory()
   useEffect(() => {
@@ -201,7 +200,7 @@ const CreateEvent = () => {
                         <div className="form-group">
                           <label className="form-control-label">
                             Event Image
-</label>
+                    </label>
                           <input
                             id="file"
                             name="file"

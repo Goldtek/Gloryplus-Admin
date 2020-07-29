@@ -1,4 +1,4 @@
-import Login from './Login';
+import { Login, ForgotPassword } from './Login';
 import Error404Page from './notfound';
 import { LiveStream } from './Livestream';
 import CreateMember from './Members/createMember';
@@ -9,9 +9,10 @@ import { CreateLesson, CandidateLists, CreateAssignment, CreateCourse, CourseLis
 import { CreateGallery } from './Gallery'
 import { CreateSermon, SermonList } from './Sermon'
 import { CreateCell } from './Cell'
-
+import { CreateBranch } from './Branch'
 export {
   Login,
+  ForgotPassword,
   Dashboard,
   Error404Page,
   CreateCourse,
@@ -27,5 +28,6 @@ export {
   CreateSermon,
   SermonList,
   CandidateLists,
-  CreateCell
+  CreateCell,
+  CreateBranch
 };

@@ -5,6 +5,7 @@ import PrivateRoute from "./PrivateRoute"
 import { Role } from "../_helpers"
 import {
   Login,
+  ForgotPassword,
   Dashboard,
   Error404Page,
   CreateCourse,
@@ -20,7 +21,8 @@ import {
   CreateSermon,
   SermonList,
   CandidateLists,
-  CreateCell
+  CreateCell,
+  CreateBranch
 } from '../components/custom';
 
 
@@ -73,6 +75,11 @@ const Routes = () => {
         <PrivateRoute path="/dashboard/sermon/view" component={SermonList} />
 
         <PrivateRoute exact path="/dashboard/cell/create" component={CreateCell} />
+
+        <PrivateRoute exact path="/branch/create" component={CreateBranch} />
+
+        <Route exact path="/recover" component={ForgotPassword} />
+
 
         {/* 404 ERROR ROUTE ########################################################*/}
         <Route path="*">

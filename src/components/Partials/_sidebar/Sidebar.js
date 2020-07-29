@@ -2,6 +2,7 @@ import React from "react";
 // import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+import DashboardIcon from '@material-ui/icons/Dashboard';
 
 const SideBar = ({ userRole }) => {
 
@@ -35,7 +36,7 @@ const SideBar = ({ userRole }) => {
               <ul className="sidebar-menu list-unstyled">
                 <li>
                   <a href="/dashboard" className="waves-effect waves-grey active">
-                    <i className="material-icons">settings_input_svideo</i>Dashboard
+                    <DashboardIcon /> {' '}Dashboard
                                     </a>
                 </li>
                 {/* CHECK IF USER IS SUPER ADMIN ::::::::::::::::::::::::::::::::::::::::::::::: */}
@@ -49,8 +50,8 @@ const SideBar = ({ userRole }) => {
                     </a>
                     <ul className="accordion-submenu list-unstyled">
 
-                      <li> <a href="/dashboard/cell/create">Create Branch</a></li>
-                      <li>  <a href="/dashboard/cell/view">View Brnaches</a></li>
+                      <li> <a href="/branch/create">Create Branch</a></li>
+                      <li>  <a href="/branch/view">View Brnaches</a></li>
 
                     </ul>
                   </li>
@@ -187,24 +188,21 @@ const SideBar = ({ userRole }) => {
                     </ul>
                   </li>
 
-                  <li>
+                  {/* <li>
                     <a href="/dashboard/user/1234" className="waves-effect waves-grey">
                       <i className="material-icons text-info" >person_pin</i>Profile </a>
-                  </li>
+                  </li> */}
                   <li>
                     <a href="/" className="waves-effect waves-grey">
                       <i className="material-icons text-danger" >exit_to_app</i>Logout </a>
                   </li>
-                </React.Fragment>) : (<React.Fragment>  <li>
-                  <a href="/dashboard/user/1234" className="waves-effect waves-grey">
-                    <i className="material-icons text-info" >person_pin</i>Profile </a>
-                </li>
+                </React.Fragment>) : (<React.Fragment>
                   <li>
                     <a href="/" className="waves-effect waves-grey">
                       <i className="material-icons text-danger" >exit_to_app</i>Logout </a>
-                  </li></React.Fragment>)}
+                  </li>
 
-
+                </React.Fragment>)}
               </ul>
             </div>
           </div>

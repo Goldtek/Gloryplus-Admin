@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Header, SideBar } from "../../Partials";
+import React, { useEffect, useState } from 'react';
+import { Header, SideBar } from '../../Partials';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -7,8 +7,9 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { useHistory } from "react-router-dom";
-import { Bio } from "./"
+import { useHistory } from 'react-router-dom';
+import { Bio } from "."
+import { Helmet } from 'react-helmet'
 
 const TabContainer = (props) => {
   return (
@@ -38,7 +39,9 @@ const User = (props) => {
   }
   return (
     <React.Fragment>
+      <Helmet><title>Profile</title></Helmet>
       <Header />
+
       <SideBar />
       <div className="page-content">
 

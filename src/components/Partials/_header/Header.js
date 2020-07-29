@@ -1,5 +1,7 @@
-import React, { Fragment } from "react";
-import { Helmet } from "react-helmet"
+import React, { Fragment } from 'react';
+import MenuAppBar from '../AppBar'
+import AccountCircle from '@material-ui/icons/AccountCircle';
+
 const Header = ({ title }) => {
 
   const slideIn = (e) => {
@@ -27,8 +29,9 @@ const Header = ({ title }) => {
 
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <a className="nav-link right-sidebar-link" href="/dashboard/user/1234"><i
-                  className="material-icons">person</i></a>
+                {/* <a className="nav-link right-sidebar-link" href="/dashboard/user/1234"><i
+                  className="material-icons">person</i></a> */}
+                <MenuAppBar />
               </li>
 
               <li className="nav-item dropdown d-none d-lg-block">

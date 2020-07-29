@@ -71,110 +71,116 @@ const Login = (props) => {
     userLogout()
   }, [userLogout])
 
-  return (<Grid container component="main" className={classes.root}>
-    <CssBaseline />
-    <Grid item xs={false} sm={4} md={7} className={classes.image} />
-    <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-      <div className={classes.paper}>
-        <img
-          src="img/brand/logo.png"
-          alt="..."
-          style={{ maxWidth: "6rem" }}
-          className="img-fluid mb-4"
-        />
-        <Typography component="h1" variant="h5">
-          Sign in
-      </Typography>
-        <Formik
-          initialValues={{ password: "", email: "" }}
-          validationSchema={validationSchema}
-          onSubmit={(values, { setSubmitting, resetForm }) => {
-            setSubmitting(true);
-            const data = {
-              email: values.email,
-              password: values.password,
-              role: 'SA',
-              branchId: '2'
-            }
-            props.userLogin(data)
-            resetForm()
-            setSubmitting(false);
+  return (
 
-          }}
-        >
-          {({
-            values,
-            handleSubmit,
-            isSubmitting,
-            handleChange,
-            touched,
-            errors,
-            handleBlur,
-          }) => (
-              <form onSubmit={handleSubmit} className={classes.form}>
-                <div className="form-group">
 
-                  <TextField
-                    type="email"
-                    fullWidth
-                    id="email"
-                    label="Email"
-                    onChange={handleChange}
-                    value={values.email}
-                    onBlur={handleBlur}
-                    margin="normal"
-                    name="email"
-                    error={errors.email && touched.email}
-                    helperText={(errors.email && touched.email) && errors.email}
-                  />
-                </div>
-                <div className="form-group mb-4">
-                  <TextField
-                    type="password"
-                    fullWidth
-                    id="Password"
-                    label="Password"
-                    onChange={handleChange}
-                    value={values.password}
-                    onBlur={handleBlur}
-                    margin="normal"
-                    name="password"
-                    error={errors.password && touched.password}
-                    helperText={(errors.password && touched.password) && errors.password}
-                  />
-                  <div className="row">
+    <Grid container component="main" className={classes.root}>
+      <CssBaseline />
 
-                    <div className="col-auto">
-                      <a href="#!" className="form-text small text-muted">
-                        Forgot password?
+      <Grid item xs={12} sm={12} md={3} component={Paper} elevation={6} square>
+        <div className={classes.paper} style={{ marginTop: '15vh' }}>
+          <img
+            src="img/brand/logo.png"
+            alt="..."
+            style={{ maxWidth: "6rem" }}
+            className="img-fluid mb-4"
+          />
+          <Typography variant="h5" style={{ fontSize: '2rem' }}>
+
+            Login <i className="fa fa-lock" aria-hidden="true"></i>
+          </Typography>
+          <Formik
+            initialValues={{ password: "", email: "" }}
+            validationSchema={validationSchema}
+            onSubmit={(values, { setSubmitting, resetForm }) => {
+              setSubmitting(true);
+              const data = {
+                email: values.email,
+                password: values.password,
+                role: 'SA',
+                branchId: '2'
+              }
+              props.userLogin(data)
+              resetForm()
+              setSubmitting(false);
+
+            }}>
+            {({
+              values,
+              handleSubmit,
+              isSubmitting,
+              handleChange,
+              touched,
+              errors,
+              handleBlur,
+            }) => (
+                <form onSubmit={handleSubmit} className={classes.form}>
+                  <div className="form-group">
+
+                    <TextField
+                      type="email"
+                      fullWidth
+                      id="email"
+                      label="Email"
+                      onChange={handleChange}
+                      value={values.email}
+                      onBlur={handleBlur}
+                      margin="normal"
+                      name="email"
+                      error={errors.email && touched.email}
+                      helperText={(errors.email && touched.email) && errors.email}
+                    />
+                  </div>
+                  <div className="form-group mb-4">
+                    <TextField
+                      type="password"
+                      fullWidth
+                      id="Password"
+                      label="Password"
+                      onChange={handleChange}
+                      value={values.password}
+                      onBlur={handleBlur}
+                      margin="normal"
+                      name="password"
+                      error={errors.password && touched.password}
+                      helperText={(errors.password && touched.password) && errors.password}
+                    />
+                    <div className="row">
+
+                      <div className="col-auto">
+                        <a href="/recover" className="form-text small text-muted">
+                          Forgot password?
                       </a>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}
-                >
-                  Sign In
-        </Button>
-                {/* <!-- Link--> */}
-                <p className="text-center">
-                  <small className="text-muted text-center">
-                    Don't have an account yet?
-                         {" "} <a href="/register">Register</a>.
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    disabled={isSubmitting}
+                    className={classes.submit}>
+                    Sign In
+                </Button>
+                  {/* <!-- Link--> */}
+                  {/* <p className="text-center">
+                    <small className="text-muted text-center">
+                      Don't have an account yet?
+                         {" "} <a href="/contact">contact admin</a>.
                         </small>
-                </p>
-              </form>
+                  </p> */}
+                </form>
 
-            )}
-        </Formik>
-      </div>
+              )}
+          </Formik>
+        </div>
+      </Grid>
+
+      <Grid item xs={false} sm={4} md={9} className={classes.image} />
     </Grid>
-  </Grid>)
+  )
 }
 
 Login.propTypes = {
