@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import uuid from "react-uuid";
 import FormError from "./formError";
 import Thumb from "./thumb";
-import { Header, SideBar } from "../../Partials";
+import { Header, SideBar, Breadcrumb } from "../../Partials";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { useHistory } from "react-router-dom"
@@ -38,13 +38,14 @@ const CreateEvent = () => {
 
         <div className="container-fluid">
           <div className="row">
-            <div className="col-12">
+            <Breadcrumb crumbItem={'Event'} crumb={'Create Event'} />
+            {/* <div className="col-12">
               <h2 className="page-title">Create Event</h2>
-            </div>
+            </div> */}
             <div className="col-12">
               <div className="card">
                 <div className="card-body">
-                  <Button href="/dashboard/event/view" variant="contained" color="primary">View Events</Button>
+                  <Button href="/dashboard/event/view" variant="contained" color="primary" style={{ textDecoration: 'none', color: 'white' }}>View Events</Button>
                   {" "}
                   <Button onClick={() => history.goBack()} variant="contained" color="secondary">Go Back</Button>
                 </div>

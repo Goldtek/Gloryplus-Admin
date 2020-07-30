@@ -22,7 +22,9 @@ import {
   SermonList,
   CandidateLists,
   CreateCell,
-  CreateBranch
+  CreateBranch,
+  Create_Member_MVP,
+  MemberLists_MVP
 } from '../components/custom';
 
 
@@ -46,37 +48,40 @@ const Routes = () => {
 
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
 
-        <PrivateRoute exact path="/livestream/create" component={LiveStream} roles={[Role.Admin]} />
+        <PrivateRoute exact path="/livestream/create" component={LiveStream} roles={[Role.Admin, Role.SA]} />
 
-        <PrivateRoute exact path="/dashboard/member/create" component={CreateMember} roles={[Role.Admin]} />
+        <PrivateRoute exact path="/dashboard/member/create" component={CreateMember} roles={[Role.Admin, Role.SA]} />
 
-        <PrivateRoute exact path="/dashboard/gpa/create" component={CreateCourse} />
+        <PrivateRoute exact path="/dashboard/gpa/create" component={CreateCourse} roles={[Role.SA]} />
 
-        <PrivateRoute exact path="/dashboard/gpa/view" component={CourseLists} />
+        <PrivateRoute exact path="/dashboard/gpa/view" component={CourseLists} roles={[Role.SA]} />
 
-        <PrivateRoute exact path="/dashboard/gpa/view/:title/:id" component={CreateLesson} />
+        <PrivateRoute exact path="/dashboard/gpa/view/:title/:id" component={CreateLesson} roles={[Role.SA]} />
 
-        <PrivateRoute exact path="/dashboard/gpa/lesson/create/:id" component={CreateLesson} />
+        <PrivateRoute exact path="/dashboard/gpa/lesson/create/:id" component={CreateLesson} roles={[Role.SA]} />
 
-        <PrivateRoute exact path="/dashboard/gpa/assignment/:id" component={CreateAssignment} />
+        <PrivateRoute exact path="/dashboard/gpa/assignment/:id" component={CreateAssignment} roles={[Role.SA]} />
 
-        <PrivateRoute exact path="/dashboard/gpa/candidates" component={CandidateLists} />
+        <PrivateRoute exact path="/dashboard/gpa/candidates" component={CandidateLists} roles={[Role.SA]} />
 
-        <PrivateRoute exact path="/dashboard/event/create" component={CreateEvent} />
+        <PrivateRoute exact path="/dashboard/event/create" component={CreateEvent} roles={[Role.SA]} />
 
-        <PrivateRoute exact path="/dashboard/event/view" component={EventLists} />
+        <PrivateRoute exact path="/dashboard/event/view" component={EventLists} roles={[Role.SA]} />
 
-        <PrivateRoute exact path="/dashboard/gallery/create" component={CreateGallery} />
+        <PrivateRoute exact path="/dashboard/gallery/create" component={CreateGallery} roles={[Role.SA]} />
 
         <PrivateRoute exact path="/dashboard/user/:id" component={User} />
 
-        <PrivateRoute exact path="/dashboard/sermon/create" component={CreateSermon} />
+        <PrivateRoute exact path="/dashboard/sermon/create" component={CreateSermon} roles={[Role.SA]} />
 
-        <PrivateRoute path="/dashboard/sermon/view" component={SermonList} />
+        <PrivateRoute path="/dashboard/sermon/view" component={SermonList} roles={[Role.SA]} />
 
-        <PrivateRoute exact path="/dashboard/cell/create" component={CreateCell} />
+        <PrivateRoute exact path="/dashboard/cell/create" component={CreateCell} roles={[Role.SA]} />
 
-        <PrivateRoute exact path="/branch/create" component={CreateBranch} />
+        <PrivateRoute exact path="/dashboard/mvp/create" component={Create_Member_MVP} roles={[Role.SA, Role.MVP]} />
+        <PrivateRoute exact path="/dashboard/mvp/view" component={MemberLists_MVP} roles={[Role.SA, Role.MVP]} />
+
+        <PrivateRoute exact path="/branch/create" component={CreateBranch} roles={[Role.SA, Role.Admin]} />
 
         <Route exact path="/recover" component={ForgotPassword} />
 

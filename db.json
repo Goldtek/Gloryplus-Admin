@@ -377,6 +377,25 @@
       "role": "SA",
       "branchId": "2",
       "id": 9
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "av",
+      "role": "SA",
+      "branchId": "2",
+      "id": 10
+    },
+    {
+      "id": "04125a2-e32a-3566-0c42-02c3e052b3",
+      "name": "Patrick Azubuike",
+      "gender": "male",
+      "email": "pat@gmail.com",
+      "phone": "080677345678",
+      "address": "Lagos Nigeria",
+      "state": "Lagos",
+      "country": "Nigeria",
+      "zip": "",
+      "comment": ""
     }
   ],
   "cell": []

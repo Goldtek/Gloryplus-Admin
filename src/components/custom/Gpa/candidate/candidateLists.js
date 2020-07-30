@@ -41,7 +41,7 @@ const CandidateLists = ({ fetchCandidates, candidateData }) => {
                         <div className="col-12">
                             <div className="card">
                                 <div className="card-body">
-                                    <Button variant="contained" href="dashboard/gpa/create" color="primary">
+                                    <Button variant="contained" href="dashboard/gpa/create" color="primary" style={{ textDecoration: 'none', color: 'white' }}>
                                         Create Course
                             </Button>
                                     {" "}

@@ -3,21 +3,20 @@ import React from "react";
 // import uuid from "react-uuid";
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-// import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import { Helmet } from 'react-helmet';
 import { ToastContainer, toast } from "react-toastify";
 import { Header, SideBar, Breadcrumb } from "../../Partials";
-import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
-// import { useHistory } from "react-router-dom"
 //API URL
 const API_URL = process.env.REACT_APP_BASEURL;
 
 const styles = theme => ({
 
     formControl: {
-        margin: theme.spacing(2),
+        marginTop: '18px',
         minWidth: "100%",
     },
     selectEmpty: {
@@ -53,6 +52,7 @@ class CreateCell extends React.Component {
         const { classes } = this.props;
         return (
             <React.Fragment>
+                <Helmet><title>Create Cell</title></Helmet>
                 <Header />
                 <SideBar />
 

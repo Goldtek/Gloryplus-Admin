@@ -8,6 +8,7 @@ import { fetchCourseLists } from "../../../../Redux/actions/courseActions";
 import { Header, SideBar, BreadCrumb, Footer } from "../../../Partials";
 import { Card } from "../cards/courseCard";
 import { LoaderCard, InfoCard } from "../../Helpers"
+import { Helmet } from 'react-helmet';
 const CourseLists = ({ fetchCourseLists, courseData }) => {
 
   useEffect(() => {
@@ -18,6 +19,7 @@ const CourseLists = ({ fetchCourseLists, courseData }) => {
   let history = useHistory()
   return (
     <React.Fragment>
+      <Helmet><title>Course List</title></Helmet>
       <Header />
       <SideBar />
       <div className="page-content">
@@ -35,7 +37,7 @@ const CourseLists = ({ fetchCourseLists, courseData }) => {
             <div className="col-12">
               <div className="card">
                 <div className="card-body">
-                  <Button variant="contained" href="dashboard/gpa/create" color="primary">
+                  <Button variant="contained" href="dashboard/gpa/create" color="primary" style={{ textDecoration: 'none', color: 'white' }}>
                     Create Course
           </Button>
                   {" "}

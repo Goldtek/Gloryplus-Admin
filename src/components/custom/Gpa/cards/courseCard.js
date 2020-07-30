@@ -15,7 +15,7 @@ export const Card = ({ title, created, id }) => {
             <p className="card-text">
 
               <ButtonGroup color="secondary" variant="contained" >
-                <Button href={`/dashboard/gpa/view/${title}/${id}`} size="small">Create Lesson</Button>
+                <Button href={`/dashboard/gpa/view/${title}/${id}`} size="small" style={{ textDecoration: 'none', color: 'white' }}>Create Lesson</Button>
 
                 <EditCourse title={title} id={id} />
 

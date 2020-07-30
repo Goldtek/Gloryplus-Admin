@@ -8,7 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import * as Yup from "yup";
+
 // import CircularProgress from '@material-ui/core/CircularProgress';
 // import blue from '@material-ui/core/colors/blue';
 import PropTypes from "prop-types";
@@ -18,7 +18,8 @@ import { userLogin, userLogout } from "../../../Redux/actions/userActions";
 // import { ToastContainer, toast } from "react-toastify";
 import { withStyles } from '@material-ui/core/styles';
 import { Formik } from "formik";
-import "react-toastify/dist/ReactToastify.css";
+import * as Yup from "yup";
+// import "react-toastify/dist/ReactToastify.css";
 
 const validationSchema = Yup.object().shape({
   password: Yup.string().required("required"),
@@ -73,8 +74,8 @@ const Login = (props) => {
 
   return (
 
-
     <Grid container component="main" className={classes.root}>
+
       <CssBaseline />
 
       <Grid item xs={12} sm={12} md={3} component={Paper} elevation={6} square>

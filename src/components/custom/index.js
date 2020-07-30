@@ -10,6 +10,7 @@ import { CreateGallery } from './Gallery'
 import { CreateSermon, SermonList } from './Sermon'
 import { CreateCell } from './Cell'
 import { CreateBranch } from './Branch'
+import { Create_Member_MVP, MemberLists_MVP } from './MVP'
 export {
   Login,
   ForgotPassword,
@@ -29,5 +30,7 @@ export {
   SermonList,
   CandidateLists,
   CreateCell,
-  CreateBranch
+  CreateBranch,
+  Create_Member_MVP,
+  MemberLists_MVP
 };

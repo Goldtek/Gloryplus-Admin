@@ -17,6 +17,7 @@ body {
 a:hover {
     /* color: #fff !important; */
     text-decoration: none;
+    /* color: #fff !important; */
 }
 
 
@@ -3847,7 +3848,7 @@ a:hover {
 /* Page Content */
 
 .page-content {
-    padding: 85px 25px 25px 245px;
+    
     -webkit-transition: all .25s;
     -moz-transition: all .25s;
     -o-transition: all .25s;
@@ -6663,7 +6664,9 @@ body.err-500 .error-image {
 
 @media (max-width: 992px) {
     .page-content {
-        padding-left: 25px;
+        /* padding-left: 25px; */
+        padding: 85px 5px 25px 5px;
+        /* top right bottom left */
     }
 
     .mailbox .page-content {
@@ -6737,4 +6740,25 @@ body.err-500 .error-image {
     }
 
 
+}
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+    .page-content{
+      padding: 85px 25px 25px 245px;
+     }
+}
+
+/* ----------- Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+   .page-content{
+    padding: 85px 25px 25px 245px;
+   }
 }

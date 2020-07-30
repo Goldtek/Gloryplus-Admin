@@ -136,7 +136,7 @@ const CreateAssignmentDialog = ({ lessonID, fetchAssignments }) => {
                                     <DialogContent>
                                         <DialogContentText>
                                             Please ensure all input values are cross checked before submitting the form
-</DialogContentText>
+                                    </DialogContentText>
                                         <Grid container spacing={3}>
                                             <Grid item xs={12} sm={12} md={12} lg={12}>
                                                 <TextField

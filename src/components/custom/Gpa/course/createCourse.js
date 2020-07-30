@@ -10,6 +10,7 @@ import { Header, SideBar } from "../../../Partials";
 import Button from '@material-ui/core/Button';
 import Thumb from "../thumb"
 import { ToastContainer, toast } from "react-toastify";
+import { Helmet } from 'react-helmet'
 import "react-toastify/dist/ReactToastify.css";
 
 
@@ -25,12 +26,13 @@ const API_URL = process.env.REACT_APP_BASEURL;
 
 const CreateCourse = () => {
   let history = useHistory();
-  useEffect(() => {
-    // document.getElementById("gpa").classList.add("active");
-  });
+  // useEffect(() => {
+  //   document.getElementById("gpa").classList.add("active");
+  // });
 
   return (
     <React.Fragment>
+      <Helmet><title>Create Course</title></Helmet>
       <Header />
       <SideBar />
       <div class="page-content">
@@ -48,7 +50,7 @@ const CreateCourse = () => {
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                  <Button variant="contained" href="/dashboard/gpa/view" color="primary">
+                  <Button variant="contained" href="/dashboard/gpa/view" color="primary" style={{ textDecoration: 'none', color: 'white' }}>
                     View Course
                 </Button>
                   {" "} {" "}

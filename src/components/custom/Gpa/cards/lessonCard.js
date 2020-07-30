@@ -19,8 +19,8 @@ export const Card = ({ title, created, id }) => {
             <h5 className="card-title">{title}</h5>
             <p className="card-text">
               <ButtonGroup variant="contained" >
-                <Button color="primary" href={`dashboard/gpa/assignment/${id}`} size="small">Add Assignment</Button>
-                <Button color="secondary" href={`/dashboard/gpa/view/${title}/${id}`} size="small">Edit Lesson</Button>
+                <Button color="primary" href={`dashboard/gpa/assignment/${id}`} size="small" style={{ textDecoration: 'none', color: 'white' }}>Add Assignment</Button>
+                <Button color="secondary" href={`/dashboard/gpa/view/${title}/${id}`} size="small" style={{ textDecoration: 'none', color: 'white' }}>Edit Lesson</Button>
               </ButtonGroup>
             </p>
             <p className="card-text"><small className="text-muted"><Moment fromNow>{created}</Moment></small></p>

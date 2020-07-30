@@ -68,7 +68,7 @@ const CreateLesson = ({ fetchLessonLists, match, lessonData }) => {
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                  <Button onClick={handleClickOpen} variant="contained" color="primary">Create Lesson</Button>
+                  <Button onClick={handleClickOpen} variant="contained" color="primary" style={{ textDecoration: 'none', color: 'white' }}>Create Lesson</Button>
                   {" "}
                   <Button onClick={() => history.goBack()} variant="contained" color="secondary">Back</Button>
                 </div>

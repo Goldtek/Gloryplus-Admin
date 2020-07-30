@@ -139,8 +139,8 @@ const SideBar = ({ userRole }) => {
                     </a>
                     <ul className="accordion-submenu list-unstyled">
 
-                      <li> <a href="/dashboard/cell/create">Publish</a></li>
-                      <li>  <a href="/dashboard/cell/view">View Testimonies</a></li>
+                      <li> <a href="/dashboard/mvp/create">Create First Timers</a></li>
+                      <li>  <a href="/dashboard/mvp/view">View First Timers</a></li>
 
                     </ul>
                   </li>

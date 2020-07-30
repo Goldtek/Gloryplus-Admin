@@ -18,7 +18,7 @@ import { useHistory } from "react-router-dom"
 const useStyles = makeStyles((theme) => ({
 
   formControl: {
-    margin: theme.spacing(2),
+    marginTop: '18px',
     minWidth: "100%",
   },
   selectEmpty: {
