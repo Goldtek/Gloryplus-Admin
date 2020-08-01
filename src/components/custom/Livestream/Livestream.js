@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
-import serializeForm from "form-serialize";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useEffect, useState } from 'react';
+import serializeForm from 'form-serialize';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
-import { Header, SideBar } from "../../Partials";
+import { Header, SideBar } from '../../Partials';
+import { Helmet } from 'react-helmet'
 import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
 
@@ -85,6 +86,7 @@ const Livestream = () => {
   };
   return (
     <React.Fragment>
+      <Helmet><title>Live Stream</title></Helmet>
       <Header />
       <SideBar />
       <div className="page-content">

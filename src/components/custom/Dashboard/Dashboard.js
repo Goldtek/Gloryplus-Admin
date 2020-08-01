@@ -4,6 +4,8 @@ import { connect } from "react-redux"
 import { Header, SideBar } from "../../Partials";
 import { Helmet } from "react-helmet"
 import { GrowthCard, RecentUsers, Reports } from "."
+
+
 const Dashboard = (props) => {
 
   console.log(props)

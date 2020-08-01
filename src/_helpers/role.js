@@ -1,13 +1,11 @@
-
-
 export const Role = {
-    SA: "SA",
-    Admin: 'Admin',
-    HFL: "HFL",
-    MVP: "MVP",
-    SEC: "SEC"
-}
-
+  SA: "SA",
+  Admin: "Admin",
+  HFL: "HFL",
+  MVP: "MVP",
+  SEC: "SEC",
+  MEDIA: "MEDIA",
+};
 
 /*
 SA :super admin

@@ -8,6 +8,7 @@ import { history } from '../_helpers'
 export const PrivateRoute = ({ component: Component, User, roles, branch, ...rest }) => (
 
     < Route {...rest} render={props => {
+        const branch = props.match.params.brId
         const auth = User.isAuthenticated
         const role = User.user.role
         // console.log(branch)
@@ -23,6 +24,11 @@ export const PrivateRoute = ({ component: Component, User, roles, branch, ...res
             history.goBack()
         }
 
+
+        // if (branch !== User.user.brId) {
+        //     // console.log('invalid location')
+        //     history.goBack()
+        // }
         // authorised so return component
         return <Component {...props} />
     }} />

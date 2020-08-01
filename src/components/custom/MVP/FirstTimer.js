@@ -1,20 +1,18 @@
-import React from "react";
-import axios from "axios";
-import * as Yup from "yup";
-import uuid from "react-uuid";
+import React from 'react';
+import axios from 'axios';
+import * as Yup from 'yup';
+import uuid from 'react-uuid';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { ToastContainer, toast } from 'react-toastify';
 import Button from '@material-ui/core/Button';
-import { useHistory } from "react-router-dom"
-import { Formik, Form } from "formik";
+import { useHistory } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
+import { Formik, Form } from 'formik';
 import { Header, SideBar, Breadcrumb } from '../../Partials';
-import { Helmet } from 'react-helmet';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
-
-
 //API URL
 const API_URL = process.env.REACT_APP_BASEURL;
 
@@ -27,6 +25,9 @@ const validationSchema = Yup.object().shape({
     role: Yup.string().required("required"),
     state: Yup.string().required("required "),
     country: Yup.string().required("required"),
+    marital_status: Yup.string().required("required"),
+    occupation: Yup.string().required("required"),
+    dob: Yup.string().required("required"),
     email: Yup.string().email("Invalid email").required("required"),
 });
 
@@ -42,7 +43,7 @@ const styles = theme => ({
     },
 });
 
-const Create_Member_MVP = (props) => {
+const FirstTimer = (props) => {
     let history = useHistory()
     const { classes } = props;
     // useEffect(() => {
@@ -82,7 +83,7 @@ const Create_Member_MVP = (props) => {
                         <div className="col-12">
                             <div className="card">
                                 <div className="card-body">
-                                    <h5 className="card-title">Create Users</h5>
+                                    <h5 className="card-title">Create First Timers</h5>
                                     <Formik
                                         initialValues={{
                                             name: "",
@@ -92,6 +93,9 @@ const Create_Member_MVP = (props) => {
                                             email: "",
                                             phone: "",
                                             address: "",
+                                            marital_status: "",
+                                            occupation: "",
+                                            dob: "",
                                             state: "",
                                             country: "",
                                             zip: "",
@@ -114,7 +118,9 @@ const Create_Member_MVP = (props) => {
                                                     country: values.country,
                                                     zip: values.zip,
                                                     comment: values.comment,
-                                                    branchId: 'branch'
+                                                    marital_status: values.marital_status,
+                                                    dob: values.dob,
+                                                    occupation: values.occupation
                                                 },
                                             })
                                                 .then((res) => {
@@ -157,27 +163,47 @@ const Create_Member_MVP = (props) => {
 
                                                     <div className="row">
                                                         <div className="col-md-8 col-sm-12 col-lg-8 col-xs-12">
-                                                            <div className="form-group-material">
-                                                                <TextField
-                                                                    fullWidth
-                                                                    margin="normal"
-                                                                    id="Full Name"
-                                                                    label="Full Name"
-                                                                    name="name"
-                                                                    onChange={handleChange}
-                                                                    value={values.name}
-                                                                    onBlur={handleBlur}
-                                                                    error={errors.name && touched.name}
-                                                                    helperText={(errors.name && touched.name) && errors.name}
-                                                                />
-                                                            </div>
+
+                                                            <TextField
+                                                                fullWidth
+                                                                margin="normal"
+                                                                id="Full Name"
+                                                                label="Full Name"
+                                                                name="name"
+                                                                onChange={handleChange}
+                                                                value={values.name}
+                                                                onBlur={handleBlur}
+                                                                error={errors.name && touched.name}
+                                                                helperText={(errors.name && touched.name) && errors.name}
+                                                            />
+
+                                                        </div>
+                                                        <div className="col-md-2 col-sm-12 col-lg-2 col-xs-12">
+
+                                                            <TextField
+                                                                fullWidth
+                                                                id="date"
+                                                                margin="normal"
+                                                                label="Birthday"
+                                                                type="date"
+                                                                name="dob"
+                                                                InputLabelProps={{
+                                                                    shrink: true,
+                                                                }}
+                                                                onChange={handleChange}
+                                                                value={values.dob}
+                                                                onBlur={handleBlur}
+                                                                error={errors.dob && touched.dob}
+                                                                helperText={(errors.dob && touched.dob) && errors.dob}
+                                                            />
+
                                                         </div>
 
 
                                                         <div className="col-md-2 col-sm-12 col-lg-2 col-xs-12">
 
                                                             <FormControl className={classes.formControl}>
-                                                                <InputLabel htmlFor="sermontype">Gender</InputLabel>
+                                                                <InputLabel htmlFor="gender">Gender</InputLabel>
                                                                 <Select
                                                                     native
                                                                     fullWidth
@@ -198,31 +224,9 @@ const Create_Member_MVP = (props) => {
 
                                                         </div>
 
-                                                        <div className="col-md-2 col-sm-12 col-lg-2 col-xs-12">
-
-                                                            <FormControl className={classes.formControl}>
-                                                                <InputLabel htmlFor="sermontype">Role</InputLabel>
-                                                                <Select
-                                                                    native
-                                                                    fullWidth
-                                                                    name='role'
-                                                                    id='role'
-                                                                    value={values.role}
-                                                                    onChange={handleChange}
-                                                                    onBlur={handleBlur}
-                                                                    error={errors.role && touched.role}
-                                                                >
-                                                                    <option value=""></option>
-                                                                    <option value={"MVP"}>MVP</option>
-                                                                    <option value={"HSF"}>House Fellowship Leader</option>
 
 
-                                                                </Select>
-                                                            </FormControl>
-
-                                                        </div>
-
-                                                        <div className="col-sm-12 col-md-6 col-lg-6">
+                                                        <div className="col-sm-12 col-md-3 col-lg-3">
 
                                                             <TextField
                                                                 fullWidth
@@ -238,7 +242,7 @@ const Create_Member_MVP = (props) => {
                                                             />
 
                                                         </div>
-                                                        <div className="col-sm-12 col-md-6 col-lg-6">
+                                                        <div className="col-sm-12 col-md-3 col-lg-3">
 
                                                             <TextField
                                                                 fullWidth
@@ -252,6 +256,47 @@ const Create_Member_MVP = (props) => {
                                                                 error={errors.phone && touched.phone}
                                                                 helperText={(errors.phone && touched.phone) && errors.phone}
                                                             />
+
+                                                        </div>
+                                                        <div className="col-sm-12 col-md-3 col-lg-3">
+
+                                                            <TextField
+                                                                fullWidth
+                                                                margin="normal"
+                                                                id="occupation"
+                                                                label="Occupation"
+                                                                name="occupation"
+                                                                onChange={handleChange}
+                                                                value={values.occupation}
+                                                                onBlur={handleBlur}
+                                                                error={errors.occupation && touched.occupation}
+                                                                helperText={(errors.occupation && touched.occupation) && errors.occupation}
+                                                            />
+
+                                                        </div>
+                                                        <div className="col-sm-12 col-md-3 col-lg-3">
+
+                                                            <FormControl className={classes.formControl}>
+                                                                <InputLabel htmlFor="marital_status">Marital Status</InputLabel>
+                                                                <Select
+                                                                    native
+                                                                    fullWidth
+                                                                    name='marital_status'
+                                                                    id='marital'
+                                                                    value={values.marital_status}
+                                                                    onChange={handleChange}
+                                                                    onBlur={handleBlur}
+                                                                    error={errors.marital_status && touched.marital_status}
+                                                                >
+                                                                    <option value=""></option>
+                                                                    <option value="single">Single</option>
+                                                                    <option value="married">Married</option>
+                                                                    <option value="dirvocee">Dirvocee</option>
+                                                                    <option value="widower">Widower</option>
+
+
+                                                                </Select>
+                                                            </FormControl>
 
                                                         </div>
                                                         <div className="col-md-6 col-sm-12 col-lg-6 col-xs-12">
@@ -320,7 +365,6 @@ const Create_Member_MVP = (props) => {
 
                                                         </div>
                                                         <div className="col-sm-12 col-md-12 col-lg-12">
-
                                                             <TextField
                                                                 fullWidth
                                                                 multiline
@@ -342,16 +386,15 @@ const Create_Member_MVP = (props) => {
                                                             <div className="col-sm-12 offset-sm-1">
                                                                 <button
                                                                     type="reset"
-                                                                    className="btn btn-secondary"
-                                                                >
+                                                                    className="btn btn-secondary" >
                                                                     Cancel
-                                </button>{" "}
+                                                                 </button>{" "}
                                                                 <button
                                                                     type="submit"
                                                                     className="btn btn-primary"
                                                                     disabled={isSubmitting}
                                                                 >
-                                                                    Create Member
+                                                                    Submit
                                 </button>
                                                             </div>
                                                         </div>
@@ -373,4 +416,4 @@ const Create_Member_MVP = (props) => {
     );
 }
 
-export default withStyles(styles)(Create_Member_MVP);
+export default withStyles(styles)(FirstTimer);
