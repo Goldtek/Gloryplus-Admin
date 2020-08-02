@@ -2,20 +2,17 @@ import React, { useEffect, useState } from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-// import Link from '@material-ui/core/Link';
 import Paper from "@material-ui/core/Paper";
-// import Box from '@material-ui/core/Box';
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import SnackbarContent from "@material-ui/core/SnackbarContent";
-// import CircularProgress from '@material-ui/core/CircularProgress';
-// import blue from '@material-ui/core/colors/blue';
+// import CircularProgress from '@material-ui/core/CircularProgr
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Helmet } from "react-helmet";
 import { userLogin, userLogout } from "../../../Redux/actions/userActions";
-// import { useHistory, Redirect } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
 import { withStyles } from "@material-ui/core/styles";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -73,6 +70,7 @@ const Login = (props) => {
   const classes = useStyles();
   const [status, setStatus] = useState("");
   const { userLogout } = props;
+  // console.log(props.User.errorMessage);
   useEffect(() => {
     setStatus(props.location.state);
     userLogout();
@@ -80,6 +78,9 @@ const Login = (props) => {
 
   return (
     <Grid container component="main" className={classes.root}>
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
       <CssBaseline />
       <Grid item xs={12} sm={12} md={3} component={Paper} elevation={6} square>
         <div className={classes.paper} style={{ marginTop: "15vh" }}>
@@ -123,12 +124,18 @@ const Login = (props) => {
                     className={classes.snackbar}
                     message={status}
                   />
+                ) : props.User.errorMessage !== "" ? (
+                  <SnackbarContent
+                    className={classes.snackbar}
+                    message={`${props.User.errorMessage} check your connection`}
+                  />
                 ) : (
                   ""
                 )}
 
                 <div className="form-group">
                   <TextField
+                    autoFocus={true}
                     type="email"
                     fullWidth
                     id="email"
@@ -144,6 +151,7 @@ const Login = (props) => {
                 </div>
                 <div className="form-group mb-4">
                   <TextField
+                    autoFocus={false}
                     type="password"
                     fullWidth
                     id="Password"
