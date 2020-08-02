@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 
 const Header = ({ curUser }) => {
   const { id } = curUser;
-  console.log(id);
   const slideIn = (e) => {
     e.preventDefault();
   };

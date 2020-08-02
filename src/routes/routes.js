@@ -38,13 +38,6 @@ const Routes = () => {
 
         <PrivateRoute
           exact
-          path="/livestream/create"
-          component={LiveStream}
-          roles={[Role.Admin, Role.SA]}
-        />
-
-        <PrivateRoute
-          exact
           path="/dashboard/member/create"
           component={CreateMember}
           roles={[Role.Admin, Role.SA]}
@@ -92,25 +85,26 @@ const Routes = () => {
           roles={[Role.SA]}
         />
 
+        {/* MEDIA STARTS :::::::::::::::::::::::::::::::::::::::::::: */}
         <PrivateRoute
           exact
           path="/dashboard/event/create"
           component={CreateEvent}
-          roles={[Role.SA]}
+          roles={[Role.SA, Role.MEDIA]}
         />
 
         <PrivateRoute
           exact
           path="/dashboard/event/view"
           component={EventLists}
-          roles={[Role.SA]}
+          roles={[Role.SA, Role.MEDIA]}
         />
 
         <PrivateRoute
           exact
           path="/dashboard/gallery/create"
           component={CreateGallery}
-          roles={[Role.SA]}
+          roles={[Role.SA, Role.MEDIA]}
         />
 
         <PrivateRoute exact path="/dashboard/user/:id" component={User} />
@@ -119,14 +113,22 @@ const Routes = () => {
           exact
           path="/dashboard/sermon/create"
           component={CreateSermon}
-          roles={[Role.SA]}
+          roles={[Role.SA, Role.MEDIA]}
         />
 
         <PrivateRoute
           path="/dashboard/sermon/view"
           component={SermonList}
-          roles={[Role.SA]}
+          roles={[Role.SA, Role.MEDIA]}
         />
+
+        <PrivateRoute
+          exact
+          path="/livestream/create"
+          component={LiveStream}
+          roles={[Role.Admin, Role.SA, Role.MEDIA]}
+        />
+        {/* MEDIA  ENDS :::::::::::::::::::::::::::::::::::::::::::: */}
 
         <PrivateRoute
           exact
@@ -135,7 +137,7 @@ const Routes = () => {
           roles={[Role.SA]}
         />
 
-        {/* MVP */}
+        {/* MVP :::::::::::::::::::::::::::::::::::::::::::::: */}
         <PrivateRoute
           exact
           path="/dashboard/mvp/create"
@@ -154,6 +156,7 @@ const Routes = () => {
           component={FirstTimer}
           roles={[Role.SA, Role.MVP]}
         />
+        {/* MVP :::::::::::::::::::::::::::::::::::::::::::::: */}
 
         <PrivateRoute
           exact

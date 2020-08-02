@@ -101,7 +101,7 @@ const Login = (props) => {
               const data = {
                 email: values.email,
                 password: values.password,
-                role: "MVP",
+                role: "MEDIA",
                 brId: "lagos",
               };
               props.userLogin(data);
@@ -127,7 +127,7 @@ const Login = (props) => {
                 ) : props.User.errorMessage !== "" ? (
                   <SnackbarContent
                     className={classes.snackbar}
-                    message={`${props.User.errorMessage} check your connection`}
+                    message={`${props.User.errorMessage} Check Your Connection`}
                   />
                 ) : (
                   ""
