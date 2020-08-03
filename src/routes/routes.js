@@ -36,75 +36,78 @@ const Routes = () => {
 
         <PrivateRoute exact path="/dashboard/" component={Dashboard} />
 
+        {/* GPA :::::::::::::::::::::::::::::::::::::::::::::::::::::: */}
         <PrivateRoute
           exact
           path="/dashboard/member/create"
           component={CreateMember}
-          roles={[Role.Admin, Role.SA]}
+          roles={[Role.ADMIN, Role.SA]}
         />
 
         <PrivateRoute
           exact
           path="/dashboard/gpa/create"
           component={CreateCourse}
-          roles={[Role.SA]}
+          roles={[Role.SA, Role.ADMIN]}
         />
 
         <PrivateRoute
           exact
           path="/dashboard/gpa/view"
           component={CourseLists}
-          roles={[Role.SA]}
+          roles={[Role.SA, Role.ADMIN]}
         />
 
         <PrivateRoute
           exact
           path="/dashboard/gpa/view/:title/:id"
           component={CreateLesson}
-          roles={[Role.SA]}
+          roles={[Role.SA, Role.ADMIN]}
         />
 
         <PrivateRoute
           exact
           path="/dashboard/gpa/lesson/create/:id"
           component={CreateLesson}
-          roles={[Role.SA]}
+          roles={[Role.SA, Role.ADMIN]}
         />
 
         <PrivateRoute
           exact
           path="/dashboard/gpa/assignment/:id"
           component={CreateAssignment}
-          roles={[Role.SA]}
+          roles={[Role.SA, Role.ADMIN]}
         />
 
         <PrivateRoute
           exact
           path="/dashboard/gpa/candidates"
           component={CandidateLists}
-          roles={[Role.SA]}
+          roles={[Role.SA, Role.ADMIN]}
         />
+
+        {/* GPA :::::::::::::::::::::::::::::::::::::::::::::::::::::: */}
 
         {/* MEDIA STARTS :::::::::::::::::::::::::::::::::::::::::::: */}
         <PrivateRoute
           exact
           path="/dashboard/event/create"
           component={CreateEvent}
-          roles={[Role.SA, Role.MEDIA]}
+          roles={[Role.SA, Role.MEDIA, Role.ADMIN]}
         />
 
         <PrivateRoute
           exact
           path="/dashboard/event/view"
           component={EventLists}
-          roles={[Role.SA, Role.MEDIA]}
+          roles={[Role.SA, Role.MEDIA, Role.ADMIN]}
         />
 
         <PrivateRoute
           exact
           path="/dashboard/gallery/create"
           component={CreateGallery}
-          roles={[Role.SA, Role.MEDIA]}
+          roles={[Role.SA, Role.MEDIA, Role.ADMIN]}
         />
 
         <PrivateRoute exact path="/dashboard/user/:id" component={User} />
@@ -113,20 +116,20 @@ const Routes = () => {
           exact
           path="/dashboard/sermon/create"
           component={CreateSermon}
-          roles={[Role.SA, Role.MEDIA]}
+          roles={[Role.SA, Role.MEDIA, Role.ADMIN]}
         />
 
         <PrivateRoute
           path="/dashboard/sermon/view"
           component={SermonList}
-          roles={[Role.SA, Role.MEDIA]}
+          roles={[Role.SA, Role.MEDIA, Role.ADMIN]}
         />
 
         <PrivateRoute
           exact
           path="/livestream/create"
           component={LiveStream}
-          roles={[Role.Admin, Role.SA, Role.MEDIA]}
+          roles={[Role.ADMIN, Role.SA, Role.MEDIA]}
         />
         {/* MEDIA  ENDS :::::::::::::::::::::::::::::::::::::::::::: */}
 

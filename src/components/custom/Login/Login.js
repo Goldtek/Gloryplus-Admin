@@ -16,7 +16,7 @@ import { userLogin, userLogout } from "../../../Redux/actions/userActions";
 import { withStyles } from "@material-ui/core/styles";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import "react-toastify/dist/ReactToastify.css";
+// import "react-toastify/dist/ReactToastify.css";
 
 const validationSchema = Yup.object().shape({
   password: Yup.string().required("required"),
@@ -101,7 +101,7 @@ const Login = (props) => {
               const data = {
                 email: values.email,
                 password: values.password,
-                role: "MEDIA",
+                role: "ADMIN",
                 brId: "lagos",
               };
               props.userLogin(data);

@@ -1,94 +1,81 @@
 {
   "livestream": {},
-  "course": [],
-  "event": [],
-  "lesson": [],
-  "assigments": [],
-  "members": [
+  "course": [
     {
-      "name": "Elemson Ifeanyi",
-      "gender": "male",
-      "email": "ielemson@gmail.com",
-      "phone": "08067407355",
-      "address": "Oregun Ikeja",
-      "state": "Lagos",
-      "country": "Nigeria",
-      "zip": "zip",
-      "comment": "comment",
-      "marital_status": "single",
-      "dob": "1988-07-16",
-      "occupation": "manager",
-      "id": 1
+      "id": "bfb3168-70b1-82a2-f6d-fb0d6debff0",
+      "file": "ifeanyi.jpg",
+      "title": "GPA Course",
+      "type": "image/jpeg",
+      "brId": "2",
+      "created": 1596393908187
     },
     {
-      "name": "fff",
-      "gender": "male",
-      "email": "rrrr@ff.ggg",
-      "phone": "1234567",
-      "address": "rrrr",
-      "state": "rrr",
-      "country": "rr",
-      "zip": "rrr",
-      "comment": "rrrr",
-      "marital_status": "single",
-      "dob": "6666-06-06",
-      "occupation": "rrrr",
-      "id": 2
+      "id": "30d0268-be5-bb64-c2f-8fd3efc33b",
+      "file": "laptop-book.png",
+      "title": "GPA TESTING",
+      "type": "image/png",
+      "brId": "2",
+      "created": 1596394023911
     }
   ],
+  "event": [
+    {
+      "id": "22ce56-7db3-245-308-80b54b5ea10",
+      "img": "ifeanyi.jpg",
+      "type": "image/jpeg",
+      "title": "Event Title",
+      "date": "2020-08-04",
+      "details": "My Event",
+      "address": "Lagos",
+      "created": 1596398529515
+    }
+  ],
+  "lesson": [
+    {
+      "id": "003eb84-8db2-afde-6de-da075bacb15",
+      "lessonNumber": "9",
+      "title": "My God is Good",
+      "video": "ifeanyi.jpg",
+      "instruction": "",
+      "courseid": "bfb3168-70b1-82a2-f6d-fb0d6debff0",
+      "created": 1596394413623,
+      "brId": "lagos"
+    }
+  ],
+  "assigments": [
+    {
+      "id": "efc243-c8b3-23d-1b53-e3e4641aa300",
+      "lessonId": "003eb84-8db2-afde-6de-da075bacb15",
+      "question": "With supporting text below as a natural lead-in to additional content.",
+      "optionA": "answer A",
+      "optionB": "answer B",
+      "optionC": "answer C",
+      "optionD": "answer D",
+      "answer": "B",
+      "created": 1596393908187,
+      "brId": "lagos"
+    },
+    {
+      "id": "47edbab-64bb-28ad-ad04-d3cd6f1d67",
+      "lessonId": "003eb84-8db2-afde-6de-da075bacb15",
+      "question": "What is supernatural enablement and how can be enabled by God",
+      "optionA": "Answer A",
+      "optionB": "Answer B",
+      "optionC": "Answer C",
+      "optionD": "Answer D",
+      "answer": "A",
+      "created": 1596398149516
+    }
+  ],
+  "members": [],
   "sermon": [],
   "users": [
     {
-      "name": "ggggg",
-      "gender": "male",
-      "email": "ggggg@fff.kk",
-      "role": "MVP",
-      "phone": "1234567",
-      "address": "tttt",
-      "state": "ttt",
-      "country": "ttt",
-      "zip": "ttt",
-      "comment": "ttt",
-      "brId": "lagos",
-      "status": "disabled",
-      "id": 1
-    },
-    {
-      "name": "gggg",
-      "gender": "male",
-      "email": "ytrew@qwert.ggg",
-      "role": "MVP",
-      "phone": "13456",
-      "address": "ggg",
-      "state": "ggg",
-      "country": "ggg",
-      "zip": "ggg",
-      "comment": "gg",
-      "brId": "lagos",
-      "status": "disabled",
-      "id": 2
-    },
-    {
-      "name": "eeeee",
-      "gender": "male",
-      "email": "eeeee@ffff.ggg",
-      "role": "MVP",
-      "phone": "1234567",
-      "address": "tttt",
-      "state": "ttt",
-      "country": "ttt",
-      "zip": "ttt",
-      "comment": "ttt",
-      "brId": "lagos",
-      "status": "disabled",
-      "id": 3
-    },
-    {
       "email": "ielemson@gmail.com",
       "password": "abc1234",
-      "role": "MEDIA",
+      "role": "ADMIN",
       "brId": "lagos",
-      "id": 4
+      "id": 1
     }
   ],
   "cell": []

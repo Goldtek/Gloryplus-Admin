@@ -8,9 +8,9 @@ import uuid from "react-uuid";
 import FormError from "./formError";
 import Thumb from "./thumb";
 import { Header, SideBar, Breadcrumb } from "../../Partials";
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import { useHistory } from "react-router-dom"
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import { useHistory } from "react-router-dom";
 const validationSchema = Yup.object().shape({
   file: Yup.mixed().required("image upload is required"),
   title: Yup.string().required("event title is required"),
@@ -22,7 +22,7 @@ const validationSchema = Yup.object().shape({
 const API_URL = process.env.REACT_APP_BASEURL;
 
 const CreateEvent = () => {
-  let history = useHistory()
+  let history = useHistory();
   useEffect(() => {
     // document.getElementById("event").classList.add("active");
   });
@@ -35,19 +35,30 @@ const CreateEvent = () => {
       <Header />
       <SideBar />
       <div className="page-content">
-
         <div className="container-fluid">
           <div className="row">
-            <Breadcrumb crumbItem={'Event'} crumb={'Create Event'} />
+            <Breadcrumb crumbItem={"Event"} crumb={"Create Event"} />
             {/* <div className="col-12">
               <h2 className="page-title">Create Event</h2>
             </div> */}
             <div className="col-12">
               <div className="card">
                 <div className="card-body">
-                  <Button href="/dashboard/event/view" variant="contained" color="primary" style={{ textDecoration: 'none', color: 'white' }}>View Events</Button>
-                  {" "}
-                  <Button onClick={() => history.goBack()} variant="contained" color="secondary">Go Back</Button>
+                  <Button
+                    href="/dashboard/event/view"
+                    variant="contained"
+                    color="primary"
+                    style={{ textDecoration: "none", color: "white" }}
+                  >
+                    View Events
+                  </Button>{" "}
+                  <Button
+                    onClick={() => history.goBack()}
+                    variant="contained"
+                    color="secondary"
+                  >
+                    Go Back
+                  </Button>
                 </div>
               </div>
             </div>
@@ -68,17 +79,20 @@ const CreateEvent = () => {
                     title: "",
                   }}
                   validationSchema={validationSchema}
-                  onSubmit={(values, { setSubmitting, resetForm, setFieldValue }) => {
+                  onSubmit={(
+                    values,
+                    { setSubmitting, resetForm, setFieldValue }
+                  ) => {
                     setSubmitting(true);
-                    alert(
-                      JSON.stringify(
-                        {
-                          values
-                        },
-                        null,
-                        2
-                      )
-                    );
+                    // alert(
+                    //   JSON.stringify(
+                    //     {
+                    //       values
+                    //     },
+                    //     null,
+                    //     2
+                    //   )
+                    // );
                     axios({
                       method: "POST",
                       url: `${API_URL}/event`,
@@ -105,6 +119,7 @@ const CreateEvent = () => {
                           draggable: true,
                           progress: undefined,
                         });
+                        window.location.href = "dashboard/event/view";
                       })
                       .catch((err) => {
                         toast.error(`${err}`, {
@@ -129,132 +144,121 @@ const CreateEvent = () => {
                     errors,
                     handleBlur,
                   }) => (
-                      <form
-                        onSubmit={handleSubmit}
-                        encType="multipart/form-data"
-                      >
-                        <div className="form-group">
-                          <TextField
-                            fullWidth
-                            id="title"
-                            name="title"
-                            label="Event Title"
-                            margin="normal"
-                            value={values.title}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            error={errors.title && touched.title}
-                            helperText={(errors.title && touched.title) && errors.title}
-                          />
-                        </div>
+                    <form onSubmit={handleSubmit} encType="multipart/form-data">
+                      <div className="form-group">
+                        <TextField
+                          fullWidth
+                          id="title"
+                          name="title"
+                          label="Event Title"
+                          margin="normal"
+                          value={values.title}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          error={errors.title && touched.title}
+                          helperText={
+                            errors.title && touched.title && errors.title
+                          }
+                        />
+                      </div>
 
-                        <div className="form-group ">
-                          <TextField
-                            fullWidth
-                            id="datetime-local"
-                            label="Next appointment"
-                            type="date"
-                            defaultValue="2020-07-24T10:30"
-                            name="date"
-                            InputLabelProps={{
-                              shrink: true,
-                            }}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            error={errors.date && touched.date}
-                            helperText={(errors.date && touched.date) && errors.date}
-                          />
-                        </div>
+                      <div className="form-group ">
+                        <TextField
+                          fullWidth
+                          id="datetime-local"
+                          label="Next appointment"
+                          type="date"
+                          defaultValue="2020-07-24T10:30"
+                          name="date"
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          error={errors.date && touched.date}
+                          helperText={
+                            errors.date && touched.date && errors.date
+                          }
+                        />
+                      </div>
 
-                        <div className="form-group ">
-                          <TextField
-                            fullWidth
-                            id="address"
-                            name="address"
-                            label="Event Location"
-                            margin="normal"
-                            value={values.address}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            error={errors.address && touched.address}
-                            helperText={(errors.address && touched.address) && errors.address}
-                          />
-                        </div>
+                      <div className="form-group ">
+                        <TextField
+                          fullWidth
+                          id="address"
+                          name="address"
+                          label="Event Location"
+                          margin="normal"
+                          value={values.address}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          error={errors.address && touched.address}
+                          helperText={
+                            errors.address && touched.address && errors.address
+                          }
+                        />
+                      </div>
 
-                        {/* EVENT DETAILS */}
-                        <div className="form-group">
-                          <TextField
-                            fullWidth
-                            id="details"
-                            name="details"
-                            multiline
-                            label="Event Details"
-                            margin="normal"
-                            value={values.details}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            error={errors.details && touched.details}
-                            helperText={(errors.details && touched.details) && errors.details}
-                          />
-
-                        </div>
-                        <div className="form-group">
-                          <label className="form-control-label">
-                            Event Image
-                    </label>
-                          <input
-                            id="file"
-                            name="file"
-                            type="file"
-                            onChange={(event) => {
-                              setFieldValue(
-                                "file",
-                                event.currentTarget.files[0]
-                              );
-                            }}
-                            className={
-                              touched.file && errors.file
-                                ? "  form-control-file  is-invalid"
-                                : "form-control-file"
-                            }
-                            onBlur={handleBlur}
-                          />
-                          <Thumb file={values.file} />
-                          <FormError
-                            touched={touched.file}
-                            message={errors.file}
-                          />
-                        </div>
-                        <div className="form-group">
-                          <input
-                            type="submit"
-                            value="Create Event"
-                            className="btn btn-primary"
-                            disabled={isSubmitting}
-                          />
-                        </div>
-                      </form>
-                    )}
+                      {/* EVENT DETAILS */}
+                      <div className="form-group">
+                        <TextField
+                          fullWidth
+                          id="details"
+                          name="details"
+                          multiline
+                          label="Event Details"
+                          margin="normal"
+                          value={values.details}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          error={errors.details && touched.details}
+                          helperText={
+                            errors.details && touched.details && errors.details
+                          }
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label className="form-control-label">
+                          Event Image
+                        </label>
+                        <input
+                          id="file"
+                          name="file"
+                          type="file"
+                          onChange={(event) => {
+                            setFieldValue("file", event.currentTarget.files[0]);
+                          }}
+                          className={
+                            touched.file && errors.file
+                              ? "  form-control-file  is-invalid"
+                              : "form-control-file"
+                          }
+                          onBlur={handleBlur}
+                        />
+                        <Thumb file={values.file} />
+                        <FormError
+                          touched={touched.file}
+                          message={errors.file}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <input
+                          type="submit"
+                          value="Create Event"
+                          className="btn btn-primary"
+                          disabled={isSubmitting}
+                        />
+                      </div>
+                    </form>
+                  )}
                 </Formik>
-
               </div>
             </div>
           </div>
         </div>
-
       </div>
-
-    </React.Fragment >
+    </React.Fragment>
   );
 };
 
 export default CreateEvent;
-
-
-
-
-
-
-
-
-
