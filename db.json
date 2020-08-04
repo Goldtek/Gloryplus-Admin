@@ -67,15 +67,24 @@
       "created": 1596398149516
     }
   ],
-  "members": [],
+
   "sermon": [],
+
   "users": [
     {
+      "fullName": "My Full Name",
+      "gender": "",
+      "address": "",
+      "phone": "",
       "email": "ielemson@gmail.com",
       "password": "abc1234",
+      "maritalStatus": "",
+      "occupation": "",
+      "dob": "",
       "role": "ADMIN",
       "brId": "lagos",
-      "id": 1
+      "id": 1,
+      "inSchool": false
     }
   ],
   "cell": []

@@ -145,7 +145,7 @@ const Routes = () => {
           exact
           path="/dashboard/mvp/create"
           component={Create_Member_MVP}
-          roles={[Role.SA, Role.MVP]}
+          roles={[Role.SA, Role.MVP, Role.ADMIN]}
         />
         <PrivateRoute
           exact
@@ -157,7 +157,7 @@ const Routes = () => {
           exact
           path="/dashboard/mvp/firsttimer"
           component={FirstTimer}
-          roles={[Role.SA, Role.MVP]}
+          roles={[Role.SA, Role.MVP, Role.ADMIN]}
         />
         {/* MVP :::::::::::::::::::::::::::::::::::::::::::::: */}
 
@@ -165,7 +165,7 @@ const Routes = () => {
           exact
           path="/branch/create"
           component={CreateBranch}
-          roles={[Role.SA, Role.Admin]}
+          roles={[Role.SA, Role.ADMIN]}
         />
 
         <Route exact path="/recover" component={ForgotPassword} />

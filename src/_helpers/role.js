@@ -5,6 +5,9 @@ export const Role = {
   MVP: "MVP",
   SEC: "SEC",
   MEDIA: "MEDIA",
+  FIRST_TIMERS: "FIRST_TIMERS",
+  SECOND_TIMERS: "SECOND_TIMERS",
+  FULL_MEMBER: "FULL_MEMBER",
 };
 
 /*

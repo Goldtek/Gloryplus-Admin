@@ -69,7 +69,7 @@ const SideBar = ({ curUser }) => {
                     </li>
                     <li>
                       {" "}
-                      <a href="/branch/view">View Brnaches</a>
+                      <a href="/branch/view">View Branches</a>
                     </li>
                   </ul>
                 </li>
@@ -342,12 +342,12 @@ const SideBar = ({ curUser }) => {
                     </li>
                     <li>
                       {" "}
-                      <a href="/branch/view">View Brnaches</a>
+                      <a href="/branch/view">View Branches</a>
                     </li>
                   </ul>
                 </li>
 
-                <li>
+                {/* <li>
                   <a href="#" className="waves-effect waves-grey">
                     <i className="material-icons">event</i>Events
                     <i className="material-icons sub-arrow">
@@ -362,9 +362,9 @@ const SideBar = ({ curUser }) => {
                       <a href="/dashboard/event/view">View Event</a>
                     </li>
                   </ul>
-                </li>
+                </li> */}
 
-                <li>
+                {/* <li>
                   <a href="#" className="waves-effect waves-grey">
                     <i className="material-icons">photo_camera</i>Gallery
                     <i className="material-icons sub-arrow">
@@ -379,7 +379,7 @@ const SideBar = ({ curUser }) => {
                       <a href="plugins-nestable.html">View Gallery</a>
                     </li>
                   </ul>
-                </li>
+                </li> */}
 
                 <li>
                   <a href="#" className="waves-effect waves-grey">
@@ -419,7 +419,7 @@ const SideBar = ({ curUser }) => {
                     </li>
                   </ul>
                 </li>
-
+                {/* 
                 <li>
                   <a href="#" className="waves-effect waves-grey">
                     <i className="material-icons">live_tv</i>Live Stream
@@ -432,7 +432,7 @@ const SideBar = ({ curUser }) => {
                       <a href="/livestream/create">Create Live Stream</a>
                     </li>
                   </ul>
-                </li>
+                </li> */}
 
                 <li>
                   <a href="#" className="waves-effect waves-grey">
@@ -478,7 +478,7 @@ const SideBar = ({ curUser }) => {
                   </ul>
                 </li>
 
-                <li>
+                {/* <li>
                   <a href="#" className="waves-effect waves-grey">
                     <i className="material-icons">accessibility</i>Prayer
                     Requests
@@ -496,9 +496,9 @@ const SideBar = ({ curUser }) => {
                       <a href="/dashboard/cell/view">View Testimonies</a>
                     </li>
                   </ul>
-                </li>
+                </li> */}
 
-                <li>
+                {/* <li>
                   <a href="#" className="waves-effect waves-grey">
                     <i className="material-icons">airplay</i>Sermon
                     <i className="material-icons sub-arrow">
@@ -515,9 +515,9 @@ const SideBar = ({ curUser }) => {
                       <a href="/dashboard/sermon/view">View Sermon</a>
                     </li>
                   </ul>
-                </li>
+                </li> */}
 
-                <li>
+                {/* <li>
                   <a href="#" className="waves-effect waves-grey">
                     <i className="material-icons">accessibility</i>Testimony
                     <i className="material-icons sub-arrow">
@@ -534,7 +534,7 @@ const SideBar = ({ curUser }) => {
                       <a href="/dashboard/cell/view">View Testimonies</a>
                     </li>
                   </ul>
-                </li>
+                </li> */}
 
                 <li>
                   <a href="/" className="waves-effect waves-grey">
@@ -844,7 +844,7 @@ const SideBar = ({ curUser }) => {
                     </li>
                     <li>
                       {" "}
-                      <a href="/branch/view">View Brnaches</a>
+                      <a href="/branch/view">View Branches</a>
                     </li>
                   </ul>
                 </li>
@@ -1118,7 +1118,7 @@ const SideBar = ({ curUser }) => {
                     </li>
                     <li>
                       {" "}
-                      <a href="/branch/view">View Brnaches</a>
+                      <a href="/branch/view">View Branches</a>
                     </li>
                   </ul>
                 </li>
