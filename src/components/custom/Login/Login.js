@@ -101,7 +101,7 @@ const Login = (props) => {
               const data = {
                 email: values.email,
                 password: values.password,
-                role: "ADMIN",
+                role: "FULL_MEMBER",
                 brId: "lagos",
               };
               props.userLogin(data);

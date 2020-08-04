@@ -67,9 +67,7 @@
       "created": 1596398149516
     }
   ],
-
   "sermon": [],
-
   "users": [
     {
       "fullName": "My Full Name",
@@ -85,6 +83,13 @@
       "brId": "lagos",
       "id": 1,
       "inSchool": false
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc1234",
+      "role": "FULL_MEMBER",
+      "brId": "lagos",
+      "id": 2
     }
   ],
   "cell": []
