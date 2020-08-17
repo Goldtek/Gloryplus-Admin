@@ -90,6 +90,85 @@
       "role": "FULL_MEMBER",
       "brId": "lagos",
       "id": 2
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc12",
+      "role": "FULL_MEMBER",
+      "brId": "lagos",
+      "id": 3
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc",
+      "role": "FULL_MEMBER",
+      "brId": "lagos",
+      "id": 4
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc",
+      "role": "FULL_MEMBER",
+      "brId": "lagos",
+      "id": 5
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "ab",
+      "role": "SA",
+      "brId": "lagos",
+      "id": 6
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc1234",
+      "id": 7
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc12",
+      "id": 8
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "ac",
+      "id": 9
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc1234",
+      "id": 10
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "ac",
+      "id": 11
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc1234",
+      "id": 12
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc12",
+      "role": "SA",
+      "brId": "lagos",
+      "id": 13
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc1234",
+      "role": "SA",
+      "brId": "lagos",
+      "id": 14
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc1234",
+      "role": "SA",
+      "brId": "lagos",
+      "id": 15
     }
   ],
   "cell": []

@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 import { GrowthCard, RecentUsers, Reports } from ".";
 
 const Dashboard = (props) => {
-  // console.log(props)
+  console.log(props);
   // useEffect(() => {
   //   document.getElementById("home").classList.add("active");
   //   window.location.reload()

@@ -17,7 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 import uuid from "react-uuid";
 import { fetchAssignments } from "../../../../../Redux/actions/assignmentActions";
-import { now } from "moment";
+// import { now } from "moment";
 const API_URL = process.env.REACT_APP_BASEURL;
 
 const CreateAssignmentDialog = ({ lessonID, fetchAssignments }) => {

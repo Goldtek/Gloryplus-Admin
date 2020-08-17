@@ -29,6 +29,7 @@ const CreateEvent = () => {
 
   return (
     <React.Fragment>
+      <ToastContainer />
       <Helmet>
         <title>Create Event</title>
       </Helmet>

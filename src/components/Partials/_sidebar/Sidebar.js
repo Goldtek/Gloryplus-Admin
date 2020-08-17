@@ -15,7 +15,7 @@ const SideBar = ({ curUser }) => {
         <div className="page-sidebar-inner">
           <div className="page-sidebar-profile">
             <div className="sidebar-profile-image">
-              <img src="./assets/images/avatars/avatar1.png" />
+              <img src="./assets/images/avatars/avatar1.png" alt="avatar" />
             </div>
             <div className="sidebar-profile-info">
               <a
@@ -288,7 +288,7 @@ const SideBar = ({ curUser }) => {
         <div className="page-sidebar-inner">
           <div className="page-sidebar-profile">
             <div className="sidebar-profile-image">
-              <img src="./assets/images/avatars/avatar1.png" />
+              <img src="./assets/images/avatars/avatar1.png" alt="avatar" />
             </div>
             <div className="sidebar-profile-info">
               <a
@@ -562,7 +562,7 @@ const SideBar = ({ curUser }) => {
         <div className="page-sidebar-inner">
           <div className="page-sidebar-profile">
             <div className="sidebar-profile-image">
-              <img src="./assets/images/avatars/avatar1.png" />
+              <img src="./assets/images/avatars/avatar1.png" alt="avatar" />
             </div>
             <div className="sidebar-profile-info">
               <a
@@ -696,7 +696,7 @@ const SideBar = ({ curUser }) => {
         <div className="page-sidebar-inner">
           <div className="page-sidebar-profile">
             <div className="sidebar-profile-image">
-              <img src="./assets/images/avatars/avatar1.png" />
+              <img src="./assets/images/avatars/avatar1.png" alt="avatar" />
             </div>
             <div className="sidebar-profile-info">
               <a
@@ -790,7 +790,7 @@ const SideBar = ({ curUser }) => {
         <div className="page-sidebar-inner">
           <div className="page-sidebar-profile">
             <div className="sidebar-profile-image">
-              <img src="./assets/images/avatars/avatar1.png" />
+              <img src="./assets/images/avatars/avatar1.png" alt="avatar" />
             </div>
             <div className="sidebar-profile-info">
               <a
@@ -1064,7 +1064,7 @@ const SideBar = ({ curUser }) => {
         <div className="page-sidebar-inner">
           <div className="page-sidebar-profile">
             <div className="sidebar-profile-image">
-              <img src="./assets/images/avatars/avatar1.png" />
+              <img src="./assets/images/avatars/avatar1.png" alt="avatar" />
             </div>
             <div className="sidebar-profile-info">
               <a

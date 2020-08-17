@@ -1,11 +1,11 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import Helmet from "react-helmet";
+// import Helmet from "react-helmet";
 import { Card } from "../cards/lessonCard";
 import { connect } from "react-redux";
 import { fetchLessonLists } from "../../../../Redux/actions/lessonActions";
-import { Header, SideBar, BreadCrumb, Footer } from "../../../Partials";
+import { Header, SideBar } from "../../../Partials";
 // import PuffLoader from "react-spinners/PuffLoader";
 import uuid from "react-uuid";
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::

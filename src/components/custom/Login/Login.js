@@ -74,7 +74,7 @@ const Login = (props) => {
   useEffect(() => {
     setStatus(props.location.state);
     userLogout();
-  }, [userLogout]);
+  }, [userLogout, props.location.state]);
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -101,7 +101,7 @@ const Login = (props) => {
               const data = {
                 email: values.email,
                 password: values.password,
-                role: "FULL_MEMBER",
+                role: "SA",
                 brId: "lagos",
               };
               props.userLogin(data);
@@ -124,7 +124,7 @@ const Login = (props) => {
                     className={classes.snackbar}
                     message={status}
                   />
-                ) : props.User.errorMessage !== "" ? (
+                ) : props.User.errorMessage ? (
                   <SnackbarContent
                     className={classes.snackbar}
                     message={`${props.User.errorMessage} Check Your Connection`}

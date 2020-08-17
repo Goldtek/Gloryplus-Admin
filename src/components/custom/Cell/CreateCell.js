@@ -1,17 +1,15 @@
 import React from "react";
-// import axios from "axios";
-// import uuid from "react-uuid";
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import { Helmet } from 'react-helmet';
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { Header, SideBar, Breadcrumb } from "../../Partials";
 import Button from '@material-ui/core/Button';
 //API URL
-const API_URL = process.env.REACT_APP_BASEURL;
+// const API_URL = process.env.REACT_APP_BASEURL;
 
 const styles = theme => ({
 

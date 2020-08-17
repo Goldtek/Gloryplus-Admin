@@ -101,7 +101,6 @@ const Create_Member_MVP = (props) => {
                     initialValues={{
                       name: "",
                       gender: "",
-                      gender: "",
                       role: "",
                       email: "",
                       phone: "",
