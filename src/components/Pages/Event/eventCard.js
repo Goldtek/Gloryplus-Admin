@@ -4,12 +4,12 @@ import Moment from "react-moment";
 export const EventCard = ({ title, created, img }) => {
   return (
     <React.Fragment>
-      <div class="col-md-6 col-lg-3">
-        <div class="card text-center">
-          <img src={img} class="card-img-top" alt="Placeholder" />
-          <div class="card-body">
-            <h5 class="card-title">{title}</h5>
-            <p class="card-text">
+      <div className="col-md-6 col-lg-3">
+        <div className="card text-center">
+          <img src={img} className="card-img-top" alt="Placeholder" />
+          <div className="card-body">
+            <h5 className="card-title">{title}</h5>
+            <p className="card-text">
               This is an example of a basic card. Cards have no fixed width
             </p>
             <div
@@ -17,7 +17,7 @@ export const EventCard = ({ title, created, img }) => {
               role="group"
               aria-label="Basic example"
             >
-              <button type="button" class="btn btn-primary">
+              <button type="button" className="btn btn-primary">
                 view
               </button>
               <button type="button" className="btn btn-warning">

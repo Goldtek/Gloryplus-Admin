@@ -1,42 +1,47 @@
 import {
-    LOG_OUT, LOGIN_SUCCESS, STORE_USER_ERROR_MSG
-} from '../actions/action-types';
+  LOG_OUT,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGIN_REQUEST,
+} from "../actions/action-types";
 
 const initialState = {
-    user: {},
-    errorMessage: '',
-    isAuthenticated: false,
+  user: {},
+  errorMessage: "",
+  isAuthenticated: false,
 };
 
 const UserReducer = (state = initialState, action) => {
-    switch (action.type) {
+  switch (action.type) {
+    case LOGIN_REQUEST:
+      return {
+        ...state,
+        loggingIn: true,
+        user: action.user,
+      };
 
-        case LOGIN_SUCCESS:
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isAuthenticated: true,
+        user: action.user,
+      };
 
-            return {
-                ...state,
-                loading: false,
-                isAuthenticated: true,
-                user: action.user,
-            };
+    case LOGIN_FAILURE:
+      return {
+        ...state,
+        errorMessage: action.error,
+      };
 
-        case STORE_USER_ERROR_MSG:
+    case LOG_OUT:
+      return {
+        ...initialState,
+      };
 
-            return {
-                ...state,
-                errorMessage: action.message,
-            };
-
-        case LOG_OUT:
-            return {
-                ...initialState
-            };
-
-
-        default:
-            return state;
-    }
+    default:
+      return state;
+  }
 };
-
 
 export default UserReducer;

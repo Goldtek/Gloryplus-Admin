@@ -43,9 +43,9 @@ const Header = ({ curUser }) => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                {/* <a className="nav-link right-sidebar-link" href="/dashboard/user/1234"><i
-                  className="material-icons">person</i></a> */}
-                <MenuAppBar userId={id} />
+                <a className="nav-link" href={`/dashboard/${id}/user`}>
+                  <i className="material-icons">person</i>
+                </a>
               </li>
 
               <li className="nav-item dropdown d-none d-lg-block">

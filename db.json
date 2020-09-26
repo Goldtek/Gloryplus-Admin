@@ -67,7 +67,18 @@
       "created": 1596398149516
     }
   ],
-  "sermon": [],
+  "sermon": [
+    {
+      "id": "2268fa0-a417-ee3b-508-b851d7315ee3",
+      "sermontitle": "God is Good",
+      "coverimg": "ifeanyi.jpg",
+      "sermontype": "audio",
+      "preacher": "Rev. Dubus Achufusi",
+      "preview": "Cory-Asbury-Reckless-Love.mp3",
+      "sermonfile": "Cory-Asbury-Reckless-Love.mp3",
+      "created": 1600337218152
+    }
+  ],
   "users": [
     {
       "fullName": "My Full Name",
@@ -79,7 +90,7 @@
       "maritalStatus": "",
       "occupation": "",
       "dob": "",
-      "role": "ADMIN",
+      "role": "SA",
       "brId": "lagos",
       "id": 1,
       "inSchool": false
@@ -171,5 +182,98 @@
       "id": 15
     }
   ],
-  "cell": []
+  "cell": [],
+  "branches": [
+    {
+      "brnchPst": "Mr. Josh Peter",
+      "gender": "Male",
+      "email": "josh@gpi.com",
+      "phone": "09087806788",
+      "address": "Lagos Nigeria",
+      "country": "Nigeria",
+      "state": "Abia",
+      "created": 1600345635541,
+      "id": 1
+    },
+    {
+      "brnchPst": "Mr. Eva Clement O.",
+      "gender": "Male",
+      "email": "eva@gpi.com",
+      "phone": "07087806766",
+      "address": "Lagos Nigeria",
+      "country": "Nigeria",
+      "state": "Anambara",
+      "created": 1600345635541,
+      "id": 1
+    },
+    {
+      "brnchPst": "Mr. Victor Patrick C.",
+      "gender": "Male",
+      "email": "victor@gpi.com",
+      "phone": "08076956455",
+      "address": "Gariki Abuja Nigeria",
+      "country": "Nigeria",
+      "state": "Abuja",
+      "created": 1600751135184,
+      "id": 2
+    }
+  ],
+  "galleryCover": [
+    {
+      "id": "63bf03a-825f-80f0-7ae1-03b8cc5f4a88",
+      "title": "Cover 1",
+      "coverImg": "ifeanyi.jpg",
+      "created": 1601022614497
+    },
+    {
+      "id": "f37b21-af80-72-d027-af1a8f4ae4c",
+      "title": "New Cover Image Title",
+      "coverImg": "ifeanyi.jpg",
+      "created": 1601024083865
+    },
+    {
+      "id": "11bd0c5-622-b53a-be87-e3ceeae8da4",
+      "title": "Holy-Ghost Morning Crusade",
+      "coverImg": "ifeanyi.jpg",
+      "created": 1601029546574
+    }
+  ],
+  "galleries": [
+    {
+      "id": "1e5327-daf8-a0bb-bfde-c3d03738a7e7",
+      "img": "ifeanyi.jpg",
+      "coverId": "63bf03a-825f-80f0-7ae1-03b8cc5f4a88",
+      "created": 1601107596662
+    },
+    {
+      "id": "df03bc2-6678-c8ee-1c4d-7b6e058d77b6",
+      "img": "myp.jpg",
+      "coverId": "63bf03a-825f-80f0-7ae1-03b8cc5f4a88",
+      "created": 1601107605332
+    },
+    {
+      "id": "6fa1e03-e65f-370d-850-a60f6ff773ce",
+      "img": "ifeanyi.jpg",
+      "coverId": "63bf03a-825f-80f0-7ae1-03b8cc5f4a88",
+      "created": 1601108032084
+    },
+    {
+      "id": "4527f8b-e736-7480-6e30-faa603e3ec",
+      "img": "ifeanyi.jpg",
+      "coverId": "63bf03a-825f-80f0-7ae1-03b8cc5f4a88",
+      "created": 1601108102837
+    },
+    {
+      "id": "dc00c-045f-f2f1-68a-668eaa7d12b3",
+      "img": "ifeanyi.jpg",
+      "coverId": "63bf03a-825f-80f0-7ae1-03b8cc5f4a88",
+      "created": 1601108110078
+    },
+    {
+      "id": "0bc7b6-451b-c01-820-bf82ff45c3e",
+      "img": "ifeanyi.jpg",
+      "coverId": "f37b21-af80-72-d027-af1a8f4ae4c",
+      "created": 1601108364811
+    }
+  ]
 }

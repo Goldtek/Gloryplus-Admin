@@ -9,6 +9,7 @@ import { Header, SideBar } from "../../../Partials";
 import { Card } from "../cards/courseCard";
 import { LoaderCard, InfoCard } from "../../Helpers";
 import { Helmet } from "react-helmet";
+
 const CourseLists = ({ fetchCourseLists, courseData }) => {
   useEffect(() => {
     // document.getElementById("gpa").classList.add("active");

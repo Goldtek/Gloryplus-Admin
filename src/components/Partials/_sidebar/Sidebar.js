@@ -65,11 +65,11 @@ const SideBar = ({ curUser }) => {
                   <ul className="accordion-submenu list-unstyled">
                     <li>
                       {" "}
-                      <a href="/branch/create">Create Branch</a>
+                      <a href="/dashboard/branch/create">Create Branch</a>
                     </li>
                     <li>
                       {" "}
-                      <a href="/branch/view">View Branches</a>
+                      <a href="/dashboard/branch/view">View Branches</a>
                     </li>
                   </ul>
                 </li>
@@ -100,10 +100,7 @@ const SideBar = ({ curUser }) => {
                   </a>
                   <ul className="accordion-submenu list-unstyled">
                     <li>
-                      <a href="plugins-code-editor.html">Create Gallery</a>
-                    </li>
-                    <li>
-                      <a href="plugins-nestable.html">View Gallery</a>
+                      <a href="/dashboard/gallery/create">Create Gallery</a>
                     </li>
                   </ul>
                 </li>
@@ -348,38 +345,38 @@ const SideBar = ({ curUser }) => {
                 </li>
 
                 {/* <li>
-                  <a href="#" className="waves-effect waves-grey">
-                    <i className="material-icons">event</i>Events
-                    <i className="material-icons sub-arrow">
-                      keyboard_arrow_right
-                    </i>
-                  </a>
-                  <ul className="accordion-submenu list-unstyled">
-                    <li>
-                      <a href="/dashboard/event/create">Create Event</a>
-                    </li>
-                    <li>
-                      <a href="/dashboard/event/view">View Event</a>
-                    </li>
-                  </ul>
-                </li> */}
+<a href="#" className="waves-effect waves-grey">
+<i className="material-icons">event</i>Events
+<i className="material-icons sub-arrow">
+keyboard_arrow_right
+</i>
+</a>
+<ul className="accordion-submenu list-unstyled">
+<li>
+<a href="/dashboard/event/create">Create Event</a>
+</li>
+<li>
+<a href="/dashboard/event/view">View Event</a>
+</li>
+</ul>
+</li> */}
 
                 {/* <li>
-                  <a href="#" className="waves-effect waves-grey">
-                    <i className="material-icons">photo_camera</i>Gallery
-                    <i className="material-icons sub-arrow">
-                      keyboard_arrow_right
-                    </i>
-                  </a>
-                  <ul className="accordion-submenu list-unstyled">
-                    <li>
-                      <a href="plugins-code-editor.html">Create Gallery</a>
-                    </li>
-                    <li>
-                      <a href="plugins-nestable.html">View Gallery</a>
-                    </li>
-                  </ul>
-                </li> */}
+<a href="#" className="waves-effect waves-grey">
+<i className="material-icons">photo_camera</i>Gallery
+<i className="material-icons sub-arrow">
+keyboard_arrow_right
+</i>
+</a>
+<ul className="accordion-submenu list-unstyled">
+<li>
+<a href="plugins-code-editor.html">Create Gallery</a>
+</li>
+<li>
+<a href="plugins-nestable.html">View Gallery</a>
+</li>
+</ul>
+</li> */}
 
                 <li>
                   <a href="#" className="waves-effect waves-grey">
@@ -420,19 +417,19 @@ const SideBar = ({ curUser }) => {
                   </ul>
                 </li>
                 {/* 
-                <li>
-                  <a href="#" className="waves-effect waves-grey">
-                    <i className="material-icons">live_tv</i>Live Stream
-                    <i className="material-icons sub-arrow">
-                      keyboard_arrow_right
-                    </i>
-                  </a>
-                  <ul className="accordion-submenu list-unstyled">
-                    <li>
-                      <a href="/livestream/create">Create Live Stream</a>
-                    </li>
-                  </ul>
-                </li> */}
+<li>
+<a href="#" className="waves-effect waves-grey">
+<i className="material-icons">live_tv</i>Live Stream
+<i className="material-icons sub-arrow">
+keyboard_arrow_right
+</i>
+</a>
+<ul className="accordion-submenu list-unstyled">
+<li>
+<a href="/livestream/create">Create Live Stream</a>
+</li>
+</ul>
+</li> */}
 
                 <li>
                   <a href="#" className="waves-effect waves-grey">
@@ -479,62 +476,62 @@ const SideBar = ({ curUser }) => {
                 </li>
 
                 {/* <li>
-                  <a href="#" className="waves-effect waves-grey">
-                    <i className="material-icons">accessibility</i>Prayer
-                    Requests
-                    <i className="material-icons sub-arrow">
-                      keyboard_arrow_right
-                    </i>
-                  </a>
-                  <ul className="accordion-submenu list-unstyled">
-                    <li>
-                      {" "}
-                      <a href="/dashboard/cell/create">Publish</a>
-                    </li>
-                    <li>
-                      {" "}
-                      <a href="/dashboard/cell/view">View Testimonies</a>
-                    </li>
-                  </ul>
-                </li> */}
+<a href="#" className="waves-effect waves-grey">
+<i className="material-icons">accessibility</i>Prayer
+Requests
+<i className="material-icons sub-arrow">
+keyboard_arrow_right
+</i>
+</a>
+<ul className="accordion-submenu list-unstyled">
+<li>
+{" "}
+<a href="/dashboard/cell/create">Publish</a>
+</li>
+<li>
+{" "}
+<a href="/dashboard/cell/view">View Testimonies</a>
+</li>
+</ul>
+</li> */}
 
                 {/* <li>
-                  <a href="#" className="waves-effect waves-grey">
-                    <i className="material-icons">airplay</i>Sermon
-                    <i className="material-icons sub-arrow">
-                      keyboard_arrow_right
-                    </i>
-                  </a>
-                  <ul className="accordion-submenu list-unstyled">
-                    <li>
-                      {" "}
-                      <a href="/dashboard/sermon/create">Create Sermon</a>
-                    </li>
-                    <li>
-                      {" "}
-                      <a href="/dashboard/sermon/view">View Sermon</a>
-                    </li>
-                  </ul>
-                </li> */}
+<a href="#" className="waves-effect waves-grey">
+<i className="material-icons">airplay</i>Sermon
+<i className="material-icons sub-arrow">
+keyboard_arrow_right
+</i>
+</a>
+<ul className="accordion-submenu list-unstyled">
+<li>
+{" "}
+<a href="/dashboard/sermon/create">Create Sermon</a>
+</li>
+<li>
+{" "}
+<a href="/dashboard/sermon/view">View Sermon</a>
+</li>
+</ul>
+</li> */}
 
                 {/* <li>
-                  <a href="#" className="waves-effect waves-grey">
-                    <i className="material-icons">accessibility</i>Testimony
-                    <i className="material-icons sub-arrow">
-                      keyboard_arrow_right
-                    </i>
-                  </a>
-                  <ul className="accordion-submenu list-unstyled">
-                    <li>
-                      {" "}
-                      <a href="/dashboard/cell/create">Publish</a>
-                    </li>
-                    <li>
-                      {" "}
-                      <a href="/dashboard/cell/view">View Testimonies</a>
-                    </li>
-                  </ul>
-                </li> */}
+<a href="#" className="waves-effect waves-grey">
+<i className="material-icons">accessibility</i>Testimony
+<i className="material-icons sub-arrow">
+keyboard_arrow_right
+</i>
+</a>
+<ul className="accordion-submenu list-unstyled">
+<li>
+{" "}
+<a href="/dashboard/cell/create">Publish</a>
+</li>
+<li>
+{" "}
+<a href="/dashboard/cell/view">View Testimonies</a>
+</li>
+</ul>
+</li> */}
 
                 <li>
                   <a href="/" className="waves-effect waves-grey">

@@ -1,7 +1,6 @@
 import React from "react";
 import "./notfound.css";
-import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet"
+import { Helmet } from "react-helmet";
 const ErrorPage = () => {
   return (
     <div id="main">
@@ -11,7 +10,7 @@ const ErrorPage = () => {
       <div className="fof">
         <h1>Error 404</h1>
         <br />
-        <Link to="/">Home</Link>
+        <a href="/dashboard">Home</a>
       </div>
     </div>
   );

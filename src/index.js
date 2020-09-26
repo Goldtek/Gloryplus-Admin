@@ -18,15 +18,13 @@ const options = {
 
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <Router forceRefresh={true} history={history}>
-        <PersistGate loading={null} persistor={persistor}>
-          <AlertProvider template={AlertTemplate} {...options}>
-            <Routes />
-          </AlertProvider>
-        </PersistGate>
-      </Router>
-    </React.StrictMode>
+    <Router forceRefresh={true} history={history}>
+      <PersistGate loading={null} persistor={persistor}>
+        <AlertProvider template={AlertTemplate} {...options}>
+          <Routes />
+        </AlertProvider>
+      </PersistGate>
+    </Router>
   </Provider>,
   document.getElementById("root")
 );

@@ -23,10 +23,12 @@ import {
   CandidateLists,
   CreateCell,
   CreateBranch,
+  BranchList,
   Create_Member_MVP,
   MemberLists_MVP,
   FirstTimer,
-} from "../components/custom";
+  PopulateGallery,
+} from "../components/Pages";
 
 const Routes = () => {
   return (
@@ -95,6 +97,12 @@ const Routes = () => {
           component={CreateEvent}
           roles={[Role.SA, Role.MEDIA, Role.ADMIN]}
         />
+        <PrivateRoute
+          exact
+          path="/dashboard/:id/gallery"
+          component={PopulateGallery}
+          roles={[Role.SA, Role.MEDIA, Role.ADMIN]}
+        />
 
         <PrivateRoute
           exact
@@ -110,7 +118,7 @@ const Routes = () => {
           roles={[Role.SA, Role.MEDIA, Role.ADMIN]}
         />
 
-        <PrivateRoute exact path="/dashboard/user/:id" component={User} />
+        <PrivateRoute exact path="/dashboard/:id/user" component={User} />
 
         <PrivateRoute
           exact
@@ -161,10 +169,17 @@ const Routes = () => {
         />
         {/* MVP :::::::::::::::::::::::::::::::::::::::::::::: */}
 
+        {/* BRANCHES ROUTE ::::::::::::::::::::::::::::::::::::::::::::::::::: */}
         <PrivateRoute
           exact
-          path="/branch/create"
+          path="/dashboard/branch/create"
           component={CreateBranch}
+          roles={[Role.SA, Role.ADMIN]}
+        />
+        <PrivateRoute
+          exact
+          path="/dashboard/branch/view"
+          component={BranchList}
           roles={[Role.SA, Role.ADMIN]}
         />
 
