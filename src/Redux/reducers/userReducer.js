@@ -21,6 +21,7 @@ const UserReducer = (state = initialState, action) => {
       };
 
     case LOGIN_SUCCESS:
+      console.log('action', action.user);
       return {
         ...state,
         loading: false,
