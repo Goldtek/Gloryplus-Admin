@@ -8,7 +8,7 @@ import FormError from "./formError";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 // import { Link } from "react-router-dom";
-import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
+import { Header, SideBar, PageHeaderTitle, Footer, firestore } from "../../partials";
 // import Content from "../main";
 import "./form.css";
 
@@ -255,8 +255,8 @@ function FirstTimers() {
                                       <textarea
                                         className={
                                           touched.address && errors.address
-                                            ? "form-control input-material is-invalid"
-                                            : "form-control input-material "
+                                            ? "form-control is-invalid"
+                                            : "form-control "
                                         }
                                         placeholder="address"
                                         rows="1"

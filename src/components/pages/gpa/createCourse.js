@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet";
 import FormError from "./formError";
@@ -6,7 +6,7 @@ import Thumb from "./thumb";
 import { Formik, Field } from "formik";
 import * as Yup from "yup";
 import uuid from "react-uuid";
-import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
+import { Header, SideBar, PageHeaderTitle, Footer, firestore, ProgressBar } from "../../partials";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -29,20 +29,23 @@ const validationSchema = Yup.object().shape({
   coursetitle: Yup.string().required("course title is required"),
 });
 
-// const api = axios.create({ baseURL: `http://localhost:3000/course` });
+
 const CreateCourse = ({ match }) => {
+  const [url, setUrl] = useState(null);
+  const [file, setFile] = useState(null);
+
   useEffect(() => {
     document.getElementById("gpa").classList.add("active");
   });
+
 
   return (
     <div className="page">
       <Helmet>
         <title>Create Course</title>
       </Helmet>
-      {/* HEADER PART */}
       <Header />
-      {/* CLOSE HEADER PART */}
+ 
 
       {/* SIDER BAR PART */}
       <div className="page-content d-flex align-items-stretch">
@@ -50,7 +53,7 @@ const CreateCourse = ({ match }) => {
 
         <div className="content-inner">
           {/* <!-- Page Header--> */}
-          <PageHeaderTitle title="Dashboard" currpg="GPA" />
+          <PageHeaderTitle title="GloryPlus International Academy" currpg="GPA" />
 
           <section className="forms">
             <div className="container-fluid">
@@ -64,27 +67,19 @@ const CreateCourse = ({ match }) => {
                       <Formik
                         initialValues={{ file: "", coursetitle: "" }}
                         validationSchema={validationSchema}
-                        onSubmit={(values, { setSubmitting, resetForm }) => {
-                          setSubmitting(true);
-                          // const courseObj = {
-                          //   id: uuid(),
-                          //   file: values.file.name,
-                          //   coursetitle: values.coursetitle,
-                          //   type: values.file.type,
-                          // };
-
-                          axios({
-                            method: "POST",
-                            url: "http://localhost:3000/course",
-                            data: {
-                              id: uuid(),
-                              file: values.file.name,
-                              title: values.coursetitle,
-                              type: values.file.type,
-                              created: Date.now(),
-                            },
-                          })
-                            .then((res) => {
+                        onSubmit={async (values, { setSubmitting, resetForm }) => {
+                          if(url === null){
+                            return;
+                          }
+                          try {
+                              setSubmitting(true);
+                              const courseObj = {
+                                file: values.file.name,
+                                title: values.coursetitle,
+                                img: url,
+                                created: Date.now(),
+                              };
+                              await firestore.collection("events").add(courseObj);
                               resetForm();
                               setSubmitting(false);
                               toast.success("course Successfully added", {
@@ -96,8 +91,7 @@ const CreateCourse = ({ match }) => {
                                 draggable: true,
                                 progress: undefined,
                               });
-                            })
-                            .catch((err) => {
+                            } catch(err) {
                               toast.error(`${err}`, {
                                 position: "top-right",
                                 autoClose: 5000,
@@ -107,7 +101,7 @@ const CreateCourse = ({ match }) => {
                                 draggable: true,
                                 progress: undefined,
                               });
-                            });
+                            };
                         }}
                       >
                         {({
@@ -170,6 +164,7 @@ const CreateCourse = ({ match }) => {
                                 onBlur={handleBlur}
                               />
                               <Thumb file={values.file} />
+                              {values.file && <ProgressBar file={values.file} setFile={setFile} setUrl={setUrl} directory="gpa" />}
                               <FormError
                                 touched={touched.file}
                                 message={errors.file}

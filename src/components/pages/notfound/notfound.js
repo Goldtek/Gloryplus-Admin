@@ -41,9 +41,9 @@ const Notfound = () => {
                       <a href="/dashboard" className="btn btn-primary btn-lg">
                         <span className="fa fa-home"></span> Take Me Home{" "}
                       </a>
-                      <a href="#!" className="btn btn-default btn-lg">
+                      {/* <a href="#!" className="btn btn-default btn-lg">
                         <span className="fa fa-envelope"></span> Contact Support{" "}
-                      </a>
+                      </a> */}
                     </div>
                   </div>
                 </div>

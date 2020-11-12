@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 // import { Link } from "react-router-dom";
-import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
+import { Header, SideBar, PageHeaderTitle, Footer, firestore } from "../../partials";
 // import Content from "../main";
 class dashboard extends React.Component {
   componentDidMount() {
@@ -45,7 +45,7 @@ class dashboard extends React.Component {
                             className="card-profile-img"
                             alt="s"
                           />
-                          <h3 className="mb-3">Elemson Ifeanyi</h3>
+                          <h3 className="mb-3">Chisom Dike</h3>
                           <p className="mb-4">
                             One morning, when Gregor Samsa woke from troubled{" "}
                           </p>
@@ -91,7 +91,7 @@ class dashboard extends React.Component {
                                   type="email"
                                   placeholder="Email"
                                   className="form-control"
-                                  value="ielemson@gmail.com"
+                                  value=""
                                 />
                               </div>
                             </div>

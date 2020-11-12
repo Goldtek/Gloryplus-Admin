@@ -1,11 +1,38 @@
-import React from "react";
+import React, { useState,  } from "react";
+import { useHistory } from 'react-router-dom';
+import serializeForm from 'form-serialize';
+import { CustomAlert, auth, firestore } from "../../partials";
 
 const Login = () => {
+  const history = useHistory();
+  const [errorMessage, setErrorMessage] = useState("");
+
+    const handleLogin = async (e) => {
+    e.preventDefault();
+    setErrorMessage("");
+    try {
+      const loginValues = serializeForm(e.target, { hash: true });
+      const { email, password } = loginValues;
+  
+      const res = await auth.signInWithEmailAndPassword(email,password);
+      const { user } = res;
+  
+      if (user) {
+       // query firestore and dispatch to redux
+      }
+    } catch (error) {
+      console.log('error logging in', error);
+      setErrorMessage(error.message);
+      
+    }
+  };
+
   return (
     <div className="container-fluid px-3">
       <div className="row min-vh-100">
         <div className="col-md-5 col-lg-6 col-xl-4 px-lg-5 d-flex align-items-center">
           <div className="w-100 py-5">
+            
             <div className="text-center">
               <img
                 src="img/brand/logo.png"
@@ -13,9 +40,10 @@ const Login = () => {
                 style={{ maxWidth: "6rem" }}
                 className="img-fluid mb-4"
               />
-              <h1 className="display-4 mb-3">Sign in</h1>
+              <h1 className="display-4 mb-3">Admin Panel</h1>
+              {(errorMessage !== "") ? ( <CustomAlert severity="error" message={errorMessage} variant="filled" />) : null}
             </div>
-            <form className="form-validate">
+            <form className="form-validate" onSubmit={handleLogin}>
               <div className="form-group">
                 <label>Email Address</label>
                 <input
@@ -24,7 +52,7 @@ const Login = () => {
                   autocomplete="off"
                   required
                   data-msg="Please enter your email"
-                  className="form-control"
+                  className="input-material"
                 />
               </div>
               <div className="form-group mb-4">
@@ -43,25 +71,18 @@ const Login = () => {
                   type="password"
                   required
                   data-msg="Please enter your password"
-                  className="form-control"
+                  className="input-material"
                 />
               </div>
-              {/* <!-- Submit--> */}
-              <button
+
+              <input
                 className="btn btn-lg btn-block btn-primary mb-3"
-                onClick={() => {
-                  window.location.href = "/dashboard";
-                }}
-              >
-                Sign in
-              </button>
-              {/* <!-- Link--> */}
-              <p className="text-center">
-                <small className="text-muted text-center">
-                  Don't have an account yet?
-                  <a href="register-2.html">Register</a>.
-                </small>
-              </p>
+                type="submit"
+                value="Sign in"
+              />
+                
+              
+              
             </form>
           </div>
         </div>
@@ -70,7 +91,7 @@ const Login = () => {
           <div
             style={{
               backgroundImage:
-                "url(img/photos/victor-ene-1301123-unsplash.jpg)",
+                "url(images/gloryplus.png)",
             }}
             className="bg-cover h-100 mr-n3"
           ></div>

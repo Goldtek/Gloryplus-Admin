@@ -14,6 +14,9 @@ import {
   // SecondTimers,
   CreateEvent,
   ListEvent,
+  CreateBranch,
+  CreateGallery,
+  ViewGallery
 } from "./components/pages";
 
 const Routes = () => {
@@ -71,6 +74,20 @@ const Routes = () => {
         </Route>
         <Route path="/dashboard/profile">
           <Profile />
+        </Route>
+
+        <Route path="/dashboard/branch/create">
+          <CreateBranch />
+        </Route>
+
+
+        <Route path="/dashboard/gallery/create">
+          <CreateGallery />
+        </Route>
+
+
+        <Route path="/dashboard/gallery/view">
+          <ViewGallery />
         </Route>
         {/* PROTECTED ROUTES START HERE #############################################*/}
 

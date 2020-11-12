@@ -9,7 +9,7 @@ const SideBar = () => {
         <a href="dashboard/profile">
           <div className="avatar">
             <img
-              src="img/avatar-7.jpg"
+              src="images/user.png"
               alt="..."
               className="img-fluid rounded-circle"
             />
@@ -17,7 +17,7 @@ const SideBar = () => {
         </a>
         <div className="title">
           <h1 className="h4" style={{ color: "#fff" }}>
-            Elemson Ifeanyi
+            Chisom Dike
           </h1>
           <p>Super Admin</p>
         </div>
@@ -30,6 +30,19 @@ const SideBar = () => {
             {" "}
             <i className="fa fa-fire"></i>Home{" "}
           </a>
+        </li>
+        <li id="branch">
+          <a href="#branchDropdown" aria-expanded="false" data-toggle="collapse">
+            <i className="icon-padnote"></i>Branches
+          </a>
+          <ul id="branchDropdown" className="collapse list-unstyled">
+            <li>
+              <a href="/dashboard/branch/create">Create New Branch</a>
+            </li>
+            <li>
+              <a href="#!">List of Branches</a>
+            </li>
+          </ul>
         </li>
         <li id="livestream">
           <a
@@ -68,14 +81,14 @@ const SideBar = () => {
           </a>
           <ul id="formsDropdown" className="collapse list-unstyled">
             <li>
-              <a href="/dashboard/first-timers">Create New Member</a>
+              <a href="/dashboard/first-timers">Create Admin Panel User</a> {/** i dont think there should be  */}
             </li>
             <li>
               <a href="#!">List of Members</a>
             </li>
           </ul>
         </li>
-        <li>
+        <li id="gallery">
           <a
             href="#componentsDropdown"
             aria-expanded="false"
@@ -85,10 +98,10 @@ const SideBar = () => {
           </a>
           <ul id="componentsDropdown" className="collapse list-unstyled">
             <li>
-              <a href="#!">Create Gallery</a>
+              <a href="/dashboard/gallery/create">Create Gallery</a>
             </li>
             <li>
-              <a href="#!">View Gallery</a>
+              <a href="/dashboard/gallery/view">View Gallery</a>
             </li>
           </ul>
         </li>
@@ -114,9 +127,6 @@ const SideBar = () => {
             <i className="icon-interface-windows"></i>Testimony
           </a>
           <ul id="TestimonialDropdown" className="collapse list-unstyled">
-            <li>
-              <a href="#!">Create Testimony</a>
-            </li>
             <li>
               <a href="#!">View Testimony</a>
             </li>

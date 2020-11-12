@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import moment from "moment";
 // import { Link } from "react-router-dom";
 import serializeForm from "form-serialize";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
+import { Header, SideBar, PageHeaderTitle, Footer, firestore  } from "../../partials";
 
 const Livestream = () => {
   useEffect(() => {
@@ -15,6 +16,7 @@ const Livestream = () => {
   const [playerSource, setplaysource] = useState("");
   const [checked, setChecked] = useState(false);
   const [disabled, setDisabled] = useState(false);
+  const numbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
   //   const [loading, setLoading] = useState(false);
   //   const [infostate, setInfo] = useState(false);
 
@@ -25,13 +27,22 @@ const Livestream = () => {
     setDisabled(!disabled);
   };
   //HANDLE THE NEW STREAMING SCHEDULE ##########
-  const handleSchedule = (e) => {
+  const handleSchedule = async (e) => {
     e.preventDefault();
     const scheduleObj = serializeForm(e.target, { hash: true });
-    axios
-      .post("http://localhost:3000/schedule", scheduleObj)
-      .then((res) => {
-        toast.success("Scheduled Successfully", {
+    try{
+       await firestore.collection("schedule").add(scheduleObj);
+        toast.success("Next Livestream Scheduled successfully", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+      } catch (error) {
+        toast.error(`${error.message}`, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -40,74 +51,44 @@ const Livestream = () => {
           draggable: true,
           progress: undefined,
         });
-      })
-      .catch((error) => {
-        toast.error(`${error}`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
+      }
   };
 
   //HANDLE THE NEW STREAMING SCHEDULE ##########
 
-  const handleStreaming = (e) => {
+  const handleStreaming = async (e) => {
     e.preventDefault();
     const streamObj = serializeForm(e.target, { hash: true });
-    axios
-      .post("http://localhost:3000/livestream/", {
-        stream: streamObj,
-      })
-      .then((res) => {
-        setplaysource(res.data.stream.streamid);
-        console.log(res.data);
-      })
-      .catch((error) => {
-        toast.error(`${error}`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+    // console.log('split', moment(mydate).format('d'))
+     console.log('streamobj-->', streamObj)
+    return setplaysource(streamObj.streamid);
+    const url = `https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fgloryplusintl%2Fposts%2F${playerSource}&show_text=true`;
+    try{
+    //  await firestore.collection("branches").add(values);
+      toast.success("Church Branch Successfully added", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+    } catch (error) {
+      toast.error(`${error.message}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
       });
+    }
+   
   };
 
-  // const changedCLick = (checked) => {
-  //   axios
-  //     .patch("http://localhost:3000/livestream/", {
-  //       check: checked,
-  //     })
-  //     .then((res) => {
-  //       toast.success("Updated Checked", {
-  //         position: "top-right",
-  //         autoClose: 5000,
-  //         hideProgressBar: false,
-  //         closeOnClick: true,
-  //         pauseOnHover: true,
-  //         draggable: true,
-  //         progress: undefined,
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       toast.error(`${error}`, {
-  //         position: "top-right",
-  //         autoClose: 5000,
-  //         hideProgressBar: false,
-  //         closeOnClick: true,
-  //         pauseOnHover: true,
-  //         draggable: true,
-  //         progress: undefined,
-  //       });
-  //     });
-  // };
+ 
   return (
     <div className="page">
       <Helmet>
@@ -203,17 +184,33 @@ const Livestream = () => {
                           onSubmit={handleStreaming}
                           className="form-validate"
                         >
-                          <div class="form-group-material">
-                            <input
-                              type="text"
-                              placeholder="ENTER LIVE STREAM ID HERE ...."
-                              className="input-material"
-                              required
-                              name="streamid"
-                            />
-
+                           <div className="row">
+                              <div className="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group-material">
+                                  <input
+                                    type="text"
+                                    placeholder="ENTER LIVE STREAM ID HERE ...."
+                                    className="input-material"
+                                    required
+                                    name="streamid"
+                                  />
+                                </div>
+                              </div>
+                              <div className="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group-material">
+                                  <input
+                                    required
+                                    className="input-material"
+                                    type="text"
+                                    name="programTitle"
+                                    placeholder="Enter Program Title i.e Sunday Service"
+                                  />
+                              
+                                </div>
+                              </div>
+                           </div>
                             <input value={checked} name="check" type="hidden" />
-                          </div>
+                          
 
                           <div className="form-group">
                             <button className="btn btn-primary">Submit</button>
@@ -257,17 +254,56 @@ const Livestream = () => {
                   <div className="card-body">
                     <form className="form-inline" onSubmit={handleSchedule}>
                       <div class="col-sm-12">
-                        <div className="row">
+                      <div className="row">
                           <div className="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group-material">
                               <input
                                 required
                                 className="input-material"
-                                id="datepicker"
                                 type="text"
-                                name="date"
-                                placeholder="select date"
+                                name="programTitle"
+                                placeholder="Enter Program Title i.e Sunday Service"
                               />
+                          
+                            </div>
+                          </div>
+                          <div className="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group-material">
+                            <select
+                              className= "input-material select-text"
+                              name="scheduleMonth"
+                              // onChange={handleChange}
+                              // value={values.gender}
+                              // onBlur={handleBlur}
+                              required
+                            >             
+                              <option value="January">January</option>
+                              <option value="Febuary">Febuary</option>
+                              <option value="March">March</option>
+                              <option value="April">April</option>
+                              <option value="May">May</option>
+                              <option value="June">June</option>
+                              <option value="July">July</option>
+                              <option value="August">August</option>
+                              <option value="September">September</option>
+                              <option value="October">October</option>
+                              <option value="November">November</option>
+                              <option value="December">December</option>
+                            </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group-material">
+                            <select
+                              className= "input-material select-text"
+                              name="scheduleDate"
+                              required
+                            > 
+                              {numbers.map((number)=>  <option value={number}>{number}</option>)}
+                            </select>
+                          
                             </div>
                           </div>
                           <div className="col-sm-12 col-md-6 col-lg-6">
@@ -275,13 +311,14 @@ const Livestream = () => {
                               <input
                                 className="input-material"
                                 id="timepicker"
-                                type="text"
+                                type="time"
                                 placeholder="select time"
                                 name="time"
                                 required
                               />
                             </div>
                           </div>
+                          <input value={checked} name="check" type="hidden" />
                         </div>
                         <div className="form-group row">
                           <div className="col-sm-12 ">

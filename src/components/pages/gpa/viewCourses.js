@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { fetchCourseLists } from "../../../redux/actions/courseActions";
 // import { Link } from "react-router-dom";
-import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
+import { Header, SideBar, PageHeaderTitle, Footer, firestore } from "../../partials";
 import { CourseCard } from "./courseCard";
 
 // import Content from "../main";
@@ -38,7 +38,7 @@ class ViewCourses extends React.Component {
 
           <div className="content-inner">
             {/* <!-- Page Header--> */}
-            <PageHeaderTitle title="GPA" currpg="Course List" />
+            <PageHeaderTitle title="GloryPlus International Academy" currpg="Course List" />
             <div className="container-fluid">
               {/* <!-- end row--> */}
               <section>

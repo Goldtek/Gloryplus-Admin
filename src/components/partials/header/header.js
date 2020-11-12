@@ -28,7 +28,7 @@ const Header = () => {
                 className="navbar-brand d-none d-sm-inline-block"
               >
                 <div className="brand-text d-none d-lg-inline-block">
-                  <span>GloryPlus </span> <strong>Dashboard</strong>
+                  <strong> GloryPlus  Dashboard</strong>
                 </div>
                 <div className="brand-text d-none d-sm-inline-block d-lg-none">
                   <strong>BD</strong>
