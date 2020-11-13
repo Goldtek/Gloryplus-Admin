@@ -7,6 +7,7 @@ import LiveStream from "./livestream";
 import Profile from "./profile";
 import ListCourse from "./gpa/viewCourses";
 import FirstTimers from "./members/firstTimers";
+import NewUser from "./members/newUser";
 import SecondTimers from "./members/secondTimer";
 import CreateEvent from "./event/createEvent";
 import ListEvent from "./event/listEvent";
@@ -29,4 +30,5 @@ export {
   CreateBranch,
   CreateGallery,
   ViewGallery,
+  NewUser
 };

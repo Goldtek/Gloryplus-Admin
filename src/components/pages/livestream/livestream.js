@@ -31,7 +31,14 @@ const Livestream = () => {
     e.preventDefault();
     const scheduleObj = serializeForm(e.target, { hash: true });
     try{
-       await firestore.collection("schedule").add(scheduleObj);
+      const streamData = {
+        programTitle: scheduleObj.programTitle,
+        scheduleMonth: scheduleObj.scheduleMonth, 
+        scheduleDate: scheduleObj.scheduleDate, 
+        scheduleTime: scheduleObj.time, 
+        live: scheduleObj.check
+      };
+       await firestore.collection("livestream").doc('Rdk9PSngEiM0x1gFbtOn').update(streamData);
         toast.success("Next Livestream Scheduled successfully", {
                 position: "top-right",
                 autoClose: 5000,
@@ -59,13 +66,19 @@ const Livestream = () => {
   const handleStreaming = async (e) => {
     e.preventDefault();
     const streamObj = serializeForm(e.target, { hash: true });
-    // console.log('split', moment(mydate).format('d'))
-     console.log('streamobj-->', streamObj)
-    return setplaysource(streamObj.streamid);
-    const url = `https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fgloryplusintl%2Fposts%2F${playerSource}&show_text=true`;
+    const url = `https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fgloryplusintl%2Fposts%2F${streamObj.streamid}&show_text=true`;
+
+    setplaysource(streamObj.streamid);
+
+    const streamData = {
+      programTitle: streamObj.programTitle,
+      live: streamObj.check,
+      streamURL: url
+    };
+
     try{
-    //  await firestore.collection("branches").add(values);
-      toast.success("Church Branch Successfully added", {
+     await firestore.collection("livestream").doc('Rdk9PSngEiM0x1gFbtOn').update(streamData);
+      toast.success("LiveStream Successfully Updated and its LIVE!!!!", {
               position: "top-right",
               autoClose: 5000,
               hideProgressBar: false,
@@ -213,7 +226,7 @@ const Livestream = () => {
                           
 
                           <div className="form-group">
-                            <button className="btn btn-primary">Submit</button>
+                            <button className="btn btn-success">Go Live</button>
                           </div>
                         </form>
                       </div>

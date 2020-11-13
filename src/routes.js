@@ -16,7 +16,8 @@ import {
   ListEvent,
   CreateBranch,
   CreateGallery,
-  ViewGallery
+  ViewGallery,
+  NewUser
 } from "./components/pages";
 
 const Routes = () => {
@@ -53,6 +54,10 @@ const Routes = () => {
           <FirstTimers />
         </Route>
 
+        <Route path="/dashboard/mvp/newuser">
+          <NewUser />
+        </Route>
+
         <Route path="/dashboard/gpa/create">
           <CreateCourse />
         </Route>
@@ -84,7 +89,6 @@ const Routes = () => {
         <Route path="/dashboard/gallery/create">
           <CreateGallery />
         </Route>
-
 
         <Route path="/dashboard/gallery/view">
           <ViewGallery />

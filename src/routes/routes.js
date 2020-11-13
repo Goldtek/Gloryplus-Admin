@@ -28,6 +28,7 @@ import {
   MemberLists_MVP,
   FirstTimer,
   PopulateGallery,
+  NewUser
 } from "../components/pages";
 
 const Routes = () => {
@@ -167,6 +168,15 @@ const Routes = () => {
           component={FirstTimer}
           roles={[Role.SA, Role.MVP, Role.ADMIN]}
         />
+
+        <PrivateRoute
+          exact
+          path="/dashboard/mvp/newuser"
+          component={NewUser}
+          roles={[Role.SA, Role.MVP, Role.ADMIN]}
+        />
+
+
         {/* MVP :::::::::::::::::::::::::::::::::::::::::::::: */}
 
         {/* BRANCHES ROUTE ::::::::::::::::::::::::::::::::::::::::::::::::::: */}

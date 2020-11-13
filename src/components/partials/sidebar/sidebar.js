@@ -81,8 +81,13 @@ const SideBar = () => {
           </a>
           <ul id="formsDropdown" className="collapse list-unstyled">
             <li>
-              <a href="/dashboard/first-timers">Create Admin Panel User</a> {/** i dont think there should be  */}
+              <a href="/dashboard/mvp/newuser">Create Admin Panel User</a> 
             </li>
+
+            <li>
+              <a href="/dashboard/first-timers">First Timer</a> {/** i dont think there should be  */}
+            </li>
+
             <li>
               <a href="#!">List of Members</a>
             </li>
