@@ -9,25 +9,25 @@ import './map.css'
 const LocationPin = ({ text }) => (
   <div className="pin">
     <Icon icon={locationIcon} className="pin-icon" />
-    <p className="pin-text">{text}</p>
+    <p className="pin-text">hello ha</p>
   </div>
 )
 
 const Map = ({ location, zoomLevel }) => (
   <div className="map">
     <h2 className="map-h2">Home cell Locations </h2>
-    {console.log('logs--->', process.env.REACT_APP_APIKEY)}
+    {console.log('logs--->', process.env.REACT_APP_MAPKEY)}
 
     <div className="google-map">
       <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.REACT_APP_APIKEY }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_MAPKEY }}
         defaultCenter={location}
         defaultZoom={zoomLevel}
       >
         <LocationPin
           lat={location.lat}
           lng={location.lng}
-          text={location.address}
+         text={location.address}
         />
       </GoogleMapReact>
     </div>

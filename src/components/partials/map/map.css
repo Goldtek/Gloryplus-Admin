@@ -15,7 +15,7 @@
   .pin {
     display: flex;
     align-items: center;
-    width: 180px;
+    width: 100px;
     color: var(--main-blue);
   }
   

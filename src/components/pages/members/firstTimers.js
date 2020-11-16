@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { ToastContainer, toast } from "react-toastify";
 import FormError from "./formError";
@@ -27,14 +27,27 @@ const validationSchema = Yup.object().shape({
 });
 
 function FirstTimers() {
-  const location = {
-    address: '1600 Amphitheatre Parkway, Mountain View, california.',
-    lat: 37.42216,
-    lng: -122.08427,
-  }
+
+  const [location, setLocation] = useState({lat: 6.589953434977126, lng: 3.375679742065203, address: "18 kudirat abiola way" });
+  // const location = {
+  //   address: '1600 Amphitheatre Parkway, Mountain View, california.',
+  //   lat: 37.42216,
+  //   lng: -122.08427,
+  // }
   useEffect(() => {
     document.getElementById("members").classList.add("active");
-  });
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+      setLocation({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+        address: "18 kudirat abiola way" 
+      })
+    });
+
+  },[navigator]);
   return (
     <div className="page">
       <Helmet>
@@ -62,7 +75,7 @@ function FirstTimers() {
                       </h3>
                     </div>
                     <div className="card-body">
-                    <Map location={location} zoomLevel={17} /> {/* include it here */}
+                    <Map location={location} zoomLevel={15} /> {/* include it here */}
                       <Formik
                         initialValues={{
                           firstname: "",
