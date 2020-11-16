@@ -14,7 +14,7 @@ const LocationPin = ({ text }) => (
 )
 
 const Map = ({ location, zoomLevel }) => (
-  <div className="map">
+  <div className="map" style={{ marginBottom: '20px'}}>
     <h2 className="map-h2">Home cell Locations </h2>
     {console.log('logs--->', process.env.REACT_APP_MAPKEY)}
 
