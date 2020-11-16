@@ -17,7 +17,8 @@ import {
   CreateBranch,
   CreateGallery,
   ViewGallery,
-  NewUser
+  NewUser,
+  Users,
 } from "./components/pages";
 
 const Routes = () => {
@@ -54,7 +55,7 @@ const Routes = () => {
           <FirstTimers />
         </Route>
 
-        <Route path="/dashboard/mvp/newuser">
+        <Route path="/dashboard/member/newuser">
           <NewUser />
         </Route>
 
@@ -92,6 +93,10 @@ const Routes = () => {
 
         <Route path="/dashboard/gallery/view">
           <ViewGallery />
+        </Route>
+
+        <Route path="/dashboard/members">
+          <Users />
         </Route>
         {/* PROTECTED ROUTES START HERE #############################################*/}
 

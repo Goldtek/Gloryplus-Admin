@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet";
 import { ToastContainer, toast } from "react-toastify";
-import { Formik } from "formik";
+import { Field, Formik, Form } from "formik";
 import * as Yup from "yup";
 import uuid from "react-uuid";
 import DatePicker from "../event/DatePicker";
@@ -13,7 +13,7 @@ import "./event.css";
 // FILE
 import FormError from "./formError";
 import Thumb from "./thumb";
-import { Header, SideBar, PageHeaderTitle, firestore } from "../../partials";
+import { Header, SideBar, PageHeaderTitle, firestore, ProgressBar } from "../../partials";
 
 const validationSchema = Yup.object().shape({
   file: Yup.mixed().required("image upload is required"),
@@ -23,8 +23,8 @@ const validationSchema = Yup.object().shape({
   details: Yup.string().required("event details is required"),
 });
 
-// const api = axios.create({ baseURL: `http://localhost:3000/course` });
 const CreateGallery = () => {
+    const [url, setUrl] = useState(null);
   useEffect(() => {
     document.getElementById("gallery").classList.add("active");
   });
@@ -34,16 +34,11 @@ const CreateGallery = () => {
       <Helmet>
         <title>Create Gallery</title>
       </Helmet>
-      {/* HEADER PART */}
       <Header />
-      {/* CLOSE HEADER PART */}
-
-      {/* SIDER BAR PART */}
       <div className="page-content d-flex align-items-stretch">
         <SideBar />
 
         <div className="content-inner">
-          {/* <!-- Page Header--> */}
           <PageHeaderTitle title="Dashboard" currpg="Gallery" />
 
           <section className="forms">
@@ -71,13 +66,9 @@ const CreateGallery = () => {
                             method: "POST",
                             url: "http://localhost:3000/event",
                             data: {
-                              id: uuid(),
-                              img: values.file.name,
-                              type: values.file.type,
+                              url: url,
                               title: values.title,
-                              date: values.date,
                               details: values.details,
-                              address: values.address,
                               created: Date.now(),
                             },
                           })
@@ -121,11 +112,10 @@ const CreateGallery = () => {
                             onSubmit={handleSubmit}
                             encType="multipart/form-data"
                           >
-                            <div className="form-group">
+                            <div className="form-group-material">
                             
-                              <input
+                              <Field
                                 type="text"
-                                placeholder="Enter Name of Gallery "
                                 className={
                                   touched.title && errors.title
                                     ? "  input-material  is-invalid"
@@ -137,63 +127,27 @@ const CreateGallery = () => {
                                 value={values.title}
                                 onBlur={handleBlur}
                               />
+                              <label 
+                               htmlFor="title"
+                               className="label-material"
+                              >
+                                Enter Name of Gallery i.e Thanksgiving Service 2020
+                              </label>
                               <FormError
                                 touched={touched.title}
                                 message={errors.title}
                               />
                             </div>
 
-                            <div className="form-group ">
-                              <label className="form-control-label">
-                                Event Date
-                              </label>
-
-                              <DatePicker
-                                className={
-                                  touched.date && errors.date
-                                    ? "input-material  is-invalid date"
-                                    : "input-material date"
-                                }
-                                name="date"
-                                showTimeSelect
-                                dateFormat="Pp"
-                              />
-                            </div>
-
-                            <div className="form-group col-12">
-                              <label className="form-control-label">
-                                Event Address
-                              </label>
-                              <textarea
-                                className={
-                                  touched.address && errors.address
-                                    ? "  form-control  is-invalid"
-                                    : "form-control"
-                                }
-                                placeholder="address"
-                                name="address"
-                                onChange={handleChange}
-                                value={values.address}
-                                onBlur={handleBlur}
-                              ></textarea>
-                              <FormError
-                                touched={touched.address}
-                                message={errors.address}
-                              />
-                            </div>
-
                             {/* EVENT DETAILS */}
                             <div className="form-group">
-                              <label className="form-control-label">
-                                Event Details
-                              </label>
                               <textarea
                                 className={
                                   touched.details && errors.details
                                     ? "  form-control  is-invalid"
                                     : "form-control"
                                 }
-                                placeholder="address"
+                                placeholder="Event Details"
                                 name="details"
                                 onChange={handleChange}
                                 value={values.details}
@@ -226,6 +180,7 @@ const CreateGallery = () => {
                                 onBlur={handleBlur}
                               />
                               <Thumb file={values.file} />
+                              {values.file && <ProgressBar file={values.file} setUrl={setUrl} directory="gallery" />}
                               <FormError
                                 touched={touched.file}
                                 message={errors.file}

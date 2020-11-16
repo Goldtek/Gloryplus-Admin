@@ -1,13 +1,11 @@
 import React, { useEffect, useState, use } from "react";
-import axios from "axios";
+import moment from "moment";
 import { Helmet } from "react-helmet";
 import { ToastContainer, toast } from "react-toastify";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import uuid from "react-uuid";
 import DatePicker from "../event/DatePicker";
 import "react-datepicker/dist/react-datepicker.css";
-// CSS
 import "react-toastify/dist/ReactToastify.css";
 import "./event.css";
 // FILE
@@ -19,9 +17,9 @@ import { Header, SideBar, PageHeaderTitle, firestore, ProgressBar } from "../../
 const validationSchema = Yup.object().shape({
   file: Yup.mixed().required("image upload is required"),
   title: Yup.string().required("event title is required"),
-  address: Yup.string().required("event address is required"),
+  location: Yup.string().required("event address is required"),
   date: Yup.string().required("event date is required"),
-  details: Yup.string().required("event details is required"),
+  description: Yup.string().required("event details is required"),
 });
 
 const CreateEvent = () => {
@@ -81,9 +79,9 @@ const CreateEvent = () => {
                       <Formik
                         initialValues={{
                           file: "",
-                          address: "",
+                          location: "",
                           date: "",
-                          details: "",
+                          description: "",
                           title: "",
                         }}
                         validationSchema={validationSchema}
@@ -92,18 +90,25 @@ const CreateEvent = () => {
                           if(url == null){
                             return;
                           }
+                          const event = new Date(values.date);
+                        console.log('month',moment(values.date).format('MMMM'));
+                       return console.log('year',moment(values.date).format('yyyy'));
                           try {
                             const data = {
                                 img: url,
                                 title: values.title,
                                 date: values.date,
+                                month: moment(values.date).format('MMMM'),
+                                year: moment().format(values.date,'yyyy'),
+                                time: event.toLocaleTimeString('it-IT'),
                                 details: values.details,
-                                address: values.address,
+                                location: values.location,
                                 created: Date.now(), 
+                                status: "active",
                               };
                               await firestore.collection("events").add(data);
                           
-                              toast.success("course Successfully added", {
+                              toast.success("Event Successfully added", {
                                 position: "top-right",
                                 autoClose: 5000,
                                 hideProgressBar: false,
@@ -185,19 +190,19 @@ const CreateEvent = () => {
                               </label>
                               <textarea
                                 className={
-                                  touched.address && errors.address
+                                  touched.location && errors.location
                                     ? "  form-control  is-invalid"
                                     : "form-control"
                                 }
-                                placeholder="address"
-                                name="address"
+                                placeholder="location"
+                                name="location"
                                 onChange={handleChange}
                                 value={values.address}
                                 onBlur={handleBlur}
                               ></textarea>
                               <FormError
-                                touched={touched.address}
-                                message={errors.address}
+                                touched={touched.location}
+                                message={errors.location}
                               />
                             </div>
 
@@ -208,19 +213,19 @@ const CreateEvent = () => {
                               </label>
                               <textarea
                                 className={
-                                  touched.details && errors.details
+                                  touched.description && errors.description
                                     ? "  form-control  is-invalid"
                                     : "form-control"
                                 }
-                                placeholder="address"
-                                name="details"
+                                placeholder="description"
+                                name="description"
                                 onChange={handleChange}
-                                value={values.details}
+                                value={values.description}
                                 onBlur={handleBlur}
                               ></textarea>
                               <FormError
-                                touched={touched.details}
-                                message={errors.details}
+                                touched={touched.description}
+                                message={errors.description}
                               />
                             </div>
                             <div className="form-group">

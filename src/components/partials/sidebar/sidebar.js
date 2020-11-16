@@ -81,7 +81,7 @@ const SideBar = () => {
           </a>
           <ul id="formsDropdown" className="collapse list-unstyled">
             <li>
-              <a href="/dashboard/mvp/newuser">Create Admin Panel User</a> 
+              <a href="/dashboard/member/newuser">Create Admin Panel User</a> 
             </li>
 
             <li>
@@ -89,7 +89,7 @@ const SideBar = () => {
             </li>
 
             <li>
-              <a href="#!">List of Members</a>
+              <a href="/dashboard/members">List of Members</a>
             </li>
           </ul>
         </li>

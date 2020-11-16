@@ -1,14 +1,12 @@
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { ToastContainer, toast } from "react-toastify";
-import axios from "axios";
-import uuid from "react-uuid";
 import FormError from "./formError";
 // import Thumb from "./thumb";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 // import { Link } from "react-router-dom";
-import { Header, SideBar, PageHeaderTitle, Footer, firestore } from "../../partials";
+import { Header, SideBar, PageHeaderTitle, Footer, firestore, Map } from "../../partials";
 // import Content from "../main";
 import "./form.css";
 
@@ -20,13 +18,20 @@ const validationSchema = Yup.object().shape({
   gender: Yup.string().required("gender is required"),
   address: Yup.string().required("address is required"),
   phone: Yup.number("must be a phone number").required("phone is required"),
-  cell: Yup.string().required("cell is required"),
+  bustop: Yup.string().required("Nearest bustop is required"),
   city: Yup.string().required("city is required "),
   state: Yup.string().required("state is required"),
+  country: Yup.string().required("country is required"),
   email: Yup.string().email("Invalid email").required("Required"),
+  age: Yup.string().required("Age is Required"),
 });
 
 function FirstTimers() {
+  const location = {
+    address: '1600 Amphitheatre Parkway, Mountain View, california.',
+    lat: 37.42216,
+    lng: -122.08427,
+  }
   useEffect(() => {
     document.getElementById("members").classList.add("active");
   });
@@ -44,10 +49,8 @@ function FirstTimers() {
         <SideBar />
 
         <div className="content-inner">
-          {/* <!-- Page Header--> */}
           <PageHeaderTitle title="First Timer" currpg="First Timer" />
-          {/* FIRST TIMER CONTENT */}
-          {/* <!-- Forms Section--> */}
+          
           <section className="forms">
             <div className="container-fluid">
               <div className="row">
@@ -55,13 +58,14 @@ function FirstTimers() {
                   <div className="card">
                     <div className="card-header d-flex align-items-center">
                       <h3 className="h4">
-                        New Convert - <small>First Timer</small>
+                        MVP - <small>First Timer</small>
                       </h3>
                     </div>
                     <div className="card-body">
+                    <Map location={location} zoomLevel={17} /> {/* include it here */}
                       <Formik
                         initialValues={{
-                          name: "",
+                          firstname: "",
                           gender: "",
                           email: "",
                           phone: "",
@@ -70,37 +74,46 @@ function FirstTimers() {
                           state: "",
                           cell: "",
                           comment: "",
+                          surname: '',
+                          age: ""
                         }}
                         validationSchema={validationSchema}
-                        onSubmit={(values, { setSubmitting, resetForm }) => {
+                        onSubmit={async (values, { setSubmitting, resetForm }) => {
                           setSubmitting(true);
-                          // const courseObj = {
-                          //   id: uuid(),
-                          //   file: values.file.name,
-                          //   coursetitle: values.coursetitle,
-                          //   type: values.file.type,
-                          // };
+                        
+                          try{
 
-                          axios({
-                            method: "POST",
-                            url: "http://localhost:3000/firstTimer",
-                            data: {
-                              id: uuid(),
-                              name: values.name,
+                            const user =  {
+                              firstname: values.name,
                               gender: values.gender,
                               email: values.email,
                               phone: values.phone,
                               address: values.address,
                               city: values.city,
                               state: values.state,
-                              cell: values.cell,
+                              country: values.country,
+                              bustop: values.bustop,
                               comment: values.comment,
-                            },
-                          })
-                            .then((res) => {
-                              resetForm();
-                              setSubmitting(false);
-                              toast.success("First Timers Successfully added", {
+                              role: 'firstTimer',
+                              surname: values.surname,
+                              age: values.age
+                              };
+                            
+                                await firestore.collection('users').add(user);
+                                resetForm();
+                                setSubmitting(false);
+                                toast.success("First Timers Successfully added", {
+                                    position: "top-right",
+                                    autoClose: 5000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                  });
+
+                        } catch (error) {
+                            toast.error(`${error}`, {
                                 position: "top-right",
                                 autoClose: 5000,
                                 hideProgressBar: false,
@@ -109,18 +122,8 @@ function FirstTimers() {
                                 draggable: true,
                                 progress: undefined,
                               });
-                            })
-                            .catch((err) => {
-                              toast.error(`${err}`, {
-                                position: "top-right",
-                                autoClose: 5000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                              });
-                            });
+                        }
+
                         }}
                       >
                         {({
@@ -141,33 +144,66 @@ function FirstTimers() {
  </label> */}
                               <div className="col-sm-12 col-md-12 col-lg-12">
                                 <div className="row">
-                                  <div className="col-md-12 col-sm-12 col-lg-8 col-xs-8">
+
+                                <div className="col-md-4 col-sm-12 col-lg-4 col-xs-12">
                                     <div className="form-group-material">
                                       <Field
-                                        id="name"
+                                        id="surname"
                                         type="text"
-                                        name="name"
+                                        name="surname"
+                                        className={
+                                          touched.surname && errors.surname
+                                            ? "input-material is-invalid"
+                                            : "input-material"
+                                        }
+                                        onChange={handleChange}
+                                        value={values.surname}
+                                        onBlur={handleBlur}
+                                      />
+                                      <FormError
+                                        touched={touched.surname}
+                                        message={errors.surname}
+                                      />
+                                      <label
+                                        htmlFor="name"
+                                        className="label-material"
+                                      >
+                                        Surname
+                                      </label>
+                                    </div>
+                                  </div>
+
+
+                                  <div className="col-md-4 col-sm-12 col-lg-4 col-xs-8">
+                                    <div className="form-group-material">
+                                      <Field
+                                        id="firstname"
+                                        type="text"
+                                        name="firstname"
                                         className={
                                           touched.name && errors.name
                                             ? "input-material is-invalid"
                                             : "input-material"
                                         }
                                         onChange={handleChange}
-                                        value={values.name}
+                                        value={values.firstname}
                                         onBlur={handleBlur}
                                       />
                                       <FormError
-                                        touched={touched.name}
-                                        message={errors.name}
+                                        touched={touched.firstname}
+                                        message={errors.firstname}
                                       />
                                       <label
                                         htmlFor="name"
                                         className="label-material"
                                       >
-                                        Full Name -<small>surname first</small>
+                                        Firstname
                                       </label>
                                     </div>
                                   </div>
+
+
+                              
 
                                   <div className="col-md-12 col-sm-12 col-lg-4 col-xs-4">
                                     <div class="select input-material">
@@ -196,7 +232,36 @@ function FirstTimers() {
                                     </div>
                                   </div>
 
-                                  <div className="col-sm-12 col-md-6 col-lg-6">
+                                  <div className="col-sm-12 col-md-4 col-lg-4">
+                                    <div className="form-group-material">
+                                      <Field
+                                        id="age"
+                                        type="text"
+                                        name="age"
+                                        className={
+                                          touched.age && errors.age
+                                            ? "input-material is-invalid"
+                                            : "input-material "
+                                        }
+                                        onChange={handleChange}
+                                        value={values.age}
+                                        onBlur={handleBlur}
+                                      />
+                                      <FormError
+                                        touched={touched.age}
+                                        message={errors.age}
+                                      />
+                                      <label
+                                        htmlFor="email"
+                                        className="label-material"
+                                      >
+                                        Age
+                                      </label>
+                                    </div>
+                                  </div>
+
+
+                                  <div className="col-sm-12 col-md-4 col-lg-4">
                                     <div className="form-group-material">
                                       <Field
                                         id="email"
@@ -223,7 +288,9 @@ function FirstTimers() {
                                       </label>
                                     </div>
                                   </div>
-                                  <div className="col-sm-12 col-md-6 col-lg-6">
+
+
+                                  <div className="col-sm-12 col-md-4 col-lg-4">
                                     <div className="form-group-material">
                                       <Field
                                         id="phone"
@@ -250,105 +317,142 @@ function FirstTimers() {
                                       </label>
                                     </div>
                                   </div>
-                                  <div className="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                                  <div className="col-md-6 col-sm-12 col-lg-7 col-xs-12">
                                     <div className="form-group-material">
-                                      <textarea
+                                      <Field
                                         className={
                                           touched.address && errors.address
-                                            ? "form-control is-invalid"
-                                            : "form-control "
+                                            ? "input-material is-invalid"
+                                            : "input-material"
                                         }
-                                        placeholder="address"
-                                        rows="1"
+                                      
                                         name="address"
                                         onChange={handleChange}
                                         value={values.address}
                                         onBlur={handleBlur}
-                                      ></textarea>
+                                      />
                                       <FormError
                                         touched={touched.address}
                                         message={errors.address}
                                       />
+                                       <label
+                                        htmlFor="phone"
+                                        className="label-material"
+                                      >
+                                        Home Address
+                                      </label>
                                     </div>
                                   </div>
-                                  <div className="col-sm-12 col-md-2 col-lg-2">
-                                    <div className="form-group-material">
-                                      <Field
-                                        id="city"
-                                        type="text"
-                                        name="city"
+                                  <div className="col-md-4 col-sm-11 col-lg-4 col-xs-12">
+                                    <div class="select input-material">
+                                      <select
                                         className={
-                                          touched.city && errors.city
-                                            ? "input-material is-invalid"
-                                            : "input-material "
+                                          touched.country && errors.country
+                                            ? "input-material select-text is-invalid"
+                                            : "input-material select-text"
                                         }
+                                        name="country"
+                                        onChange={handleChange}
+                                        value={values.country}
+                                        onBlur={handleBlur}
+                                      >
+                                        <option>Country</option>
+
+                                        <option value="male">Nigeria</option>
+                                        
+                                      </select>
+                                      <span class="select-highlight"></span>
+                                      <span class="select-bar"></span>
+                                      <FormError
+                                        touched={touched.country}
+                                        message={errors.country}
+                                      />
+                                      {/* <label class="select-label">state</label> */}
+                                    </div>
+                                  </div>
+                 
+
+                                  <div className="col-md-4 col-sm-11 col-lg-4 col-xs-6">
+                                    <div class="select input-material">
+                                      <select
+                                        className={
+                                          touched.state && errors.state
+                                            ? "input-material select-text is-invalid"
+                                            : "input-material select-text"
+                                        }
+                                        name="state"
+                                        onChange={handleChange}
+                                        value={values.state}
+                                        onBlur={handleBlur}
+                                      >
+                                        <option>State</option>
+
+                                        <option value="male">Lagos</option>
+                                        
+                                      </select>
+                                      <span class="select-highlight"></span>
+                                      <span class="select-bar"></span>
+                                      <FormError
+                                        touched={touched.state}
+                                        message={errors.state}
+                                      />
+                                      {/* <label class="select-label">state</label> */}
+                                    </div>
+                                  </div>
+
+
+                                  <div className="col-md-4 col-sm-12 col-lg-4 col-xs-6">
+                                    <div class="select input-material">
+                                      <select
+                                        className={
+                                          touched.state && errors.state
+                                            ? "input-material select-text is-invalid"
+                                            : "input-material select-text"
+                                        }
+                                        name="city"
                                         onChange={handleChange}
                                         value={values.city}
                                         onBlur={handleBlur}
-                                      />
+                                      >
+                                        <option>City</option>
+
+                                        <option value="male">Ikeja</option>
+
+                                      </select>
+                                      <span class="select-highlight"></span>
+                                      <span class="select-bar"></span>
                                       <FormError
                                         touched={touched.city}
                                         message={errors.city}
                                       />
-                                      <label
-                                        htmlFor="city"
-                                        className="label-material"
-                                      >
-                                        City
-                                      </label>
+                                      {/* <label class="select-label">city</label> */}
                                     </div>
                                   </div>
-                                  <div className="col-sm-12 col-md-2 col-lg-2">
+
+                                  <div className="col-sm-12 col-md-4 col-lg-4">
                                     <div className="form-group-material">
                                       <Field
-                                        id="state"
+                                        id="bustop"
                                         type="text"
-                                        name="state"
-                                        className={
-                                          touched.state && errors.state
-                                            ? "input-material is-invalid"
-                                            : "input-material "
-                                        }
-                                        onChange={handleChange}
-                                        value={values.state}
-                                        onBlur={handleBlur}
-                                      />
-                                      <label
-                                        htmlFor="state"
-                                        className="label-material"
-                                      >
-                                        <FormError
-                                          touched={touched.state}
-                                          message={errors.state}
-                                        />
-                                        State
-                                      </label>
-                                    </div>
-                                  </div>
-                                  <div className="col-sm-12 col-md-2 col-lg-2">
-                                    <div className="form-group-material">
-                                      <Field
-                                        id="cell"
-                                        type="text"
-                                        name="cell"
+                                        name="bustop"
                                         className={
                                           touched.cell && errors.cell
                                             ? "input-material is-invalid"
                                             : "input-material "
                                         }
                                         onChange={handleChange}
-                                        value={values.cell}
+                                        value={values.bustop}
                                         onBlur={handleBlur}
                                       />
                                       <FormError
-                                        touched={touched.cell}
-                                        message={errors.cell}
+                                        touched={touched.bustop}
+                                        message={errors.bustop}
                                       />
                                       <label
                                         htmlFor="cell"
                                         className="label-material"
                                       >
-                                        Cell
+                                        Nearest bustop
                                       </label>
                                     </div>
                                   </div>
@@ -367,7 +471,7 @@ function FirstTimers() {
                                         htmlFor="comment"
                                         className="label-material"
                                       >
-                                        Comment - <small>optional</small>
+                                        Comment - <small>about the church</small>
                                       </label>
                                     </div>
                                   </div>

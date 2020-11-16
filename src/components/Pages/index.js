@@ -8,11 +8,12 @@ import Profile from "./profile";
 import ListCourse from "./gpa/viewCourses";
 import FirstTimers from "./members/firstTimers";
 import NewUser from "./members/newUser";
-import SecondTimers from "./members/secondTimer";
+import Users from "./members/users";
 import CreateEvent from "./event/createEvent";
 import ListEvent from "./event/listEvent";
 import CreateBranch from "./branches/createBranch";
 import { CreateGallery, ViewGallery } from "./gallery";
+
 
 export {
   Login,
@@ -24,11 +25,11 @@ export {
   Profile,
   ListCourse,
   FirstTimers,
-  SecondTimers,
   CreateEvent,
   ListEvent,
   CreateBranch,
   CreateGallery,
   ViewGallery,
-  NewUser
+  NewUser,
+  Users
 };

@@ -64,7 +64,6 @@ function CreateBranch() {
                           address: "",
                           city: "",
                           state: "",
-                          comment: "",
                           country: "",
                         }}
                         validationSchema={validationSchema}
@@ -230,11 +229,11 @@ function CreateBranch() {
                                   </div>
                                   <div className="col-md-8 col-sm-12 col-lg-8 col-xs-12">
                                     <div className="form-group-material">
-                                      <textarea
+                                      <Field
                                         className={
                                           touched.address && errors.address
-                                            ? "form-control is-invalid"
-                                            : "form-control "
+                                          ? "input-material is-invalid"
+                                          : "input-material "
                                         }
                                         placeholder=" Branch address"
                                         rows="1"
@@ -242,7 +241,7 @@ function CreateBranch() {
                                         onChange={handleChange}
                                         value={values.address}
                                         onBlur={handleBlur}
-                                      ></textarea>
+                                      />
                                       <FormError
                                         touched={touched.address}
                                         message={errors.address}
@@ -250,7 +249,7 @@ function CreateBranch() {
                                     </div>
                                   </div>
 
-                                  <div className="col-md-3 col-sm-12 col-lg-3 col-xs-4">
+                                  <div className="col-md-3 col-sm-11 col-lg-3 col-xs-12">
                                     <div class="select input-material">
                                       <select
                                         className={
@@ -278,7 +277,7 @@ function CreateBranch() {
                                     </div>
                                   </div>
 
-                                  <div className="col-md-3 col-sm-12 col-lg-3 col-xs-4">
+                                  <div className="col-md-4 col-sm-11 col-lg-4 col-xs-6">
                                     <div class="select input-material">
                                       <select
                                         className={
@@ -306,7 +305,7 @@ function CreateBranch() {
                                     </div>
                                   </div>
 
-                                  <div className="col-md-3 col-sm-12 col-lg-3 col-xs-4">
+                                  <div className="col-md-6 col-sm-12 col-lg-6 col-xs-6">
                                     <div class="select input-material">
                                       <select
                                         className={
@@ -334,27 +333,9 @@ function CreateBranch() {
                                     </div>
                                   </div>
                                   
-                                  <div className="col-sm-12 col-md-12 col-lg-12">
-                                    <div className="form-group-material">
-                                      <Field
-                                        id="comment"
-                                        type="text"
-                                        name="comment"
-                                        className="input-material"
-                                        onChange={handleChange}
-                                        value={values.comment}
-                                        onBlur={handleBlur}
-                                      />
-                                      <label
-                                        htmlFor="comment"
-                                        className="label-material"
-                                      >
-                                        Comment - <small>optional</small>
-                                      </label>
-                                    </div>
-                                  </div>
-                                  <div className="form-group row">
-                                    <div className="col-sm-12 offset-sm-3">
+                            
+                                  <div className="row" style={{ marginTop: '60px'}}>
+                                    <div className="col-lg-12">
                                       <button
                                         type="reset"
                                         className="btn btn-secondary"
