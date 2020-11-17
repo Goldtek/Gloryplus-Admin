@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { ToastContainer, toast } from "react-toastify";
 import FormError from "./formError";
-// import Thumb from "./thumb";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-// import { Link } from "react-router-dom";
+import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
 import { Header, SideBar, PageHeaderTitle, Footer, firestore, Map } from "../../partials";
-// import Content from "../main";
+
 import "./form.css";
 
 const validationSchema = Yup.object().shape({
@@ -28,26 +27,39 @@ const validationSchema = Yup.object().shape({
 
 function FirstTimers() {
 
-  const [location, setLocation] = useState({lat: 6.589953434977126, lng: 3.375679742065203, address: "18 kudirat abiola way" });
-  // const location = {
-  //   address: '1600 Amphitheatre Parkway, Mountain View, california.',
-  //   lat: 37.42216,
-  //   lng: -122.08427,
-  // }
+  const [currentLocation, setLocation] = useState({lat: 6.589953434977126, lng: 3.375679742065203 });
+  const [memberLocation, setMemberLocatio] = useState({});
+  const locations = [{ lat: 6.605874, lng: 3.349149}, { lat: 6.6289, lng: 3.338}, { lat: 6.6388, lng: 6.6388}, { lat: 6.4664, lng: 3.2835}, { lat: 6.5749, lng: 3.3918}]
+
   useEffect(() => {
     document.getElementById("members").classList.add("active");
 
     navigator.geolocation.getCurrentPosition(function(position) {
-      console.log("Latitude is :", position.coords.latitude);
-      console.log("Longitude is :", position.coords.longitude);
       setLocation({
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-        address: "18 kudirat abiola way" 
+       lat: position.coords.latitude,
+       lng: position.coords.longitude, 
       })
     });
 
   },[navigator]);
+
+ 
+  const handleSelect = address => {
+    geocodeByAddress(address)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => console.log('Success', latLng))
+      .catch(error => console.error('Error', error));
+  };
+
+  const handleChange = e => {
+    console.log('ee-->', e);
+  }
+
+
+  const handleValue = e => {
+    console.log('value', e)
+  }
+  
   return (
     <div className="page">
       <Helmet>
@@ -75,7 +87,7 @@ function FirstTimers() {
                       </h3>
                     </div>
                     <div className="card-body">
-                    <Map location={location} zoomLevel={15} /> {/* include it here */}
+                    <Map locations={locations} zoomLevel={11} currentLocation={currentLocation} memberLocation={memberLocation}/> {/* include it here */}
                       <Formik
                         initialValues={{
                           firstname: "",
@@ -152,11 +164,18 @@ function FirstTimers() {
                             {/* <div className="line"></div> */}
 
                             <div className="row">
-                              {/* <label className="col-sm-3 form-control-label">
-   Material Inputs
- </label> */}
+                
                               <div className="col-sm-12 col-md-12 col-lg-12">
                                 <div className="row">
+
+                                <div className="col-sm-12 col-md-12 col-lg-12">
+                                    <GooglePlacesAutocomplete
+                                        apiKey={process.env.REACT_APP_MAPKEY}
+                                        onChange={handleChange}
+                                        onSelect={handleSelect}
+                                        value={handleValue}
+                                      />
+                                </div>
 
                                 <div className="col-md-4 col-sm-12 col-lg-4 col-xs-12">
                                     <div className="form-group-material">
@@ -469,6 +488,8 @@ function FirstTimers() {
                                       </label>
                                     </div>
                                   </div>
+                                 
+
                                   <div className="col-sm-12 col-md-12 col-lg-12">
                                     <div className="form-group-material">
                                       <Field

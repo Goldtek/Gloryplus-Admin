@@ -6,29 +6,32 @@ import locationIcon from '@iconify/icons-mdi/map-marker'
 
 import './map.css'
 
+
 const LocationPin = ({ text }) => (
   <div className="pin">
-    <Icon icon={locationIcon} className="pin-icon" />
-    <p className="pin-text">hello ha</p>
+    {/* <Icon icon={locationIcon} className="pin-icon" /> */}
+    <img src="img/cell.png" style={{ width: '40px', height: "40px"}} />
   </div>
 )
 
-const Map = ({ location, zoomLevel }) => (
-  <div className="map" style={{ marginBottom: '20px'}}>
-    <h2 className="map-h2">Home cell Locations </h2>
-    {console.log('logs--->', process.env.REACT_APP_MAPKEY)}
+const Map = ({ locations, zoomLevel, currentLocation }) => (
+  <div className="map" style={{marginBottom: '20px' }}>
+    <h2 className="map-h2"> GloryPlus Home cell Locations </h2>
 
     <div className="google-map">
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_MAPKEY }}
-        defaultCenter={location}
+        defaultCenter={currentLocation}
         defaultZoom={zoomLevel}
       >
-        <LocationPin
-          lat={location.lat}
-          lng={location.lng}
-         text={location.address}
-        />
+          {locations.map(location => (
+              <LocationPin
+              lat={location.lat}
+              lng={location.lng}
+             text={location.address}
+            />
+          ))}
+        
       </GoogleMapReact>
     </div>
   </div>

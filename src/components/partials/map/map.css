@@ -20,11 +20,14 @@
   }
   
   .pin-icon {
-    font-size: 4rem;
+    font-size: 1rem;
   }
   
   .pin-text {
-    font-size: 1.3em;
+    font-size: 3.3em;
+    color: yellowgreen;
+
+
   }
   
   @media screen and (min-width: 799px) {
