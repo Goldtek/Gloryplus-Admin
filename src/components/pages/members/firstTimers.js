@@ -5,12 +5,17 @@ import FormError from "./formError";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
-import { Header, SideBar, PageHeaderTitle, Footer, firestore, Map } from "../../partials";
 
+import { Header, SideBar, PageHeaderTitle, Footer, firestore, Map } from "../../partials";
+import { geocoder } from '../../util';
 import "./form.css";
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string()
+  surname: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("name is required"),
+    firstname: Yup.string()
     .min(2, "Too Short!")
     .max(50, "Too Long!")
     .required("name is required"),
@@ -28,18 +33,20 @@ const validationSchema = Yup.object().shape({
 function FirstTimers() {
 
   const [currentLocation, setLocation] = useState({lat: 6.589953434977126, lng: 3.375679742065203 });
-  const [memberLocation, setMemberLocatio] = useState({});
-  const locations = [{ lat: 6.605874, lng: 3.349149}, { lat: 6.6289, lng: 3.338}, { lat: 6.6388, lng: 6.6388}, { lat: 6.4664, lng: 3.2835}, { lat: 6.5749, lng: 3.3918}]
+  const [value, setValue] = useState({});
+  const locations = [{ lat: 6.605874, lng: 3.349149, name: 'chisom dike', address:'mylocation', rating: 5}, { lat: 6.6289, lng: 3.338,  name: 'chisom dike', address:'mylocation',rating: 5}, 
+  { lat: 6.6388, lng: 6.6388,  name: 'chisom dike', address:'mylocation', rating: 5}, 
+  { lat: 6.4664, lng: 3.2835, name: 'chisom dike', address:'mylocation', rating: 4}, { lat: 6.5749, lng: 3.3918,  name: 'chisom dike', address:'mylocation', rating: 2}, {lat: 6.589953434977126, lng: 3.375679742065203,  name: 'chisom dike', address:'mylocation', rating: 3 }]
 
   useEffect(() => {
     document.getElementById("members").classList.add("active");
 
-    navigator.geolocation.getCurrentPosition(function(position) {
-      setLocation({
-       lat: position.coords.latitude,
-       lng: position.coords.longitude, 
-      })
-    });
+    // navigator.geolocation.getCurrentPosition(function(position) {
+    //   setLocation({
+    //    lat: position.coords.latitude,
+    //    lng: position.coords.longitude, 
+    //   })
+    // });
 
   },[navigator]);
 
@@ -50,15 +57,6 @@ function FirstTimers() {
       .then(latLng => console.log('Success', latLng))
       .catch(error => console.error('Error', error));
   };
-
-  const handleChange = e => {
-    console.log('ee-->', e);
-  }
-
-
-  const handleValue = e => {
-    console.log('value', e)
-  }
   
   return (
     <div className="page">
@@ -87,7 +85,16 @@ function FirstTimers() {
                       </h3>
                     </div>
                     <div className="card-body">
-                    <Map locations={locations} zoomLevel={11} currentLocation={currentLocation} memberLocation={memberLocation}/> {/* include it here */}
+                    <Map locations={locations} zoomLevel={11} currentLocation={currentLocation} memberLocation={value}/> {/* include it here */}
+                    <div className="col-sm-12 col-md-12 col-lg-12">
+                                    <GooglePlacesAutocomplete
+                                        apiKey={process.env.REACT_APP_MAPKEY}
+                                        selectProps={{
+                                          value,
+                                          onChange: setValue,
+                                        }}
+                                      />
+                                </div>
                       <Formik
                         initialValues={{
                           firstname: "",
@@ -100,7 +107,8 @@ function FirstTimers() {
                           cell: "",
                           comment: "",
                           surname: '',
-                          age: ""
+                          age: "",
+                          location: ""
                         }}
                         validationSchema={validationSchema}
                         onSubmit={async (values, { setSubmitting, resetForm }) => {
@@ -108,6 +116,7 @@ function FirstTimers() {
                         
                           try{
 
+                           return console.log('locations', await geocoder.geocode(values.address))
                             const user =  {
                               firstname: values.name,
                               gender: values.gender,
@@ -168,14 +177,7 @@ function FirstTimers() {
                               <div className="col-sm-12 col-md-12 col-lg-12">
                                 <div className="row">
 
-                                <div className="col-sm-12 col-md-12 col-lg-12">
-                                    <GooglePlacesAutocomplete
-                                        apiKey={process.env.REACT_APP_MAPKEY}
-                                        onChange={handleChange}
-                                        onSelect={handleSelect}
-                                        value={handleValue}
-                                      />
-                                </div>
+                              
 
                                 <div className="col-md-4 col-sm-12 col-lg-4 col-xs-12">
                                     <div className="form-group-material">

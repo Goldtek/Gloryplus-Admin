@@ -4,15 +4,15 @@ const options = {
   provider: 'google',
  
   // Optional depending on the providers
-  fetch: customFetchImplementation,
-  apiKey: 'YOUR_API_KEY', // for Mapquest, OpenCage, Google Premier
+  // fetch: customFetchImplementation,
+  apiKey: process.env.REACT_APP_MAPKEY, // for Mapquest, OpenCage, Google Premier
   formatter: null // 'gpx', 'string', ...
 };
  
-const geocoder = NodeGeocoder(options);
+export const geocoder = NodeGeocoder(options);
  
 // Using callback
-const res = await geocoder.geocode('29 champs elysée paris');
+
  
 // output :
 // [
