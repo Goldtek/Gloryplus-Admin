@@ -63,8 +63,8 @@ function ViewBranch() {
                                         </thead>
                                         
                                             <tbody>
-                                                {branches.map((branch) => ( 
-                                                <tr>
+                                                {branches.map((branch, index) => ( 
+                                                <tr key={index}>
                                                    
                                                 <td>
                                                     <img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt=""/>
