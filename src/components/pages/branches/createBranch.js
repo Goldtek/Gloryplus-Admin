@@ -1,12 +1,9 @@
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { ToastContainer, toast } from "react-toastify";
-import uuid from "react-uuid";
 import FormError from "./formError";
-// import Thumb from "./thumb";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-// import { Link } from "react-router-dom";
 import { Header, SideBar, PageHeaderTitle, Footer, firestore } from "../../partials";
 import "./form.css";
 
@@ -363,11 +360,8 @@ function CreateBranch() {
             </div>
           </section>
           <Footer />
-          {/* <!-- Page Footer--> */}
-          {/* FIRST TIMER CONTENT */}
         </div>
       </div>
-      {/* CLOSE SIDE BAR */}
       <ToastContainer />
     </div>
   );

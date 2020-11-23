@@ -1,3 +1,6 @@
+import { firestore } from '../partials';
+
+
 const NodeGeocoder = require('node-geocoder');
  
 const options = {
@@ -10,6 +13,68 @@ const options = {
 };
  
 export const geocoder = NodeGeocoder(options);
+
+export const subscribeCollectionById = (params, Callback) => {
+  const { docId, collectionName } = params;
+  if (!docId) {
+    return null;
+  }
+  try {
+    return firestore
+      .collection(collectionName)
+      .doc(docId)
+      .onSnapshot(
+        (doc) => {
+          if (!doc.exists) {
+            if (Callback) {
+              Callback(null);
+            }
+            return;
+          }
+          const data = {
+            id: doc.id,
+            ...doc.data(),
+          };
+          if (Callback) {
+            Callback(data);
+          }
+        },
+        (error) => {
+          console.log('error', error);
+        },
+      );
+  } catch (error) {
+    console.log('error', error);
+  
+  }
+  return null;
+};
+
+export const subscribeCollection =async (collectionName, Callback) => {
+
+  try {
+    return firestore
+      .collection(collectionName)
+      .onSnapshot(
+        (docs) => {
+          if (Callback) {
+            Callback(docs);
+          }
+        },
+        (error) => {
+          console.log('error', error);
+        },
+      );
+  } catch (error) {
+    console.log('error', error);
+  
+  }
+  return null;
+};
+
+export const handleError = (error) => {
+  console.log('Error Subscribing: ', error);
+};
  
 // Using callback
 

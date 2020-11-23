@@ -22,13 +22,12 @@ const SideBar = () => {
           <p>Super Admin</p>
         </div>
       </div>
-      {/* <!-- Sidebar Navidation Menus--> */}
-      <span className="heading">Main</span>
+
       <ul className="list-unstyled">
         <li id="home">
           <a href="/dashboard">
             {" "}
-            <i className="fa fa-fire"></i>Home{" "}
+            <i className="fa fa-fire"></i>Dashboard{" "}
           </a>
         </li>
         <li id="branch">
@@ -40,10 +39,26 @@ const SideBar = () => {
               <a href="/dashboard/branch/create">Create New Branch</a>
             </li>
             <li>
-              <a href="#!">List of Branches</a>
+              <a href="/dashboard/branches">List of Branches</a>
             </li>
           </ul>
         </li>
+
+        <li id="cell">
+          <a href="#cellDropdown" aria-expanded="false" data-toggle="collapse">
+            <i className="icon-padnote"></i>Cell
+          </a>
+          <ul id="cellDropdown" className="collapse list-unstyled">
+            <li>
+              <a href="/dashboard/cell/create">Create Cell</a>
+            </li>
+            <li>
+              <a href="#!">List of Cells</a>
+            </li>
+          </ul>
+        </li>
+
+
         <li id="livestream">
           <a
             href="#tablesDropdown"
@@ -86,6 +101,9 @@ const SideBar = () => {
 
             <li>
               <a href="/dashboard/first-timers">First Timer</a> {/** i dont think there should be  */}
+            </li>
+            <li>
+              <a href="/dashboard/mvp">List of MVPs</a>
             </li>
 
             <li>

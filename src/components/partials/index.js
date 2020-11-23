@@ -6,5 +6,19 @@ import CustomAlert from "./alert";
 import { auth, firestore, storage } from "./firebase"
 import ProgressBar from "./progressBar";
 import Map from './map'
+import Breadcrumb from './breadcrumb'
+import PlacesAutocomplete from "./autocomplete";
 
-export { Header, PageHeaderTitle, Footer, SideBar, CustomAlert, auth, firestore, storage, ProgressBar, Map };
+export { 
+    Header,
+    PageHeaderTitle, 
+    Footer, SideBar, 
+    CustomAlert, 
+    auth, 
+    firestore, 
+    storage, 
+    ProgressBar, 
+    Map, 
+    Breadcrumb, 
+    PlacesAutocomplete
+};

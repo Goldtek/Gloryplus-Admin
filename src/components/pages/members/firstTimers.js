@@ -6,7 +6,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
 
-import { Header, SideBar, PageHeaderTitle, Footer, firestore, Map } from "../../partials";
+import { Header, SideBar, PageHeaderTitle, Footer, firestore, Map, PlacesAutocomplete } from "../../partials";
 import { geocoder } from '../../util';
 import "./form.css";
 
@@ -50,6 +50,11 @@ function FirstTimers() {
 
   },[navigator]);
 
+  const convertAdressToCoords = async address => {
+    const res = await geocoder.geocode(address);
+    console.log('result', res);
+  }
+
  
   const handleSelect = address => {
     geocodeByAddress(address)
@@ -87,12 +92,7 @@ function FirstTimers() {
                     <div className="card-body">
                     <Map locations={locations} zoomLevel={11} currentLocation={currentLocation} memberLocation={value}/> {/* include it here */}
                     <div className="col-sm-12 col-md-12 col-lg-12">
-                                    <GooglePlacesAutocomplete
-                                        apiKey={process.env.REACT_APP_MAPKEY}
-                                        selectProps={{
-                                          value,
-                                          onChange: setValue,
-                                        }}
+                                    <PlacesAutocomplete
                                       />
                                 </div>
                       <Formik
@@ -147,6 +147,7 @@ function FirstTimers() {
                                   });
 
                         } catch (error) {
+                          console.log('error', error);
                             toast.error(`${error}`, {
                                 position: "top-right",
                                 autoClose: 5000,

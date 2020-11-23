@@ -19,6 +19,9 @@ import {
   ViewGallery,
   NewUser,
   Users,
+  CreateCell,
+  Mvp,
+  ViewBranch
 } from "./components/pages";
 
 const Routes = () => {
@@ -86,6 +89,9 @@ const Routes = () => {
           <CreateBranch />
         </Route>
 
+        <Route path="/dashboard/branches">
+          <ViewBranch />
+        </Route>
 
         <Route path="/dashboard/gallery/create">
           <CreateGallery />
@@ -98,6 +104,14 @@ const Routes = () => {
         <Route path="/dashboard/members">
           <Users />
         </Route>
+
+        <Route path="/dashboard/cell/create">
+          <CreateCell />
+        </Route>
+        <Route path="/dashboard/mvp">
+          <Mvp />
+        </Route>
+
         {/* PROTECTED ROUTES START HERE #############################################*/}
 
         {/* 404 ERROR ROUTE ########################################################*/}
