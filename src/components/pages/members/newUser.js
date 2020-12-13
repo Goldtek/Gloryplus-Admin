@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import uuid from "react-uuid";
+import { v4 as uuidv4 } from 'uuid';
 import FormError from "./formError";
 import { Formik, Form, Field } from "formik";
 import TextField from '@material-ui/core/TextField';
@@ -94,6 +94,7 @@ function NewUser() {
                             try{
 
                                 const user =  {
+                                    id: uuidv4(),
                                     firstname: values.firstname,
                                     surname: values.surname,
                                     gender: values.gender,
