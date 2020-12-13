@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { ToastContainer, toast } from "react-toastify";
 import { Field, Formik, Form } from "formik";
 import * as Yup from "yup";
-import uuid from "react-uuid";
+import { v4 as uuidv4 } from 'uuid';
 import DatePicker from "../event/DatePicker";
 import "react-datepicker/dist/react-datepicker.css";
 // CSS
@@ -64,6 +64,7 @@ const CreateGallery = () => {
                           setSubmitting(true);
                           try {
                             const data = {
+                              id: uuidv4(),
                               url: url,
                               title: values.title,
                               details: values.details,

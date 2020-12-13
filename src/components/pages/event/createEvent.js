@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import { ToastContainer, toast } from "react-toastify";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { v4 as uuidv4 } from 'uuid';
 import DatePicker from "../event/DatePicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -95,6 +96,7 @@ const CreateEvent = () => {
                         // console.log('year',moment(values.date).format('yyyy'));
                           try {
                             const data = {
+                                id: uuidv4(),
                                 img: url,
                                 title: values.title,
                                 date: values.date,

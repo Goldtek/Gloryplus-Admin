@@ -5,6 +5,7 @@ import FormError from "./formError";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useSelector, useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import { Header, SideBar, PageHeaderTitle, Footer, firestore } from "../../partials";
 import { fetchStates, fetchCities } from '../../util';
 import "./form.css";
@@ -85,7 +86,7 @@ function CreateBranch() {
                         onSubmit={async (values, { setSubmitting, resetForm }) => {
                           setSubmitting(true);
                           try { 
-                            await firestore.collection("branches").add({...values, created: Date.now() });
+                            await firestore.collection("branches").add({...values, created: Date.now(), id: uuidv4() });
                             toast.success("Church Branch Successfully added", {
                                     position: "top-right",
                                     autoClose: 5000,

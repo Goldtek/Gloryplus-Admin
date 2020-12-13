@@ -9,6 +9,7 @@ import uuid from "react-uuid";
 import { Header, SideBar, PageHeaderTitle, Footer, firestore, ProgressBar } from "../../partials";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { v4 as uuidv4 } from 'uuid';
 
 const FILE_SIZE = 160 * 1024;
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
@@ -62,6 +63,7 @@ const CreateCourse = ({ match }) => {
                           try {
                               setSubmitting(true);
                               const courseObj = {
+                                id: uuidv4(),
                                 file: values.file.name,
                                 title: values.coursetitle,
                                 img: url,
