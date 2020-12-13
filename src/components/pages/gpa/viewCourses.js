@@ -1,28 +1,37 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React, { useEffect, useState, Fragment } from "react";
 import { Helmet } from "react-helmet";
-import { fetchCourseLists } from "../../../redux/actions/courseActions";
-// import { Link } from "react-router-dom";
+import { handleError } from "../../util";
 import { Header, SideBar, PageHeaderTitle, Footer, firestore } from "../../partials";
 import { CourseCard } from "./courseCard";
+import { Card } from "./cards/courseCard";
+import { LoaderCard, InfoCard } from "../Helpers";
 
 // import Content from "../main";
-class ViewCourses extends React.Component {
-  static propTypes = {
-    fetchCourseLists: PropTypes.func.isRequired,
-    courses: PropTypes.array.isRequired,
-  };
-  // useEffect(() => {
-  //   document.getElementById("gpa").classList.add("active");
-  // });
+const ViewCourses = () => {
+  const [courses, setCourses] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
-  componentDidMount() {
+  useEffect(() => {
     document.getElementById("gpa").classList.add("active");
+    fetchCourseLists();
+  },[]);
 
-    this.props.fetchCourseLists();
+   const fetchCourseLists = async () => {
+    console.log('fetch courses');
+    await firestore.collection('courses')
+    .onSnapshot((querySnapshot) => {
+      const results = [];
+      querySnapshot.forEach((doc) => {
+        results.push(doc.data());
+      });
+      console.log('results', results)
+      setCourses(results);
+      setLoading(false);
+    }, handleError);
   }
-  render() {
+
+
+
     return (
       <div className="page">
         <Helmet>
@@ -48,14 +57,29 @@ class ViewCourses extends React.Component {
                   </div>
                 </div>
                 <div className="row">
-                  {this.props.courses.map((course) => (
-                    <CourseCard
-                      title={course.title}
-                      created={course.created}
-                      key={course.id}
-                    />
-                  ))}
-                </div>
+              {isLoading ? (
+                <LoaderCard />
+              ) : courses.error ? (
+                <InfoCard error={courses.error} />
+              ) : (
+                <Fragment>
+                  {courses.length ? (
+                    courses.map((course) => (
+                      <Card
+                        title={course.title}
+                        created={course.created}
+                        key={course.id}
+                        id={course.id}
+                        btnTitle="Lesson"
+                        image={course.img}
+                      />
+                    ))
+                  ) : (
+                    <InfoCard info="No course available,please create a new course" />
+                  )}
+                </Fragment>
+              )}
+            </div>
               </section>
 
               {/* <!-- end row--> */}
@@ -67,9 +91,6 @@ class ViewCourses extends React.Component {
       </div>
     );
   }
-}
 
-const mapStateToProps = (state) => ({
-  courses: state.courses.coursesItems,
-});
-export default connect(mapStateToProps, { fetchCourseLists })(ViewCourses);
+
+export default ViewCourses;

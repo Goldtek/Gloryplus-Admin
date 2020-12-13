@@ -3,13 +3,13 @@ import Moment from "react-moment";
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import EditCourse from "../modal/editCourse";
-export const Card = ({ title, created, id }) => {
+export const Card = ({ title, created, id, image }) => {
 
   return (
     <Fragment>
 
       <div className="col-md-6 col-lg-3 col-sm-12 col-xs-12">
-        <div className="card"><img src="img/mockup6.jpg" alt="Card image cap" className="card-img-top img-fluid" />
+        <div className="card"><img src={image} alt="Card image cap" className="card-img-top img-fluid" />
           <div className="card-body">
             <h5 className="card-title">{title}</h5>
             <p className="card-text">

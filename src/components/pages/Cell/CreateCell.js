@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,16 +29,9 @@ const validationSchema = Yup.object().shape({
 
 const CreateCell = () => {
     const dispatch = useDispatch();
+    const [coordinates, setCoordinates] = useState(null);
     const user = useSelector(state => state.user);
     const { countries, states, cities } = user;
-
-    const handleChange = (event) => {
-        // this.setState({ value: event.target.value });
-    }
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-    }
 
     const onselectCountry = ({ target }) => {
         //   console.log('target', target.uid);
@@ -55,7 +48,7 @@ const CreateCell = () => {
         geocode.fromAddress(address).then(
           response => {
           const coordinates = response.results[0].geometry.location;
-          console.log('coords', coordinates);
+          setCoordinates(coordinates);
           },
           error => {
             console.error(error);
@@ -114,10 +107,13 @@ const CreateCell = () => {
                                                         }}
                                                         validationSchema={validationSchema}
                                                         onSubmit={async (values, { setSubmitting, resetForm }) => {
+                                                            if(coordinates == null){
+                                                                return;
+                                                            }
                                                         setSubmitting(true);
                                                         // get the coordinates of the homecell and also store it
                                                         try { 
-                                                            await firestore.collection("cells").add(values);
+                                                            await firestore.collection("cells").add({...values, coordinates });
                                                             toast.success("Church Branch Successfully added", {
                                                                     position: "top-right",
                                                                     autoClose: 5000,
@@ -283,7 +279,10 @@ const CreateCell = () => {
                                                                             name="address"
                                                                             onChange={handleChange}
                                                                             value={values.address}
-                                                                            onBlur={handleBlur}
+                                                                            onBlur={(value) => {
+                                                                                handleBlur(value);
+                                                                                convertAddressToLatLng(value.target.value)
+                                                                            }}
                                                                         />
                                                                         <FormError
                                                                             touched={touched.address}

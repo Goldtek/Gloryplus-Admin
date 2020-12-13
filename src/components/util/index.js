@@ -92,7 +92,7 @@ export const fetchCells = async (dispatch) => {
             cells.push(doc.data());
           });
           console.log('cells', cells);
-        //  cells = _.orderBy(cells, ['name'],['asc'])
+          cells = _.orderBy(cells, ['name'],['asc'])
          dispatch({ type: 'SET_CELLS', cells });
         }, handleError);
 }

@@ -19,6 +19,7 @@ const CourseLists = () => {
   }, []);
 
   const fetchCourseLists = async () => {
+    console.log('fetch courses');
     await firestore.collection('courses')
     .onSnapshot((querySnapshot) => {
       const results = [];

@@ -222,7 +222,7 @@ function FirstTimers() {
                                         type="text"
                                         name="firstname"
                                         className={
-                                          touched.name && errors.name
+                                          touched.firstname && errors.firstname
                                             ? "input-material is-invalid"
                                             : "input-material"
                                         }

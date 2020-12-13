@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet';
 import { ToastContainer, toast } from "react-toastify";
 import { Header, SideBar, Breadcrumb, firestore } from "../../partials";
 import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 
@@ -33,6 +35,7 @@ const ViewCell = () => {
           querySnapshot.forEach((doc) => {
             results.push(doc.data());
           });
+          // load this in redux
           setCells(results);
         }, handleError);
     }
@@ -88,33 +91,28 @@ const ViewCell = () => {
                                                                                 <th>Delete</th>
                                                                             </thead>
                                                                                 <tbody>
-                                                                                
-                                                                                    <tr>
+                                                                                {cells.map((cell)=> {
+                                                                                    return (
+                                                                                    <tr key={cell.id}> 
                                                                                         <td><input type="checkbox" className="checkthis" /></td>
-                                                                                        <td>Mohsin Irshad</td>
-                                                                                        <td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-                                                                                        <td> +923335586757 </td>
-                                                                                        <td>isometric.mohsin@gmail.com</td>
-                                                                                        <td> Lagos </td>
-                                                                                        <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button className="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span className="glyphicon glyphicon-pencil"></span></button></p></td>
-                                                                                        <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button className="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span className="glyphicon glyphicon-trash"></span></button></p></td>
+                                                                                        <td>{cell.coordinator}</td>
+                                                                                        <td>{cell.address}</td>
+                                                                                        <td> {cell.phone}</td>
+                                                                                        <td>{cell.email}</td>
+                                                                                        <td> {cell.state} </td>
+                                                                                        <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button className="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span className="fa fa-pencil-alt"></span></button></p></td>
+                                                                                        <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button className="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span className="fa fa-trash"></span></button></p></td>
                                                                                     </tr>
                                                                                     
+                                                                                    )
+                                                                                })}
                                                                                   
                                                                             </tbody>
                                                                                     
                                                                         </table>
 
                                                                     <div className="clearfix"></div>
-                                                                        <ul className="pagination pull-right">
-                                                                            <li className="disabled"><a href="#"><span className="glyphicon glyphicon-chevron-left"></span></a></li>
-                                                                            <li className="active"><a href="#">1</a></li>
-                                                                            <li><a href="#">2</a></li>
-                                                                            <li><a href="#">3</a></li>
-                                                                            <li><a href="#">4</a></li>
-                                                                            <li><a href="#">5</a></li>
-                                                                            <li><a href="#"><span className="glyphicon glyphicon-chevron-right"></span></a></li>
-                                                                        </ul>
+                                                                        {/* pagination */}
                                                                         
                                                                     </div>
                                                                     
