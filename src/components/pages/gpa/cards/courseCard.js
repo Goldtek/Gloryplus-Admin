@@ -15,14 +15,23 @@ export const Card = ({ title, created, id, image }) => {
             <p className="card-text">
 
               <ButtonGroup color="secondary" variant="contained" >
-                <Button href={`/dashboard/gpa/view/${title}/${id}`} size="small" style={{ textDecoration: 'none', color: 'white' }}>Create Lesson</Button>
-
+                <Button href={`/dashboard/gpa/view/${id}`} size="small" style={{ textDecoration: 'none', color: 'white' }}>Create Lesson</Button>
                 <EditCourse title={title} id={id} />
-
               </ButtonGroup>
-
             </p>
-            <p className="card-text"><small className="text-muted"><Moment fromNow>{created}</Moment></small></p>
+            <p className="card-text">
+              <small className="text-muted"><Moment fromNow>{created}</Moment>
+                &nbsp; <a href="#!">view more </a>
+                  &nbsp;{" "}
+                  <a href="#!">
+                    <i
+                      className="fa fa-trash text-danger fa-lg"
+                      aria-hidden="true"
+                      onClick
+                    ></i>
+                  </a>
+              </small>
+            </p>
           </div>
         </div>
       </div>
