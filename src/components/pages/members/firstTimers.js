@@ -4,11 +4,11 @@ import { ToastContainer, toast } from "react-toastify";
 import FormError from "./formError";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
-
+import axios from 'axios';
 import { Header, SideBar, PageHeaderTitle, Footer, firestore, Map, PlacesAutocomplete } from "../../partials";
-import { geocoder } from '../../util';
+import { fetchStates, fetchCities  } from '../../util';
 import "./form.css";
+import { useDispatch, useSelector } from "react-redux";
 
 const validationSchema = Yup.object().shape({
   surname: Yup.string()
@@ -28,51 +28,62 @@ const validationSchema = Yup.object().shape({
   country: Yup.string().required("country is required"),
   email: Yup.string().email("Invalid email").required("Required"),
   age: Yup.string().required("Age is Required"),
+  cell: Yup.string().required("Cell is Required"),
 });
 
 function FirstTimers() {
+  const dispatch = useDispatch();
+  const userStore = useSelector(state => state.user);
+  const Cellstore = useSelector(state => state.cell);
 
+  // const { locations } = Cellstore;
+  const { countries, states, cities } = userStore;
+  const [homecell, setCell] = useState('');
   const [currentLocation, setLocation] = useState({lat: 6.589953434977126, lng: 3.375679742065203 });
-  const [value, setValue] = useState({});
-  const locations = [{ lat: 6.605874, lng: 3.349149, name: 'chisom dike', address:'mylocation', rating: 5}, { lat: 6.6289, lng: 3.338,  name: 'chisom dike', address:'mylocation',rating: 5}, 
-  { lat: 6.6388, lng: 6.6388,  name: 'chisom dike', address:'mylocation', rating: 5}, 
-  { lat: 6.4664, lng: 3.2835, name: 'chisom dike', address:'mylocation', rating: 4}, { lat: 6.5749, lng: 3.3918,  name: 'chisom dike', address:'mylocation', rating: 2}, {lat: 6.589953434977126, lng: 3.375679742065203,  name: 'chisom dike', address:'mylocation', rating: 3 }]
+  const locations = [{ lat: 6.605874, lng: 3.349149, name: 'chisom dike', address:'mylocation', rating: 5, id: 1}, { lat: 6.6289, lng: 3.338,  name: 'chisom dike', address:'mylocation',rating: 5, id: 2}, 
+  { lat: 6.6388, lng: 6.6388,  name: 'chisom dike', address:'mylocation', rating: 5, id: 3}, 
+  { lat: 6.4664, lng: 3.2835, name: 'chisom dike', address:'mylocation', rating: 4, id: 4}, { lat: 6.5749, lng: 3.3918,  name: 'chisom dike', address:'mylocation', rating: 2, id: 5}, {lat: 6.589953434977126, lng: 3.375679742065203,  name: 'chisom dike', address:'mylocation', rating: 3, id: 6 }]
 
   useEffect(() => {
     document.getElementById("members").classList.add("active");
+  },[]);
 
-    // navigator.geolocation.getCurrentPosition(function(position) {
-    //   setLocation({
-    //    lat: position.coords.latitude,
-    //    lng: position.coords.longitude, 
-    //   })
-    // });
-
-  },[navigator]);
-
-  const convertAdressToCoords = async address => {
-    const res = await geocoder.geocode(address);
-    console.log('result', res);
+  const setHomeCell = (id) => {
+    setCell(id);
   }
 
- 
-  const handleSelect = address => {
-    geocodeByAddress(address)
-      .then(results => getLatLng(results[0]))
-      .then(latLng => console.log('Success', latLng))
-      .catch(error => console.error('Error', error));
+  const convertAddressToLatLng = async (address) => {
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_MAPKEY}`;
+    const { data } = await axios.get(url);
+    const coords = data.results[0].geometry.location;
+    setLocation(coords);
+  
+    // geocode.fromAddress(address).then(
+    //   response => {
+    //   const coordinates = response.results[0].geometry.location;
+    //   console.log('coords', coordinates);
+    //   },
+    //   error => {
+    //     console.error(error);
+    //   }
+    // );
   };
+
+  const onselectCountry = ({ target }) => {
+     fetchStates(dispatch, target.value);
+  };
+  
+  const onselectState = ({ target }) => {
+      fetchCities(dispatch, target.value);
+  };
+  
   
   return (
     <div className="page">
       <Helmet>
         <title>First Timer</title>
       </Helmet>
-      {/* HEADER PART */}
       <Header />
-      {/* CLOSE HEADER PART */}
-
-      {/* SIDER BAR PART */}
       <div className="page-content d-flex align-items-stretch">
         <SideBar />
 
@@ -90,11 +101,8 @@ function FirstTimers() {
                       </h3>
                     </div>
                     <div className="card-body">
-                    <Map locations={locations} zoomLevel={11} currentLocation={currentLocation} memberLocation={value}/> {/* include it here */}
-                    <div className="col-sm-12 col-md-12 col-lg-12">
-                                    <PlacesAutocomplete
-                                      />
-                                </div>
+                    <Map locations={locations} zoomLevel={11} currentLocation={currentLocation} setHomeCell={setHomeCell}/> 
+          
                       <Formik
                         initialValues={{
                           firstname: "",
@@ -108,15 +116,14 @@ function FirstTimers() {
                           comment: "",
                           surname: '',
                           age: "",
-                          location: ""
+                          location: "",
+                          cell: ""
                         }}
                         validationSchema={validationSchema}
                         onSubmit={async (values, { setSubmitting, resetForm }) => {
                           setSubmitting(true);
                         
                           try{
-
-                           return console.log('locations', await geocoder.geocode(values.address))
                             const user =  {
                               firstname: values.name,
                               gender: values.gender,
@@ -130,7 +137,8 @@ function FirstTimers() {
                               comment: values.comment,
                               role: 'firstTimer',
                               surname: values.surname,
-                              age: values.age
+                              age: values.age,
+
                               };
                             
                                 await firestore.collection('users').add(user);
@@ -171,14 +179,12 @@ function FirstTimers() {
                           handleBlur,
                         }) => (
                           <Form onSubmit={handleSubmit}>
-                            {/* <div className="line"></div> */}
+                            <div className="line"></div>
 
                             <div className="row">
                 
                               <div className="col-sm-12 col-md-12 col-lg-12">
                                 <div className="row">
-
-                              
 
                                 <div className="col-md-4 col-sm-12 col-lg-4 col-xs-12">
                                     <div className="form-group-material">
@@ -241,7 +247,7 @@ function FirstTimers() {
                               
 
                                   <div className="col-md-12 col-sm-12 col-lg-4 col-xs-4">
-                                    <div class="select input-material">
+                                    <div className="select input-material">
                                       <select
                                         className={
                                           touched.gender && errors.gender
@@ -257,8 +263,8 @@ function FirstTimers() {
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
                                       </select>
-                                      <span class="select-highlight"></span>
-                                      <span class="select-bar"></span>
+                                      <span className="select-highlight"></span>
+                                      <span className="select-bar"></span>
                                       <FormError
                                         touched={touched.gender}
                                         message={errors.gender}
@@ -325,7 +331,7 @@ function FirstTimers() {
                                   </div>
 
 
-                                  <div className="col-sm-12 col-md-4 col-lg-4">
+                                  <div className="col-sm-12 col-md-3 col-lg-3">
                                     <div className="form-group-material">
                                       <Field
                                         id="phone"
@@ -364,7 +370,9 @@ function FirstTimers() {
                                         name="address"
                                         onChange={handleChange}
                                         value={values.address}
-                                        onBlur={handleBlur}
+                                        onBlur={(value) => {
+                                          handleBlur(value)
+                                          convertAddressToLatLng(value.target.value)}}
                                       />
                                       <FormError
                                         touched={touched.address}
@@ -379,7 +387,7 @@ function FirstTimers() {
                                     </div>
                                   </div>
                                   <div className="col-md-4 col-sm-11 col-lg-4 col-xs-12">
-                                    <div class="select input-material">
+                                    <div className="select input-material">
                                       <select
                                         className={
                                           touched.country && errors.country
@@ -392,12 +400,12 @@ function FirstTimers() {
                                         onBlur={handleBlur}
                                       >
                                         <option>Country</option>
-
-                                        <option value="male">Nigeria</option>
+                                        {countries.map((country)=> ( <option value={country.id} key={country.id}>{country.name}</option> ))}
+                                        
                                         
                                       </select>
-                                      <span class="select-highlight"></span>
-                                      <span class="select-bar"></span>
+                                      <span className="select-highlight"></span>
+                                      <span className="select-bar"></span>
                                       <FormError
                                         touched={touched.country}
                                         message={errors.country}
@@ -408,7 +416,7 @@ function FirstTimers() {
                  
 
                                   <div className="col-md-4 col-sm-11 col-lg-4 col-xs-6">
-                                    <div class="select input-material">
+                                    <div className="select input-material">
                                       <select
                                         className={
                                           touched.state && errors.state
@@ -421,12 +429,10 @@ function FirstTimers() {
                                         onBlur={handleBlur}
                                       >
                                         <option>State</option>
-
-                                        <option value="male">Lagos</option>
-                                        
+                                        {states.map((state)=> ( <option value={state.id} key={state.id}>{state.name}</option> ))}
                                       </select>
-                                      <span class="select-highlight"></span>
-                                      <span class="select-bar"></span>
+                                      <span className="select-highlight"></span>
+                                      <span className="select-bar"></span>
                                       <FormError
                                         touched={touched.state}
                                         message={errors.state}
@@ -437,10 +443,10 @@ function FirstTimers() {
 
 
                                   <div className="col-md-4 col-sm-12 col-lg-4 col-xs-6">
-                                    <div class="select input-material">
+                                    <div className="select input-material">
                                       <select
                                         className={
-                                          touched.state && errors.state
+                                          touched.city && errors.city
                                             ? "input-material select-text is-invalid"
                                             : "input-material select-text"
                                         }
@@ -450,12 +456,10 @@ function FirstTimers() {
                                         onBlur={handleBlur}
                                       >
                                         <option>City</option>
-
-                                        <option value="male">Ikeja</option>
-
+                                        {cities.map((city)=> ( <option value={city.id} key={city.id}>{city.name}</option> ))}
                                       </select>
-                                      <span class="select-highlight"></span>
-                                      <span class="select-bar"></span>
+                                      <span className="select-highlight"></span>
+                                      <span className="select-bar"></span>
                                       <FormError
                                         touched={touched.city}
                                         message={errors.city}
@@ -492,28 +496,34 @@ function FirstTimers() {
                                     </div>
                                   </div>
                                  
-
-                                  <div className="col-sm-12 col-md-12 col-lg-12">
-                                    <div className="form-group-material">
-                                      <Field
-                                        id="comment"
-                                        type="text"
-                                        name="comment"
-                                        className="input-material"
+                                  <div className="col-md-12 col-sm-12 col-lg-4 col-xs-4">
+                                    <div className="select input-material">
+                                      <select
+                                        className={
+                                          touched.cell && errors.cell
+                                            ? "input-material select-text is-invalid"
+                                            : "input-material select-text"
+                                        }
+                                        name="cell"
                                         onChange={handleChange}
-                                        value={values.comment}
+                                        value={homecell}
                                         onBlur={handleBlur}
-                                      />
-                                      <label
-                                        htmlFor="comment"
-                                        className="label-material"
                                       >
-                                        Comment - <small>about the church</small>
-                                      </label>
+                                        <option>Cell</option>
+                                        <option value="male" disabled>Male</option>
+                                        <option value="fmale" disabled>fMale</option>
+                                      </select>
+                                      <span className="select-highlight"></span>
+                                      <span className="select-bar"></span>
+                                      <FormError
+                                        touched={touched.cell}
+                                        message={errors.cell}
+                                      />
                                     </div>
                                   </div>
+
                                   <div className="form-group row">
-                                    <div className="col-sm-12 offset-sm-3">
+                                    <div className="col-sm-12 col-md-12 col-lg-12 offset-sm-3">
                                       <button
                                         type="reset"
                                         className="btn btn-secondary"

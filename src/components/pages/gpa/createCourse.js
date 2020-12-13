@@ -13,19 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 const FILE_SIZE = 160 * 1024;
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 const validationSchema = Yup.object().shape({
-  file: Yup.mixed()
-    .required("A file is required")
-    .test(
-      "fileSize",
-      "File too large",
-      (value) => value && value.size <= FILE_SIZE
-    )
-    .test(
-      "fileFormat",
-      "Unsupported Format",
-      (value) => value && SUPPORTED_FORMATS.includes(value.type)
-    ),
-
+  file: Yup.mixed().required("image upload is required"),
   coursetitle: Yup.string().required("course title is required"),
 });
 
@@ -79,7 +67,7 @@ const CreateCourse = ({ match }) => {
                                 img: url,
                                 created: Date.now(),
                               };
-                              await firestore.collection("events").add(courseObj);
+                              await firestore.collection("courses").add(courseObj);
                               resetForm();
                               setSubmitting(false);
                               toast.success("course Successfully added", {
@@ -173,7 +161,7 @@ const CreateCourse = ({ match }) => {
                             <div className="form-group">
                               <Field
                                 type="submit"
-                                value="Upload Course"
+                                value="Create Course"
                                 className="btn btn-primary"
                                 disabled={isSubmitting}
                               />

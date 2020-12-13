@@ -1,28 +1,32 @@
-import React from "react";
+import React, { useEffect, useState} from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { fetchEventList } from "../../../redux/actions/eventAction";
-// import { Link } from "react-router-dom";
-import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
+import { Header, SideBar, PageHeaderTitle, Footer, firestore } from "../../partials";
 import { EventCard } from "./eventCard";
+import { handleError } from "../../util";
 
-// import Content from "../main";
-class ListEvents extends React.Component {
-  static propTypes = {
-    fetchEventList: PropTypes.func.isRequired,
-    events: PropTypes.array.isRequired,
-  };
-  // useEffect(() => {
-  //   document.getElementById("gpa").classList.add("active");
-  // });
+const ListEvents = () =>  {
+  const [galleries, setGallery] = useState([]);
+    useEffect(()=>{
+      document.getElementById("gallery").classList.add("active");
+      fetchGallery();
+    },[])
 
-  componentDidMount() {
-    document.getElementById("gallery").classList.add("active");
 
-    this.props.fetchEventList();
-  }
-  render() {
+    const fetchGallery = async () => {
+      await firestore.collection('galleries')
+      .onSnapshot((querySnapshot) => {
+        const results = [];
+        querySnapshot.forEach((doc) => {
+          results.push(doc.data());
+        });
+        setGallery(results);
+      }, handleError);
+
+    }
+
     return (
       <div className="page">
         <Helmet>
@@ -48,7 +52,7 @@ class ListEvents extends React.Component {
                   </div>
                 </div>
                 <div className="row">
-                  {this.props.events.map((event) => (
+                  {galleries.map((event) => (
                     <EventCard
                       title={event.title}
                       created={event.created}
@@ -67,9 +71,5 @@ class ListEvents extends React.Component {
       </div>
     );
   }
-}
 
-const mapStateToProps = (state) => ({
-  events: state.events.eventItems,
-});
-export default connect(mapStateToProps, { fetchEventList })(ListEvents);
+export default ListEvents;

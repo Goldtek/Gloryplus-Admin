@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-
+import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { ToastContainer, toast } from "react-toastify";
 import { Header, SideBar, Breadcrumb, firestore } from "../../partials";
 import Button from '@material-ui/core/Button';
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import { fetchCities, fetchStates, geocode } from '../../util'
 
 import FormError from "./formError";
 
 const validationSchema = Yup.object().shape({
-    name: Yup.string()
+    coordinator: Yup.string()
       .min(2, "Too Short!")
       .max(50, "Too Long!")
       .required("name is required"),
@@ -27,15 +28,42 @@ const validationSchema = Yup.object().shape({
 
 
 const CreateCell = () => {
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
+    const { countries, states, cities } = user;
 
     const handleChange = (event) => {
         // this.setState({ value: event.target.value });
     }
 
     const handleSubmit = (event) => {
-       //  alert('A name was submitted: ' + this.state.value);
         event.preventDefault();
     }
+
+    const onselectCountry = ({ target }) => {
+        //   console.log('target', target.uid);
+        //  const obj = JSON.parse(JSON.stringify(target.value));
+        // return console.log('object', Object.assign({}, obj));
+         fetchStates(dispatch, target.value);
+    };
+      
+    const onselectState = ({ target }) => {
+        fetchCities(dispatch, target.value);
+    };
+
+    const convertAddressToLatLng = async (address) => {
+        geocode.fromAddress(address).then(
+          response => {
+          const coordinates = response.results[0].geometry.location;
+          console.log('coords', coordinates);
+          },
+          error => {
+            console.error(error);
+          }
+        );
+      };
+      
+
 
     useEffect(()=> {
          document.getElementById("cell").classList.add("active");
@@ -75,7 +103,7 @@ const CreateCell = () => {
                                                     <h5 className="card-title">Create New HomeCell</h5>
                                                     <Formik
                                                         initialValues={{
-                                                        name: "",
+                                                        coordinator: "",
                                                         gender: "",
                                                         email: "",
                                                         phone: "",
@@ -87,8 +115,9 @@ const CreateCell = () => {
                                                         validationSchema={validationSchema}
                                                         onSubmit={async (values, { setSubmitting, resetForm }) => {
                                                         setSubmitting(true);
+                                                        // get the coordinates of the homecell and also store it
                                                         try { 
-                                                            await firestore.collection("branches").add(values);
+                                                            await firestore.collection("cells").add(values);
                                                             toast.success("Church Branch Successfully added", {
                                                                     position: "top-right",
                                                                     autoClose: 5000,
@@ -265,29 +294,29 @@ const CreateCell = () => {
 
                                                                     <div className="col-md-3 col-sm-11 col-lg-3 col-xs-12">
                                                                         <div class="select input-material">
-                                                                        <select
-                                                                            className={
-                                                                            touched.country && errors.country
-                                                                                ? "input-material select-text is-invalid"
-                                                                                : "input-material select-text"
-                                                                            }
-                                                                            name="country"
-                                                                            onChange={handleChange}
-                                                                            value={values.country}
-                                                                            onBlur={handleBlur}
-                                                                        >
-                                                                            <option>Country</option>
-
-                                                                            <option value="male">Nigeria</option>
-                                                                            
-                                                                        </select>
-                                                                        <span class="select-highlight"></span>
-                                                                        <span class="select-bar"></span>
-                                                                        <FormError
-                                                                            touched={touched.country}
-                                                                            message={errors.country}
-                                                                        />
-                                                                        {/* <label class="select-label">state</label> */}
+                                                                            <select
+                                                                                className={
+                                                                                touched.country && errors.country
+                                                                                    ? "input-material select-text is-invalid"
+                                                                                    : "input-material select-text"
+                                                                                }
+                                                                                name="country"
+                                                                                onChange={(value) => {
+                                                                                    handleChange(value)
+                                                                                    onselectCountry(value)
+                                                                                }}
+                                                                                value={values.country}
+                                                                                onBlur={handleBlur}
+                                                                            >
+                                                                                <option>Country</option>
+                                                                                {countries.map((country)=>( <option value={country.id}>{country.name}</option> ))}    
+                                                                            </select>
+                                                                            <span class="select-highlight"></span>
+                                                                            <span class="select-bar"></span>
+                                                                            <FormError
+                                                                                touched={touched.country}
+                                                                                message={errors.country}
+                                                                            />
                                                                         </div>
                                                                     </div>
 
@@ -301,13 +330,16 @@ const CreateCell = () => {
                                                                                 : "input-material select-text"
                                                                             }
                                                                             name="state"
-                                                                            onChange={handleChange}
+                                                                            onChange={(value) => {
+                                                                                handleChange(value)
+                                                                                onselectState(value)
+                                                                            }}
                                                                             value={values.state}
                                                                             onBlur={handleBlur}
                                                                         >
                                                                             <option>State</option>
 
-                                                                            <option value="male">Lagos</option>
+                                                                            {states.map((state)=>( <option value={state.id}>{state.name}</option> ))}
                                                                             
                                                                         </select>
                                                                         <span class="select-highlight"></span>
@@ -333,10 +365,7 @@ const CreateCell = () => {
                                                                             value={values.city}
                                                                             onBlur={handleBlur}
                                                                         >
-                                                                            <option>City</option>
-
-                                                                            <option value="male">Ikeja</option>
-
+                                                                            {cities.map((city)=>( <option value={city.id}>{city.name}</option> ))}
                                                                         </select>
                                                                         <span class="select-highlight"></span>
                                                                         <span class="select-bar"></span>

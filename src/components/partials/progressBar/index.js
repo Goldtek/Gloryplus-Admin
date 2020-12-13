@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useStorage } from '../../hooks';
 import './style.css';
 
@@ -7,7 +7,7 @@ const ProgressBar = ({file, directory, setUrl}) => {
     const { error, url, progress } = useStorage({file, path});
     useEffect(()=>{
         setUrl(url);
-    },[url]);
+    },[setUrl, url]);
 
     return (
         <div className="col-md-2">

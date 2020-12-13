@@ -1,11 +1,26 @@
-import React, { useState,  } from "react";
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect  } from "react";
+import { useDispatch } from 'react-redux';
 import serializeForm from 'form-serialize';
+import _ from 'lodash';
 import { CustomAlert, auth, firestore } from "../../partials";
+import { fetchCountry, fetchCells } from "../../util";
 
 const Login = () => {
-  const history = useHistory();
+  const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    callFetchCountry();
+    callFetchCells();
+  },[]);
+
+  const callFetchCountry = async () => {
+    await fetchCountry(dispatch);
+  }
+  const callFetchCells = async () => {
+    await fetchCells(dispatch);
+  }
+
 
     const handleLogin = async (e) => {
     e.preventDefault();

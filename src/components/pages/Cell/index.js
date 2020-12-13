@@ -1,5 +1,7 @@
-import CreateCell from "./CreateCell"
+import CreateCell from "./CreateCell";
+import ViewCell from "./ViewCell";
 
 export {
-    CreateCell
+    CreateCell,
+    ViewCell
 }

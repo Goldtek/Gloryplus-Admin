@@ -18,8 +18,6 @@ import { Header, SideBar, PageHeaderTitle, firestore, ProgressBar } from "../../
 const validationSchema = Yup.object().shape({
   file: Yup.mixed().required("image upload is required"),
   title: Yup.string().required("event title is required"),
-  address: Yup.string().required("event address is required"),
-  date: Yup.string().required("event date is required"),
   details: Yup.string().required("event details is required"),
 });
 
@@ -59,43 +57,43 @@ const CreateGallery = () => {
                           title: "",
                         }}
                         validationSchema={validationSchema}
-                        onSubmit={(values, { setSubmitting, resetForm }) => {
+                        onSubmit={async (values, { setSubmitting, resetForm }) => {
+                          if(url == null){
+                            return;
+                          }
                           setSubmitting(true);
-
-                          axios({
-                            method: "POST",
-                            url: "http://localhost:3000/event",
-                            data: {
+                          try {
+                            const data = {
                               url: url,
                               title: values.title,
                               details: values.details,
                               created: Date.now(),
-                            },
-                          })
-                            .then((res) => {
-                              resetForm();
-                              setSubmitting(false);
-                              toast.success("course Successfully added", {
-                                position: "top-right",
-                                autoClose: 5000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                              });
-                            })
-                            .catch((err) => {
-                              toast.error(`${err}`, {
-                                position: "top-right",
-                                autoClose: 5000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                              });
+                              img: url,
+                            }
+                            await firestore.collection("galleries").add(data);
+                            resetForm();
+                            setSubmitting(false);
+                            toast.success(`${values.title} Gallery has been Successfully created`, {
+                              position: "top-right",
+                              autoClose: 5000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
                             });
+                          } catch (error) {
+                            toast.error(`${error}`, {
+                              position: "top-right",
+                              autoClose: 5000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                            });
+                          }
+                          
                         }}
                       >
                         {({

@@ -1,21 +1,19 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react'
 import './map.css'
-import { Icon } from '@iconify/react'
-import locationIcon from '@iconify/icons-mdi/map-marker'
 import lodash from 'lodash';
 
 import InfoWindow from '../infowindow';
 import './map.css'
 
 
-const HomeCellPin = ({ text }) => (
+const HomeCellPin = ({ text, setHomeCell, cell_id }) => (
   <div className="pin" style={{zIndex: 2 }}>
-    <img src="img/cell.png" style={{ width: '30px', height: "30px"}} />
+    <img src="img/cell.png" style={{ width: '30px', height: "30px"}} onClick={() => setHomeCell(cell_id)} />
   </div>
 )
 
-const UserPin = ({ text }) => (
+const UserPin = ({ text,  }) => (
     <div className="pin" style={{zIndex: 5 }}>
       <img src="img/userpin.png" style={{ width: '50px', height: "50px"}} />
     </div>
@@ -77,43 +75,41 @@ const getMapBounds = (map, maps, places) => {
     };
 
 
-    const Map = ({ locations, zoomLevel, currentLocation, memberLocation }) => {
-    {console.log('memberLocation', memberLocation)}
-        return (
-    <div className="map" style={{marginBottom: '20px' }}>
-        <h2 className="map-h2"> GloryPlus Home cell Locations </h2>
+    const Map = ({ locations, zoomLevel, currentLocation, setHomeCell }) => {
+    console.log('current location', currentLocation);
+    return (
+      <div className="map" style={{marginBottom: '20px' }}>
+          <h2 className="map-h2"> GloryPlus Home cell Locations </h2>
 
-        <div className="google-map">
-        {!lodash.isEmpty(locations) && (
-        <GoogleMapReact
-            bootstrapURLKeys={{ key: process.env.REACT_APP_MAPKEY, libraries: ['visualization'] }}
-            center={currentLocation}
-            defaultZoom={zoomLevel}
-            // yesIWantToUseGoogleMapApiInternals={true} 
-            // onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, locations)}
-        >
+          <div className="google-map">
+          {!lodash.isEmpty(locations) && (
+          <GoogleMapReact
+              bootstrapURLKeys={{ key: process.env.REACT_APP_MAPKEY, libraries: ['visualization'] }}
+              center={currentLocation}
+              defaultZoom={zoomLevel}
+              // yesIWantToUseGoogleMapApiInternals={true} 
+          >
 
                 <UserPin
-                    key="xoxo"
-                lat={currentLocation.lat}
-                lng={currentLocation.lng}
+                      key="xoxo"
+                  lat={currentLocation.lat}
+                  lng={currentLocation.lng}
                 />
 
-            {locations.map((location, index) => (
-                <HomeCellPin
-                key={index}
-                lat={location.lat}
-                lng={location.lng}
-                />
-            ))}
-            
-            
-                
-
-        </GoogleMapReact>
-        )}
-        </div>
-    </div>
+              {locations.map((location, index) => (
+                  <HomeCellPin
+                  key={index}
+                  lat={location.lat}
+                  lng={location.lng}
+                  setHomeCell={setHomeCell}
+                  cell_id={location.id}
+                  />
+              ))}
+              
+          </GoogleMapReact>
+          )}
+          </div>
+      </div>
     )
     }
 

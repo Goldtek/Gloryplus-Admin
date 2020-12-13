@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 // import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
@@ -50,19 +50,13 @@ const styles = theme => ({
   }
 });
 
-const MVP_MemberLists = ({ classes, candidates }) => {
-
-  useEffect(() => {
-    document.getElementById("members").classList.add("active");
-  });
-
+const MVP_MemberLists = ({ classes, candidates = [{name:'ch'}] }) => {
 
   const [selectedCandidates, setselectedCandidates] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = useState(0);
 
   const handleSelectAll = event => {
-    // const { candidates } = props;
 
     let selectedCandidates;
 
@@ -126,7 +120,7 @@ const MVP_MemberLists = ({ classes, candidates }) => {
                   </TableCell>
                   <TableCell>Name</TableCell>
                   <TableCell>Email</TableCell>
-                  <TableCell>Location</TableCell>
+                  <TableCell>Branch</TableCell>
                   <TableCell>Phone</TableCell>
                   <TableCell>Registration date</TableCell>
                   <TableCell>Edit</TableCell>

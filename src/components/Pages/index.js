@@ -17,7 +17,7 @@ import CreateEvent from "./event/createEvent";
 import ListEvent from "./event/listEvent";
 import { CreateBranch, ViewBranch } from "./branches";
 import { CreateGallery, ViewGallery } from "./gallery";
-import {  CreateCell } from './Cell';
+import {  CreateCell, ViewCell } from './Cell';
 
 
 export {
@@ -44,4 +44,5 @@ export {
   CourseLists,
   Mvp,
   ViewBranch,
+  ViewCell,
 };

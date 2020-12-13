@@ -7,6 +7,7 @@ import FormError from "./formError";
 import { Formik, Form, Field } from "formik";
 import TextField from '@material-ui/core/TextField';
 import * as Yup from "yup";
+import { useDispatch, useSelector } from 'react-redux';
 import { Header, SideBar, PageHeaderTitle, Footer, firestore } from "../../partials";
 import "./form.css";
 
@@ -17,7 +18,7 @@ const validationSchema = Yup.object().shape({
   gender: Yup.string().required("gender is required"),
   address: Yup.string().required("address is required"),
   phone: Yup.number("must be a phone number").required("phone is required"),
-  role: Yup.string().required("User is required"),
+  role: Yup.string().required("User Role is required"),
   city: Yup.string().required("city is required "),
   state: Yup.string().required("state is required"),
   country: Yup.string().required("country is required"),
@@ -25,6 +26,10 @@ const validationSchema = Yup.object().shape({
 });
 
 function NewUser() {
+  const dispatch = useDispatch();
+  const userStore = useSelector(state => state.user);
+  const { countries, states, cities } = userStore;
+
   useEffect(() => {
     document.getElementById("members").classList.add("active");
   });
@@ -50,19 +55,14 @@ function NewUser() {
       <Helmet>
         <title>New User</title>
       </Helmet>
-      {/* HEADER PART */}
       <Header />
-      {/* CLOSE HEADER PART */}
-
-      {/* SIDER BAR PART */}
+      
       <div className="page-content d-flex align-items-stretch">
         <SideBar />
 
         <div className="content-inner">
-          {/* <!-- Page Header--> */}
           <PageHeaderTitle title="New User" currpg="New User" />
-          {/* FIRST TIMER CONTENT */}
-          {/* <!-- Forms Section--> */}
+    
           <section className="forms">
             <div className="container-fluid">
               <div className="row">
@@ -331,9 +331,7 @@ function NewUser() {
                                         onBlur={handleBlur}
                                       >
                                         <option>Country</option>
-
-                                        <option value="male">Nigeria</option>
-                                        
+                                        {countries.map((country) => ( <option value={country.id} key={country.id}> {country.name} </option> ))}
                                       </select>
                                       <span class="select-highlight"></span>
                                       <span class="select-bar"></span>
@@ -341,7 +339,6 @@ function NewUser() {
                                         touched={touched.country}
                                         message={errors.country}
                                       />
-                                      {/* <label class="select-label">state</label> */}
                                     </div>
                                   </div>
 
@@ -386,10 +383,8 @@ function NewUser() {
                                         value={values.state}
                                         onBlur={handleBlur}
                                       >
-                                        <option>State</option>
-
-                                        <option value="male">Lagos</option>
-                                        
+                                        <option>State</option> 
+                                        {states.map((state) => ( <option value={state.id} key={state.id}> {state.name} </option> ))} 
                                       </select>
                                       <span class="select-highlight"></span>
                                       <span class="select-bar"></span>
@@ -415,9 +410,7 @@ function NewUser() {
                                         onBlur={handleBlur}
                                       >
                                         <option>City</option>
-
-                                        <option value="male">Ikeja</option>
-
+                                        {cities.map((city) => ( <option value={city.id} key={city.id}> {city.name} </option> ))}
                                       </select>
                                       <span class="select-highlight"></span>
                                       <span class="select-bar"></span>

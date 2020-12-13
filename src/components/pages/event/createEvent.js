@@ -91,8 +91,8 @@ const CreateEvent = () => {
                             return;
                           }
                           const event = new Date(values.date);
-                        console.log('month',moment(values.date).format('MMMM'));
-                       return console.log('year',moment(values.date).format('yyyy'));
+                        // console.log('month',moment(values.date).format('MMMM'));
+                        // console.log('year',moment(values.date).format('yyyy'));
                           try {
                             const data = {
                                 img: url,

@@ -4,7 +4,9 @@ import { ToastContainer, toast } from "react-toastify";
 import FormError from "./formError";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import { useSelector, useDispatch } from 'react-redux';
 import { Header, SideBar, PageHeaderTitle, Footer, firestore } from "../../partials";
+import { fetchStates, fetchCities } from '../../util';
 import "./form.css";
 
 const validationSchema = Yup.object().shape({
@@ -22,9 +24,25 @@ const validationSchema = Yup.object().shape({
 });
 
 function CreateBranch() {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
+  const { countries, states, cities } = user;
+
   useEffect(() => {
     document.getElementById("branch").classList.add("active");
   });
+
+  const onselectCountry = ({ target }) => {
+  //   console.log('target', target.uid);
+  //  const obj = JSON.parse(JSON.stringify(target.value));
+  // return console.log('object', Object.assign({}, obj));
+   fetchStates(dispatch, target.value);
+  };
+
+  const onselectState = ({ target }) => {
+    fetchCities(dispatch, target.value);
+   };
+
   return (
     <div className="page">
       <Helmet>
@@ -67,7 +85,7 @@ function CreateBranch() {
                         onSubmit={async (values, { setSubmitting, resetForm }) => {
                           setSubmitting(true);
                           try { 
-                            await firestore.collection("branches").add(values);
+                            await firestore.collection("branches").add({...values, created: Date.now() });
                             toast.success("Church Branch Successfully added", {
                                     position: "top-right",
                                     autoClose: 5000,
@@ -89,7 +107,6 @@ function CreateBranch() {
                                   });
                                 }
                           setTimeout(() => {
-
                             resetForm();
                             setSubmitting(false);
                           }, 500);
@@ -144,7 +161,7 @@ function CreateBranch() {
                                   </div>
 
                                   <div className="col-md-12 col-sm-12 col-lg-4 col-xs-4">
-                                    <div class="select input-material">
+                                    <div className="select input-material">
                                       <select
                                         className={
                                           touched.gender && errors.gender
@@ -160,8 +177,8 @@ function CreateBranch() {
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
                                       </select>
-                                      <span class="select-highlight"></span>
-                                      <span class="select-bar"></span>
+                                      <span className="select-highlight"></span>
+                                      <span className="select-bar"></span>
                                       <FormError
                                         touched={touched.gender}
                                         message={errors.gender}
@@ -247,7 +264,7 @@ function CreateBranch() {
                                   </div>
 
                                   <div className="col-md-3 col-sm-11 col-lg-3 col-xs-12">
-                                    <div class="select input-material">
+                                    <div className="select input-material">
                                       <select
                                         className={
                                           touched.country && errors.country
@@ -255,27 +272,29 @@ function CreateBranch() {
                                             : "input-material select-text"
                                         }
                                         name="country"
-                                        onChange={handleChange}
+                                        onChange={(value) => { 
+                                          onselectCountry(value);
+                                          handleChange(value) 
+                                        }}
                                         value={values.country}
                                         onBlur={handleBlur}
                                       >
                                         <option>Country</option>
-
-                                        <option value="male">Nigeria</option>
-                                        
+                                        {countries.map((country)=>(
+                                           <option value={country.id} key={country.id} uid={country.id}>{country.name}</option>
+                                        ))} 
                                       </select>
-                                      <span class="select-highlight"></span>
-                                      <span class="select-bar"></span>
+                                      <span className="select-highlight"></span>
+                                      <span className="select-bar"></span>
                                       <FormError
                                         touched={touched.country}
                                         message={errors.country}
                                       />
-                                      {/* <label class="select-label">state</label> */}
                                     </div>
                                   </div>
 
                                   <div className="col-md-4 col-sm-11 col-lg-4 col-xs-6">
-                                    <div class="select input-material">
+                                    <div className="select input-material">
                                       <select
                                         className={
                                           touched.state && errors.state
@@ -283,17 +302,20 @@ function CreateBranch() {
                                             : "input-material select-text"
                                         }
                                         name="state"
-                                        onChange={handleChange}
+                                        onChange={(value) => {
+                                          onselectState(value)
+                                          handleChange(value)
+                                        }}
                                         value={values.state}
                                         onBlur={handleBlur}
                                       >
                                         <option>State</option>
-
-                                        <option value="male">Lagos</option>
-                                        
+                                        {states.map((state)=>(
+                                           <option value={state.id} key={state.id}>{state.name}</option>
+                                        ))} 
                                       </select>
-                                      <span class="select-highlight"></span>
-                                      <span class="select-bar"></span>
+                                      <span className="select-highlight"></span>
+                                      <span className="select-bar"></span>
                                       <FormError
                                         touched={touched.state}
                                         message={errors.state}
@@ -303,7 +325,7 @@ function CreateBranch() {
                                   </div>
 
                                   <div className="col-md-6 col-sm-12 col-lg-6 col-xs-6">
-                                    <div class="select input-material">
+                                    <div className="select input-material">
                                       <select
                                         className={
                                           touched.state && errors.state
@@ -316,12 +338,13 @@ function CreateBranch() {
                                         onBlur={handleBlur}
                                       >
                                         <option>City</option>
-
-                                        <option value="male">Ikeja</option>
+                                        {cities.map((city)=>(
+                                           <option value={city} key={city.id}>{city.name}</option>
+                                        ))} 
 
                                       </select>
-                                      <span class="select-highlight"></span>
-                                      <span class="select-bar"></span>
+                                      <span className="select-highlight"></span>
+                                      <span className="select-bar"></span>
                                       <FormError
                                         touched={touched.city}
                                         message={errors.city}

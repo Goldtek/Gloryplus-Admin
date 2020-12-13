@@ -1,19 +1,35 @@
-import React, { useEffect, Fragment } from "react";
+import React, { useEffect, Fragment, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
 // import PuffLoader from "react-spinners/PuffLoader";
 import Button from "@material-ui/core/Button";
-import { Header, SideBar } from "../../partials";
+
+import { Header, SideBar, firestore } from "../../partials";
 import { Card } from "./cards/courseCard";
 import { LoaderCard, InfoCard } from "../Helpers";
-import { Helmet } from "react-helmet";
+import { handleError } from "../../util";
 
-const CourseLists = ({ courseData }) => {
+const CourseLists = () => {
+  const [courses, setCourses] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+
   useEffect(() => {
-    // document.getElementById("gpa").classList.add("active");
-    // fetchCourseLists();
+     document.getElementById("gpa").classList.add("active");
+     fetchCourseLists();
   }, []);
+
+  const fetchCourseLists = async () => {
+    await firestore.collection('courses')
+    .onSnapshot((querySnapshot) => {
+      const results = [];
+      querySnapshot.forEach((doc) => {
+        results.push(doc.data());
+      });
+      console.log('results', results)
+      setCourses(results);
+      setLoading(false);
+    }, handleError);
+  }
 
   let history = useHistory();
   return (
@@ -47,7 +63,7 @@ const CourseLists = ({ courseData }) => {
                     color="primary"
                     style={{ textDecoration: "none", color: "white" }}
                   >
-                    Create Course
+                    Create Lesson
                   </Button>{" "}
                   <Button
                     onClick={() => history.goBack()}
@@ -62,14 +78,14 @@ const CourseLists = ({ courseData }) => {
           </div>
           <div className="col-12">
             <div className="row">
-              {courseData.loading ? (
+              {isLoading ? (
                 <LoaderCard />
-              ) : courseData.error ? (
-                <InfoCard error={courseData.error} />
+              ) : courses.error ? (
+                <InfoCard error={courses.error} />
               ) : (
                 <Fragment>
-                  {courseData.courseItems.length ? (
-                    courseData.courseItems.map((course) => (
+                  {courses.length ? (
+                    courses.map((course) => (
                       <Card
                         title={course.title}
                         created={course.created}

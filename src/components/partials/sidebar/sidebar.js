@@ -27,7 +27,7 @@ const SideBar = () => {
         <li id="home">
           <a href="/dashboard">
             {" "}
-            <i className="fa fa-fire"></i>Dashboard{" "}
+            <i className="fa fa-fire"></i> Dashboard{" "}
           </a>
         </li>
         <li id="branch">
@@ -46,14 +46,14 @@ const SideBar = () => {
 
         <li id="cell">
           <a href="#cellDropdown" aria-expanded="false" data-toggle="collapse">
-            <i className="icon-padnote"></i>Cell
+            <i className="fa fa-home"></i>Cell
           </a>
           <ul id="cellDropdown" className="collapse list-unstyled">
             <li>
               <a href="/dashboard/cell/create">Create Cell</a>
             </li>
             <li>
-              <a href="#!">List of Cells</a>
+              <a href="/dashboard/cells">List of Cells</a>
             </li>
           </ul>
         </li>
@@ -65,7 +65,7 @@ const SideBar = () => {
             aria-expanded="false"
             data-toggle="collapse"
           >
-            <i className="fa fa-video-camera"></i>Livestream
+            <i className="fa fa-video-camera"></i> Livestream
           </a>
           <ul id="tablesDropdown" className="collapse list-unstyled">
             <li>
@@ -79,7 +79,7 @@ const SideBar = () => {
             aria-expanded="false"
             data-toggle="collapse"
           >
-            <i className="fa fa-certificate"></i>GPA
+            <i className="fa fa-certificate"></i> GPA
           </a>
           <ul id="chartsDropdown" className="collapse list-unstyled">
             <li>
@@ -101,9 +101,6 @@ const SideBar = () => {
 
             <li>
               <a href="/dashboard/first-timers">First Timer</a> {/** i dont think there should be  */}
-            </li>
-            <li>
-              <a href="/dashboard/mvp">List of MVPs</a>
             </li>
 
             <li>

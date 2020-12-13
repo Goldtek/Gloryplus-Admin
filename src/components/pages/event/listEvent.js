@@ -1,20 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import moment from 'moment';
-import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
+import { Header, SideBar, PageHeaderTitle, Footer, firestore } from "../../partials";
 import { EventCard } from "./eventCard";
+import { handleError } from "../../util";
 
 // import Content from "../main";
 const ListEvents = () => {
-  
+  const [events, setEvents] = useState([]);
   useEffect(() => {
     document.getElementById("gpa").classList.add("active");
     fetchEvents();
   }, []);
 
-  const fetchEvents = () => {
+  const fetchEvents = async () => {
+    await firestore.collection('cells')
+    .onSnapshot((querySnapshot) => {
+      const results = [];
+      querySnapshot.forEach((doc) => {
+        results.push(doc.data());
+      });
+      setEvents(results);
+    }, handleError);
 
   }
 

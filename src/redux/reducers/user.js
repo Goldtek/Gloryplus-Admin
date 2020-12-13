@@ -1,0 +1,30 @@
+import { FETCH_CITIES, FETCH_COUNTRIES, FETCH_STATES } from "../actions/types";
+//here the reducer is going to evaluate any action that has been committed such as fetching and creating posts
+
+const initialState = {
+  states: [],
+  cities: [],
+  countries: []
+};
+
+export default function (state = initialState, action) {
+  switch (action.type) {
+    case FETCH_COUNTRIES:
+      return {
+        ...state,
+        countries: [...action.countries],
+      };
+      case FETCH_STATES:
+      return {
+        ...state,
+        states: action.states,
+      };
+      case FETCH_CITIES:
+      return {
+        ...state,
+        cities: action.cities,
+      };
+    default:
+      return state;
+  }
+}

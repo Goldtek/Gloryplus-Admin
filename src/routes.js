@@ -20,8 +20,10 @@ import {
   NewUser,
   Users,
   CreateCell,
+  ViewCell,
   Mvp,
-  ViewBranch
+  ViewBranch,
+
 } from "./components/pages";
 
 const Routes = () => {
@@ -108,6 +110,9 @@ const Routes = () => {
         <Route path="/dashboard/cell/create">
           <CreateCell />
         </Route>
+
+        <Route path="/dashboard/cells" component={ViewCell} />
+        
         <Route path="/dashboard/mvp">
           <Mvp />
         </Route>
