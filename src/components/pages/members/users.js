@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
@@ -7,6 +7,7 @@ import FormError from "./formError";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { Header, SideBar, PageHeaderTitle, Footer, firestore } from "../../partials";
+import { handleError } from '../../util';
 import "./form.css";
 import "./users.css"
 import MemberList from './MVP_MemberLists';
@@ -26,9 +27,28 @@ const validationSchema = Yup.object().shape({
 });
 
 function Members() {
+  const [members, setMember] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     document.getElementById("members").classList.add("active");
+    fetchUsers();
   });
+
+  const fetchUsers = async () => {
+    await firestore.collection('users')
+    .onSnapshot((querySnapshot) => {
+      const results = [];
+      querySnapshot.forEach((doc) => {
+        results.push(doc.data());
+      });
+      console.log('members', results)
+      setMember(results);
+      // store in redux
+      setLoading(false);
+    }, handleError);
+  }
+
   return (
     <div className="page">
       <Helmet>
@@ -41,7 +61,7 @@ function Members() {
         <div className="content-inner">
           <PageHeaderTitle title="First Timer" currpg="Members" />
           <div className="container-fluid mt-3 mb-4">
-            <MemberList />
+            <MemberList candidates={members} />
           </div>
           <Footer />
         </div>
