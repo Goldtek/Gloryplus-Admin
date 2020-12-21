@@ -2,9 +2,11 @@ import { FETCH_CITIES, FETCH_COUNTRIES, FETCH_STATES } from "../actions/types";
 //here the reducer is going to evaluate any action that has been committed such as fetching and creating posts
 
 const initialState = {
+  roles: [{ uid: 'FT', name: "First Timer"}, { uid: 'mem', name: "Member"}, { uid: 'ST', name: "Second Timer"},  { uid: 'AD', name: "Admin"}, { uid: "SA", name: "Super Admin"}, { uid: 'HFL', name: "House FellowShip Leader"},{ uid: "map", name: "MVP" }, { uid: 'media', name: "MEDIA" } ],
   states: [],
   cities: [],
-  countries: []
+  countries: [],
+  
 };
 
 export default function (state = initialState, action) {

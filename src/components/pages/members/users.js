@@ -59,7 +59,7 @@ function Members() {
       <div className="page-content d-flex align-items-stretch">
         <SideBar />
         <div className="content-inner">
-          <PageHeaderTitle title="First Timer" currpg="Members" />
+          <PageHeaderTitle title="Members" currpg="Members" />
           <div className="container-fluid mt-3 mb-4">
             <MemberList candidates={members} />
           </div>

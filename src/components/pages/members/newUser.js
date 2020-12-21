@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { ToastContainer, toast } from "react-toastify";
-import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
 import FormError from "./formError";
 import { Formik, Form, Field } from "formik";
 import TextField from '@material-ui/core/TextField';
 import * as Yup from "yup";
+import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { Header, SideBar, PageHeaderTitle, Footer, firestore } from "../../partials";
+import { fetchStates, fetchCities } from "../../util";
 import "./form.css";
 
 
@@ -28,7 +29,9 @@ const validationSchema = Yup.object().shape({
 function NewUser() {
   const dispatch = useDispatch();
   const userStore = useSelector(state => state.user);
-  const { countries, states, cities } = userStore;
+  const { countries, states, cities, roles} = userStore;
+  console.log('userStore', userStore);
+  console.log('roles', roles&&roles);
 
   useEffect(() => {
     document.getElementById("members").classList.add("active");
@@ -39,6 +42,14 @@ function NewUser() {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(e);
   }
+
+  const onselectCountry = ({ target }) => {
+    fetchStates(dispatch, target.value);
+ };
+ 
+ const onselectState = ({ target }) => {
+     fetchCities(dispatch, target.value);
+ };
 
   const getStyle = () => {
     return {
@@ -274,8 +285,8 @@ function NewUser() {
                                         onBlur={handleBlur}
                                       >
                                         <option>User Role</option>
-
-                                        <option value="male">Admin</option>
+                                        {/* {roles.map((role) => (  <option value={role.uid}> {role.name} </option> ))}
+                                        */}
                                         
                                       </select>
                                       <span class="select-highlight"></span>
