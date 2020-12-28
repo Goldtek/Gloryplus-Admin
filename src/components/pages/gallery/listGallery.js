@@ -52,11 +52,13 @@ const ListEvents = () =>  {
                   </div>
                 </div>
                 <div className="row">
-                  {galleries.map((event) => (
+                  {galleries.map((gallery) => (
                     <EventCard
-                      title={event.title}
-                      created={event.created}
-                      key={event.id}
+                      title={gallery.title}
+                      created={gallery.created}
+                      key={gallery.id}
+                      image={gallery.img}
+
                     />
                   ))}
                 </div>

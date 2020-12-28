@@ -1,14 +1,17 @@
 import React, { useState, useEffect  } from "react";
 import { useDispatch } from 'react-redux';
 import serializeForm from 'form-serialize';
+import { useHistory } from 'react-router-dom';
 import _ from 'lodash';
+import { ToastContainer, toast } from "react-toastify";
 import { CustomAlert, auth, firestore } from "../../partials";
 import { fetchCountry, fetchCells } from "../../util";
+import { EmailRounded } from "@material-ui/icons";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [errorMessage, setErrorMessage] = useState("");
-
   useEffect(() => {
     callFetchCountry();
     callFetchCells();
@@ -24,20 +27,28 @@ const Login = () => {
 
     const handleLogin = async (e) => {
     e.preventDefault();
-    setErrorMessage("");
     try {
       const loginValues = serializeForm(e.target, { hash: true });
       const { email, password } = loginValues;
+      console.log('email', email);
   
       const res = await auth.signInWithEmailAndPassword(email,password);
-      const { user } = res;
-  
-      if (user) {
-       // query firestore and dispatch to redux
-      }
+      const { user: { uid } } = res;
+      const doc = await firestore.collection('users').doc(uid).get();
+      const user = doc.data();
+      dispatch({type: 'USER_LOGGED_IN', user})
+      history.push("/dashboard");
     } catch (error) {
       console.log('error logging in', error);
-      setErrorMessage(error.message);
+      toast.error(`${error}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       
     }
   };
@@ -62,7 +73,7 @@ const Login = () => {
               <div className="form-group">
                 <label>Email Address</label>
                 <input
-                  name="loginUsername"
+                  name="email"
                   type="email"
                   autocomplete="off"
                   required
@@ -82,7 +93,7 @@ const Login = () => {
                   </div>
                 </div>
                 <input
-                  name="loginPassword"
+                  name="password"
                   type="password"
                   required
                   data-msg="Please enter your password"
@@ -112,6 +123,7 @@ const Login = () => {
           ></div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

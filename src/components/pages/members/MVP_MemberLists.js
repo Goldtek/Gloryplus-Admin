@@ -146,12 +146,12 @@ const MVP_MemberLists = ({ classes, candidates = [{name:'ch'}] }) => {
                     </TableCell>
                     <TableCell>
                       <div className={classes.nameContainer}>
-                        <Avatar
+                        {/* <Avatar
                           className={classes.avatar}
                           src={candidate.avatarUrl}
                         >
-                        </Avatar>
-                        <Typography variant="body1">{candidate.name}</Typography>
+                        </Avatar> */}
+                        <Typography variant="body1">{candidate.surname} {candidate.firstname}</Typography>
                       </div>
                     </TableCell>
                     <TableCell>{candidate.email}</TableCell>

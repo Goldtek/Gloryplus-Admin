@@ -8,6 +8,7 @@ import { Header, SideBar, Breadcrumb, firestore } from "../../partials";
 import Button from '@material-ui/core/Button';
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import { useHistory } from 'react-router-dom';
 import { fetchCities, fetchStates, geocode } from '../../util'
 
 import FormError from "./formError";
@@ -27,8 +28,9 @@ const validationSchema = Yup.object().shape({
   });
 
 
-const CreateCell = () => {
+const CreateCell = (props) => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [coordinates, setCoordinates] = useState(null);
     const user = useSelector(state => state.user);
     const { countries, states, cities } = user;
@@ -123,6 +125,7 @@ const CreateCell = () => {
                                                                     draggable: true,
                                                                     progress: undefined,
                                                                 });
+                                                                history.push("/dashboard/cells");
                                                                 } catch (error) {
                                                                 toast.error(`${error.message}`, {
                                                                     position: "top-right",

@@ -16,7 +16,7 @@ const ListEvents = () => {
   }, []);
 
   const fetchEvents = async () => {
-    await firestore.collection('cells')
+    await firestore.collection('events')
     .onSnapshot((querySnapshot) => {
       const results = [];
       querySnapshot.forEach((doc) => {
@@ -46,13 +46,14 @@ const ListEvents = () => {
                     </div>
                   </div>
                   <div className="row">
-                    {/* {this.props.events.map((event) => (
+                    {events.map((event) => (
                       <EventCard
                         title={event.title}
                         created={event.created}
                         key={event.id}
+                        image={event.img}
                       />
-                    ))} */}
+                    ))}
                   </div>
                 </section>
             </div>

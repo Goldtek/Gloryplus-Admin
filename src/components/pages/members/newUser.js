@@ -5,10 +5,11 @@ import { v4 as uuidv4 } from 'uuid';
 import FormError from "./formError";
 import { Formik, Form, Field } from "formik";
 import TextField from '@material-ui/core/TextField';
+import { useHistory } from 'react-router-dom';
 import * as Yup from "yup";
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
-import { Header, SideBar, PageHeaderTitle, Footer, firestore } from "../../partials";
+import { Header, SideBar, PageHeaderTitle, Footer, firestore, auth } from "../../partials";
 import { fetchStates, fetchCities } from "../../util";
 import "./form.css";
 
@@ -23,15 +24,15 @@ const validationSchema = Yup.object().shape({
   city: Yup.string().required("city is required "),
   state: Yup.string().required("state is required"),
   country: Yup.string().required("country is required"),
+  password: Yup.string().required("Password is required"),
   email: Yup.string().email("Invalid email").required("Required"),
 });
 
-function NewUser() {
+function NewUser(props) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const userStore = useSelector(state => state.user);
   const { countries, states, cities, roles} = userStore;
-  console.log('userStore', userStore);
-  console.log('roles', roles&&roles);
 
   useEffect(() => {
     document.getElementById("members").classList.add("active");
@@ -97,15 +98,20 @@ function NewUser() {
                           state: "",
                           cell: "",
                           role: "",
-                          country: ""
+                          country: "",
+                          password: "",
                         }}
                         validationSchema={validationSchema}
                         onSubmit={async(values, { setSubmitting, resetForm }) => {
                           setSubmitting(true);
                             try{
+                             
+                              // pass through auth and get uid
+                              const reg = await auth.createUserWithEmailAndPassword(values.email, values.password);
+                              const uid = reg.user.uid;
 
                                 const user =  {
-                                    id: uuidv4(),
+                                    id: uid,
                                     firstname: values.firstname,
                                     surname: values.surname,
                                     gender: values.gender,
@@ -118,11 +124,11 @@ function NewUser() {
                                     cell: values.cell,
                                     role: values.role,
                                   };
-                                
-                                    await firestore.collection('users').add(user);
+                                 
+                                    await firestore.collection('users').doc(uid).set(user);
                                     resetForm();
                                     setSubmitting(false);
-                                    toast.success("First Timers Successfully added", {
+                                    toast.success("Your account has been Successfully added", {
                                         position: "top-right",
                                         autoClose: 5000,
                                         hideProgressBar: false,
@@ -131,8 +137,10 @@ function NewUser() {
                                         draggable: true,
                                         progress: undefined,
                                       });
+                                    history.push("/dashboard/members");
 
                             } catch (error) {
+                              console.log('error', error);
                                 toast.error(`${error}`, {
                                     position: "top-right",
                                     autoClose: 5000,
@@ -162,9 +170,9 @@ function NewUser() {
                                   <div className="col-md-12 col-sm-12 col-lg-4 col-xs-4">
                                     <div className="form-group-material">
                                       <Field
-                                        id="name"
+                                        id="surname"
                                         type="text"
-                                        name="name"
+                                        name="surname"
                                         className={
                                           touched.surname && errors.surname
                                             ? "input-material is-invalid"
@@ -191,9 +199,9 @@ function NewUser() {
                                   <div className="col-md-12 col-sm-12 col-lg-4 col-xs-4">
                                     <div className="form-group-material">
                                       <Field
-                                        id="name"
+                                        id="firstname"
                                         type="text"
-                                        name="name"
+                                        name="firstname"
                                         className={
                                           touched.firstname && errors.firstname
                                             ? "input-material is-invalid"
@@ -285,8 +293,8 @@ function NewUser() {
                                         onBlur={handleBlur}
                                       >
                                         <option>User Role</option>
-                                        {/* {roles.map((role) => (  <option value={role.uid}> {role.name} </option> ))}
-                                        */}
+                                        {roles.map((role) => (  <option value={role.uid}> {role.name} </option> ))}
+                                       
                                         
                                       </select>
                                       <span class="select-highlight"></span>
@@ -338,7 +346,10 @@ function NewUser() {
                                             : "input-material select-text"
                                         }
                                         name="country"
-                                        onChange={handleChange}
+                                        onChange={(value) => { 
+                                          onselectCountry(value);
+                                          handleChange(value) 
+                                        }}
                                         value={values.country}
                                         onBlur={handleBlur}
                                       >
@@ -382,7 +393,7 @@ function NewUser() {
                                     </div>
                                   </div>
 
-                                  <div className="col-md-4 col-sm-11 col-lg-4 col-xs-6">
+                                  <div className="col-md-4 col-sm-11 col-lg-4 col-xs-12">
                                     <div class="select input-material">
                                       <select
                                         className={
@@ -391,7 +402,10 @@ function NewUser() {
                                             : "input-material select-text"
                                         }
                                         name="state"
-                                        onChange={handleChange}
+                                        onChange={(value) => {
+                                          onselectState(value)
+                                          handleChange(value)
+                                        }}
                                         value={values.state}
                                         onBlur={handleBlur}
                                       >
@@ -408,7 +422,7 @@ function NewUser() {
                                     </div>
                                   </div>
 
-                                  <div className="col-md-6 col-sm-12 col-lg-6 col-xs-6">
+                                  <div className="col-md-4 col-sm-12 col-lg-4 col-xs-12">
                                     <div class="select input-material">
                                       <select
                                         className={
@@ -431,6 +445,34 @@ function NewUser() {
                                         message={errors.city}
                                       />
                                       {/* <label class="select-label">city</label> */}
+                                    </div>
+                                  </div>
+
+                                  <div className="col-md-12 col-sm-12 col-lg-4 col-xs-4">
+                                    <div className="form-group-material">
+                                      <Field
+                                        id="password"
+                                        type="password"
+                                        name="password"
+                                        className={
+                                          touched.password && errors.password
+                                            ? "input-material is-invalid"
+                                            : "input-material"
+                                        }
+                                        onChange={handleChange}
+                                        value={values.password}
+                                        onBlur={handleBlur}
+                                      />
+                                      <FormError
+                                        touched={touched.password}
+                                        message={errors.password}
+                                      />
+                                      <label
+                                        htmlFor="name"
+                                        className="label-material"
+                                      >
+                                        Password 
+                                      </label>
                                     </div>
                                   </div>
                                  

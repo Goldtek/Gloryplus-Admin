@@ -35,12 +35,12 @@ const Routes = () => {
         <Route
           exact
           path="/"
-          render={() => (
+          render={(props) => (
             <Fragment>
               <Helmet>
                 <title>Glory Plus Admin</title>
               </Helmet>
-              <Login />
+              <Login props={props} />
             </Fragment>
           )}
         />

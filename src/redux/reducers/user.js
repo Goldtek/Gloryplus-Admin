@@ -1,4 +1,4 @@
-import { FETCH_CITIES, FETCH_COUNTRIES, FETCH_STATES } from "../actions/types";
+import { FETCH_CITIES, FETCH_COUNTRIES, FETCH_STATES, USER_LOGGED_IN } from "../actions/types";
 //here the reducer is going to evaluate any action that has been committed such as fetching and creating posts
 
 const initialState = {
@@ -6,6 +6,8 @@ const initialState = {
   states: [],
   cities: [],
   countries: [],
+  user:{},
+  isAuthenticated: false,
   
 };
 
@@ -26,6 +28,12 @@ export default function (state = initialState, action) {
         ...state,
         cities: action.cities,
       };
+      case USER_LOGGED_IN:
+        return {
+          ...state,
+          user: action.user,
+          isAuthenticated: true,
+        };
     default:
       return state;
   }

@@ -46,7 +46,7 @@ const SideBar = () => {
 
         <li id="cell">
           <a href="#cellDropdown" aria-expanded="false" data-toggle="collapse">
-            <i className="fa fa-home"></i>Cell
+            <i className="fa fa-home"></i>  Cell
           </a>
           <ul id="cellDropdown" className="collapse list-unstyled">
             <li>
@@ -65,7 +65,7 @@ const SideBar = () => {
             aria-expanded="false"
             data-toggle="collapse"
           >
-            <i className="fa fa-video-camera"></i> Livestream
+            <i className="fa fa-video-camera"></i>  Livestream
           </a>
           <ul id="tablesDropdown" className="collapse list-unstyled">
             <li>

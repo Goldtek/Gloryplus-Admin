@@ -1,14 +1,14 @@
 import React from "react";
 import Moment from "react-moment";
 // const dateToFormat = new Date("");
-export const EventCard = ({ title, created }) => {
+export const EventCard = ({ title, created, image }) => {
   return (
     <div className="col-md-3 col-xs-12 col-lg-3 col-sm-12">
       <div className="card-deck-wrapper">
         <div className="card-deck">
           <div className="card">
             <img
-              src="img/mockup4.jpg"
+              src={image}
               alt="Card  cap"
               className="card-img-top img-fluid"
             />

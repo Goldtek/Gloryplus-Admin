@@ -91,7 +91,6 @@ export const fetchCells = async (dispatch) => {
           querySnapshot.forEach((doc) => {
             cells.push(doc.data());
           });
-          console.log('cells', cells);
           cells = _.orderBy(cells, ['name'],['asc'])
          dispatch({ type: 'SET_CELLS', cells });
         }, handleError);

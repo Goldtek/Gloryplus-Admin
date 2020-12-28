@@ -24,7 +24,7 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
 });
 
-function CreateBranch() {
+function CreateBranch(props) {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
   const { countries, states, cities } = user;
@@ -96,6 +96,7 @@ function CreateBranch() {
                                     draggable: true,
                                     progress: undefined,
                                   });
+                                  props.navigation.navigate("/dashboard/branches");
                                 } catch (error) {
                                   toast.error(`${error.message}`, {
                                     position: "top-right",

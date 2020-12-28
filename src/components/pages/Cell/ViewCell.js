@@ -14,15 +14,6 @@ import { handleError } from "../../util";
 const ViewCell = () => {
     const [cells, setCells] = useState([]);
 
-    const handleChange = (event) => {
-        // this.setState({ value: event.target.value });
-    }
-
-    const handleSubmit = (event) => {
-       //  alert('A name was submitted: ' + this.state.value);
-        event.preventDefault();
-    }
-
     useEffect(()=> {
          document.getElementById("cell").classList.add("active");
          fetchCells();
