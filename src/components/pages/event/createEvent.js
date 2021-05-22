@@ -20,7 +20,7 @@ const validationSchema = Yup.object().shape({
   title: Yup.string().required("event title is required"),
   location: Yup.string().required("event address is required"),
   date: Yup.string().required("event date is required"),
-  description: Yup.string().required("event details is required"),
+  details: Yup.string().required("event details is required"),
 });
 
 const CreateEvent = () => {
@@ -82,7 +82,7 @@ const CreateEvent = () => {
                           file: "",
                           location: "",
                           date: "",
-                          description: "",
+                          details: "",
                           title: "",
                         }}
                         validationSchema={validationSchema}
@@ -91,9 +91,9 @@ const CreateEvent = () => {
                           if(url == null){
                             return;
                           }
-                          const event = new Date(values.date);
-                        // console.log('month',moment(values.date).format('MMMM'));
-                        // console.log('year',moment(values.date).format('yyyy'));
+                    
+                        const event = new Date(values.date);
+
                           try {
                             const data = {
                                 id: uuidv4(),
@@ -101,13 +101,14 @@ const CreateEvent = () => {
                                 title: values.title,
                                 date: values.date,
                                 month: moment(values.date).format('MMMM'),
-                                year: moment().format(values.date,'yyyy'),
+                                year: moment(values.date).format('yyyy'),
                                 time: event.toLocaleTimeString('it-IT'),
                                 details: values.details,
-                                location: values.location,
+                                address: values.location,
                                 created: Date.now(), 
                                 status: "active",
                               };
+                            
                               await firestore.collection("events").add(data);
                           
                               toast.success("Event Successfully added", {
@@ -122,6 +123,7 @@ const CreateEvent = () => {
                               resetForm();
                               setSubmitting(false);
                             } catch(err){
+                              console.log('error', err)
                               toast.error(`${err}`, {
                                 position: "top-right",
                                 autoClose: 5000,
@@ -215,19 +217,19 @@ const CreateEvent = () => {
                               </label>
                               <textarea
                                 className={
-                                  touched.description && errors.description
+                                  touched.details && errors.details
                                     ? "  form-control  is-invalid"
                                     : "form-control"
                                 }
                                 placeholder="description"
-                                name="description"
+                                name="details"
                                 onChange={handleChange}
-                                value={values.description}
+                                value={values.details}
                                 onBlur={handleBlur}
                               ></textarea>
                               <FormError
-                                touched={touched.description}
-                                message={errors.description}
+                                touched={touched.details}
+                                message={errors.details}
                               />
                             </div>
                             <div className="form-group">
