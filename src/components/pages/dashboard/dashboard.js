@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { Header, SideBar, PageHeaderTitle, Footer, storage } from "../../partials";
+import { Header, SideBar, PageHeaderTitle, Footer } from "../../partials";
 import {Bar, Pie, Line } from 'react-chartjs-2';
 import { GrowthCard, RecentUsers, Reports } from "./Card";
 
