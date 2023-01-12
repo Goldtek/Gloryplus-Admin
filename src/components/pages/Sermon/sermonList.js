@@ -1,9 +1,9 @@
 import React, { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { fetchSermonList } from "../../../Redux/actions/sermonActions";
+// import { fetchSermonList } from "../../../redux/actions";
 import Button from '@material-ui/core/Button';
-import { Header, SideBar } from "../../Partials";
+import { Header, SideBar } from "../../partials";
 import { SermonCard } from "./sermonCard";
 import { LoaderCard, InfoCard } from "../Helpers"
 
@@ -83,4 +83,4 @@ SermonList.propTypes = {
 const mapStateToProps = (state) => ({
   sermonData: state.sermon
 });
-export default connect(mapStateToProps, { fetchSermonList })(SermonList);
+export default connect(mapStateToProps, {  })(SermonList);

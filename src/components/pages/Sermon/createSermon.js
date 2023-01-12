@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 // import { Helmet } from "react-helmet";
 import { ToastContainer, toast } from "react-toastify";
@@ -6,7 +6,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import uuid from "react-uuid";
 import FormError from "./formError";
-import { Header, SideBar } from "../../Partials";
+import { Header, SideBar, ProgressBar, Thumb, firestore } from "../../partials";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -16,7 +16,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { useHistory } from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
-
   formControl: {
     marginTop: '18px',
     minWidth: "100%",
@@ -27,10 +26,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CreateSermon = () => {
+  const [sermonUrl, setSermonUrl] = useState('');
+  const [sermonImage, setSermonImage] = useState('');
+  const [coverType, setCoverType] = useState('image');
   const classes = useStyles();
   useEffect(() => {
     // document.getElementById("sermon").classList.add("active");
   });
+  console.log('sermonImage', sermonImage)
 
   let history = useHistory()
 
@@ -51,17 +54,17 @@ const CreateSermon = () => {
   const validationSchema = Yup.object().shape({
     coverimg: Yup
       .mixed()
-      .required("cover image is required")
-      .test(
-        "fileSize",
-        "File too large",
-        value => value && value.size <= IMAGE_SIZE
-      )
-      .test(
-        "fileFormat",
-        "Unsupported Format",
-        value => value && SUPPORTED_IMG_FORMATS.includes(value.type)
-      ),
+      .required("cover image is required"),
+      // .test(
+      //   "fileSize",
+      //   "File too large",
+      //   value => value && value.size <= IMAGE_SIZE
+      // )
+      // .test(
+      //   "fileFormat",
+      //   "Unsupported Format",
+      //   value => value && SUPPORTED_IMG_FORMATS.includes(value.type)
+      // ),
     sermonfile: Yup
       .mixed()
       .required("sermon file is required")
@@ -77,7 +80,9 @@ const CreateSermon = () => {
       ),
     title: Yup.string().required("sermon title is required"),
     sermonType: Yup.string().required("sermon type required"),
+    sermonCoverType: Yup.string().required("sermon cover type required"),
     preacher: Yup.string().required("sermon preacher is required"),
+    amount: Yup.number().required("cost of srmon is required"),
   });
 
   const API_URL = process.env.REACT_APP_BASEURL;
@@ -124,39 +129,16 @@ const CreateSermon = () => {
                           sermonfile: undefined,
                           title: "",
                           sermonType: "",
-                          preacher: ""
+                          preacher: "",
+                          amount: '',
+                          sermonCoverType: "image"
                         }}
                         validationSchema={validationSchema}
-                        onSubmit={(values, { setSubmitting, resetForm, setFieldValue }) => {
-                          setSubmitting(true);
-                          // alert(
-                          //   JSON.stringify(
-                          //     {
-                          //       fileName: values.sermonfile.name,
-                          //       type: values.sermonfile.type,
-                          //     },
-                          //     null,
-                          //     2
-                          //   )
-                          // );
-                          axios({
-                            method: "POST",
-                            url: `${API_URL}/sermon`,
-                            data: {
-                              id: uuid(),
-                              sermontitle: values.title,
-                              coverimg: values.coverimg.name,
-                              sermontype: values.sermonType,
-                              preacher: values.preacher,
-                              preview: values.sermonfile.name,
-                              sermonfile: values.sermonfile.name,
-                              created: Date.now(),
-                            },
-                          })
-                            .then((res) => {
-                              resetForm();
-                              setSubmitting(false);
-                              toast.success("Sermon Created Successfully", {
+                        onSubmit={async (values, { setSubmitting, resetForm, setFieldValue }) => {
+                          try { 
+                            setSubmitting(true);
+                            if (sermonUrl === '') {
+                              return toast.error('Please upload sermon.', {
                                 position: "top-right",
                                 autoClose: 5000,
                                 hideProgressBar: false,
@@ -165,9 +147,8 @@ const CreateSermon = () => {
                                 draggable: true,
                                 progress: undefined,
                               });
-                            })
-                            .catch((err) => {
-                              toast.error(`${err}`, {
+                            } else if (sermonImage === ''){
+                              return toast.error('Please upload sermon cover Image.', {
                                 position: "top-right",
                                 autoClose: 5000,
                                 hideProgressBar: false,
@@ -176,7 +157,48 @@ const CreateSermon = () => {
                                 draggable: true,
                                 progress: undefined,
                               });
+                            }
+                          
+                            const data = {
+                                title: values.title,
+                                sermonImg: sermonImage,
+                                type: values.sermonType,
+                                artist: values.preacher,
+                                preview: values.sermonfile.name,
+                                sermonfile: values.sermonfile.name,
+                                src: sermonUrl,
+                                amount: parseInt(values.amount),
+                                created: Date.now(),
+                                quantity: 1,
+                                sermonCoverType: values.sermonCoverType
+                            };
+
+                            await firestore.collection("sermons").add(data);
+                            
+                            resetForm();
+                            setSubmitting(false);
+                            toast.success("Sermon Created Successfully", {
+                              position: "top-right",
+                              autoClose: 5000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
                             });
+                          
+                          } catch (err) {
+                            toast.error(`${err}`, {
+                              position: "top-right",
+                              autoClose: 5000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                            });
+                          }
+                          
                         }}
                       >
                         {({
@@ -196,7 +218,7 @@ const CreateSermon = () => {
 
                               <div className="row">
 
-                                <div className="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                <div className="col-md-6 col-sm-12 col-lg-6 col-xs-12">
                                   <div className="form-group">
                                     <FormControl className={classes.formControl}>
                                       <TextField
@@ -210,6 +232,24 @@ const CreateSermon = () => {
                                         onBlur={handleBlur}
                                         error={errors.title && touched.title}
                                         helperText={(errors.title && touched.title) && errors.title}
+                                      />
+                                    </FormControl>
+                                  </div>
+                                </div>
+                                <div className="col-md-4 col-sm-12 col-lg-4 col-xs-12">
+                                  <div className="form-group">
+                                    <FormControl className={classes.formControl}>
+                                      <TextField
+                                        fullWidth
+                                        id="amount"
+                                        name="amount"
+                                        label="Amount"
+                                        margin="normal"
+                                        value={values.amount}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        error={errors.amount && touched.amount}
+                                        helperText={(errors.amount && touched.amount) && errors.amount}
                                       />
                                     </FormControl>
                                   </div>
@@ -236,7 +276,33 @@ const CreateSermon = () => {
 
                                   </div>
                                 </div>
-                                <div className="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                                <div className="col-md-4 col-sm-12 col-lg-4 col-xs-12">
+                                  <div className="form-group ">
+                                    <FormControl className={classes.formControl}>
+                                      <InputLabel htmlFor="sermoncovertype">Sermon Cover Type</InputLabel>
+                                      <Select
+                                        native
+                                        fullWidth
+                                        value={values.sermonCoverType}
+                                        onChange={(value) => {
+                                          handleChange(value)
+                                          console.log('value--', value.target.value);
+                                          setCoverType(value.target.value)
+                                      }}
+                                        onBlur={handleBlur}
+                                        name='sermonCoverType'
+                                        id='sermoncovertype'
+                                        error={errors.sermonCoverType && touched.sermonCoverType}>
+                                        <option value="">Select Sermon Cover Type</option>
+                                        <option value={"image"}>Image Cover</option>
+                                        <option value={"video"}>Video Cover</option>
+                                      </Select>
+                                    </FormControl>
+
+
+                                  </div>
+                                </div>
+                                <div className="col-md-4 col-sm-12 col-lg-4 col-xs-12">
                                   <div className="form-group ">
                                     <TextField
                                       fullWidth
@@ -255,7 +321,8 @@ const CreateSermon = () => {
                                   </div>
                                 </div>
                               </div>
-                              <div className="form-group">
+                             
+                              <div className="form-group" style={{display: values.sermonCoverType === 'image' ? 'block': 'none'}}>
                                 <label className="form-control-label">
                                   Sermon Cover Image
                                     </label>
@@ -276,11 +343,46 @@ const CreateSermon = () => {
                                   }
                                   onBlur={handleBlur}
                                 />
+                            
+                                 <Thumb file={values.coverimg} />
+                                {values.coverimg && <ProgressBar file={values.coverimg} setUrl={setSermonImage} directory="images/messages" />}
                                 <FormError
                                   touched={touched.coverimg}
                                   message={errors.coverimg}
                                 />
                               </div>
+
+                              <div className="form-group" style={{display: values.sermonCoverType === 'video' ? 'block': 'none'}}>
+                                <label className="form-control-label">
+                                  Sermon Cover Video
+                                    </label>
+                                <input
+                                  id="coverimg"
+                                  name="coverimg"
+                                  type="file"
+                                  onChange={(event) => {
+                                    setFieldValue(
+                                      "coverimg",
+                                      event.currentTarget.files[0]
+                                    );
+                                  }}
+                                  className={
+                                    touched.coverimg && errors.coverimg
+                                      ? "  form-control-file  is-invalid"
+                                      : "form-control-file"
+                                  }
+                                  onBlur={handleBlur}
+                                />
+                            
+                                 <Thumb file={values.coverimg} />
+                                {values.coverimg && <ProgressBar file={values.coverimg} setUrl={setSermonImage} directory="messages/cover" />}
+                                <FormError
+                                  touched={touched.coverimg}
+                                  message={errors.coverimg}
+                                />
+                              </div>
+
+
                               <div className="form-group">
                                 <label className="form-control-label">
                                   {values.sermonType ? "Choose" + " " + values.sermonType + " " + "File" : "Choose File"}
@@ -302,6 +404,10 @@ const CreateSermon = () => {
                                   }
                                   onBlur={handleBlur}
                                 />
+                                
+
+                                <Thumb file={values.sermonfile} />
+                                {values.sermonfile && <ProgressBar file={values.sermonfile} setUrl={setSermonUrl} directory={`messages/${values.sermonType}`} />}
                                 <FormError
                                   touched={touched.sermonfile}
                                   message={errors.sermonfile}

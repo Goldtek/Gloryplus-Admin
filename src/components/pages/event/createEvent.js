@@ -107,6 +107,7 @@ const CreateEvent = () => {
                                 address: values.location,
                                 created: Date.now(), 
                                 status: "active",
+                                actualDate: event
                               };
                             
                               await firestore.collection("events").add(data);
@@ -255,7 +256,7 @@ const CreateEvent = () => {
                                 onBlur={handleBlur}
                               />
                               <Thumb file={values.file} /> 
-                              {values.file && <ProgressBar file={values.file} setFile={setImage} setUrl={setUrl} directory="events" />}
+                              {values.file && <ProgressBar file={values.file} setFile={setImage} setUrl={setUrl} directory="images/events" />}
                               <FormError
                                 touched={touched.file}
                                 message={errors.file}

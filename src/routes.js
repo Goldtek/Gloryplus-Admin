@@ -23,44 +23,30 @@ import {
   ViewCell,
   Mvp,
   ViewBranch,
-
+  CreateSermon,
+  CreateTithe,
+  ViewTithes,
 } from "./components/pages";
-
+import PrivateRoute from './PrivateRoute';
 
 const Routes = () => {
   return (
     <Fragment>
       <Switch>
-        {/* GENERAL ROUTE - NONE PROTECTED #########################################*/}
 
-        <Route
-          exact
-          path="/"
-          render={(props) => (
-            <Fragment>
-              <Helmet>
-                <title>Glory Plus Admin</title>
-              </Helmet>
-              <Login />
-            </Fragment>
-          )}
-        />
-
-        <Route path="/contactus">
-          <ContactUs />
-        </Route>
-
-        {/* GENERAL ROUTE - NONE PROTECTED ############################################*/}
-
-        {/* PROTECTED ROUTES START HERE #############################################*/}
-        <Route exact path="/dashboard">
+         {/* PROTECTED ROUTES START HERE #############################################*/}
+         <PrivateRoute exact path="/dashboard">
           <Dasboard />
-        </Route>
+        </PrivateRoute>
 
         <Route path="/dashboard/first-timers">
           <FirstTimers />
         </Route>
 
+        <Route path="/dashboard/media/sermon/create">
+          <CreateSermon />
+        </Route>
+       
         <Route path="/dashboard/member/newuser">
           <NewUser />
         </Route>
@@ -118,6 +104,36 @@ const Routes = () => {
           <Mvp />
         </Route>
 
+        <Route path="/dashboard/tithe/create">
+          <CreateTithe />
+        </Route>
+
+        <Route path="/dashboard/tithes/view">
+          <ViewTithes />
+        </Route>
+
+        {/* GENERAL ROUTE - NONE PROTECTED #########################################*/}
+
+        <Route
+          exact
+          path="/"
+          render={(props) => (
+            <Fragment>
+              <Helmet>
+                <title>Glory Plus Admin</title>
+              </Helmet>
+              <Login />
+            </Fragment>
+          )}
+        />
+
+        <Route path="/contactus">
+          <ContactUs />
+        </Route>
+
+        {/* GENERAL ROUTE - NONE PROTECTED ############################################*/}
+
+       
          {/* GPA :::::::::::::::::::::::::::::::::::::::::::::::::::::: */}
          {/* <PrivateRoute
           exact

@@ -8,6 +8,7 @@ import ProgressBar from "./progressBar";
 import Map from './map'
 import Breadcrumb from './breadcrumb'
 import PlacesAutocomplete from "./autocomplete";
+import Thumb from './thumb';
 
 export { 
     Header,
@@ -20,5 +21,6 @@ export {
     ProgressBar, 
     Map, 
     Breadcrumb, 
-    PlacesAutocomplete
+    PlacesAutocomplete,
+    Thumb
 };

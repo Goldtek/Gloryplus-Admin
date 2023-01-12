@@ -12,8 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./event.css";
 // FILE
 import FormError from "./formError";
-import Thumb from "./thumb";
-import { Header, SideBar, PageHeaderTitle, firestore, ProgressBar } from "../../partials";
+import { Header, SideBar, PageHeaderTitle, firestore, ProgressBar, Thumb } from "../../partials";
 
 const validationSchema = Yup.object().shape({
   file: Yup.mixed().required("image upload is required"),
@@ -179,7 +178,7 @@ const CreateGallery = () => {
                                 onBlur={handleBlur}
                               />
                               <Thumb file={values.file} />
-                              {values.file && <ProgressBar file={values.file} setUrl={setUrl} directory="gallery" />}
+                              {values.file && <ProgressBar file={values.file} setUrl={setUrl} directory="images/gallery" />}
                               <FormError
                                 touched={touched.file}
                                 message={errors.file}

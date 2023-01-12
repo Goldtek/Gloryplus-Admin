@@ -128,7 +128,7 @@ const MVP_MemberLists = ({ classes, candidates = [{name:'ch'}] }) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-
+                      
                 {candidates.slice(0, rowsPerPage).map(candidate => (
                   <TableRow
                     className={classes.tableRow}

@@ -3,7 +3,7 @@ import { useStorage } from '../../hooks';
 import './style.css';
 
 const ProgressBar = ({file, directory, setUrl}) => {
-    const path = `images/${directory}/${file.name}`;
+    const path = `${directory}/${file.name}`;
     const { error, url, progress } = useStorage({file, path});
     useEffect(()=>{
         setUrl(url);

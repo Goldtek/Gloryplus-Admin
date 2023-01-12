@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet";
 import FormError from "./formError";
-import Thumb from "./thumb";
+// import Thumb from "./thumb";
 import { Formik, Field } from "formik";
 import * as Yup from "yup";
 import uuid from "react-uuid";
-import { Header, SideBar, PageHeaderTitle, Footer, firestore, ProgressBar } from "../../partials";
+import { Header, SideBar, PageHeaderTitle, Footer, firestore, ProgressBar, Thumb } from "../../partials";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { v4 as uuidv4 } from 'uuid';
@@ -154,7 +154,7 @@ const CreateCourse = ({ match }) => {
                                 onBlur={handleBlur}
                               />
                               <Thumb file={values.file} />
-                              {values.file && <ProgressBar file={values.file} setFile={setFile} setUrl={setUrl} directory="gpa" />}
+                              {values.file && <ProgressBar file={values.file} setFile={setFile} setUrl={setUrl} directory="images/gpa" />}
                               <FormError
                                 touched={touched.file}
                                 message={errors.file}

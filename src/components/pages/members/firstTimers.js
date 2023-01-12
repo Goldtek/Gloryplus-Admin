@@ -149,7 +149,7 @@ function FirstTimers() {
                         
                           try{
                             const user =  {
-                              firstname: values.name,
+                              firstname: values.firstname,
                               gender: values.gender,
                               email: values.email,
                               phone: values.phone,
@@ -159,16 +159,17 @@ function FirstTimers() {
                               country: values.country,
                               bustop: values.bustop,
                               comment: values.comment,
-                              role: 'firstTimer',
+                              role: 'CellLeader',
                               surname: values.surname,
                               age: values.age,
                               cell: values.homecell
                               };
+                              console.log('user', user);
                             
                                 await firestore.collection('users').add(user);
                                 resetForm();
                                 setSubmitting(false);
-                                toast.success("First Timers Successfully added", {
+                                toast.success("Cell Successfully added", {
                                     position: "top-right",
                                     autoClose: 5000,
                                     hideProgressBar: false,

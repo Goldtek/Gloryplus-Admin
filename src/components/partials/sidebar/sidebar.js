@@ -21,7 +21,7 @@ const SideBar = () => {
         </a>
         <div className="title">
           <h1 className="h4" style={{ color: "#fff" }}>
-            Chisom Dike
+           {/* chisom dike */}
           </h1>
           <p>Super Admin</p>
         </div>
@@ -139,6 +139,32 @@ const SideBar = () => {
             </li>
             <li>
               <a href="/dashboard/event/view">View Events</a>
+            </li>
+          </ul>
+        </li>
+        <li id="media">
+          <a href="#mediaDropdown" aria-expanded="false" data-toggle="collapse">
+            <i className="icon-interface-windows"></i>Media
+          </a>
+          <ul id="mediaDropdown" className="collapse list-unstyled">
+            <li>
+              <a href="/dashboard/media/sermon/create">Upload Sermon</a>
+            </li>
+            <li>
+              <a href="/dashboard/event/view">View Sermons</a>
+            </li>
+          </ul>
+        </li>
+        <li id="tithe">
+          <a href="#titheDropdown" aria-expanded="false" data-toggle="collapse">
+            <i className="icon-interface-windows"></i>Tithe Records
+          </a>
+          <ul id="titheDropdown" className="collapse list-unstyled">
+            <li>
+              <a href="/dashboard/tithe/create">Upload Tithe Record</a>
+            </li>
+            <li>
+              <a href="/dashboard/tithes/view">View Tithe Records</a>
             </li>
           </ul>
         </li>

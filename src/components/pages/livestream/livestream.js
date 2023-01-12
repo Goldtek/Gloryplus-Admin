@@ -40,7 +40,7 @@ const Livestream = () => {
         scheduleTime: scheduleObj.time, 
         live: false
       };
-       await firestore.collection("livestream").doc('Rdk9PSngEiM0x1gFbtOn').update(streamData);
+       await firestore.collection("unleash-stream").doc('LZn2Pjzk4W4Re5gCPb16').update(streamData);
         toast.success("Next Livestream Scheduled successfully", {
                 position: "top-right",
                 autoClose: 5000,
@@ -79,7 +79,7 @@ const Livestream = () => {
     };
 
     try{
-     await firestore.collection("livestream").doc('Rdk9PSngEiM0x1gFbtOn').update(streamData);
+     await firestore.collection("livestream").doc('LZn2Pjzk4W4Re5gCPb16').update(streamData);
       toast.success("LiveStream Successfully Updated and its LIVE!!!!", {
               position: "top-right",
               autoClose: 5000,

@@ -18,6 +18,9 @@ import ListEvent from "./event/listEvent";
 import { CreateBranch, ViewBranch } from "./branches";
 import { CreateGallery, ViewGallery } from "./gallery";
 import {  CreateCell, ViewCell } from './Cell';
+import { CreateSermon } from './Sermon';
+import CreateTithe  from './tithe/createTithe';
+import ViewTithes from "./tithe/viewTithes";
 
 
 export {
@@ -45,4 +48,7 @@ export {
   Mvp,
   ViewBranch,
   ViewCell,
+  CreateSermon, 
+  CreateTithe,
+  ViewTithes,
 };
